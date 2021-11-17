@@ -1,7 +1,7 @@
 import * as R from 'ramda'
 import Graphin from '@antv/graphin';
 
-import { info } from 'src/util/loger'
+import { viewInterceptor } from 'src/util/interceptor'
 
 // // const jscodeshift = require('jscodeshift')
 // https://github.com/mobxjs/mobx/tree/main/packages/mobx-undecorate
@@ -68,8 +68,6 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
 }
 
 const Parse = ({ data }) => {
-    info('Parse | render')
-
     let sankeyData = []
     let sankeyLink = []
     let sankeyLinkMap = {}
@@ -96,7 +94,7 @@ const Parse = ({ data }) => {
         edges: sankeyLink,
         nodes: sankeyData,
     }
-    console.log(graphinData, sankeyLinkMap);
+    // console.log(graphinData, sankeyLinkMap);
 
     return (
         <Graphin width={1000} height={1000} style={{
@@ -107,4 +105,4 @@ const Parse = ({ data }) => {
     )
 }
 
-export default Parse
+export default viewInterceptor(Parse)

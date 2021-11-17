@@ -49,15 +49,6 @@ const getSource = (path, proName) => {
 
                 return item
             },
-            // test
-            // item => {
-
-            //     if(R.startsWith('src/')) {
-            //         return item.substr('src/'.length)
-            //     }
-
-            //     return item
-            // },
             item => {
                 const suffIndex = item.indexOf('.')
 

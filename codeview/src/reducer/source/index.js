@@ -1,6 +1,8 @@
 
 const initialState = {
-    fileMap: null,
+    source: {
+        fileMap: null,
+    },
 }
 
 const reducer = {

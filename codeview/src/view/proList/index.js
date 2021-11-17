@@ -2,7 +2,7 @@ import * as R from 'ramda'
 import { useEffect, useState } from 'react'
 import * as babylon from '@babel/parser'
 
-import { info } from 'src/util/loger'
+import { viewInterceptor } from 'src/util/interceptor'
 
 const defaultOptions = {
     sourceType: "module",
@@ -41,13 +41,9 @@ const defaultOptions = {
 
 // 项目列表
 const ProList = ({ dispatch }) => {
-    info('ProList | render');
-
     const [dir, setDir] = useState([])
 
     useEffect(() => {
-        info('ProList | useEffect');
-
         // 读取本地项目
         fetch('/pro')
             .then(function(response) {
@@ -106,4 +102,4 @@ const ProList = ({ dispatch }) => {
     )
 }
 
-export default ProList;
+export default viewInterceptor(ProList);

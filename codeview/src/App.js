@@ -7,8 +7,7 @@ import 'node_modules/react-resizable/css/styles.css';
 
 import ProList from 'src/view/proList'
 import Parse from 'src/view/parse'
-import Test from 'src/view/test'
-import { info } from 'src/util/loger'
+import { viewInterceptor } from 'src/util/interceptor'
 
 import reducer, { initialState } from 'src/reducer'
 
@@ -19,8 +18,6 @@ const DEFAULT_LAYOUT = [
 ]
 
 function App() {
-  info('App | render');
-
   const [state, dispatch] = useReducer(reducer, initialState);
   const [layout, setLayout] = useState(DEFAULT_LAYOUT)
 
@@ -36,7 +33,6 @@ function App() {
 
   const ProListCmp = useMemo(() => <ProList dispatch={dispatch}/>, [])
   const ParseCmp = useMemo(() => <Parse data={state.source.fileMap}/>, [state.source.fileMap])
-  // const TestCmp = useMemo(() => <Test/>, [])
 
   return (
     <div style={{width: '100%'}}>
@@ -53,12 +49,9 @@ function App() {
         <div key="main">
           {ParseCmp}
         </div>
-        {/* <div key={"test"}>
-          {TestCmp}
-        </div> */}
       </GridLayout>
     </div>
   )
 }
 
-export default App;
+export default viewInterceptor(App);
