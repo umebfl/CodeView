@@ -43,7 +43,6 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
 
     if(item.parse) {
         const importList = R.compose(
-            R.filter(item => item.source !== item.target),
             R.map(target => {
 
                 sankeyLinkMap[item.pathNoSuffix] = true
@@ -54,9 +53,15 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
                     target: target,
                 }
             }),
-            R.filter(path => !R.endsWith('.css')(path)),
-            R.filter(path => !R.startsWith('src/util/')(path)),
-            R.filter(R.startsWith(SRC_PATH)),
+            R.filter(
+                R.allPass([
+                    target => item.pathNoSuffix !== target,
+                    // todo: 过滤指定后缀js/jsx
+                    path => !R.endsWith('.css')(path),
+                    path => !R.startsWith('src/util/')(path),
+                    R.startsWith(SRC_PATH),
+                ])
+            ),
             R.map(item => item.source.value),
             R.filter(item => item.type === 'ImportDeclaration'),
         )(item.parse.program.body)
