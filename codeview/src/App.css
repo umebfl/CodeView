@@ -2,3 +2,7 @@
 .react-grid-item {
     background-color: #fbfbfb;
 }
+
+.react-resizable-handle {
+    opacity: 0.2;
+}
