@@ -1,9 +1,8 @@
 import * as R from 'ramda'
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useState } from 'react'
 import * as babylon from '@babel/parser'
 
 import { info } from 'src/util/loger'
-import { Context } from 'src/reducer'
 
 const defaultOptions = {
     sourceType: "module",
@@ -41,10 +40,8 @@ const defaultOptions = {
 }
 
 // 项目列表
-const ProList = () => {
+const ProList = ({ dispatch }) => {
     info('ProList | render');
-
-    const { dispatch } = useContext(Context)
 
     const [dir, setDir] = useState([])
 

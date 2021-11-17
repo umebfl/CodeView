@@ -1,5 +1,4 @@
-import { createContext } from 'react'
-import source from './source'
+import source from 'src/reducer/source'
 
 export const initialState = {
     source: source.initialState,
@@ -18,17 +17,6 @@ const reducer = (state, action) => {
     }
 
     return fun(state, action.payload)
-//   switch (action.type) {
-//     case 'increment':
-//       return {count: state.count + 1};
-//     case 'decrement':
-//       return {count: state.count - 1};
-//     default:
-//       throw new Error();
-//   }
 }
-
-
-export const Context = createContext({})
 
 export default reducer

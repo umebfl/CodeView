@@ -3,14 +3,26 @@ const express = require('express')
 const fs = require('fs')
 const app = express()
 
-const proPath = '../../'
-// const proPath = '../../proSrc'
+const proPath = '..'
+// const proPath = '../proSrc'
 
 app.get('/pro', function (req, res) {
     const readDir = fs.readdirSync(proPath);
+
+    const dirList = readDir.filter(item => {
+        const filePath = `${proPath}/${item}`
+        const stat = fs.statSync(filePath)
+
+        if(item === '.git') {
+            return false
+        }
+
+        return !stat.isFile()
+    })
+
     res.json({
         code: 'ok',
-        data: readDir,
+        data: dirList,
     })
 })
 
@@ -28,9 +40,11 @@ const getSource = (path, proName) => {
                     return item
                 }
 
-                const index = item.lastIndexOf('/index')
-                if(index > 0) {
-                    return item.substring(0, item.lastIndexOf('/index'))
+                if(R.endsWith('/index')(item)) {
+                    const index = item.lastIndexOf('/index')
+                    if(index > 0) {
+                        return item.substring(0, item.lastIndexOf('/index'))
+                    }
                 }
 
                 return item
@@ -63,6 +77,7 @@ const getSource = (path, proName) => {
                 stat,
                 source,
                 pathNoSuffix: repathNoSuffix,
+                filePath,
             }
         }
 
@@ -72,6 +87,7 @@ const getSource = (path, proName) => {
             stat,
             list: getSource(filePath, proName),
             pathNoSuffix: repathNoSuffix,
+            filePath,
         }
     })
 }

@@ -1,13 +1,12 @@
 import * as R from 'ramda'
-import { useContext } from 'react'
 import Graphin from '@antv/graphin';
 
 import { info } from 'src/util/loger'
-import { Context } from 'src/reducer'
 
 // // const jscodeshift = require('jscodeshift')
 // https://github.com/mobxjs/mobx/tree/main/packages/mobx-undecorate
 
+const SRC_PATH = 'src/'
 
 const buildSankeyData = (item) => {
 
@@ -22,10 +21,10 @@ const buildSankeyData = (item) => {
     return {
         comboId: undefined,
         id: item.pathNoSuffix,
-        label: item.pathNoSuffix,
+        label: item.pathNoSuffix.substring(SRC_PATH.length),
         style: {
             label: {
-                value: item.pathNoSuffix,
+                value: item.pathNoSuffix.substring(SRC_PATH.length),
             },
         },
         type: 'graphin-circle',
@@ -56,7 +55,8 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
                 }
             }),
             R.filter(path => !R.endsWith('.css')(path)),
-            R.filter(R.startsWith('src/')),
+            R.filter(path => !R.startsWith('src/util/')(path)),
+            R.filter(R.startsWith(SRC_PATH)),
             R.map(item => item.source.value),
             R.filter(item => item.type === 'ImportDeclaration'),
         )(item.parse.program.body)
@@ -67,24 +67,22 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
     return []
 }
 
-const Parse = () => {
+const Parse = ({ data }) => {
     info('Parse | render')
-
-    const {state, dispatch} = useContext(Context)
 
     let sankeyData = []
     let sankeyLink = []
     let sankeyLinkMap = {}
 
-    if(state.source.fileMap !== null && state.source.fileMap !== undefined) {
+    if(data !== null && data !== undefined) {
 
-        sankeyLink = buildSankeyLink(state.source.fileMap, sankeyLinkMap)
+        sankeyLink = buildSankeyLink(data, sankeyLinkMap)
         sankeyLink = R.compose(
             R.filter(item => item !== null),
             R.flatten,
         )(sankeyLink)
 
-        sankeyData = buildSankeyData(state.source.fileMap)
+        sankeyData = buildSankeyData(data)
         sankeyData = R.compose(
             // R.uniqBy(item => item.name),
             R.filter(item => sankeyLinkMap[item.id]),
@@ -93,18 +91,19 @@ const Parse = () => {
         )(sankeyData)
     }
 
-    const data = {
+    const graphinData = {
         combos: undefined,
         edges: sankeyLink,
         nodes: sankeyData,
     }
-    console.log(data, sankeyLinkMap);
+    console.log(graphinData, sankeyLinkMap);
 
     return (
-        <Graphin style={{
+        <Graphin width={1000} height={1000} style={{
             width: '100%',
             height: '100%',
-        }} data={data} layout={{ type: 'dagre' }}></Graphin>
+            background: '#FEFEFE',
+        }} data={graphinData} layout={{ type: 'dagre', center: [500, 500], }}></Graphin>
     )
 }
 

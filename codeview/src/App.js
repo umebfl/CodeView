@@ -7,18 +7,21 @@ import 'node_modules/react-resizable/css/styles.css';
 
 import ProList from 'src/view/proList'
 import Parse from 'src/view/parse'
+import Test from 'src/view/test'
+import { info } from 'src/util/loger'
 
-import reducer, { initialState, Context } from 'src/reducer'
+import reducer, { initialState } from 'src/reducer'
 
 const DEFAULT_LAYOUT = [
   {i: 'proList', x: 0, y: 0, w: 2, h: 10, minW: 1, maxW: 100},
   {i: 'main', x: 0, y: 0, w: 7, h: 10, minW: 1, maxW: 100},
+  {i: 'test', x: 0, y: 0, w: 7, h: 10, minW: 1, maxW: 100},
 ]
 
 function App() {
+  info('App | render');
 
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const [layout, setLayout] = useState(DEFAULT_LAYOUT)
 
   const handleChange = (e) => {
@@ -31,28 +34,30 @@ function App() {
     setLayout(layoutCache)
   }, [])
 
-  const ProListCmp = useMemo(() => <ProList/>, [])
-  const ParseCmp = useMemo(() => <Parse/>, [])
+  const ProListCmp = useMemo(() => <ProList dispatch={dispatch}/>, [])
+  const ParseCmp = useMemo(() => <Parse data={state.source.fileMap}/>, [state.source.fileMap])
+  // const TestCmp = useMemo(() => <Test/>, [])
 
   return (
-    <Context.Provider value={{state, dispatch}}>
-      <div style={{width: '100%'}}>
-                <GridLayout 
-            className="layout"
-            layout={layout}
-            rowHeight={50}
-            width={1800}
-            onDragStop={handleChange}
-            onResize={handleChange}>
-            <div key="proList">
-              {ProListCmp}
-            </div>
-            <div key="main">
-              {ParseCmp}
-            </div>
-          </GridLayout>
-          </div>
-    </Context.Provider>
+    <div style={{width: '100%'}}>
+      <GridLayout 
+        className="layout"
+        layout={layout}
+        rowHeight={50}
+        width={1800}
+        onDragStop={handleChange}
+        onResize={handleChange}>
+        <div key="proList">
+          {ProListCmp}
+        </div>
+        <div key="main">
+          {ParseCmp}
+        </div>
+        {/* <div key={"test"}>
+          {TestCmp}
+        </div> */}
+      </GridLayout>
+    </div>
   )
 }
 
