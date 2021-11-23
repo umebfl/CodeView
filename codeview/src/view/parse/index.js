@@ -1,5 +1,5 @@
 import * as R from 'ramda'
-import Graphin from '@antv/graphin';
+import Graphin from '@antv/graphin'
 
 import { viewInterceptor } from 'src/util/interceptor'
 
@@ -9,13 +9,12 @@ import { viewInterceptor } from 'src/util/interceptor'
 const SRC_PATH = 'src/'
 
 const buildSankeyData = (item) => {
-
-    if(item === null) {
+    if (item === null) {
         return null
     }
 
-    if(item.list) {
-        return R.map(item => buildSankeyData(item))(item.list)
+    if (item.list) {
+        return R.map((item) => buildSankeyData(item))(item.list)
     }
 
     return {
@@ -32,19 +31,17 @@ const buildSankeyData = (item) => {
 }
 
 const buildSankeyLink = (item, sankeyLinkMap) => {
-
-    if(item === null) {
+    if (item === null) {
         return null
     }
 
-    if(item.list) {
-        return R.map(item => buildSankeyLink(item, sankeyLinkMap))(item.list)
+    if (item.list) {
+        return R.map((item) => buildSankeyLink(item, sankeyLinkMap))(item.list)
     }
 
-    if(item.parse) {
+    if (item.parse) {
         const importList = R.compose(
-            R.map(target => {
-
+            R.map((target) => {
                 sankeyLinkMap[item.pathNoSuffix] = true
                 sankeyLinkMap[target] = true
 
@@ -55,17 +52,17 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
             }),
             R.filter(
                 R.allPass([
-                    target => item.pathNoSuffix !== target,
+                    (target) => item.pathNoSuffix !== target,
                     // todo: 过滤指定后缀js/jsx
-                    path => !R.endsWith('.css')(path),
-                    path => !R.startsWith('src/util/')(path),
+                    (path) => !R.endsWith('.css')(path),
+                    (path) => !R.startsWith('src/util/')(path),
                     R.startsWith(SRC_PATH),
                 ])
             ),
-            R.map(item => item.source.value),
-            R.filter(item => item.type === 'ImportDeclaration'),
+            R.map((item) => item.source.value),
+            R.filter((item) => item.type === 'ImportDeclaration')
         )(item.parse.program.body)
-        
+
         return importList
     }
 
@@ -77,20 +74,19 @@ const Parse = ({ data }) => {
     let sankeyLink = []
     let sankeyLinkMap = {}
 
-    if(data !== null && data !== undefined) {
-
+    if (data !== null && data !== undefined) {
         sankeyLink = buildSankeyLink(data, sankeyLinkMap)
         sankeyLink = R.compose(
-            R.filter(item => item !== null),
-            R.flatten,
+            R.filter((item) => item !== null),
+            R.flatten
         )(sankeyLink)
 
         sankeyData = buildSankeyData(data)
         sankeyData = R.compose(
             // R.uniqBy(item => item.name),
-            R.filter(item => sankeyLinkMap[item.id]),
-            R.filter(item => item !== null),
-            R.flatten,
+            R.filter((item) => sankeyLinkMap[item.id]),
+            R.filter((item) => item !== null),
+            R.flatten
         )(sankeyData)
     }
 
@@ -102,11 +98,17 @@ const Parse = ({ data }) => {
     // console.log(graphinData, sankeyLinkMap);
 
     return (
-        <Graphin width={1000} height={1000} style={{
-            width: '100%',
-            height: '100%',
-            background: '#FEFEFE',
-        }} data={graphinData} layout={{ type: 'dagre', center: [500, 500], }}></Graphin>
+        <Graphin
+            width={1000}
+            height={1000}
+            style={{
+                width: '100%',
+                height: '100%',
+                background: '#FEFEFE',
+            }}
+            data={graphinData}
+            layout={{ type: 'dagre', center: [500, 500] }}
+        ></Graphin>
     )
 }
 

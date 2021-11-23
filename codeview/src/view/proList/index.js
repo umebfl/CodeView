@@ -1,8 +1,8 @@
-import * as R from 'ramda'
-import { useEffect, useState } from 'react'
-import * as babylon from '@babel/parser'
+import * as R from "ramda";
+import { useEffect, useState } from "react";
+import * as babylon from "@babel/parser";
 
-import { viewInterceptor } from 'src/util/interceptor'
+import { viewInterceptor } from "src/util/interceptor";
 
 const defaultOptions = {
     sourceType: "module",
@@ -35,71 +35,75 @@ const defaultOptions = {
         ["pipelineOperator", { proposal: "minimal" }],
         "throwExpressions",
         "typescript",
-        "jsx"
-    ]
-}
+        "jsx",
+    ],
+};
 
 // 项目列表
 const ProList = ({ dispatch }) => {
-    const [dir, setDir] = useState([])
+    const [dir, setDir] = useState([]);
 
     useEffect(() => {
         // 读取本地项目
-        fetch('/pro')
-            .then(function(response) {
+        fetch("/pro")
+            .then(function (response) {
                 return response.json();
             })
-            .then(function(rv) {
-                setDir(rv.data)
+            .then(function (rv) {
+                setDir(rv.data);
             });
-    }, [])
+    }, []);
 
     const handleClick = (item) => {
         fetch(`/source/${item}`)
-            .then(function(response) {
+            .then(function (response) {
                 return response.json();
             })
-            .then(function(rv) {
-                if(rv.code === 'ok') {
-
+            .then(function (rv) {
+                if (rv.code === "ok") {
                     const build = (item) => {
-                        if(item.list) {
+                        if (item.list) {
                             return {
                                 ...item,
                                 list: R.map(build)(item.list),
-                            }
+                            };
                         }
 
-                        if(R.anyPass([
-                            R.endsWith('.js'), 
-                            R.endsWith('.jsx'),
-                            R.endsWith('.ts'), 
-                            R.endsWith('.tsx'),
-                        ])(item.name)) {
+                        if (
+                            R.anyPass([
+                                R.endsWith(".js"),
+                                R.endsWith(".jsx"),
+                                R.endsWith(".ts"),
+                                R.endsWith(".tsx"),
+                            ])(item.name)
+                        ) {
                             return {
                                 ...item,
-                                parse: babylon.parse(item.source, defaultOptions),
-                            }
+                                parse: babylon.parse(
+                                    item.source,
+                                    defaultOptions
+                                ),
+                            };
                         }
 
-                        return null
-                    }
+                        return null;
+                    };
 
-                    const parse = build(rv.data)
-                    dispatch({type: 'source/setFileMap', payload: parse})
+                    const parse = build(rv.data);
+                    dispatch({ type: "source/setFileMap", payload: parse });
                 }
             });
-    }
+    };
 
     return (
         <div>
-            {
-                R.map(
-                    item => <div key={item} onClick={() => handleClick(item)}>{item}</div>
-                )(dir)
-            }
+            {R.map((item) => (
+                <div key={item} onClick={() => handleClick(item)}>
+                    {item}
+                </div>
+            ))(dir)}
         </div>
-    )
-}
+    );
+};
 
 export default viewInterceptor(ProList);
