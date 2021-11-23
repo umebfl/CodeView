@@ -23,8 +23,8 @@ function App() {
     const [state, dispatch] = useReducer(reducer, initialState)
     const [layout, setLayout] = useState(DEFAULT_LAYOUT)
 
-    const handleChange = (e) => {
-        const data = e.map((item) => ({ ...item, static: true }))
+    const handleChange = e => {
+        const data = e.map(item => ({ ...item, static: true }))
         localStorage.setItem('layout', JSON.stringify(data))
     }
 
