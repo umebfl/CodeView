@@ -1,8 +1,12 @@
-
 .react-grid-item {
     background-color: #fbfbfb;
 }
 
 .react-resizable-handle {
     opacity: 0.2;
+}
+
+.react-grid-item {
+    border: 1px solid #ebdede;
+    overflow: hidden;
 }

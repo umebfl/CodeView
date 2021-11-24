@@ -1,5 +1,6 @@
 import * as R from 'ramda'
-import Graphin from '@antv/graphin'
+import { useEffect, useContext } from 'react'
+import Graphin, { GraphinContext } from '@antv/graphin'
 
 import { viewInterceptor } from 'src/util/interceptor'
 
@@ -26,6 +27,7 @@ const buildSankeyData = item => {
                 value: item.pathNoSuffix.substring(SRC_PATH.length),
             },
         },
+        program: item.parse.program,
         type: 'graphin-circle',
     }
 }
@@ -69,7 +71,7 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
     return []
 }
 
-const Parse = ({ data }) => {
+const Parse = ({ data, dispatch }) => {
     let sankeyData = []
     let sankeyLink = []
     let sankeyLinkMap = {}
@@ -97,6 +99,29 @@ const Parse = ({ data }) => {
     }
     // console.log(graphinData, sankeyLinkMap);
 
+    const SampleBehavior = () => {
+        const { graph } = useContext(GraphinContext)
+
+        useEffect(() => {
+            const handleClick = evt => {
+                const node = evt.item
+                const model = node.getModel()
+                // apis.focusNodeById(model.id)
+                dispatch({
+                    type: 'program/setData',
+                    payload: model.program.body,
+                })
+            }
+
+            graph.on('node:click', handleClick)
+            return () => {
+                graph.off('node:click', handleClick)
+            }
+        }, [graph])
+
+        return null
+    }
+
     return (
         <Graphin
             width={1000}
@@ -106,9 +131,14 @@ const Parse = ({ data }) => {
                 height: '100%',
                 background: '#FEFEFE',
             }}
+            onClick={(x, y) => {
+                console.log(x, y)
+            }}
             data={graphinData}
             layout={{ type: 'dagre', center: [500, 500] }}
-        ></Graphin>
+        >
+            <SampleBehavior></SampleBehavior>
+        </Graphin>
     )
 }
 

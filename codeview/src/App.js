@@ -34,11 +34,16 @@ function App() {
     }, [])
 
     const ProListCmp = useMemo(() => <ProList dispatch={dispatch} />, [])
+
     const ParseCmp = useMemo(
-        () => <Parse data={state.source.fileMap} />,
+        () => <Parse data={state.source.fileMap} dispatch={dispatch} />,
         [state.source.fileMap]
     )
-    const ProgramCmp = useMemo(() => <Program />, [])
+
+    const ProgramCmp = useMemo(
+        () => <Program data={state.program.data} />,
+        [state.program.data]
+    )
 
     return (
         <div style={{ width: '100%' }}>
