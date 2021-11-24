@@ -7,13 +7,13 @@ const proPath = '..'
 // const proPath = '../proSrc'
 
 app.get('/pro', function (req, res) {
-    const readDir = fs.readdirSync(proPath);
+    const readDir = fs.readdirSync(proPath)
 
     const dirList = readDir.filter(item => {
         const filePath = `${proPath}/${item}`
         const stat = fs.statSync(filePath)
 
-        if(item === '.git') {
+        if (item === '.git') {
             return false
         }
 
@@ -27,7 +27,7 @@ app.get('/pro', function (req, res) {
 })
 
 const getSource = (path, proName) => {
-    const fileList = fs.readdirSync(path);
+    const fileList = fs.readdirSync(path)
 
     return fileList.map(item => {
         const filePath = `${path}/${item}`
@@ -36,13 +36,13 @@ const getSource = (path, proName) => {
         const repath = filePath.substring(`${proPath}/${proName}/`.length)
         const repathNoSuffix = R.compose(
             item => {
-                if(item === 'src/index') {
+                if (item === 'src/index') {
                     return item
                 }
 
-                if(R.endsWith('/index')(item)) {
+                if (R.endsWith('/index')(item)) {
                     const index = item.lastIndexOf('/index')
-                    if(index > 0) {
+                    if (index > 0) {
                         return item.substring(0, item.lastIndexOf('/index'))
                     }
                 }
@@ -52,15 +52,20 @@ const getSource = (path, proName) => {
             item => {
                 const suffIndex = item.indexOf('.')
 
-                if(suffIndex > 0) {
+                if (suffIndex > 0) {
                     return item.substring(0, suffIndex)
                 }
 
                 return item
-            },
+            }
         )(repath)
 
-        if(stat.isFile()) {
+        const shortName = R.compose(
+            num => R.drop(num + 1)(repathNoSuffix),
+            R.lastIndexOf('/')
+        )(repathNoSuffix)
+
+        if (stat.isFile()) {
             const source = fs.readFileSync(filePath).toString()
             return {
                 name: item,
@@ -69,6 +74,7 @@ const getSource = (path, proName) => {
                 source,
                 pathNoSuffix: repathNoSuffix,
                 filePath,
+                shortName,
             }
         }
 
@@ -79,12 +85,12 @@ const getSource = (path, proName) => {
             list: getSource(filePath, proName),
             pathNoSuffix: repathNoSuffix,
             filePath,
+            shortName,
         }
     })
 }
 
 app.get('/source/:name', function (req, res) {
-
     const root = `${proPath}/${req.params.name}/src`
     const list = getSource(root, req.params.name)
 
@@ -97,5 +103,5 @@ app.get('/source/:name', function (req, res) {
         },
     })
 })
-  
+
 app.listen(9000)

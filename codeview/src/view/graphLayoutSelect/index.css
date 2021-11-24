@@ -1,0 +1,17 @@
+.graphLayoutSelect-content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.graphLayoutSelect-item {
+    display: flex;
+    margin: 0 10px;
+    background: #eddada;
+    cursor: pointer;
+    padding: 4px 10px;
+    color: #979696;
+}
+
+.graphLayoutSelect-selected {
+    background-color: rgb(194, 173, 173);
+}

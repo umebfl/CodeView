@@ -1,3 +1,4 @@
 .program-container {
     padding: 4px;
+    word-break: break-all;
 }

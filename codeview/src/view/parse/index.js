@@ -1,9 +1,10 @@
 import * as R from 'ramda'
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useState } from 'react'
 import Graphin, { GraphinContext } from '@antv/graphin'
 
 import { viewInterceptor } from 'src/util/interceptor'
 
+import Hull from 'src/view/parse/hull'
 // // const jscodeshift = require('jscodeshift')
 // https://github.com/mobxjs/mobx/tree/main/packages/mobx-undecorate
 
@@ -24,7 +25,11 @@ const buildSankeyData = item => {
         label: item.pathNoSuffix.substring(SRC_PATH.length),
         style: {
             label: {
-                value: item.pathNoSuffix.substring(SRC_PATH.length),
+                value: item.shortName,
+                position: 'right',
+                fill: 'green',
+                fontSize: 8,
+                opacity: 0.68,
             },
         },
         program: item.parse.program,
@@ -71,10 +76,12 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
     return []
 }
 
-const Parse = ({ data, dispatch }) => {
+const Parse = ({ data, layoutType, dispatch }) => {
     let sankeyData = []
     let sankeyLink = []
     let sankeyLinkMap = {}
+
+    const [tips, setTips] = useState('')
 
     if (data !== null && data !== undefined) {
         sankeyLink = buildSankeyLink(data, sankeyLinkMap)
@@ -97,9 +104,8 @@ const Parse = ({ data, dispatch }) => {
         edges: sankeyLink,
         nodes: sankeyData,
     }
-    // console.log(graphinData, sankeyLinkMap);
 
-    const SampleBehavior = () => {
+    const Behavior = () => {
         const { graph } = useContext(GraphinContext)
 
         useEffect(() => {
@@ -113,32 +119,62 @@ const Parse = ({ data, dispatch }) => {
                 })
             }
 
+            const handleHover = evt => {
+                const node = evt.item
+                const model = node.getModel()
+                setTips(model.id)
+            }
+            const handleMouseleave = evt => {
+                setTips('')
+            }
+
             graph.on('node:click', handleClick)
+            graph.on('node:mouseenter', handleHover)
+            graph.on('node:mouseleave', handleMouseleave)
+
             return () => {
                 graph.off('node:click', handleClick)
+                graph.off('node:mouseenter', handleHover)
+                graph.off('node:mouseleave', handleMouseleave)
             }
         }, [graph])
 
         return null
     }
 
+    const hullOptions = R.compose(
+        R.map(item => ({
+            members: R.map(mem => mem.id)(item[1]),
+        })),
+        R.filter(item => item[0].length > 0 && item[1].length > 1),
+        R.toPairs,
+        // R.tap(item => {
+        //     debugger
+        // }),
+        R.groupBy(item => {
+            const sub = R.match(/^.*\/.*\//)(item.id)
+            return sub.join('')
+        })
+    )(sankeyData)
+
     return (
-        <Graphin
-            width={1000}
-            height={1000}
-            style={{
-                width: '100%',
-                height: '100%',
-                background: '#FEFEFE',
-            }}
-            onClick={(x, y) => {
-                console.log(x, y)
-            }}
-            data={graphinData}
-            layout={{ type: 'dagre', center: [500, 500] }}
-        >
-            <SampleBehavior></SampleBehavior>
-        </Graphin>
+        <div>
+            <div>Node: {tips}</div>
+            <Graphin
+                width={1000}
+                height={1000}
+                style={{
+                    width: '100%',
+                    height: '100%',
+                    background: '#FEFEFE',
+                }}
+                data={graphinData}
+                layout={{ type: layoutType, center: [500, 500] }}
+            >
+                {sankeyData.length && <Hull options={hullOptions} />}
+                <Behavior></Behavior>
+            </Graphin>
+        </div>
     )
 }
 
