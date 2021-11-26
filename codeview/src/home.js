@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useReducer } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import GridLayout from 'react-grid-layout'
 
 import 'src/Home.css'
@@ -10,13 +10,43 @@ import Parse from 'src/view/parse'
 import GraphLayoutSelect from 'src/view/graphLayoutSelect'
 import Program from 'src/view/program'
 
-import { viewInterceptor } from 'src/util/interceptor'
-
 const DEFAULT_LAYOUT = [
-    { i: 'proList', x: 0, y: 0, w: 2, h: 10, minW: 1, maxW: 100 },
-    { i: 'main', x: 0, y: 0, w: 7, h: 10, minW: 1, maxW: 100 },
-    { i: 'program', x: 0, y: 0, w: 7, h: 10, minW: 1, maxW: 100 },
-    { i: 'graphLayoutSelect', x: 0, y: 0, w: 7, h: 10, minW: 1, maxW: 100 },
+    {
+        w: 1,
+        h: 17,
+        x: 0,
+        y: 0,
+        i: 'proList',
+        minW: 1,
+        maxW: 100,
+    },
+    {
+        w: 6,
+        h: 16,
+        x: 1,
+        y: 1,
+        i: 'main',
+        minW: 1,
+        maxW: 100,
+    },
+    {
+        w: 2,
+        h: 17,
+        x: 7,
+        y: 0,
+        i: 'program',
+        minW: 1,
+        maxW: 100,
+    },
+    {
+        w: 7,
+        h: 1,
+        x: 1,
+        y: 0,
+        i: 'graphLayoutSelect',
+        minW: 1,
+        maxW: 100,
+    },
 ]
 
 function Home({ state, dispatch }) {
@@ -32,7 +62,10 @@ function Home({ state, dispatch }) {
         setLayout(layoutCache)
     }, [])
 
-    const ProListCmp = useMemo(() => <ProList dispatch={dispatch} />, [])
+    const ProListCmp = useMemo(
+        () => <ProList dispatch={dispatch} />,
+        [dispatch]
+    )
 
     const ParseCmp = useMemo(
         () => (
@@ -42,7 +75,7 @@ function Home({ state, dispatch }) {
                 dispatch={dispatch}
             />
         ),
-        [state.source.fileMap, state.graphLayout.data]
+        [state.source.fileMap, state.graphLayout.data, dispatch]
     )
 
     const ProgramCmp = useMemo(
@@ -58,7 +91,7 @@ function Home({ state, dispatch }) {
                 dispatch={dispatch}
             />
         ),
-        [state.graphLayout.data, state.graphLayout.type]
+        [state.graphLayout.data, state.graphLayout.type, dispatch]
     )
 
     return (
@@ -80,4 +113,4 @@ function Home({ state, dispatch }) {
     )
 }
 
-export default viewInterceptor(Home)
+export default Home

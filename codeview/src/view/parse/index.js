@@ -1,10 +1,10 @@
 import * as R from 'ramda'
-import { useEffect, useContext, useState } from 'react'
+import { useEffect, useContext, useState, useMemo } from 'react'
 import Graphin, { GraphinContext } from '@antv/graphin'
 
 import { viewInterceptor } from 'src/util/interceptor'
 
-import Hull from 'src/view/parse/hull'
+import Hull from './hull'
 // // const jscodeshift = require('jscodeshift')
 // https://github.com/mobxjs/mobx/tree/main/packages/mobx-undecorate
 
@@ -26,10 +26,10 @@ const buildSankeyData = item => {
         style: {
             label: {
                 value: item.shortName,
-                position: 'right',
-                fill: 'green',
-                fontSize: 8,
-                opacity: 0.68,
+                position: 'bottom',
+                fill: '#666',
+                fontSize: 14,
+                // opacity: 0.8,
             },
         },
         program: item.parse.program,
@@ -142,15 +142,12 @@ const Parse = ({ data, layoutType, dispatch }) => {
         return null
     }
 
-    const hullOptions = R.compose(
+    const hullOption = R.compose(
         R.map(item => ({
             members: R.map(mem => mem.id)(item[1]),
         })),
         R.filter(item => item[0].length > 0 && item[1].length > 1),
         R.toPairs,
-        // R.tap(item => {
-        //     debugger
-        // }),
         R.groupBy(item => {
             const sub = R.match(/^.*\/.*\//)(item.id)
             return sub.join('')
@@ -171,7 +168,7 @@ const Parse = ({ data, layoutType, dispatch }) => {
                 data={graphinData}
                 layout={{ type: layoutType, center: [500, 500] }}
             >
-                {sankeyData.length && <Hull options={hullOptions} />}
+                {hullOption && <Hull options={hullOption} />}
                 <Behavior></Behavior>
             </Graphin>
         </div>

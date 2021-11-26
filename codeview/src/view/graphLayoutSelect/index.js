@@ -1,5 +1,7 @@
 import * as R from 'ramda'
 
+import { viewInterceptor } from 'src/util/interceptor'
+
 import './index.css'
 
 const GraphLayoutSelect = ({ data, type, dispatch }) => {
@@ -35,4 +37,4 @@ const GraphLayoutSelect = ({ data, type, dispatch }) => {
     )
 }
 
-export default GraphLayoutSelect
+export default viewInterceptor(GraphLayoutSelect)

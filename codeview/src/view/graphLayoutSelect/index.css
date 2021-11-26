@@ -6,12 +6,13 @@
 .graphLayoutSelect-item {
     display: flex;
     margin: 0 10px;
-    background: #eddada;
+    /* background: #eddada; */
     cursor: pointer;
     padding: 4px 10px;
     color: #979696;
 }
 
 .graphLayoutSelect-selected {
-    background-color: rgb(194, 173, 173);
+    /* background-color: rgb(194, 173, 173); */
+    border: 1px solid #eee;
 }
