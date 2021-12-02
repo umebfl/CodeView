@@ -3,8 +3,18 @@ const express = require('express')
 const fs = require('fs')
 const app = express()
 
-const proPath = '..'
+const proPath =
+    '/home/anqihuang/workspace/mapping-experimental/modules/data/uploader'
+// const proPath = '..'
 // const proPath = '../proSrc'
+
+app.get('/uploadServer', function (req, res) {
+    console.log('/uploadServer')
+    res.json({
+        code: 'ok',
+        data: [88],
+    })
+})
 
 app.get('/pro', function (req, res) {
     const readDir = fs.readdirSync(proPath)

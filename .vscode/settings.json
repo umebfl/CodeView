@@ -1,0 +1,68 @@
+{
+    "git.autofetch": true,
+    "js/ts.implicitProjectConfig.experimentalDecorators": true,
+    "terminal.integrated.cursorStyle": "underline",
+    "explorer.confirmDragAndDrop": false,
+    "typescript.updateImportsOnFileMove.enabled": "never",
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "files.saveConflictResolution": "overwriteFileOnDisk",
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "git.enableSmartCommit": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.fontSize": 11,
+    "terminal.integrated.fontSize": 11,
+    "wallaby.startAutomatically": true,
+    "vscPostman.history": [
+        "{\"name\":\"add\",\"method\":\"POST\",\"url\":\"http://localhost:3000/unit/add\",\"headers\":\"\",\"body\":\"{\\n\\\"name\\\": 123\\n}\",\"createTime\":1628692204539}",
+        "{\"name\":\"select\",\"method\":\"GET\",\"url\":\"http://localhost:3000/unit\",\"createTime\":1628762082656}",
+        "{\"name\":\"PRO_keyframes/gps\",\"method\":\"POST\",\"url\":\"https://xraydb.autox.tech/json/search/keyframes/gps\",\"createTime\":1630471949463}",
+        "{\"name\":\"playableLinks\",\"method\":\"GET\",\"url\":\"http://localhost:8082/json/playableLinks\",\"createTime\":1630480249533}",
+        "{\"name\":\"playableLinks:host\",\"method\":\"GET\",\"url\":\"http://localhost:8082/json/playableLinks/cn\",\"createTime\":1630480268139}",
+        "{\"name\":\"keyframes\",\"method\":\"POST\",\"url\":\"http://xraydb.autox.tech/xraydb-test/json/searchPages/keyframes\",\"body\":\"{\\\"regexMessage\\\":\\\"\\\",\\\"hostnameList\\\":[],\\\"regexTagName\\\":[\\\"/^AEB$/i\\\"],\\\"regexExcludedTagName\\\":[],\\\"regexBranch\\\":\\\"\\\",\\\"join\\\":true,\\\"grouped\\\":false,\\\"fullMetadata\\\":false,\\\"fromSecs\\\":1299537643.343,\\\"toSecs\\\":1631176543.343,\\\"regionName\\\":\\\"\\\",\\\"limit\\\":100}\",\"createTime\":1631187023170}",
+        "{\"name\":\"whatisnew-list\",\"method\":\"GET\",\"url\":\"http://localhost:8082/api/newFeature/list\",\"createTime\":1634876417118}",
+        "{\"name\":\"whatisnew-role\",\"method\":\"GET\",\"url\":\"http://localhost:8082/api/newFeature/role/U02CW6D79FZ\",\"createTime\":1634876510125}",
+        "{\"name\":\"whatisnew-tech-list\",\"method\":\"GET\",\"url\":\"https://xraydb.autox.tech/xraydb-test/api/newFeature/list\",\"createTime\":1635173816519}"
+    ],
+    "eslint.format.enable": true,
+    "editor.formatOnSave": true,
+    "markiscodecoverage.searchCriteria": "coverage/lcov.info",
+    "coverage-gutters.coverageReportFileName": "/home/anqihuang/workspace/mapping-experimental/modules/xview/frontend/coverage/**.html",
+    "prettier.tabWidth": 4,
+    "prettier.semi": false,
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": false,
+    "prettier.jsxBracketSameLine": false,
+    "prettier.endOfLine": "lf",
+    "prettier.bracketSpacing": true,
+    "prettier.arrowParens": "avoid",
+    "prettier.trailingComma": "es5",
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+    "workbench.colorTheme": "Visual Studio Dark",
+    "editor.minimap.enabled": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "git.confirmSync": false,
+    "eslint.alwaysShowStatus": true,
+    "eslint.options": {
+        "configFile": "/home/anqihuang/workspace2/CodeView/.eslitrc.js"
+    },
+    "commentTranslate.targetLanguage": "zh-CN"
+}
