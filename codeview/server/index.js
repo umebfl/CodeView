@@ -3,10 +3,10 @@ const express = require('express')
 const fs = require('fs')
 const app = express()
 
-const proPath =
-    '/home/anqihuang/workspace/mapping-experimental/modules/data/uploader'
+// const proPath =
+// '/home/anqihuang/workspace/mapping-experimental/modules/data/uploader'
 // const proPath = '..'
-// const proPath = '../proSrc'
+const proPath = '../'
 
 app.get('/uploadServer', function (req, res) {
     console.log('/uploadServer')

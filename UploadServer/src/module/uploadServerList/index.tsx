@@ -1,41 +1,43 @@
-import { useEffect } from "react";
+import { useEffect } from 'react'
 
-import Box from "@mui/material/Box";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { TableCellProps } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { useTheme } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import Box from '@mui/material/Box'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell, { TableCellProps } from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
+import Paper from '@mui/material/Paper'
+import { useTheme } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import Button from '@mui/material/Button'
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom'
 
-import { info } from "src/util/loger/index";
-import request from "src/util/request";
-import Breadcrumbs from "src/component/breadcrumbs";
+import { info } from 'src/util/loger/index'
+import request from 'src/util/request'
+import Breadcrumbs from 'src/component/breadcrumbs'
 
 interface payloadType {
-    data: Array<any>;
-    dispatch: Function;
+    data: Array<any>
+    dispatch: Function
 }
 
+// TODO cmp?
 const reqData = async (dispatch: Function) => {
-    const data = await request("/UploadServer");
+    const data = await request('/UploadServer')
 
     if (data.uploadServerInfos) {
         dispatch({
-            type: "uploadServer/setData",
+            type: 'uploadServer/setData',
             payload: data.uploadServerInfos,
-        });
+        })
     }
-};
+}
 
+// TODO cmp
 const CustomTableCell = ({ children, ...props }: TableCellProps) => {
-    const theme = useTheme();
+    const theme = useTheme()
 
     return (
         <TableCell
@@ -44,11 +46,12 @@ const CustomTableCell = ({ children, ...props }: TableCellProps) => {
         >
             {children}
         </TableCell>
-    );
-};
+    )
+}
 
+// TODO cmp
 const CustomTableHeaderCell = ({ children, ...props }: TableCellProps) => {
-    const theme = useTheme();
+    const theme = useTheme()
     return (
         <TableCell
             sx={{
@@ -57,33 +60,33 @@ const CustomTableHeaderCell = ({ children, ...props }: TableCellProps) => {
                 borderBottom: theme.borderLine.lightSolid,
                 fontSize: 13,
                 color: theme.color.grey20,
-                fontWeight: "bold",
+                fontWeight: 'bold',
                 padding: 1.6,
             }}
             {...props}
         >
             {children}
         </TableCell>
-    );
-};
+    )
+}
 
 const UploadServerList = ({ data, dispatch }: payloadType) => {
-    info("UploadServerList render");
-    const theme = useTheme();
-    const navigate = useNavigate();
+    info('UploadServerList render')
+    const theme = useTheme()
+    const navigate = useNavigate()
 
     useEffect(() => {
-        reqData(dispatch);
+        reqData(dispatch)
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-    console.log(theme);
+    }, [])
+    console.log(theme)
 
     return (
         <Box
             sx={{
-                display: "flex",
-                flexDirection: "column",
-                width: "100%",
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%',
             }}
         >
             <Breadcrumbs allowBack={false}>
@@ -93,6 +96,7 @@ const UploadServerList = ({ data, dispatch }: payloadType) => {
                 </Typography>
             </Breadcrumbs>
 
+            {/* TODO cmp */}
             <TableContainer component={Paper}>
                 <Table stickyHeader>
                     <TableHead>
@@ -131,13 +135,13 @@ const UploadServerList = ({ data, dispatch }: payloadType) => {
                             <TableRow
                                 key={row.uploadServerId}
                                 sx={{
-                                    "&:nth-of-type(odd)": {
+                                    '&:nth-of-type(odd)': {
                                         backgroundColor: theme.color.grey2,
                                     },
-                                    "&:last-child td, &:last-child th": {
+                                    '&:last-child td, &:last-child th': {
                                         border: 0,
                                     },
-                                    ": hover": {
+                                    ': hover': {
                                         background: theme.color.grey8,
                                     },
                                 }}
@@ -149,13 +153,13 @@ const UploadServerList = ({ data, dispatch }: payloadType) => {
                                     <Link
                                         to={`detail/${row.uploadServerId}`}
                                         style={{
-                                            textDecoration: "none",
+                                            textDecoration: 'none',
                                         }}
                                     >
                                         <Box
                                             sx={{
                                                 color: theme.color.grey15,
-                                                ": hover": {
+                                                ': hover': {
                                                     color: theme.color.grey20,
                                                 },
                                             }}
@@ -172,7 +176,7 @@ const UploadServerList = ({ data, dispatch }: payloadType) => {
                                                 : theme.palette.error.dark,
                                         }}
                                     >
-                                        {row.isRunning ? "运行中" : "关闭"}
+                                        {row.isRunning ? '运行中' : '关闭'}
                                     </Box>
                                 </CustomTableCell>
                                 <CustomTableCell component="th" scope="row">
@@ -209,7 +213,7 @@ const UploadServerList = ({ data, dispatch }: payloadType) => {
                 </Table>
             </TableContainer>
         </Box>
-    );
-};
+    )
+}
 
-export default UploadServerList;
+export default UploadServerList
