@@ -1,11 +1,11 @@
-import { green } from "@mui/material/colors";
-import { createTheme, ThemeOptions } from "@mui/material/styles";
+import { green } from '@mui/material/colors'
+import { createTheme, ThemeOptions } from '@mui/material/styles'
 
-import { Grey } from "src/theme/color";
+import { Grey } from 'src/theme/color'
 
 const DefaultTheme: ThemeOptions = createTheme({
     palette: {
-        mode: "dark",
+        mode: 'dark',
         // primary: {
         //     main: Grey.R2,
         // },
@@ -25,6 +25,6 @@ const DefaultTheme: ThemeOptions = createTheme({
         grey8: Grey.R8,
         grey20: Grey.R20,
     },
-});
+})
 
-export default DefaultTheme;
+export default DefaultTheme

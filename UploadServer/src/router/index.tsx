@@ -1,17 +1,17 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer } from 'react'
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
 
-import HomePage from "src/module/homePage";
-import UploadServerList from "src/module/uploadServerList";
-import UploadServerDetail from "src/module/uploadServerDetail";
-import Test from "src/module/test";
-import NoFound from "src/module/noFound";
+import HomePage from 'src/module/homePage'
+import UploadServerList from 'src/module/uploadServerList'
+import UploadServerDetail from 'src/module/uploadServerDetail'
+import Test from 'src/module/test'
+import NoFound from 'src/module/noFound'
 
-import reducer, { initialState } from "src/reducer";
-
+import reducer, { initialState } from 'src/reducer'
+// https://blog.csdn.net/weixin_42461410/article/details/88650304
 function Router() {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [state, dispatch] = useReducer(reducer, initialState)
 
     return (
         <BrowserRouter>
@@ -29,7 +29,12 @@ function Router() {
                         />
                         <Route
                             path="detail/:id"
-                            element={<UploadServerDetail />}
+                            element={
+                                <UploadServerDetail
+                                    data={state.uploadServer.data}
+                                    dispatch={dispatch}
+                                />
+                            }
                         />
                     </Route>
                     <Route path="disk" element={<Test />} />
@@ -37,7 +42,7 @@ function Router() {
                 </Route>
             </Routes>
         </BrowserRouter>
-    );
+    )
 }
 
-export default Router;
+export default Router

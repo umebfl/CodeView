@@ -7,15 +7,49 @@ import Input from '@mui/material/Input'
 import InputAdornment from '@mui/material/InputAdornment'
 import { useTheme } from '@mui/material/styles'
 
-import { useParams } from 'react-router-dom'
+import { map, find } from 'ramda'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { info } from 'src/util/loger/index'
 import Breadcrumbs from 'src/component/breadcrumbs'
+import { serverType, slotInfoType } from 'src/reducer/uploadServer'
+import { useEffect } from 'react'
 
-const UploadServerDetail = () => {
+interface payloadType {
+    data: Array<serverType>
+    dispatch: Function
+}
+
+interface GridViewPayloadType {
+    data: slotInfoType[]
+}
+
+const GridView = ({ data }: GridViewPayloadType) => {
+    return (
+        <Box>
+            {map((item: slotInfoType) => (
+                <Box key={item.slotId} sx={{ color: 'white' }}>
+                    {item.slotId}
+                </Box>
+            ))(data)}
+        </Box>
+    )
+}
+
+const UploadServerDetail = ({ data }: payloadType) => {
     info('UploadServerDetail render')
     const { id } = useParams()
     const theme = useTheme()
+    const navigate = useNavigate()
+
+    const detail = find((item: serverType) => item.uploadServerId === id)(data)
+
+    useEffect(() => {
+        if (!detail) {
+            navigate('/up')
+            console.log('xx')
+        }
+    }, [])
 
     return (
         <Box
@@ -104,7 +138,9 @@ const UploadServerDetail = () => {
                         display: 'flex',
                         flex: 1,
                     }}
-                ></Box>
+                >
+                    <GridView data={detail?.slotInfos || []}></GridView>
+                </Box>
             </Box>
         </Box>
     )

@@ -1,29 +1,41 @@
-import uploadServer, { stateType } from "src/reducer/uploadServer";
-import { stateLog } from "src/util/loger";
+import uploadServer, { stateType } from 'src/reducer/uploadServer'
+import { stateLog } from 'src/util/loger'
 
 export const initialState = {
     ...uploadServer.initState,
-};
+}
 
 const rootReducer: Record<string, Function> = {
     ...uploadServer.reducer,
-};
+}
 
-const reducer = (
-    state: stateType,
+const test = () => {
+    return new Promise(res => {
+        setTimeout(() => {
+            res([123])
+        }, 3000)
+    })
+}
+
+const reducer = async (
+    state: any,
     action: { type: string | number; payload: any }
 ) => {
-    const fn = rootReducer[action.type];
+    const fn = rootReducer[action.type]
 
     if (!fn) {
-        throw new Error("action type no found!");
+        throw new Error('action type no found!')
     }
 
-    const nextState = fn(state, action.payload);
+    console.log('1')
 
-    stateLog(state, nextState, action);
+    // const nextState = fn(state, action.payload)
+    const data = await test()
 
-    return nextState;
-};
+    console.log('2', data)
+    // stateLog(state, nextState, action)
 
-export default reducer;
+    return state
+}
+
+export default reducer

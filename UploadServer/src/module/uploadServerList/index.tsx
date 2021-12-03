@@ -17,9 +17,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import { info } from 'src/util/loger/index'
 import request from 'src/util/request'
 import Breadcrumbs from 'src/component/breadcrumbs'
+import { serverType } from 'src/reducer/uploadServer'
 
 interface payloadType {
-    data: Array<any>
+    data: Array<serverType>
     dispatch: Function
 }
 
@@ -76,6 +77,10 @@ const UploadServerList = ({ data, dispatch }: payloadType) => {
     const navigate = useNavigate()
 
     useEffect(() => {
+        dispatch({
+            type: 'test',
+        })
+
         reqData(dispatch)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
