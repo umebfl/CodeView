@@ -1,5 +1,3 @@
-import request from 'src/util/request'
-
 // TODO i
 export enum diskStatusType {
     UNMOUNT = 0,
@@ -62,11 +60,6 @@ const reducer = {
                 data: payload,
             },
         }
-    },
-
-    test: (state: any) => {
-        console.log('3')
-        return state
     },
 }
 

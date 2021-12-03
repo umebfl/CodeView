@@ -1,7 +1,5 @@
-import { FC } from 'react'
 import { Box } from '@mui/system'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
-import Typography from '@mui/material/Typography'
 import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined'
 import RefreshOutlinedIcon from '@mui/icons-material/RefreshOutlined'
 import { useTheme } from '@mui/material/styles'

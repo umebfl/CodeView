@@ -49,6 +49,7 @@ const UploadServerDetail = ({ data }: payloadType) => {
             navigate('/up')
             console.log('xx')
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

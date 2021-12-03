@@ -1,4 +1,3 @@
-import { green } from '@mui/material/colors'
 import { createTheme, ThemeOptions } from '@mui/material/styles'
 
 import { Grey } from 'src/theme/color'

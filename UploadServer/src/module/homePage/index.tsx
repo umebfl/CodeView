@@ -1,32 +1,33 @@
-import React, { useEffect } from "react";
-import Box from "@mui/material/Box";
-import { useTheme } from "@mui/material/styles";
-import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import React, { useEffect } from 'react'
+import Box from '@mui/material/Box'
+import { useTheme } from '@mui/material/styles'
+import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 
-import Header from "./header";
-import Content from "./content";
-import Menu from "./menu";
-import StatusBar from "./statusBar";
+import Header from './header'
+import Content from './content'
+import Menu from './menu'
+import StatusBar from './statusBar'
 
-import { info } from "src/util/loger/index";
+import { info } from 'src/util/loger/index'
 
 const HomePage = () => {
-    const theme = useTheme();
-    const navigate = useNavigate();
-    const location = useLocation();
-    info("HomePage render");
+    const theme = useTheme()
+    const navigate = useNavigate()
+    const location = useLocation()
+    info('HomePage render')
 
     useEffect(() => {
-        if (location.pathname === "/") {
-            navigate("/up");
+        if (location.pathname === '/') {
+            navigate('/up')
         }
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
         <Box
             sx={{
-                display: "flex",
-                flexDirection: "column",
+                display: 'flex',
+                flexDirection: 'column',
                 flex: 1,
                 background: theme.color.grey2,
             }}
@@ -34,10 +35,10 @@ const HomePage = () => {
             <Header></Header>
             <Box
                 sx={{
-                    display: "flex",
+                    display: 'flex',
                     flex: 1,
-                    flexDirection: "row",
-                    overflow: "hidden",
+                    flexDirection: 'row',
+                    overflow: 'hidden',
                 }}
             >
                 <Menu></Menu>
@@ -48,7 +49,7 @@ const HomePage = () => {
             </Box>
             <StatusBar></StatusBar>
         </Box>
-    );
-};
+    )
+}
 
-export default HomePage;
+export default HomePage

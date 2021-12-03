@@ -77,14 +77,10 @@ const UploadServerList = ({ data, dispatch }: payloadType) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        dispatch({
-            type: 'test',
-        })
-
         reqData(dispatch)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-    console.log(theme)
+    console.log('data', data)
 
     return (
         <Box

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useReducer } from 'react'
 
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
 
@@ -12,6 +12,7 @@ import reducer, { initialState } from 'src/reducer'
 // https://blog.csdn.net/weixin_42461410/article/details/88650304
 function Router() {
     const [state, dispatch] = useReducer(reducer, initialState)
+    console.log('uploadServer', state.uploadServer)
 
     return (
         <BrowserRouter>
