@@ -63,22 +63,19 @@ const reducer = {
     },
 }
 
-// const action = {
-//     'uploadServer/initData': async (dispatch: Function) => {
-//         const data = await request('/UploadServer')
-
-//         if (data.uploadServerInfos) {
-//             dispatch({
-//                 type: 'uploadServer/setData',
-//                 payload: data.uploadServerInfos,
-//             })
-//         }
-//     },
-// }
+const asyncReducer = {
+    test: (state: any, payload: any, dispatch: any) => {
+        dispatch({
+            type: 'uploadServer/setData',
+            payload: [{}],
+        })
+    },
+}
 
 const UploadServer = {
     initState,
     reducer,
+    asyncReducer,
 }
 
 export default UploadServer
