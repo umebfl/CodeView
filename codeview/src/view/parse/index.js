@@ -25,7 +25,10 @@ const buildSankeyData = item => {
         label: item.pathNoSuffix.substring(SRC_PATH.length),
         style: {
             label: {
-                value: item.shortName,
+                value: `${
+                    item.pathNoSuffix.length > 18 ? '...' : ''
+                }${R.takeLast(18)(item.pathNoSuffix)}`,
+                // value: item.shortName,
                 position: 'bottom',
                 fill: '#666',
                 fontSize: 14,
@@ -59,9 +62,15 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
             }),
             R.filter(
                 R.allPass([
+                    // target => item.pathNoSuffix !== 'type',
+                    // 过滤接口文件依赖type.ts
+                    path => !R.endsWith('/type')(path),
                     target => item.pathNoSuffix !== target,
+                    // 过滤测试文件
+                    path => !R.endsWith('.spec.tsx')(path),
                     // todo: 过滤指定后缀js/jsx
                     path => !R.endsWith('.css')(path),
+                    // 过滤工具类
                     path => !R.startsWith('src/util/')(path),
                     R.startsWith(SRC_PATH),
                 ])

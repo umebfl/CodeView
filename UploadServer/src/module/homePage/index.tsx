@@ -3,12 +3,12 @@ import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 
-import Header from './header'
-import Content from './content'
-import Menu from './menu'
-import StatusBar from './statusBar'
+import Header from 'src/module/homePage/header'
+import Content from 'src/module/homePage/content'
+import Menu from 'src/module/homePage/menu'
+import StatusBar from 'src/module/homePage/statusBar'
 
-import { info } from 'src/util/loger/index'
+import { info } from 'src/util/loger'
 
 const HomePage = () => {
     const theme = useTheme()

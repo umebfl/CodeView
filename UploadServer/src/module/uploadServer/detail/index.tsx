@@ -1,53 +1,39 @@
-import { Box } from '@mui/system'
+import { useEffect } from 'react'
+import { map, find } from 'ramda'
+import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+
 import Typography from '@mui/material/Typography'
+import { Box } from '@mui/system'
 import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined'
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined'
-import ManageSearchIcon from '@mui/icons-material/ManageSearch'
 import Input from '@mui/material/Input'
 import InputAdornment from '@mui/material/InputAdornment'
 import { useTheme } from '@mui/material/styles'
 
-import { map, find } from 'ramda'
-import { useNavigate, useParams } from 'react-router-dom'
-
-import { info } from 'src/util/loger/index'
+import { info } from 'src/util/loger'
 import Breadcrumbs from 'src/component/breadcrumbs'
-import { serverType, slotInfoType } from 'src/reducer/uploadServer'
-import { useEffect } from 'react'
+import { uploadServerType } from 'src/reducer/uploadServer/type'
+import { RootState, Dispatch } from 'src/reducer/type'
 
-interface payloadType {
-    data: Array<serverType>
-    dispatch: Function
-}
+import GridView from 'src/module/uploadServer/detail/gridView'
+import ListView from 'src/module/uploadServer/detail/listView'
 
-interface GridViewPayloadType {
-    data: slotInfoType[]
-}
-
-const GridView = ({ data }: GridViewPayloadType) => {
-    return (
-        <Box>
-            {map((item: slotInfoType) => (
-                <Box key={item.slotId} sx={{ color: 'white' }}>
-                    {item.slotId}
-                </Box>
-            ))(data)}
-        </Box>
-    )
-}
-
-const UploadServerDetail = ({ data }: payloadType) => {
+const UploadServerDetail = () => {
     info('UploadServerDetail render')
     const { id } = useParams()
     const theme = useTheme()
-    const navigate = useNavigate()
+    const { data } = useSelector((state: RootState) => state.uploadServer)
+    const dispatch = useDispatch<Dispatch>()
 
-    const detail = find((item: serverType) => item.uploadServerId === id)(data)
+    const detail = find((item: uploadServerType) => item.uploadServerId === id)(
+        data
+    )
 
     useEffect(() => {
         if (!detail) {
-            navigate('/up')
-            console.log('xx')
+            dispatch.uploadServer.initData()
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -58,6 +44,7 @@ const UploadServerDetail = ({ data }: payloadType) => {
                 display: 'flex',
                 flexDirection: 'column',
                 flex: 1,
+                overflow: 'hidden',
             }}
         >
             <Breadcrumbs>
@@ -65,12 +52,14 @@ const UploadServerDetail = ({ data }: payloadType) => {
                 <Typography color="text.primary" fontSize={14}>
                     {id}
                 </Typography>
+                <Typography fontSize={13}>插槽列表</Typography>
             </Breadcrumbs>
             <Box
                 sx={{
                     display: 'flex',
-                    flex: 1,
                     flexDirection: 'column',
+                    flex: 1,
+                    overflow: 'hidden',
                 }}
             >
                 <Box
@@ -100,7 +89,7 @@ const UploadServerDetail = ({ data }: payloadType) => {
                             }}
                             startAdornment={
                                 <InputAdornment position="start">
-                                    <ManageSearchIcon />
+                                    <SearchOutlinedIcon fontSize={'small'} />
                                 </InputAdornment>
                             }
                         />
@@ -138,9 +127,25 @@ const UploadServerDetail = ({ data }: payloadType) => {
                     sx={{
                         display: 'flex',
                         flex: 1,
+                        overflow: 'hidden',
                     }}
                 >
-                    <GridView data={detail?.slotInfos || []}></GridView>
+                    {detail ? (
+                        // <GridView data={detail?.slotInfos || []}></GridView>
+                        <ListView></ListView>
+                    ) : (
+                        <Box
+                            sx={{
+                                color: theme.color.grey15,
+                                display: 'flex',
+                                marginTop: 10,
+                                flex: 1,
+                                justifyContent: 'center',
+                            }}
+                        >
+                            No matching upload server.
+                        </Box>
+                    )}
                 </Box>
             </Box>
         </Box>
