@@ -72,6 +72,8 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
                     path => !R.endsWith('.css')(path),
                     // 过滤工具类
                     path => !R.startsWith('src/util/')(path),
+                    // 过滤组件类
+                    path => !R.startsWith('src/component/')(path),
                     R.startsWith(SRC_PATH),
                 ])
             ),
@@ -167,8 +169,8 @@ const Parse = ({ data, layoutType, dispatch }) => {
         <div>
             <div>Node: {tips}</div>
             <Graphin
-                width={1000}
-                height={1000}
+                width={1600}
+                height={1200}
                 style={{
                     width: '100%',
                     height: '100%',

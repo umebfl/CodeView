@@ -8,15 +8,16 @@ import { useNavigate } from 'react-router-dom'
 interface payloadType {
     children?: React.ReactNode
     allowBack?: boolean
+    handleRefresh?: Function
 }
 
-const Breadcurmbs = ({ children, allowBack = true }: payloadType) => {
+const Breadcurmbs = ({
+    children,
+    allowBack = true,
+    handleRefresh,
+}: payloadType) => {
     const theme = useTheme()
     const navigate = useNavigate()
-
-    const handleRefresh = () => {
-        navigate(0)
-    }
 
     return (
         <Box
@@ -59,16 +60,20 @@ const Breadcurmbs = ({ children, allowBack = true }: payloadType) => {
                 </Breadcrumbs>
             </Box>
 
-            <RefreshOutlinedIcon
-                onClick={handleRefresh}
-                sx={{
-                    color: theme.color.grey15,
-                    cursor: 'pointer',
-                    ': hover': {
-                        color: theme.color.grey20,
-                    },
-                }}
-            ></RefreshOutlinedIcon>
+            {handleRefresh && (
+                <RefreshOutlinedIcon
+                    onClick={() => {
+                        handleRefresh()
+                    }}
+                    sx={{
+                        color: theme.color.grey15,
+                        cursor: 'pointer',
+                        ': hover': {
+                            color: theme.color.grey20,
+                        },
+                    }}
+                ></RefreshOutlinedIcon>
+            )}
         </Box>
     )
 }

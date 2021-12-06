@@ -6,7 +6,7 @@ const DefaultTheme: ThemeOptions = createTheme({
     palette: {
         mode: 'dark',
         // primary: {
-        //     main: Grey.R2,
+        //     main: '#378bcf',
         // },
         background: {
             default: Grey.R2,

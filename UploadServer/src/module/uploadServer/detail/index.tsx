@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
-import { map, find } from 'ramda'
+import { useEffect, useState } from 'react'
+import { find, filter, includes, trim } from 'ramda'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -14,10 +14,10 @@ import { useTheme } from '@mui/material/styles'
 
 import { info } from 'src/util/loger'
 import Breadcrumbs from 'src/component/breadcrumbs'
-import { uploadServerType } from 'src/reducer/uploadServer/type'
+import { uploadServerType, slotInfoType } from 'src/reducer/uploadServer/type'
 import { RootState, Dispatch } from 'src/reducer/type'
 
-import GridView from 'src/module/uploadServer/detail/gridView'
+// import GridView from 'src/module/uploadServer/detail/gridView'
 import ListView from 'src/module/uploadServer/detail/listView'
 
 const UploadServerDetail = () => {
@@ -27,9 +27,11 @@ const UploadServerDetail = () => {
     const { data } = useSelector((state: RootState) => state.uploadServer)
     const dispatch = useDispatch<Dispatch>()
 
-    const detail = find((item: uploadServerType) => item.uploadServerId === id)(
-        data
-    )
+    const [searchText, setSearchText] = useState('')
+
+    const loadData = () => {
+        dispatch.uploadServer.initData()
+    }
 
     useEffect(() => {
         if (!detail) {
@@ -37,6 +39,30 @@ const UploadServerDetail = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    const detail = find((item: uploadServerType) => item.uploadServerId === id)(
+        data
+    )
+
+    const slotInfos: slotInfoType[] = searchText.length
+        ? filter((item: slotInfoType) => {
+              if (includes(searchText)(item.slotBusId)) {
+                  return true
+              }
+
+              if (item.diskInfo) {
+                  return (
+                      includes(searchText)(item.diskInfo.diskId) ||
+                      includes(searchText)(item.diskInfo.diskName) ||
+                      includes(searchText)(item.diskInfo.diskStatusStr) ||
+                      includes(searchText)(item.diskInfo.updateTimeStr) ||
+                      includes(searchText)(item.diskInfo.vehicleIds.join(','))
+                  )
+              }
+
+              return false
+          })(detail?.slotInfos || [])
+        : detail?.slotInfos || []
 
     return (
         <Box
@@ -47,7 +73,7 @@ const UploadServerDetail = () => {
                 overflow: 'hidden',
             }}
         >
-            <Breadcrumbs>
+            <Breadcrumbs handleRefresh={loadData}>
                 <Box>Upload Server</Box>
                 <Typography color="text.primary" fontSize={14}>
                     {id}
@@ -68,16 +94,20 @@ const UploadServerDetail = () => {
                         justifyContent: 'space-between',
                         alignItems: 'center',
                         padding: 1.5,
+                        borderBottom: theme.borderLine.lightSolid,
                     }}
                 >
                     <Box>
                         {/* TODO cmp */}
                         <Input
                             size={'small'}
+                            placeholder="ID/名称/车辆..."
                             inputProps={{
                                 maxLength: 50,
                                 style: { paddingBottom: 0 },
                             }}
+                            value={searchText}
+                            onChange={e => setSearchText(trim(e.target.value))}
                             sx={{
                                 background: theme.color.grey5,
                                 paddingLeft: 1,
@@ -94,14 +124,13 @@ const UploadServerDetail = () => {
                             }
                         />
                     </Box>
-                    <Box
+                    {/* <Box
                         sx={{
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
                         }}
                     >
-                        {/* TODO cmp */}
                         <GridViewOutlinedIcon
                             sx={{
                                 color: theme.color.grey15,
@@ -120,7 +149,7 @@ const UploadServerDetail = () => {
                                 },
                             }}
                         ></FormatListBulletedOutlinedIcon>
-                    </Box>
+                    </Box> */}
                 </Box>
 
                 <Box
@@ -132,7 +161,7 @@ const UploadServerDetail = () => {
                 >
                     {detail ? (
                         // <GridView data={detail?.slotInfos || []}></GridView>
-                        <ListView></ListView>
+                        <ListView data={slotInfos}></ListView>
                     ) : (
                         <Box
                             sx={{

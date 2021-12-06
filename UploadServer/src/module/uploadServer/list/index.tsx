@@ -20,6 +20,7 @@ import { RootState, Dispatch } from 'src/reducer/type'
 import {
     DefaultTableCellCell,
     DefaultTableCellHeaderCell,
+    DefaultTableRow,
     NoMoreDataCell,
 } from 'src/component/table'
 
@@ -27,12 +28,17 @@ const UploadServerList = () => {
     info('UploadServerList render')
     const theme = useTheme()
     const navigate = useNavigate()
-
     const { data } = useSelector((state: RootState) => state.uploadServer)
     const dispatch = useDispatch<Dispatch>()
 
-    useEffect(() => {
+    const loadData = () => {
         dispatch.uploadServer.initData()
+    }
+
+    useEffect(() => {
+        if (!data.length) {
+            loadData()
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -44,7 +50,7 @@ const UploadServerList = () => {
                 width: '100%',
             }}
         >
-            <Breadcrumbs allowBack={false}>
+            <Breadcrumbs allowBack={false} handleRefresh={loadData}>
                 <Box>Upload Server</Box>
                 <Typography color="text.primary" fontSize={14}>
                     列表
@@ -55,10 +61,7 @@ const UploadServerList = () => {
                 <Table stickyHeader>
                     <TableHead>
                         <TableRow>
-                            <DefaultTableCellHeaderCell
-                                align="center"
-                                width={50}
-                            >
+                            <DefaultTableCellHeaderCell align="center">
                                 序号
                             </DefaultTableCellHeaderCell>
                             <DefaultTableCellHeaderCell align="center">
@@ -95,24 +98,14 @@ const UploadServerList = () => {
                     </TableHead>
                     <TableBody>
                         {data.map((row, index) => (
-                            <TableRow
-                                key={row.uploadServerId}
-                                sx={{
-                                    '&:nth-of-type(odd)': {
-                                        backgroundColor: theme.color.grey2,
-                                    },
-                                    '&:last-child td, &:last-child th': {
-                                        border: 0,
-                                    },
-                                    ': hover': {
-                                        background: theme.color.grey8,
-                                    },
-                                }}
-                            >
+                            <DefaultTableRow key={row.uploadServerId}>
                                 <DefaultTableCellCell align="center">
                                     {index + 1}
                                 </DefaultTableCellCell>
-                                <DefaultTableCellCell align="center">
+                                <DefaultTableCellCell
+                                    align="center"
+                                    sortDirection={'desc'}
+                                >
                                     <Link
                                         to={`detail/${row.uploadServerId}`}
                                         style={{
@@ -149,7 +142,8 @@ const UploadServerList = () => {
                                     {row.emptySlotsNum}
                                 </DefaultTableCellCell>
                                 <DefaultTableCellCell align="center">
-                                    {row.formattedDisksNum}
+                                    {row.formattedDisksNum} /{' '}
+                                    {row.totalSlotsNum - row.emptySlotsNum}
                                 </DefaultTableCellCell>
                                 <DefaultTableCellCell align="center">
                                     {row.totalSlotsNum}
@@ -173,10 +167,10 @@ const UploadServerList = () => {
                                         查看
                                     </Button>
                                 </DefaultTableCellCell>
-                            </TableRow>
+                            </DefaultTableRow>
                         ))}
                     </TableBody>
-                    <NoMoreDataCell cellColSpan={10} />
+                    <NoMoreDataCell cellColSpan={9} />
                 </Table>
             </TableContainer>
         </Box>

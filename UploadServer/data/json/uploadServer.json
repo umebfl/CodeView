@@ -19,7 +19,7 @@
                             "diskStatus": "UNMOUNT",
                             "updateTime": 1638264104.0,
                             "invalidMsg": "",
-                            "vehicleIds": ["byd-cn-0"],
+                            "vehicleIds": ["byd-cn-0", "byd-cn-1"],
                             "wrongServer": false,
                             "recommendedServerId": ""
                         }
@@ -47,12 +47,12 @@
                             "diskId": "S6P7SDFDS66789L",
                             "diskName": "nvme0n4",
                             "slotId": 4,
-                            "diskStatus": "DATA_UPLOADING",
+                            "diskStatus": "WAITING_TO_UPLOAD",
                             "updateTime": 1638264104.0,
                             "invalidMsg": "",
                             "vehicleIds": ["byd-cn-4"],
-                            "wrongServer": false,
-                            "recommendedServerId": ""
+                            "wrongServer": true,
+                            "recommendedServerId": "superxray-sz-007"
                         }
                     },
                     {

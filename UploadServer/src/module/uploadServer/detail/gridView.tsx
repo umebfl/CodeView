@@ -7,9 +7,9 @@ import { Box, Typography, useTheme } from '@mui/material'
 
 import { NoMoreData } from 'src/component/noMoreData'
 import { slotInfoType } from 'src/reducer/uploadServer/type'
-import { GridViewPayloadType } from 'src/module/uploadServer/detail/type'
+import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
 
-const GridView = ({ data }: GridViewPayloadType) => {
+const GridView = ({ data }: ViewPayloadType) => {
     console.log(data)
     const theme = useTheme()
 
@@ -86,7 +86,18 @@ const GridView = ({ data }: GridViewPayloadType) => {
                                 >
                                     ({item.slotBusId})
                                 </Typography>
-                                {item.isEmpty ? (
+                                {item.diskInfo ? (
+                                    <Box>
+                                        <Box>
+                                            <SaveOutlinedIcon />
+                                            {item.diskInfo.diskName}
+                                        </Box>
+                                        <Box>
+                                            <DirectionsCarFilledOutlinedIcon />
+                                            {item.diskInfo.vehicleIds}
+                                        </Box>
+                                    </Box>
+                                ) : (
                                     <Box
                                         sx={{
                                             textAlign: 'center',
@@ -100,17 +111,6 @@ const GridView = ({ data }: GridViewPayloadType) => {
                                     >
                                         <ClosedCaptionDisabledOutlinedIcon />
                                         未插入硬盘
-                                    </Box>
-                                ) : (
-                                    <Box>
-                                        <Box>
-                                            <SaveOutlinedIcon />
-                                            {item.diskInfo.diskName}
-                                        </Box>
-                                        <Box>
-                                            <DirectionsCarFilledOutlinedIcon />
-                                            {item.diskInfo.vehicleIds}
-                                        </Box>
                                     </Box>
                                 )}
                             </Box>
