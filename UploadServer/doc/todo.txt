@@ -1,4 +1,4 @@
-1. login
-2. user config cacae cmp
-3. fetch cmp
+1. login?
+2. user config 
+3. fetch
 4. 
