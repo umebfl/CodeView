@@ -1,5 +1,7 @@
 import { Dispatch } from 'src/reducer/type'
 
+import { errorLog } from 'src/util/loger'
+
 let index = 0
 
 const Request = async (
@@ -24,11 +26,19 @@ const Request = async (
             if (data.code === 0) {
                 return data.data
             }
+
             throw new Error(data.msg)
+        } else {
+            dispatch?.snackbar.push({
+                timeStamp: new Date().getTime(),
+                severity: 'error',
+                msg: 'Internal Server Error， Please refresh the page!',
+            })
+            throw new Error(rv.statusText)
         }
     } catch (error) {
+        errorLog('Request error', `url: ${url}\n`, `error: ${error}\n`)
         dispatch?.globalLoading.remove(loadingIndex)
-        console.error(error)
         throw error
     }
 }

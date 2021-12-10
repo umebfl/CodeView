@@ -25,7 +25,6 @@ import {
 } from 'src/component/table'
 
 const UploadServerList = () => {
-    info('UploadServerList render')
     const theme = useTheme()
     const navigate = useNavigate()
     const { data } = useSelector((state: RootState) => state.uploadServer)

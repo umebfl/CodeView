@@ -1,22 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import { Provider } from 'react-redux'
-import { ThemeProvider } from '@mui/material/styles'
-
-import DefaultTheme from 'src/theme'
-import Router from 'src/router'
-import { store } from 'src/reducer/store'
-
-import './index.css'
+import App from 'src/app'
 
 ReactDOM.render(
     <React.StrictMode>
-        <Provider store={store}>
-            <ThemeProvider theme={DefaultTheme}>
-                <Router />
-            </ThemeProvider>
-        </Provider>
+        <App />
     </React.StrictMode>,
     document.getElementById('root')
 )

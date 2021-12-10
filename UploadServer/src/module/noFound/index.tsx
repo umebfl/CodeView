@@ -2,7 +2,6 @@ import { Box } from '@mui/system'
 import { info } from 'src/util/loger'
 
 const NoFound = () => {
-    info('NoFound render')
     return (
         <Box
             sx={{

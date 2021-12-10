@@ -14,7 +14,6 @@ const HomePage = () => {
     const theme = useTheme()
     const navigate = useNavigate()
     const location = useLocation()
-    info('HomePage render')
 
     useEffect(() => {
         if (location.pathname === '/') {

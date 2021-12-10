@@ -50,10 +50,19 @@ export const uploadServer = createModel<RootModel>()({
     },
     effects: dispatch => ({
         async initData() {
-            const data = await request('/uploadServer', undefined, dispatch)
+            try {
+                const data = await request(
+                    '/data_center/get_upload_server_list',
+                    undefined,
+                    dispatch
+                )
 
-            if (data.uploadServerInfos) {
-                dispatch.uploadServer.setData(data.uploadServerInfos)
+                if (data?.uploadServerInfos) {
+                    dispatch.uploadServer.setData(data.uploadServerInfos)
+                }
+            } catch (error) {
+                dispatch.uploadServer.setData([])
+                // throw error
             }
         },
     }),

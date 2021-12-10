@@ -17,11 +17,10 @@ import Breadcrumbs from 'src/component/breadcrumbs'
 import { uploadServerType, slotInfoType } from 'src/reducer/uploadServer/type'
 import { RootState, Dispatch } from 'src/reducer/type'
 
-// import GridView from 'src/module/uploadServer/detail/gridView'
+import GridView from 'src/module/uploadServer/detail/gridView'
 import ListView from 'src/module/uploadServer/detail/listView'
 
 const UploadServerDetail = () => {
-    info('UploadServerDetail render')
     const { id } = useParams()
     const theme = useTheme()
     const { data } = useSelector((state: RootState) => state.uploadServer)

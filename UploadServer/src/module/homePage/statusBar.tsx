@@ -8,7 +8,6 @@ import { version } from '../../../package.json'
 
 const StatusBar = () => {
     const theme = useTheme()
-    info('StatusBar render')
 
     return (
         <Box
