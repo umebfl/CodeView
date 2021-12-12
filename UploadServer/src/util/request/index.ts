@@ -2,43 +2,62 @@ import { Dispatch } from 'src/reducer/type'
 
 import { errorLog } from 'src/util/loger'
 
-let index = 0
+let loadingIndex = 0
 
-const Request = async (
-    url: string,
-    payload?: RequestInit,
+interface RequestPropsType {
+    url: string
+    payload?: RequestInit
     dispatch?: Dispatch
-) => {
-    const loadingIndex = `${url}${index++}`
-    dispatch?.globalLoading.add(loadingIndex)
+    loadingTips?: boolean
+    errorTips?: boolean
+}
+
+const Request = async ({
+    url,
+    payload,
+    dispatch,
+    loadingTips = true,
+    errorTips = true,
+}: RequestPropsType) => {
+    const loadingFlag = `${url}-${loadingIndex++}`
 
     try {
+        if (loadingTips !== false) {
+            dispatch?.globalLoading.add(loadingFlag)
+        }
+
         const rv = await fetch(url, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
             ...payload,
         })
 
-        if (rv.status === 200) {
-            dispatch?.globalLoading.remove(loadingIndex)
+        if (rv?.status === 200) {
             const data = await rv.json()
 
             if (data.code === 0) {
+                loadingTips && dispatch?.globalLoading.remove(loadingFlag)
                 return data.data
             }
 
-            throw new Error(data.msg)
-        } else {
+            throw data.msg
+        }
+
+        throw '内部错误，请刷新页面。'
+    } catch (error) {
+        errorLog('Request error', `url: ${url}\n`, `error: ${error}\n`)
+
+        loadingTips && dispatch?.globalLoading.remove(loadingFlag)
+
+        if (errorTips) {
             dispatch?.snackbar.push({
                 timeStamp: new Date().getTime(),
                 severity: 'error',
-                msg: 'Internal Server Error， Please refresh the page!',
+                msg: `请求数据失败：${error}`,
             })
+        } else {
+            throw `请求数据失败：${error}`
         }
-    } catch (error) {
-        errorLog('Request error', `url: ${url}\n`, `error: ${error}\n`)
-        dispatch?.globalLoading.remove(loadingIndex)
-        throw error
     }
 }
 
