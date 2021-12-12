@@ -43,20 +43,22 @@ const Request = async ({
             throw data.msg
         }
 
-        throw '内部错误，请刷新页面。'
+        throw '内部错误，请刷新页面'
     } catch (error) {
         errorLog('Request error', `url: ${url}\n`, `error: ${error}\n`)
 
         loadingTips && dispatch?.globalLoading.remove(loadingFlag)
 
+        const errorMsg = `请求数据失败：${error}`
+
         if (errorTips) {
             dispatch?.snackbar.push({
                 timeStamp: new Date().getTime(),
                 severity: 'error',
-                msg: `请求数据失败：${error}`,
+                msg: errorMsg,
             })
         } else {
-            throw `请求数据失败：${error}`
+            throw errorMsg
         }
     }
 }

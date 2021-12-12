@@ -28,7 +28,7 @@ export const globalLoading = createModel<RootModel>()({
             await new Promise((resolve, reject) => {
                 setTimeout(() => {
                     resolve(true)
-                }, 1250)
+                }, 800)
             })
 
             dispatch.globalLoading.pop(payload)
