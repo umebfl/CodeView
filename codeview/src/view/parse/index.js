@@ -74,6 +74,8 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
                     path => !R.startsWith('src/util/')(path),
                     // 过滤组件类
                     path => !R.startsWith('src/component/')(path),
+                    // 过滤组件类
+                    path => !R.endsWith('.json')(path),
                     R.startsWith(SRC_PATH),
                 ])
             ),
@@ -179,7 +181,7 @@ const Parse = ({ data, layoutType, dispatch }) => {
                 data={graphinData}
                 layout={{ type: layoutType, center: [500, 500] }}
             >
-                {hullOption && <Hull options={hullOption} />}
+                {/* {hullOption && <Hull options={hullOption} />} */}
                 <Behavior></Behavior>
             </Graphin>
         </div>

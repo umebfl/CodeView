@@ -34,7 +34,6 @@ const Request = async (
                 severity: 'error',
                 msg: 'Internal Server Error， Please refresh the page!',
             })
-            throw new Error(rv.statusText)
         }
     } catch (error) {
         errorLog('Request error', `url: ${url}\n`, `error: ${error}\n`)

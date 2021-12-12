@@ -9,9 +9,10 @@ import { setupServer } from 'msw/node'
 import List from 'src/module/uploadServer/list'
 import data from 'src/../data/json/uploadServer.json'
 import { Context } from 'src/app'
+import { getInitStore } from 'src/reducer/store'
 
 jest.mock('react-router-dom', () => ({
-    Link: () => <div></div>,
+    Link: ({ children }: any) => <div>{children}</div>,
     useNavigate: () => {},
 }))
 
@@ -20,6 +21,7 @@ let apiUploadServerType = 'primary'
 
 const server = setupServer(
     rest.get('/data_center/get_upload_server_list', (req, res, ctx) => {
+        console.log(apiUploadServerType)
         if (apiUploadServerType === 'primary') {
             return res(ctx.json(data))
         }
@@ -35,7 +37,6 @@ const server = setupServer(
                 })
             )
         }
-        console.log(data)
 
         return res(ctx.json(data))
     })
@@ -47,42 +48,34 @@ afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 describe('Upload Server', () => {
-    it('默认进入uploadServe列表页', async () => {
+    it('可以显示列表', async () => {
         apiUploadServerType = 'primary'
 
         render(
-            <Context>
+            <Context initStore={getInitStore()}>
                 <List />
             </Context>
         )
 
-        screen.logTestingPlaygroundURL
-        await waitFor(() => screen.getAllByText(/superxray-sz-06/g))
+        await waitFor(() => screen.getAllByText(/superxray\-sz\-0/i))
 
-        expect(screen.getAllByText(/superxray-sz-0/g).length).toBe(
+        expect(screen.getAllByText(/superxray\-sz\-0/i).length).toBe(
             data.data.uploadServerInfos.length
         )
     })
 
-    // it('点击刷新按钮，可以刷新列表', async () => {
-    //     apiUploadServerType = 'primary'
+    it('当数据为空时可以显示空列表提示', async () => {
+        apiUploadServerType = 'empty'
 
-    //     render(<App />)
-    //     await waitFor(() => screen.getAllByText(/superxray-sz-0/g))
+        render(
+            <Context initStore={getInitStore()}>
+                <List />
+            </Context>
+        )
 
-    //     apiUploadServerType = 'empty'
+        await waitFor(() => screen.getAllByText(/列表数据为空。/i))
 
-    //     fireEvent.click(screen.getByTestId('RefreshOutlinedIcon'))
-
-    //     await waitFor(() => screen.getAllByText(/superxray-sz-0/g))
-    //     // screen.logTestingPlaygroundURL()
-
-    //     expect(screen.getAllByText(/superxray-sz-0/g).length).toBe(0)
-    // })
-
-    // it('可以切换到Disk模块', async () => {
-    //     render(<App />)
-    //     fireEvent.click(screen.getByTestId('AlbumOutlinedIcon'))
-    //     screen.logTestingPlaygroundURL()
-    // })
+        expect(screen.getAllByText(/列表数据为空。/i).length).toBeDefined()
+        screen.logTestingPlaygroundURL()
+    })
 })

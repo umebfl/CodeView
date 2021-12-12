@@ -5,3 +5,8 @@ import { models } from 'src/reducer'
 export const store = init({
     models,
 })
+
+export const getInitStore = () =>
+    init({
+        models,
+    })

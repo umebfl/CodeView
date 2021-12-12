@@ -8,10 +8,17 @@ import Router from 'src/router'
 import { store } from 'src/reducer/store'
 
 import SnackbarContainer from 'src/component/snackbar'
+import { Store } from 'src/reducer/type'
+
 import './app.css'
 
-export const Context: FC = ({ children }) => (
-    <Provider store={store}>
+interface ContextType {
+    children: any
+    initStore?: Store
+}
+
+export const Context = ({ children, initStore }: ContextType) => (
+    <Provider store={initStore || store}>
         <ThemeProvider theme={DefaultTheme}>
             {children}
             <SnackbarContainer />
