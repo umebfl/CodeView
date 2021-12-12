@@ -61,8 +61,8 @@
     "javascript.updateImportsOnFileMove.enabled": "always",
     "git.confirmSync": false,
     "eslint.alwaysShowStatus": true,
-    "eslint.options": {
-        "configFile": "/home/anqihuang/workspace2/CodeView/.eslitrc.js"
-    },
+    // "eslint.options": {
+    //     "configFile": "/home/anqihuang/workspace2/CodeView/.eslitrc.js"
+    // },
     "commentTranslate.targetLanguage": "zh-CN"
 }

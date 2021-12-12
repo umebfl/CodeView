@@ -9,12 +9,14 @@ interface payloadType {
     children?: React.ReactNode
     allowBack?: boolean
     handleRefresh?: Function
+    handleBaforeBack?: Function
 }
 
-const Breadcurmbs = ({
+const BreadcrumbsCmp = ({
     children,
     allowBack = true,
     handleRefresh,
+    handleBaforeBack,
 }: payloadType) => {
     const theme = useTheme()
     const navigate = useNavigate()
@@ -41,7 +43,12 @@ const Breadcurmbs = ({
                 }}
             >
                 <ArrowCircleLeftOutlinedIcon
-                    onClick={() => allowBack && navigate(-1)}
+                    onClick={async () => {
+                        if (allowBack) {
+                            handleBaforeBack && (await handleBaforeBack())
+                            navigate(-1)
+                        }
+                    }}
                     sx={
                         allowBack
                             ? {
@@ -80,4 +87,4 @@ const Breadcurmbs = ({
     )
 }
 
-export default Breadcurmbs
+export default BreadcrumbsCmp

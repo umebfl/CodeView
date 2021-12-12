@@ -21,7 +21,6 @@ let apiUploadServerType = 'primary'
 
 const server = setupServer(
     rest.get('/data_center/get_upload_server_list', (req, res, ctx) => {
-        console.log(apiUploadServerType)
         if (apiUploadServerType === 'primary') {
             return res(ctx.json(data))
         }
