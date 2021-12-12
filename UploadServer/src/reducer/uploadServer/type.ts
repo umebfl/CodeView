@@ -61,10 +61,13 @@ export interface slotInfoType {
     slotBusId: string
     slotId: number
 }
+
 export interface uploadServerType {
     emptySlotsNum: number
     formattedDisksNum: number
     isRunning: boolean
+    isRunningStr: string
+    operationTips: string
     totalSlotsNum: number
     uploadServerId: string
     uploadServerLocation: string

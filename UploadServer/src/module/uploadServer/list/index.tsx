@@ -1,4 +1,4 @@
-import { useEffect, FC } from 'react'
+import { useEffect, useState, FC } from 'react'
 
 import Box from '@mui/material/Box'
 import Table from '@mui/material/Table'
@@ -11,12 +11,13 @@ import { useTheme } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import SearchOffIcon from '@mui/icons-material/SearchOff'
+import { filter, includes } from 'ramda'
 
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { info } from 'src/util/loger'
 import Breadcrumbs from 'src/component/breadcrumbs'
+import FilterBar from 'src/component/filterBar'
 import { RootState, Dispatch } from 'src/reducer/type'
 import {
     DefaultTableCellCell,
@@ -24,12 +25,14 @@ import {
     DefaultTableRow,
     NoMoreDataCell,
 } from 'src/component/table'
+import { uploadServerType } from 'src/reducer/uploadServer/type'
 
 const UploadServerList: FC = () => {
     const theme = useTheme()
     const navigate = useNavigate()
     const { data } = useSelector((state: RootState) => state.uploadServer)
     const dispatch = useDispatch<Dispatch>()
+    const [searchText, setSearchText] = useState('')
 
     const loadData = () => {
         dispatch.uploadServer.initData()
@@ -41,6 +44,17 @@ const UploadServerList: FC = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    const filterData = filter((item: uploadServerType) => {
+        return (
+            includes(searchText)(item.uploadServerId) ||
+            includes(searchText)(item.uploadServerLocation) ||
+            includes(searchText)(item.isRunningStr) ||
+            includes(searchText)(item.operationTips)
+        )
+
+        return false
+    })(data)
 
     return (
         <Box
@@ -56,6 +70,13 @@ const UploadServerList: FC = () => {
                     列表
                 </Typography>
             </Breadcrumbs>
+
+            <FilterBar
+                inputProps={{
+                    placeholder: 'ID/运行状态/位置/操作提示',
+                }}
+                handleChange={setSearchText}
+            />
 
             <TableContainer component={Paper}>
                 <Table stickyHeader>
@@ -89,7 +110,7 @@ const UploadServerList: FC = () => {
                                 位置
                             </DefaultTableCellHeaderCell>
                             <DefaultTableCellHeaderCell align="center">
-                                slotInfos
+                                操作提示
                             </DefaultTableCellHeaderCell>
                             <DefaultTableCellHeaderCell align="center">
                                 操作
@@ -97,7 +118,7 @@ const UploadServerList: FC = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {data.length === 0 ? (
+                        {filterData.length === 0 ? (
                             <DefaultTableRow>
                                 <DefaultTableCellCell
                                     align="center"
@@ -116,7 +137,7 @@ const UploadServerList: FC = () => {
                                 </DefaultTableCellCell>
                             </DefaultTableRow>
                         ) : (
-                            data.map((row, index) => (
+                            filterData.map((row, index) => (
                                 <DefaultTableRow key={row.uploadServerId}>
                                     <DefaultTableCellCell align="center">
                                         {index + 1}
@@ -152,7 +173,7 @@ const UploadServerList: FC = () => {
                                                     : theme.palette.error.dark,
                                             }}
                                         >
-                                            {row.isRunning ? '运行中' : '关闭'}
+                                            {row.isRunningStr}
                                         </Box>
                                     </DefaultTableCellCell>
                                     <DefaultTableCellCell
@@ -172,7 +193,7 @@ const UploadServerList: FC = () => {
                                         {row.uploadServerLocation}
                                     </DefaultTableCellCell>
                                     <DefaultTableCellCell align="center">
-                                        -
+                                        {row.operationTips}
                                     </DefaultTableCellCell>
                                     <DefaultTableCellCell align="center">
                                         <Button

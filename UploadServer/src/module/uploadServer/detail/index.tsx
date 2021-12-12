@@ -19,6 +19,7 @@ import { RootState, Dispatch } from 'src/reducer/type'
 
 import GridView from 'src/module/uploadServer/detail/gridView'
 import ListView from 'src/module/uploadServer/detail/listView'
+import FilterBar from 'src/component/filterBar'
 
 const UploadServerDetail = () => {
     const { id } = useParams()
@@ -79,51 +80,14 @@ const UploadServerDetail = () => {
                 </Typography>
                 <Typography fontSize={13}>插槽列表</Typography>
             </Breadcrumbs>
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    flex: 1,
-                    overflow: 'hidden',
+
+            <FilterBar
+                inputProps={{
+                    placeholder: 'ID/名称/车辆...',
                 }}
-            >
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        padding: 1.5,
-                        borderBottom: theme.borderLine.lightSolid,
-                    }}
-                >
-                    <Box>
-                        {/* TODO cmp */}
-                        <Input
-                            size={'small'}
-                            placeholder="ID/名称/车辆..."
-                            inputProps={{
-                                maxLength: 50,
-                                style: { paddingBottom: 0 },
-                            }}
-                            value={searchText}
-                            onChange={e => setSearchText(trim(e.target.value))}
-                            sx={{
-                                background: theme.color.grey5,
-                                paddingLeft: 1,
-                                paddingRight: 1,
-                                paddingTop: 0.5,
-                                paddingBottom: 0.5,
-                                fontSize: 14,
-                                ':before': { borderBottom: 0 },
-                            }}
-                            startAdornment={
-                                <InputAdornment position="start">
-                                    <SearchOutlinedIcon fontSize={'small'} />
-                                </InputAdornment>
-                            }
-                        />
-                    </Box>
-                    {/* <Box
+                handleChange={setSearchText}
+                right={
+                    <Box
                         sx={{
                             display: 'flex',
                             justifyContent: 'center',
@@ -148,9 +112,18 @@ const UploadServerDetail = () => {
                                 },
                             }}
                         ></FormatListBulletedOutlinedIcon>
-                    </Box> */}
-                </Box>
+                    </Box>
+                }
+            />
 
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flex: 1,
+                    overflow: 'hidden',
+                }}
+            >
                 <Box
                     sx={{
                         display: 'flex',
@@ -171,7 +144,7 @@ const UploadServerDetail = () => {
                                 justifyContent: 'center',
                             }}
                         >
-                            No matching upload server.
+                            没有找到匹配的上载服务器[{id}]
                         </Box>
                     )}
                 </Box>

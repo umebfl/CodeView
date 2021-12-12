@@ -21,6 +21,10 @@ export const uploadServer = createModel<RootModel>()({
         setData: (state, payload: uploadServerType[]) => {
             const fixData = map((item: uploadServerType) => ({
                 ...item,
+
+                isRunningStr: item.isRunning ? '运行中' : '关闭',
+                operationTips: '-',
+
                 slotInfos: map((slot: slotInfoType) => ({
                     ...slot,
                     ...(slot.diskInfo
@@ -50,19 +54,13 @@ export const uploadServer = createModel<RootModel>()({
     },
     effects: dispatch => ({
         async initData() {
-            try {
-                const data = await request(
-                    '/data_center/get_upload_server_list',
-                    undefined,
-                    dispatch
-                )
+            const data = await request({
+                url: '/data_center/get_upload_server_list',
+                dispatch,
+            })
 
-                if (data?.uploadServerInfos) {
-                    dispatch.uploadServer.setData(data.uploadServerInfos)
-                }
-            } catch (error) {
-                dispatch.uploadServer.setData([])
-                // throw error
+            if (data?.uploadServerInfos) {
+                dispatch.uploadServer.setData(data.uploadServerInfos)
             }
         },
     }),

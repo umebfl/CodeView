@@ -79,9 +79,6 @@ const ListView = ({ data }: ViewPayloadType) => {
                         <DefaultTableCellHeaderCell align="left">
                             操作提示
                         </DefaultTableCellHeaderCell>
-                        <DefaultTableCellHeaderCell align="left">
-                            操作
-                        </DefaultTableCellHeaderCell>
                     </TableRow>
                 </TableHead>
 
@@ -130,11 +127,10 @@ const ListView = ({ data }: ViewPayloadType) => {
                             <DefaultTableCellCell align="left">
                                 {getMsg(row)}
                             </DefaultTableCellCell>
-                            <DefaultTableCellCell align="left"></DefaultTableCellCell>
                         </DefaultTableRow>
                     ))}
                 </TableBody>
-                <NoMoreDataCell cellColSpan={10} />
+                <NoMoreDataCell cellColSpan={9} />
             </Table>
         </TableContainer>
     )

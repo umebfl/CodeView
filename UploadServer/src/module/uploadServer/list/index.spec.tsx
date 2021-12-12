@@ -76,6 +76,5 @@ describe('Upload Server', () => {
         await waitFor(() => screen.getAllByText(/列表数据为空。/i))
 
         expect(screen.getAllByText(/列表数据为空。/i).length).toBeDefined()
-        screen.logTestingPlaygroundURL()
     })
 })

@@ -24,7 +24,7 @@ const SnackbarCmp = ({ data, idx }: SnackbarCmpType) => {
         <Snackbar
             open={true}
             style={{
-                top: 55 * (idx as number),
+                top: 55 * ((1 + idx) as number),
             }}
             anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
             autoHideDuration={DURATION}
