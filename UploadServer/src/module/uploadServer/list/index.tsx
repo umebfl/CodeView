@@ -23,6 +23,7 @@ import {
     DefaultTableCellCell,
     DefaultTableCellHeaderCell,
     DefaultTableRow,
+    DefaultTableBody,
     NoMoreDataCell,
 } from 'src/component/table'
 import { uploadServerType } from 'src/reducer/uploadServer/type'
@@ -52,8 +53,6 @@ const UploadServerList: FC = () => {
             includes(searchText)(item.isRunningStr) ||
             includes(searchText)(item.operationTips)
         )
-
-        return false
     })(data)
 
     return (
@@ -117,102 +116,84 @@ const UploadServerList: FC = () => {
                             </DefaultTableCellHeaderCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>
-                        {filterData.length === 0 ? (
-                            <DefaultTableRow>
+                    <DefaultTableBody>
+                        {filterData.map((row, index) => (
+                            <DefaultTableRow key={row.uploadServerId}>
+                                <DefaultTableCellCell align="center">
+                                    {index + 1}
+                                </DefaultTableCellCell>
                                 <DefaultTableCellCell
                                     align="center"
-                                    colSpan={9}
+                                    sortDirection={'desc'}
                                 >
-                                    <Box
-                                        sx={{
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
+                                    <Link
+                                        to={`detail/${row.uploadServerId}`}
+                                        style={{
+                                            textDecoration: 'none',
                                         }}
                                     >
-                                        <SearchOffIcon />
-                                        列表数据为空。
-                                    </Box>
-                                </DefaultTableCellCell>
-                            </DefaultTableRow>
-                        ) : (
-                            filterData.map((row, index) => (
-                                <DefaultTableRow key={row.uploadServerId}>
-                                    <DefaultTableCellCell align="center">
-                                        {index + 1}
-                                    </DefaultTableCellCell>
-                                    <DefaultTableCellCell
-                                        align="center"
-                                        sortDirection={'desc'}
-                                    >
-                                        <Link
-                                            to={`detail/${row.uploadServerId}`}
-                                            style={{
-                                                textDecoration: 'none',
-                                            }}
-                                        >
-                                            <Box
-                                                sx={{
-                                                    color: theme.color.grey15,
-                                                    ': hover': {
-                                                        color: theme.color
-                                                            .grey20,
-                                                    },
-                                                }}
-                                            >
-                                                {row.uploadServerId}
-                                            </Box>
-                                        </Link>
-                                    </DefaultTableCellCell>
-                                    <DefaultTableCellCell align="center">
                                         <Box
                                             sx={{
-                                                color: row.isRunning
-                                                    ? theme.palette.success.dark
-                                                    : theme.palette.error.dark,
+                                                color: theme.color.grey15,
+                                                ': hover': {
+                                                    color: theme.color.grey20,
+                                                },
                                             }}
                                         >
-                                            {row.isRunningStr}
+                                            {row.uploadServerId}
                                         </Box>
-                                    </DefaultTableCellCell>
-                                    <DefaultTableCellCell
-                                        component="th"
-                                        scope="row"
+                                    </Link>
+                                </DefaultTableCellCell>
+                                <DefaultTableCellCell align="center">
+                                    <Box
+                                        sx={{
+                                            color: row.isRunning
+                                                ? theme.palette.success.dark
+                                                : theme.palette.error.dark,
+                                        }}
                                     >
-                                        {row.emptySlotsNum}
-                                    </DefaultTableCellCell>
-                                    <DefaultTableCellCell align="center">
-                                        {row.formattedDisksNum} /{' '}
-                                        {row.totalSlotsNum - row.emptySlotsNum}
-                                    </DefaultTableCellCell>
-                                    <DefaultTableCellCell align="center">
-                                        {row.totalSlotsNum}
-                                    </DefaultTableCellCell>
-                                    <DefaultTableCellCell align="center">
-                                        {row.uploadServerLocation}
-                                    </DefaultTableCellCell>
-                                    <DefaultTableCellCell align="center">
-                                        {row.operationTips}
-                                    </DefaultTableCellCell>
-                                    <DefaultTableCellCell align="center">
-                                        <Button
-                                            size="small"
-                                            variant="text"
-                                            onClick={() =>
-                                                navigate(
-                                                    `detail/${row.uploadServerId}`
-                                                )
-                                            }
-                                        >
-                                            查看
-                                        </Button>
-                                    </DefaultTableCellCell>
-                                </DefaultTableRow>
-                            ))
-                        )}
-                    </TableBody>
-                    <NoMoreDataCell cellColSpan={9} />
+                                        {row.isRunningStr}
+                                    </Box>
+                                </DefaultTableCellCell>
+                                <DefaultTableCellCell
+                                    component="th"
+                                    scope="row"
+                                >
+                                    {row.emptySlotsNum}
+                                </DefaultTableCellCell>
+                                <DefaultTableCellCell align="center">
+                                    {row.formattedDisksNum} /{' '}
+                                    {row.totalSlotsNum - row.emptySlotsNum}
+                                </DefaultTableCellCell>
+                                <DefaultTableCellCell align="center">
+                                    {row.totalSlotsNum}
+                                </DefaultTableCellCell>
+                                <DefaultTableCellCell align="center">
+                                    {row.uploadServerLocation}
+                                </DefaultTableCellCell>
+                                <DefaultTableCellCell align="center">
+                                    {row.operationTips}
+                                </DefaultTableCellCell>
+                                <DefaultTableCellCell align="center">
+                                    <Button
+                                        size="small"
+                                        variant="text"
+                                        onClick={() =>
+                                            navigate(
+                                                `detail/${row.uploadServerId}`
+                                            )
+                                        }
+                                    >
+                                        查看
+                                    </Button>
+                                </DefaultTableCellCell>
+                            </DefaultTableRow>
+                        ))}
+                    </DefaultTableBody>
+
+                    {filterData.length > 0 && (
+                        <NoMoreDataCell cellColSpan={9} />
+                    )}
                 </Table>
             </TableContainer>
         </Box>

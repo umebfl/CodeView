@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Typography, useTheme } from '@mui/material'
 
-export const NoMoreData: FC = () => {
+const NoMoreData: FC = () => {
     const theme = useTheme()
     return (
         <Typography
@@ -20,3 +20,5 @@ export const NoMoreData: FC = () => {
         </Typography>
     )
 }
+
+export default NoMoreData

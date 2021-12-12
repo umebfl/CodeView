@@ -15,10 +15,15 @@ import {
     DefaultTableCellCell,
     DefaultTableCellHeaderCell,
     DefaultTableRow,
+    DefaultTableBody,
     NoMoreDataCell,
 } from 'src/component/table'
 import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
-import { DiskStatusConfig, slotInfoType } from 'src/reducer/uploadServer/type'
+import {
+    DiskStatusConfig,
+    diskStatusEnum,
+    slotInfoType,
+} from 'src/reducer/uploadServer/type'
 
 const ListView = ({ data }: ViewPayloadType) => {
     const theme = useTheme()
@@ -82,7 +87,7 @@ const ListView = ({ data }: ViewPayloadType) => {
                     </TableRow>
                 </TableHead>
 
-                <TableBody>
+                <DefaultTableBody>
                     {data.map((row, index) => (
                         <DefaultTableRow key={row.slotId}>
                             <DefaultTableCellCell align="center">
@@ -95,10 +100,10 @@ const ListView = ({ data }: ViewPayloadType) => {
                                 {row.slotBusId}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
-                                {row.diskInfo ? row.diskInfo.diskId : '-'}
+                                {row.diskInfo?.diskId || '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
-                                {row.diskInfo ? row.diskInfo.diskName : '-'}
+                                {row.diskInfo?.diskName || '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell
                                 align="center"
@@ -112,25 +117,27 @@ const ListView = ({ data }: ViewPayloadType) => {
                                         : 'inherit',
                                 }}
                             >
-                                {row.diskInfo &&
-                                    DiskStatusConfig[row.diskInfo.diskStatus]
-                                        .name}
+                                {
+                                    DiskStatusConfig[
+                                        row.diskInfo?.diskStatus ||
+                                            diskStatusEnum.NULL
+                                    ].name
+                                }
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="center">
                                 {row.diskInfo?.updateTimeStr || '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
-                                {row.diskInfo
-                                    ? row.diskInfo.vehicleIds.join(', ')
-                                    : '-'}
+                                {row.diskInfo?.vehicleIds.join(', ') || '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
                                 {getMsg(row)}
                             </DefaultTableCellCell>
                         </DefaultTableRow>
                     ))}
-                </TableBody>
-                <NoMoreDataCell cellColSpan={9} />
+                </DefaultTableBody>
+
+                {data.length > 0 && <NoMoreDataCell cellColSpan={9} />}
             </Table>
         </TableContainer>
     )

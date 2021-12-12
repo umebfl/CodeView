@@ -4,15 +4,23 @@ import {
     TableRowProps,
     TableFooter,
     TableRow,
+    TableBody,
     useTheme,
     Box,
 } from '@mui/material'
 
-import { NoMoreData } from 'src/component/noMoreData'
-import { NoMoreDataType, DefaultTableCellProps } from 'src/component/table/type'
+import { type } from 'ramda'
 
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'
+import SearchOffIcon from '@mui/icons-material/SearchOff'
+
+import NoMoreData from 'src/component/noMoreData'
+import {
+    NoMoreDataType,
+    DefaultTableCellProps,
+    DefaultTableBodyProps,
+} from 'src/component/table/type'
 
 export const DefaultTableCellCell = ({
     children,
@@ -89,8 +97,41 @@ export const DefaultTableCellHeaderCell = ({
     )
 }
 
+export const DefaultTableBody = ({
+    children,
+    ...props
+}: DefaultTableBodyProps) => {
+    if (type(children) === 'Array') {
+        return (
+            <TableBody>
+                {(children as [])?.length > 0 ? (
+                    children
+                ) : (
+                    <DefaultTableRow>
+                        <DefaultTableCellCell align="center" colSpan={9}>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                <SearchOffIcon />
+                                列表数据为空。
+                            </Box>
+                        </DefaultTableCellCell>
+                    </DefaultTableRow>
+                )}
+            </TableBody>
+        )
+    }
+
+    return <TableBody>{children}</TableBody>
+}
+
 export const DefaultTableRow = ({ children, ...props }: TableRowProps) => {
     const theme = useTheme()
+
     return (
         <TableRow
             {...props}

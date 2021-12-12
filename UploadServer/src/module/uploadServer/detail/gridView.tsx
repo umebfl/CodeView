@@ -5,7 +5,7 @@ import ClosedCaptionDisabledOutlinedIcon from '@mui/icons-material/ClosedCaption
 
 import { Box, Typography, useTheme } from '@mui/material'
 
-import { NoMoreData } from 'src/component/noMoreData'
+import NoMoreData from 'src/component/noMoreData'
 import { slotInfoType } from 'src/reducer/uploadServer/type'
 import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
 

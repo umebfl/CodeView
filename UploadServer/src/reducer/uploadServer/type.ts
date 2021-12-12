@@ -6,6 +6,7 @@ export enum diskStatusEnum {
     DATA_UPLOAD_FAILED = 'DATA_UPLOAD_FAILED',
     DATA_UPLOADED = 'DATA_UPLOADED',
     FORMATTED = 'FORMATTED',
+    NULL = 'NULL',
 }
 
 export const DiskStatusConfig: Record<
@@ -39,6 +40,10 @@ export const DiskStatusConfig: Record<
     FORMATTED: {
         name: '结束',
         color: ['palette', 'success', 'dark'],
+    },
+    NULL: {
+        name: '-',
+        color: ['palette', 'grey', 'dark'],
     },
 }
 

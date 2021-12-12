@@ -1,4 +1,4 @@
-import { TableCellProps } from '@mui/material'
+import { TableCellProps, TableBodyProps } from '@mui/material'
 
 export interface NoMoreDataType extends TableCellProps {
     cellColSpan: number
@@ -7,4 +7,8 @@ export interface NoMoreDataType extends TableCellProps {
 export interface DefaultTableCellProps extends TableCellProps {
     cellname?: string
     handlesortclick?: (cellname: string) => void
+}
+
+export interface DefaultTableBodyProps extends TableBodyProps {
+    children: React.ReactNode | React.ReactNode[]
 }

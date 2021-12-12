@@ -3,14 +3,10 @@ import { trim } from 'ramda'
 import { Box } from '@mui/system'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import { useTheme } from '@mui/material/styles'
-import Input, { InputProps } from '@mui/material/Input'
+import Input from '@mui/material/Input'
 import InputAdornment from '@mui/material/InputAdornment'
 
-interface payloadType {
-    inputProps: InputProps
-    right?: React.ReactNode
-    handleChange: (text: string) => void
-}
+import { payloadType } from 'src/component/filterBar/type'
 
 const FilterBar = ({ right, handleChange, inputProps }: payloadType) => {
     const theme = useTheme()
@@ -41,9 +37,9 @@ const FilterBar = ({ right, handleChange, inputProps }: payloadType) => {
                     setSearchText(text)
                     handleChange(text)
                 }}
-                onFocus={() => {
-                    // inputRef?.current?.select()
-                }}
+                // onFocus={() => {
+                //     // inputRef?.current?.select()
+                // }}
                 sx={{
                     background: theme.color.grey5,
                     paddingLeft: 1,
