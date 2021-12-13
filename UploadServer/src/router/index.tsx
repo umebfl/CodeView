@@ -4,8 +4,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
 
 import HomePage from 'src/module/homePage'
-import UploadServerList from 'src/module/uploadServer/list'
-import UploadServerDetail from 'src/module/uploadServer/detail'
+import { UploadServerList, UploadServerDetail } from 'src/module/uploadServer'
 import NoFound from 'src/module/noFound'
 
 function Router() {

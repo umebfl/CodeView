@@ -34,10 +34,10 @@ const buildSankeyData = item => {
                 fillOpacity: 0.6,
             },
             label: {
-                value: `${
-                    item.pathNoSuffix.length > 18 ? '...' : ''
-                }${R.takeLast(18)(item.pathNoSuffix)}`,
-                // value: item.shortName,
+                // value: `${
+                //     item.pathNoSuffix.length > 18 ? '...' : ''
+                // }${R.takeLast(18)(item.pathNoSuffix)}`,
+                value: item.shortName,
                 position: 'bottom',
                 fill: '#666',
                 fontSize: 16,
@@ -79,7 +79,7 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
                     path => !R.endsWith('.css')(path),
                     // 过滤工具类
                     path => !R.startsWith('src/util/')(path),
-                    // 过滤组件类
+                    // TODO: 过滤组件类 UI参数
                     path => !R.startsWith('src/component/')(path),
                     // 过滤组件类
                     path => !R.endsWith('.json')(path),
