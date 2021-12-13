@@ -1,3 +1,4 @@
+/** No need unit test */
 import { init } from '@rematch/core'
 
 import { models } from 'src/reducer'

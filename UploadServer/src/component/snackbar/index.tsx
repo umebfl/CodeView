@@ -9,7 +9,7 @@ import { RootState, Dispatch } from 'src/reducer/type'
 import { snackbarPropsType } from 'src/reducer/snackbar/type'
 import { SnackbarCmpType } from 'src/component/snackbar/type'
 
-const DURATION = 6 * 1000
+export const DURATION = 6 * 1000
 
 const SnackbarCmp = ({ data, idx }: SnackbarCmpType) => {
     const dispatch = useDispatch<Dispatch>()
@@ -17,7 +17,7 @@ const SnackbarCmp = ({ data, idx }: SnackbarCmpType) => {
     useEffect(() => {
         setTimeout(() => {
             dispatch.snackbar.pop(data.timeStamp)
-        }, 6000)
+        }, DURATION)
     }, [])
 
     return (
@@ -34,7 +34,7 @@ const SnackbarCmp = ({ data, idx }: SnackbarCmpType) => {
     )
 }
 
-export default function SnackbarContainer() {
+const SnackbarContainer = () => {
     const { data } = useSelector((state: RootState) => state.snackbar)
     return (
         <>
@@ -51,3 +51,5 @@ export default function SnackbarContainer() {
         </>
     )
 }
+
+export default SnackbarContainer

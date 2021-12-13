@@ -1,3 +1,4 @@
+/** No need unit test */
 import { createTheme, ThemeOptions } from '@mui/material/styles'
 
 import { Grey } from 'src/theme/color'

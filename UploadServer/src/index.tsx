@@ -1,3 +1,4 @@
+/** No need unit test */
 import React from 'react'
 import ReactDOM from 'react-dom'
 

@@ -1,3 +1,4 @@
+/** No need unit test */
 import React from 'react'
 
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
@@ -5,7 +6,6 @@ import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
 import HomePage from 'src/module/homePage'
 import UploadServerList from 'src/module/uploadServer/list'
 import UploadServerDetail from 'src/module/uploadServer/detail'
-import Test from 'src/module/test'
 import NoFound from 'src/module/noFound'
 
 function Router() {
@@ -20,7 +20,7 @@ function Router() {
                             element={<UploadServerDetail />}
                         />
                     </Route>
-                    <Route path="disk" element={<Test />} />
+                    <Route path="disk" element={<div />} />
                     <Route path="*" element={<NoFound />} />
                 </Route>
             </Routes>

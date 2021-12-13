@@ -24,6 +24,15 @@ const buildSankeyData = item => {
         id: item.pathNoSuffix,
         label: item.pathNoSuffix.substring(SRC_PATH.length),
         style: {
+            keyshape: {
+                fill: item.noNeedUnitTest
+                    ? 'blue'
+                    : item.unitTest
+                    ? 'green'
+                    : 'grey',
+                stroke: 'white',
+                fillOpacity: 0.6,
+            },
             label: {
                 value: `${
                     item.pathNoSuffix.length > 18 ? '...' : ''
@@ -31,8 +40,8 @@ const buildSankeyData = item => {
                 // value: item.shortName,
                 position: 'bottom',
                 fill: '#666',
-                fontSize: 14,
-                // opacity: 0.8,
+                fontSize: 16,
+                opacity: 1,
             },
         },
         program: item.parse.program,
@@ -66,8 +75,6 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
                     // 过滤接口文件依赖type.ts
                     path => !R.endsWith('/type')(path),
                     target => item.pathNoSuffix !== target,
-                    // 过滤测试文件
-                    path => !R.endsWith('.spec.tsx')(path),
                     // todo: 过滤指定后缀js/jsx
                     path => !R.endsWith('.css')(path),
                     // 过滤工具类
@@ -155,17 +162,17 @@ const Parse = ({ data, layoutType, dispatch }) => {
         return null
     }
 
-    const hullOption = R.compose(
-        R.map(item => ({
-            members: R.map(mem => mem.id)(item[1]),
-        })),
-        R.filter(item => item[0].length > 0 && item[1].length > 1),
-        R.toPairs,
-        R.groupBy(item => {
-            const sub = R.match(/^.*\/.*\//)(item.id)
-            return sub.join('')
-        })
-    )(sankeyData)
+    // const hullOption = R.compose(
+    //     R.map(item => ({
+    //         members: R.map(mem => mem.id)(item[1]),
+    //     })),
+    //     R.filter(item => item[0].length > 0 && item[1].length > 1),
+    //     R.toPairs,
+    //     R.groupBy(item => {
+    //         const sub = R.match(/^.*\/.*\//)(item.id)
+    //         return sub.join('')
+    //     })
+    // )(sankeyData)
 
     return (
         <div>

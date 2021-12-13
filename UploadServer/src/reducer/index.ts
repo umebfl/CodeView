@@ -1,3 +1,4 @@
+/** No need unit test */
 import { Models } from '@rematch/core'
 
 import { uploadServer } from 'src/reducer/uploadServer'
