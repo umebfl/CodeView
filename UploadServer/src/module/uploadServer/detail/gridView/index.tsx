@@ -10,7 +10,6 @@ import { slotInfoType } from 'src/reducer/uploadServer/type'
 import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
 
 const GridView = ({ data }: ViewPayloadType) => {
-    console.log(data)
     const theme = useTheme()
 
     return (

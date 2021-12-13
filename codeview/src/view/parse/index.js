@@ -24,6 +24,7 @@ const buildSankeyData = item => {
         id: item.pathNoSuffix,
         label: item.pathNoSuffix.substring(SRC_PATH.length),
         style: {
+            // TODO: 行数决定大小
             keyshape: {
                 fill: item.noNeedUnitTest
                     ? 'blue'

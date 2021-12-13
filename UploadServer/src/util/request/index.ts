@@ -23,7 +23,7 @@ const Request = async ({
 
     try {
         if (loadingTips !== false) {
-            dispatch?.globalLoading.add(loadingFlag)
+            dispatch?.globalLoading?.push(loadingFlag)
         }
 
         const rv = await fetch(url, {
@@ -36,7 +36,7 @@ const Request = async ({
             const data = await rv.json()
 
             if (data.code === 0) {
-                loadingTips && dispatch?.globalLoading.remove(loadingFlag)
+                loadingTips && dispatch?.globalLoading?.remove(loadingFlag)
                 return data.data
             }
 
@@ -47,7 +47,7 @@ const Request = async ({
     } catch (error) {
         errorLog('Request error', `url: ${url}\n`, `error: ${error}\n`)
 
-        loadingTips && dispatch?.globalLoading.remove(loadingFlag)
+        loadingTips && dispatch?.globalLoading?.remove(loadingFlag)
 
         const errorMsg = `请求数据失败：${error}`
 

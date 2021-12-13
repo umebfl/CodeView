@@ -1,4 +1,4 @@
-import { createModel } from '@rematch/core'
+import { createModel, Models } from '@rematch/core'
 import { dissoc } from 'ramda'
 
 import { RootModel } from '..'
@@ -11,7 +11,7 @@ const initState: globalLoadingState = {
 export const globalLoading = createModel<RootModel>()({
     state: initState,
     reducers: {
-        add: (state, payload: string) => ({
+        push: (state, payload: string) => ({
             ...state,
             loadingMap: {
                 ...state.loadingMap,
