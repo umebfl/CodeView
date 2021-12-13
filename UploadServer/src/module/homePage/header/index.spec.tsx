@@ -8,7 +8,7 @@ import { Context } from 'src/app'
 import { getInitStore } from 'src/reducer/store'
 
 describe('Header', () => {
-    it('可以显示logo', () => {
+    it('shoudl render logo', () => {
         render(
             <Context initStore={getInitStore()}>
                 <Header />

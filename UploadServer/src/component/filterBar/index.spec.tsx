@@ -17,7 +17,7 @@ jest.mock('react-router-dom', () => ({
 }))
 
 describe('FilterBar', () => {
-    it('当输入文本时可以调用回调函数', () => {
+    it('should called handleChange when text is entered', () => {
         const handleChange = jest.fn()
 
         render(
@@ -33,7 +33,7 @@ describe('FilterBar', () => {
         expect(handleChange).toBeCalled()
     })
 
-    it('当存在right时可以显示', () => {
+    it('should show the right node, when right exists ', () => {
         const handleChange = jest.fn()
 
         render(

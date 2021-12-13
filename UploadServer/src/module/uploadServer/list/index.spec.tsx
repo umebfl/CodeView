@@ -47,7 +47,7 @@ afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 describe('Upload Server', () => {
-    it('可以显示列表', async () => {
+    it('should render list', async () => {
         apiUploadServerType = 'primary'
 
         render(
@@ -63,7 +63,7 @@ describe('Upload Server', () => {
         )
     })
 
-    it('当数据为空时可以显示空列表提示', async () => {
+    it('should render an empty list prompt when the data is empty', async () => {
         apiUploadServerType = 'empty'
 
         render(

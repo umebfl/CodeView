@@ -40,7 +40,7 @@ afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 describe('Reducer - uploadServer', () => {
-    it('可以set数据', () => {
+    it('should set data', () => {
         const store = init({
             models: { uploadServer } as any,
         })
@@ -57,7 +57,7 @@ describe('Reducer - uploadServer', () => {
         expect(item.isRunningStr).toBe('运行中')
     })
 
-    it('可以init数据', async () => {
+    it('should init data', async () => {
         const store = init({
             models: { uploadServer } as any,
         })

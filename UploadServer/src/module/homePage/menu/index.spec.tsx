@@ -15,7 +15,7 @@ jest.mock('react-router-dom', () => ({
 }))
 
 describe('Menu', () => {
-    it('可以显示导航按钮', () => {
+    it('should render the navigation buttons', () => {
         render(
             <Context initStore={getInitStore()}>
                 <Menu />

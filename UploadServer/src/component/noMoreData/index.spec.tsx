@@ -8,7 +8,7 @@ import { Context } from 'src/app'
 import { getInitStore } from 'src/reducer/store'
 
 describe('NoMoreData', () => {
-    it('可以显示提示', () => {
+    it('should render hints ', () => {
         render(
             <Context initStore={getInitStore()}>
                 <NoMoreData />

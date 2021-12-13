@@ -16,7 +16,7 @@ jest.mock('../../../../package.json', () => {
 })
 
 describe('StatusBar', () => {
-    it('可以显示对应版本号', () => {
+    it('should render the version number', () => {
         render(
             <Context initStore={getInitStore()}>
                 <StatusBar />

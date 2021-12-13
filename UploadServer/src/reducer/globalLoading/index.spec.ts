@@ -4,7 +4,7 @@ import { dissoc } from 'ramda'
 import { globalLoading } from 'src/reducer/globalLoading'
 
 describe('Reducer - globalLoading', () => {
-    it('可以push数据', () => {
+    it('should push data', () => {
         const store = init({
             models: { globalLoading } as any,
         })
@@ -17,7 +17,7 @@ describe('Reducer - globalLoading', () => {
         expect(data).toEqual({ loadingMap: { '0': true } })
     })
 
-    it('可以pop数据', () => {
+    it('should pop data', () => {
         const store = init({
             models: { globalLoading } as any,
         })
@@ -32,7 +32,7 @@ describe('Reducer - globalLoading', () => {
         expect(popData).toEqual({ loadingMap: {} })
     })
 
-    it('可以remove数据', async () => {
+    it('should remove data', async () => {
         const store = init({
             models: { globalLoading } as any,
         })

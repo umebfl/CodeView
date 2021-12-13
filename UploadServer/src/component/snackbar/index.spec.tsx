@@ -17,7 +17,7 @@ import { getInitStore } from 'src/reducer/store'
 import { Dispatch } from 'src/reducer/type'
 
 describe('Snackbar', () => {
-    it('可以弹出提示', () => {
+    it('should pop up prompts', () => {
         const msg = 'test error'
         const Test = () => {
             const dispatch = useDispatch<Dispatch>()
@@ -41,7 +41,7 @@ describe('Snackbar', () => {
     })
 
     it(
-        '多个snackbar可以自动消失',
+        'multiple snackbars can disappear automatically',
         async () => {
             const msg1 = 'test error'
             const msg2 = 'test error2'

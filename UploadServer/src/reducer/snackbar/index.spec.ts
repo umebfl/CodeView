@@ -4,7 +4,7 @@ import { dissoc } from 'ramda'
 import { snackbar } from 'src/reducer/snackbar'
 
 describe('Reducer - snackbar', () => {
-    it('可以push数据', () => {
+    it('should push data', () => {
         const store = init({
             models: { snackbar } as any,
         })
@@ -21,7 +21,7 @@ describe('Reducer - snackbar', () => {
         })
     })
 
-    it('可以pop数据', () => {
+    it('should pop data', () => {
         const store = init({
             models: { snackbar } as any,
         })

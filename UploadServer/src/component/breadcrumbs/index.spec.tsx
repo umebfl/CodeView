@@ -17,7 +17,7 @@ jest.mock('react-router-dom', () => ({
 }))
 
 describe('BreadcrumbsCmp', () => {
-    it('可以显示标题', () => {
+    it('should render title', () => {
         const loadData = jest.fn()
         const BreadcrumbsCmpTitle = 'test-title'
 
@@ -32,7 +32,7 @@ describe('BreadcrumbsCmp', () => {
         expect(screen.getByText(BreadcrumbsCmpTitle)).toBeDefined()
     })
 
-    it('当点击刷新图标时可以调用刷新', () => {
+    it('should called handleRefresh when the refresh icon is clicked', () => {
         const loadData = jest.fn()
         const BreadcrumbsCmpTitle = 'test-title'
 
@@ -48,7 +48,7 @@ describe('BreadcrumbsCmp', () => {
         expect(loadData).toBeCalled()
     })
 
-    it('当allowBack为false时，回退图标不可点击', () => {
+    it('the fallback icon cannot be clicked when allowback is false', () => {
         const loadData = jest.fn()
         const handleBaforeBack = jest.fn()
         const BreadcrumbsCmpTitle = 'test-title'
@@ -69,7 +69,7 @@ describe('BreadcrumbsCmp', () => {
         expect(handleBaforeBack).not.toBeCalled()
     })
 
-    it('当点击回退图标时可以调用回退', () => {
+    it('should called handleBaforeBack when the fallback icon is clicked', () => {
         const loadData = jest.fn()
         const handleBaforeBack = jest.fn()
         const BreadcrumbsCmpTitle = 'test-title'
