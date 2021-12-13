@@ -1,10 +1,10 @@
+/** No need unit test */
 import React, { useEffect } from 'react'
 import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 
 import Header from 'src/module/homePage/header'
-import Content from 'src/module/homePage/content'
 import Menu from 'src/module/homePage/menu'
 import StatusBar from 'src/module/homePage/statusBar'
 
@@ -42,9 +42,15 @@ const HomePage = () => {
             >
                 <Menu></Menu>
 
-                <Content>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flex: 1,
+                        flexDirection: 'row',
+                    }}
+                >
                     <Outlet />
-                </Content>
+                </Box>
             </Box>
             <StatusBar></StatusBar>
         </Box>

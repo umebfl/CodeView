@@ -2,9 +2,7 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
 
-import { info } from 'src/util/loger'
-
-import { version } from '../../../package.json'
+import { version } from '../../../../package.json'
 
 const StatusBar = () => {
     const theme = useTheme()
