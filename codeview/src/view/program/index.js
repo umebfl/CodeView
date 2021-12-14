@@ -7,7 +7,9 @@ import './index.css'
 const Program = ({ data }) => {
     const node = R.compose(
         R.addIndex(R.map)((item, index) => (
-            <div key={index}>[变量]{item.declarations[0].id.name}</div>
+            <div key={index}>
+                <div>[变量]{item.declarations[0].id.name}</div>
+            </div>
         )),
         R.filter(item => item.type === 'VariableDeclaration')
     )(data)

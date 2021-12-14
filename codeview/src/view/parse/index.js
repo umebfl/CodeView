@@ -19,25 +19,36 @@ const buildSankeyData = item => {
         return R.map(item => buildSankeyData(item))(item.list)
     }
 
+    const size = item.parse.loc.end.line / 2
+
+    // 可配置多目录路径
+    // 分级组件？ 内部组件 模块组件 系统组件
+    // TODO 可控间距
+    // TODO 代码总行数
+    // TODO: 可配置参数
+    const maxLine = 200 / 2
+
     return {
         comboId: undefined,
         id: item.pathNoSuffix,
         label: item.pathNoSuffix.substring(SRC_PATH.length),
+        // type: react(iconReact) store component(方形) util(icon把手) module
         style: {
-            // TODO: 行数决定大小
             keyshape: {
-                fill: item.noNeedUnitTest
-                    ? 'blue'
-                    : item.unitTest
-                    ? 'green'
-                    : 'grey',
+                fill:
+                    size > maxLine
+                        ? '#A52A2A'
+                        : item.noNeedUnitTest
+                        ? 'blue'
+                        : item.unitTest
+                        ? 'green'
+                        : 'grey',
+                // line过大 红色边框标记
                 stroke: 'white',
                 fillOpacity: 0.6,
+                size: size < 10 ? 10 : size,
             },
             label: {
-                // value: `${
-                //     item.pathNoSuffix.length > 18 ? '...' : ''
-                // }${R.takeLast(18)(item.pathNoSuffix)}`,
                 value: item.shortName,
                 position: 'bottom',
                 fill: '#666',
@@ -81,7 +92,7 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
                     // 过滤工具类
                     path => !R.startsWith('src/util/')(path),
                     // TODO: 过滤组件类 UI参数
-                    path => !R.startsWith('src/component/')(path),
+                    // path => !R.startsWith('src/component/')(path),
                     // 过滤组件类
                     path => !R.endsWith('.json')(path),
                     R.startsWith(SRC_PATH),
@@ -102,7 +113,8 @@ const Parse = ({ data, layoutType, dispatch }) => {
     let sankeyLink = []
     let sankeyLinkMap = {}
 
-    const [tips, setTips] = useState('')
+    const [tips, setTips] = useState('-')
+    const [lineTips, setLineTips] = useState(0)
 
     if (data !== null && data !== undefined) {
         sankeyLink = buildSankeyLink(data, sankeyLinkMap)
@@ -144,9 +156,12 @@ const Parse = ({ data, layoutType, dispatch }) => {
                 const node = evt.item
                 const model = node.getModel()
                 setTips(model.id)
+                setLineTips(model.program.loc.end.line)
             }
             const handleMouseleave = evt => {
-                setTips('')
+                const node = evt.item
+                setTips('-')
+                setLineTips(0)
             }
 
             graph.on('node:click', handleClick)
@@ -178,6 +193,7 @@ const Parse = ({ data, layoutType, dispatch }) => {
     return (
         <div>
             <div>Node: {tips}</div>
+            <div>Line: {lineTips}</div>
             <Graphin
                 width={1600}
                 height={1200}
