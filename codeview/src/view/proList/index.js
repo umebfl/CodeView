@@ -62,6 +62,8 @@ const ProList = ({ dispatch }) => {
             .then(function (rv) {
                 if (rv.code === 'ok') {
                     const isTest = R.test(/.spec.tsx?/)
+                    const isUtil = R.test(/^src\/util\//)
+
                     const checkNoNeedUnitTest = parse => {
                         if (parse.comments) {
                             const flag = R.find(
@@ -125,6 +127,7 @@ const ProList = ({ dispatch }) => {
                                 ...item,
                                 parse,
                                 noNeedUnitTest: checkNoNeedUnitTest(parse),
+                                fileType: isUtil(item.path) ? 'util' : 'normal',
                             }
                         }
 
