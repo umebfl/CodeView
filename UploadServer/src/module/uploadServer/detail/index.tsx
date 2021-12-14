@@ -12,7 +12,6 @@ import Input from '@mui/material/Input'
 import InputAdornment from '@mui/material/InputAdornment'
 import { useTheme } from '@mui/material/styles'
 
-import { info } from 'src/util/loger'
 import Breadcrumbs from 'src/component/breadcrumbs'
 import { uploadServerType, slotInfoType } from 'src/reducer/uploadServer/type'
 import { RootState, Dispatch } from 'src/reducer/type'
@@ -20,25 +19,26 @@ import { RootState, Dispatch } from 'src/reducer/type'
 import GridView from 'src/module/uploadServer/detail/gridView'
 import ListView from 'src/module/uploadServer/detail/listView'
 import FilterBar from 'src/component/filterBar'
+import { ViewType } from 'src/module/uploadServer/detail/type'
 
 const UploadServerDetail = () => {
     const { id } = useParams()
     const theme = useTheme()
     const { data } = useSelector((state: RootState) => state.uploadServer)
+    const userConfig = useSelector((state: RootState) => state.userConfig)
     const dispatch = useDispatch<Dispatch>()
 
     const [searchText, setSearchText] = useState('')
 
-    const loadData = () => {
-        dispatch.uploadServer.initData()
+    const handleViewTypeChange = (type: ViewType) => {
+        dispatch.userConfig.set({
+            ...userConfig,
+            uploadServer: {
+                ...userConfig.uploadServer,
+                viewType: type,
+            },
+        })
     }
-
-    useEffect(() => {
-        if (!detail) {
-            dispatch.uploadServer.initData()
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
 
     const detail = find((item: uploadServerType) => item.uploadServerId === id)(
         data
@@ -73,7 +73,7 @@ const UploadServerDetail = () => {
                 overflow: 'hidden',
             }}
         >
-            <Breadcrumbs handleRefresh={loadData}>
+            <Breadcrumbs handleRefresh={dispatch.uploadServer.initData}>
                 <Box>Upload Server</Box>
                 <Typography color="text.primary" fontSize={14}>
                     {id}
@@ -94,24 +94,33 @@ const UploadServerDetail = () => {
                             alignItems: 'center',
                         }}
                     >
-                        <GridViewOutlinedIcon
-                            sx={{
-                                color: theme.color.grey15,
-                                cursor: 'pointer',
-                                ': hover': {
-                                    color: theme.color.grey20,
-                                },
-                            }}
-                        ></GridViewOutlinedIcon>
-                        <FormatListBulletedOutlinedIcon
-                            sx={{
-                                color: theme.color.grey15,
-                                cursor: 'pointer',
-                                ': hover': {
-                                    color: theme.color.grey20,
-                                },
-                            }}
-                        ></FormatListBulletedOutlinedIcon>
+                        {userConfig.uploadServer.viewType === ViewType.list ? (
+                            <GridViewOutlinedIcon
+                                onClick={() =>
+                                    handleViewTypeChange(ViewType.grid)
+                                }
+                                sx={{
+                                    color: theme.color.grey15,
+                                    cursor: 'pointer',
+                                    ': hover': {
+                                        color: theme.color.grey20,
+                                    },
+                                }}
+                            ></GridViewOutlinedIcon>
+                        ) : (
+                            <FormatListBulletedOutlinedIcon
+                                onClick={() =>
+                                    handleViewTypeChange(ViewType.list)
+                                }
+                                sx={{
+                                    color: theme.color.grey15,
+                                    cursor: 'pointer',
+                                    ': hover': {
+                                        color: theme.color.grey20,
+                                    },
+                                }}
+                            ></FormatListBulletedOutlinedIcon>
+                        )}
                     </Box>
                 }
             />
@@ -132,8 +141,11 @@ const UploadServerDetail = () => {
                     }}
                 >
                     {detail ? (
-                        // <GridView data={detail?.slotInfos || []}></GridView>
-                        <ListView data={slotInfos}></ListView>
+                        userConfig.uploadServer.viewType === ViewType.list ? (
+                            <ListView data={slotInfos}></ListView>
+                        ) : (
+                            <GridView data={slotInfos}></GridView>
+                        )
                     ) : (
                         <Box
                             sx={{

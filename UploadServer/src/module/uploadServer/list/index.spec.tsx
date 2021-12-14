@@ -11,6 +11,8 @@ import data from 'src/../data/json/uploadServer.json'
 import { Context } from 'src/app'
 import { getInitStore } from 'src/reducer/store'
 
+import { Dispatch } from 'src/reducer/type'
+
 jest.mock('react-router-dom', () => ({
     Link: ({ children }: any) => <div>{children}</div>,
     useNavigate: () => {},
@@ -49,13 +51,16 @@ afterAll(() => server.close())
 describe('Upload Server', () => {
     it('should render list', async () => {
         apiUploadServerType = 'primary'
+        const store = getInitStore()
+        const dispatch = store.dispatch as Dispatch
 
         render(
-            <Context initStore={getInitStore()}>
+            <Context initStore={store}>
                 <List />
             </Context>
         )
 
+        dispatch.uploadServer.initData()
         await waitFor(() => screen.getAllByText(/superxray\-sz\-0/i))
 
         expect(screen.getAllByText(/superxray\-sz\-0/i).length).toBe(
@@ -65,13 +70,16 @@ describe('Upload Server', () => {
 
     it('should render an empty list prompt when the data is empty', async () => {
         apiUploadServerType = 'empty'
+        const store = getInitStore()
+        const dispatch = store.dispatch as Dispatch
 
         render(
-            <Context initStore={getInitStore()}>
+            <Context initStore={store}>
                 <List />
             </Context>
         )
 
+        dispatch.uploadServer.initData()
         await waitFor(() => screen.getAllByText(/列表数据为空。/i))
 
         expect(screen.getAllByText(/列表数据为空。/i).length).toBeDefined()

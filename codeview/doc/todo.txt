@@ -16,3 +16,7 @@
 4. 高亮相邻节点
 5. 自动聚焦
 6. 分组列表面板及过滤
+7. config
+8. line size
+9. type: react/view reducer/state/data router
+0. switch component/util...

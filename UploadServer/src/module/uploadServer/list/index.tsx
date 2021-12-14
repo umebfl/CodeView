@@ -35,17 +35,6 @@ const UploadServerList: FC = () => {
     const dispatch = useDispatch<Dispatch>()
     const [searchText, setSearchText] = useState('')
 
-    const loadData = () => {
-        dispatch.uploadServer.initData()
-    }
-
-    useEffect(() => {
-        if (!data.length) {
-            loadData()
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
     const filterData = filter((item: uploadServerType) => {
         return (
             includes(searchText)(item.uploadServerId) ||
@@ -63,7 +52,10 @@ const UploadServerList: FC = () => {
                 width: '100%',
             }}
         >
-            <Breadcrumbs allowBack={false} handleRefresh={loadData}>
+            <Breadcrumbs
+                allowBack={false}
+                handleRefresh={dispatch.uploadServer.initData}
+            >
                 <Box>Upload Server</Box>
                 <Typography color="text.primary" fontSize={14}>
                     列表

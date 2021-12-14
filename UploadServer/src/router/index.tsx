@@ -4,7 +4,10 @@ import React from 'react'
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
 
 import HomePage from 'src/module/homePage'
-import { UploadServerList, UploadServerDetail } from 'src/module/uploadServer'
+import UploadServer, {
+    UploadServerList,
+    UploadServerDetail,
+} from 'src/module/uploadServer'
 import NoFound from 'src/module/noFound'
 
 function Router() {
@@ -12,7 +15,7 @@ function Router() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<HomePage></HomePage>}>
-                    <Route path="up" element={<Outlet></Outlet>}>
+                    <Route path="up" element={<UploadServer></UploadServer>}>
                         <Route index element={<UploadServerList />} />
                         <Route
                             path="detail/:id"
