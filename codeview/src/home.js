@@ -70,7 +70,7 @@ function Home({ state, dispatch }) {
     const ParseCmp = useMemo(
         () => (
             <Parse
-                data={state.source.fileMap}
+                data={state.source}
                 layoutType={state.graphLayout.data}
                 dispatch={dispatch}
             />

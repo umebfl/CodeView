@@ -109,6 +109,7 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
 }
 
 const Parse = ({ data, layoutType, dispatch }) => {
+    const { fileMap, totalLine } = data
     let sankeyData = []
     let sankeyLink = []
     let sankeyLinkMap = {}
@@ -116,14 +117,14 @@ const Parse = ({ data, layoutType, dispatch }) => {
     const [tips, setTips] = useState('-')
     const [lineTips, setLineTips] = useState(0)
 
-    if (data !== null && data !== undefined) {
-        sankeyLink = buildSankeyLink(data, sankeyLinkMap)
+    if (fileMap !== null && fileMap !== undefined) {
+        sankeyLink = buildSankeyLink(fileMap, sankeyLinkMap)
         sankeyLink = R.compose(
             R.filter(item => item !== null),
             R.flatten
         )(sankeyLink)
 
-        sankeyData = buildSankeyData(data)
+        sankeyData = buildSankeyData(fileMap)
         sankeyData = R.compose(
             // R.uniqBy(item => item.name),
             R.filter(item => sankeyLinkMap[item.id]),
@@ -192,8 +193,11 @@ const Parse = ({ data, layoutType, dispatch }) => {
 
     return (
         <div>
-            <div>Node: {tips}</div>
-            <div>Line: {lineTips}</div>
+            <div>
+                <span>totalLine: {totalLine} | </span>
+                <span>Line: {lineTips} | </span>
+                <span>Node: {tips} | </span>
+            </div>
             <Graphin
                 width={1600}
                 height={1200}
