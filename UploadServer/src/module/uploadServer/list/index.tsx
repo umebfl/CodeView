@@ -1,8 +1,7 @@
-import { useEffect, useState, FC } from 'react'
+import { useState, FC } from 'react'
 
 import Box from '@mui/material/Box'
 import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
@@ -10,7 +9,6 @@ import Paper from '@mui/material/Paper'
 import { useTheme } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import SearchOffIcon from '@mui/icons-material/SearchOff'
 import { filter, includes } from 'ramda'
 
 import { Link, useNavigate } from 'react-router-dom'

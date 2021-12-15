@@ -10,7 +10,7 @@ const persistPlugin = createRematchPersist<RootModel, any>({
     storage: AsyncStorage,
     whitelist: ['userConfig'],
     throttle: 1000,
-    debug: true,
+    debug: false,
     version: 3,
 })
 

@@ -8,8 +8,6 @@ import Header from 'src/module/homePage/header'
 import Menu from 'src/module/homePage/menu'
 import StatusBar from 'src/module/homePage/statusBar'
 
-import { info } from 'src/util/loger'
-
 const HomePage = () => {
     const theme = useTheme()
     const navigate = useNavigate()

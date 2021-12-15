@@ -1,5 +1,6 @@
+import React from 'react'
+
 import { Box } from '@mui/system'
-import { info } from 'src/util/loger'
 
 const NoFound = () => {
     return (

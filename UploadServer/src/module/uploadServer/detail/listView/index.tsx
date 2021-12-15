@@ -1,16 +1,14 @@
+import React from 'react'
+
 import {
-    Box,
     Paper,
-    SortDirection,
     Table,
-    TableBody,
     TableContainer,
     TableHead,
     TableRow,
     useTheme,
 } from '@mui/material'
-import { path, sort, takeLast } from 'ramda'
-import { useState } from 'react'
+import { path } from 'ramda'
 import {
     DefaultTableCellCell,
     DefaultTableCellHeaderCell,
@@ -19,39 +17,10 @@ import {
     NoMoreDataCell,
 } from 'src/component/table'
 import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
-import {
-    DiskStatusConfig,
-    diskStatusEnum,
-    slotInfoType,
-} from 'src/reducer/uploadServer/type'
+import { DiskStatusConfig, diskStatusEnum } from 'src/reducer/uploadServer/type'
 
 const ListView = ({ data }: ViewPayloadType) => {
     const theme = useTheme()
-
-    const getMsg = (data: slotInfoType) => {
-        if (data.diskInfo) {
-            if (data.diskInfo.wrongServer) {
-                return (
-                    <Box>
-                        请把此硬盘插到
-                        <Box
-                            sx={{
-                                display: 'inline-block',
-                                color: theme.palette.error.dark,
-                            }}
-                        >
-                            {data.diskInfo.recommendedServerId}
-                        </Box>
-                    </Box>
-                )
-            }
-
-            return data.diskInfo.invalidMsg
-        }
-
-        return '-'
-    }
-
     return (
         <TableContainer component={Paper}>
             <Table stickyHeader>
@@ -131,7 +100,7 @@ const ListView = ({ data }: ViewPayloadType) => {
                                 {row.diskInfo?.vehicleIds.join(', ') || '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
-                                {getMsg(row)}
+                                {row.diskInfo?.tips}
                             </DefaultTableCellCell>
                         </DefaultTableRow>
                     ))}

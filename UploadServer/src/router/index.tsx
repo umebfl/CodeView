@@ -1,7 +1,6 @@
 /** No need unit test */
-import React from 'react'
 
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import HomePage from 'src/module/homePage'
 import UploadServer, {

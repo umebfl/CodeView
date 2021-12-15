@@ -1,15 +1,12 @@
-import { useEffect, useState } from 'react'
-import { find, filter, includes, trim } from 'ramda'
+import { useState } from 'react'
+import { find, filter, includes } from 'ramda'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/system'
 import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined'
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined'
-import Input from '@mui/material/Input'
-import InputAdornment from '@mui/material/InputAdornment'
 import { useTheme } from '@mui/material/styles'
 
 import Breadcrumbs from 'src/component/breadcrumbs'
@@ -56,6 +53,7 @@ const UploadServerDetail = () => {
                       includes(searchText)(item.diskInfo.diskName) ||
                       includes(searchText)(item.diskInfo.diskStatusStr) ||
                       includes(searchText)(item.diskInfo.updateTimeStr) ||
+                      includes(searchText)(item.diskInfo.tips) ||
                       includes(searchText)(item.diskInfo.vehicleIds.join(','))
                   )
               }

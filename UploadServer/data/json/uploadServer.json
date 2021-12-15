@@ -19,7 +19,13 @@
                             "diskStatus": "UNMOUNT",
                             "updateTime": 1638264104.0,
                             "invalidMsg": "",
-                            "vehicleIds": ["byd-cn-0", "byd-cn-1"],
+                            "vehicleIds": [
+                                "byd-cn-0",
+                                "byd-cn-2",
+                                "byd-cn-3",
+                                "byd-cn-4",
+                                "byd-cn-5"
+                            ],
                             "wrongServer": false,
                             "recommendedServerId": ""
                         }
@@ -100,10 +106,16 @@
                             "diskId": "SDGF789798789DSG87",
                             "diskName": "nvme0n8",
                             "slotId": 8,
-                            "diskStatus": "DATA_UPLOADING",
+                            "diskStatus": "DATA_UPLOAD_FAILED",
                             "updateTime": 1638264104.0,
-                            "invalidMsg": "",
-                            "vehicleIds": ["byd-cn-8"],
+                            "invalidMsg": "连接失败",
+                            "vehicleIds": [
+                                "byd-cn-0",
+                                "byd-cn-2",
+                                "byd-cn-3",
+                                "byd-cn-4",
+                                "byd-cn-5"
+                            ],
                             "wrongServer": false,
                             "recommendedServerId": ""
                         }
@@ -176,7 +188,7 @@
                             "slotId": 14,
                             "diskStatus": "DATA_UPLOAD_FAILED",
                             "updateTime": 1638264104.0,
-                            "invalidMsg": "",
+                            "invalidMsg": "磁盘已满",
                             "vehicleIds": ["byd-cn-14"],
                             "wrongServer": false,
                             "recommendedServerId": ""

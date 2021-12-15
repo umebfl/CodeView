@@ -1,3 +1,5 @@
+import React from 'react'
+
 import {
     TableCell,
     TableCellProps,
@@ -104,29 +106,39 @@ export const DefaultTableBody = ({
     if (type(children) === 'Array') {
         return (
             <TableBody>
-                {(children as [])?.length > 0 ? (
-                    children
-                ) : (
-                    <DefaultTableRow>
-                        <DefaultTableCellCell align="center" colSpan={9}>
-                            <Box
-                                sx={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                }}
-                            >
-                                <SearchOffIcon />
-                                列表数据为空。
-                            </Box>
-                        </DefaultTableCellCell>
-                    </DefaultTableRow>
-                )}
+                {(children as [])?.length > 0 ? children : <EmptyDataRow />}
             </TableBody>
         )
     }
 
     return <TableBody>{children}</TableBody>
+}
+
+export const EmptyDataRow = () => (
+    <DefaultTableRow>
+        <DefaultTableCellCell align="center" colSpan={9}>
+            <EmptyDataMsg />
+        </DefaultTableCellCell>
+    </DefaultTableRow>
+)
+
+export const EmptyDataMsg = () => {
+    const theme = useTheme()
+
+    return (
+        <Box
+            sx={{
+                display: 'flex',
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                color: theme.color.grey20,
+            }}
+        >
+            <SearchOffIcon />
+            列表数据为空。
+        </Box>
+    )
 }
 
 export const DefaultTableRow = ({ children, ...props }: TableRowProps) => {

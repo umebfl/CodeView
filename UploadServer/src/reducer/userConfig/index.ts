@@ -1,4 +1,4 @@
-import { createModel, Models } from '@rematch/core'
+import { createModel } from '@rematch/core'
 
 import { RootModel } from '..'
 import { ViewType } from 'src/module/uploadServer/detail/type'

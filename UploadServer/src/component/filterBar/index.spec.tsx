@@ -1,9 +1,7 @@
-import * as React from 'react'
+import React from 'react'
 import { render, fireEvent, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
-
-import { Box } from '@mui/system'
 
 import FilterBar from 'src/component/filterBar'
 import { Context } from 'src/app'

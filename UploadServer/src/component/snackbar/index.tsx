@@ -18,6 +18,7 @@ const SnackbarCmp = ({ data, idx }: SnackbarCmpType) => {
         setTimeout(() => {
             dispatch.snackbar.pop(data.timeStamp)
         }, DURATION)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

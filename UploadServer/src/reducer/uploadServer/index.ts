@@ -1,4 +1,5 @@
 import { createModel } from '@rematch/core'
+import moment from 'moment'
 
 import request from 'src/util/request'
 
@@ -8,6 +9,7 @@ import {
     uploadServerType,
     slotInfoType,
     DiskStatusConfig,
+    diskStatusEnum,
 } from 'src/reducer/uploadServer/type'
 import { map } from 'ramda'
 
@@ -31,15 +33,33 @@ export const uploadServer = createModel<RootModel>()({
                         ? {
                               diskInfo: {
                                   ...slot.diskInfo,
-                                  updateTimeStr:
-                                      slot.diskInfo &&
-                                      new Date(
-                                          slot.diskInfo.updateTime * 1000
-                                      ).toLocaleString(),
-                                  diskStatusStr:
-                                      slot.diskInfo &&
-                                      DiskStatusConfig[slot.diskInfo.diskStatus]
-                                          .name,
+
+                                  updateTimeStr: new Date(
+                                      slot.diskInfo.updateTime * 1000
+                                  ).toLocaleString(),
+
+                                  updateTimeShortStr: moment(
+                                      slot.diskInfo.updateTime * 1000
+                                  ).format('MM-DD HH:MM:ss'),
+
+                                  diskStatus: slot.diskInfo.wrongServer
+                                      ? diskStatusEnum.WRONGSERVER
+                                      : slot.diskInfo?.diskStatus,
+
+                                  diskStatusStr: slot.diskInfo.wrongServer
+                                      ? DiskStatusConfig[
+                                            diskStatusEnum.WRONGSERVER
+                                        ].name
+                                      : DiskStatusConfig[
+                                            slot.diskInfo.diskStatus
+                                        ].name,
+
+                                  tips: slot.diskInfo.wrongServer
+                                      ? `请把此硬盘插到: ${slot.diskInfo.recommendedServerId}`
+                                      : slot.diskInfo.diskStatus ===
+                                        diskStatusEnum.FORMATTED
+                                      ? '请拔出硬盘'
+                                      : slot.diskInfo?.invalidMsg,
                               },
                           }
                         : {}),
