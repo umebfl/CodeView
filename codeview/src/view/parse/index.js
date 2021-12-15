@@ -26,7 +26,7 @@ const buildSankeyData = item => {
     // TODO 可控间距
     // TODO 代码总行数
     // TODO: 可配置参数
-    const maxLine = 200 / 2
+    const maxLine = 500 / 2
 
     return {
         comboId: undefined,
@@ -92,7 +92,7 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
                     // 过滤工具类
                     path => !R.startsWith('src/util/')(path),
                     // TODO: 过滤组件类 UI参数
-                    // path => !R.startsWith('src/component/')(path),
+                    path => !R.startsWith('src/component/')(path),
                     // 过滤组件类
                     path => !R.endsWith('.json')(path),
                     R.startsWith(SRC_PATH),
