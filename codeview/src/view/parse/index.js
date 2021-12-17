@@ -26,7 +26,7 @@ const buildSankeyData = item => {
     // TODO 可控间距
     // TODO 代码总行数
     // TODO: 可配置参数
-    const maxLine = 200 / 2
+    const maxLine = 500 / 2
 
     return {
         comboId: undefined,
@@ -92,7 +92,7 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
                     // 过滤工具类
                     path => !R.startsWith('src/util/')(path),
                     // TODO: 过滤组件类 UI参数
-                    // path => !R.startsWith('src/component/')(path),
+                    path => !R.startsWith('src/component/')(path),
                     // 过滤组件类
                     path => !R.endsWith('.json')(path),
                     R.startsWith(SRC_PATH),
@@ -109,6 +109,7 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
 }
 
 const Parse = ({ data, layoutType, dispatch }) => {
+    const { fileMap, totalLine } = data
     let sankeyData = []
     let sankeyLink = []
     let sankeyLinkMap = {}
@@ -116,14 +117,14 @@ const Parse = ({ data, layoutType, dispatch }) => {
     const [tips, setTips] = useState('-')
     const [lineTips, setLineTips] = useState(0)
 
-    if (data !== null && data !== undefined) {
-        sankeyLink = buildSankeyLink(data, sankeyLinkMap)
+    if (fileMap !== null && fileMap !== undefined) {
+        sankeyLink = buildSankeyLink(fileMap, sankeyLinkMap)
         sankeyLink = R.compose(
             R.filter(item => item !== null),
             R.flatten
         )(sankeyLink)
 
-        sankeyData = buildSankeyData(data)
+        sankeyData = buildSankeyData(fileMap)
         sankeyData = R.compose(
             // R.uniqBy(item => item.name),
             R.filter(item => sankeyLinkMap[item.id]),
@@ -192,8 +193,11 @@ const Parse = ({ data, layoutType, dispatch }) => {
 
     return (
         <div>
-            <div>Node: {tips}</div>
-            <div>Line: {lineTips}</div>
+            <div>
+                <span>totalLine: {totalLine} | </span>
+                <span>Line: {lineTips} | </span>
+                <span>Node: {tips} | </span>
+            </div>
             <Graphin
                 width={1600}
                 height={1200}
