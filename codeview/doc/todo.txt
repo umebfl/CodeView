@@ -3,6 +3,7 @@
 2. 点击原点，显示该文件的函数、变量面板 [ok]
 2. 轮廓包裹分类 [ok]
 8. 关系图type切换 [ok]
+8. line size [ok]
 
 1. 过滤文件夹功能
 3. 面板锁定
@@ -17,6 +18,6 @@
 5. 自动聚焦
 6. 分组列表面板及过滤
 7. config
-8. line size
+8. total line 
 9. type: react/view reducer/state/data router
 0. switch component/util...
