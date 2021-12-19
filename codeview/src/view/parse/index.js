@@ -48,6 +48,26 @@ const buildSankeyData = item => {
                 fillOpacity: 0.6,
                 size: size < 10 ? 10 : size,
             },
+            // icon: item.isComponent
+            //     ? {
+            //           type: 'image',
+            //           value: `https://gw.alipayobjects.com/zos/antfincdn/0b4HzOcEJY/Graphin.svg`,
+            //           size: [20, 20],
+            //       }
+            //     : {},
+
+            badges: item.isComponent
+                ? [
+                      {
+                          position: 'RT',
+                          type: 'text',
+                          value: 'C',
+                          size: [15, 15],
+                          fill: 'green',
+                          color: 'white',
+                      },
+                  ]
+                : [],
             label: {
                 value: item.shortName,
                 position: 'bottom',
@@ -90,9 +110,9 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
                     // todo: 过滤指定后缀js/jsx
                     path => !R.endsWith('.css')(path),
                     // 过滤工具类
-                    path => !R.startsWith('src/util/')(path),
+                    // path => !R.startsWith('src/util/')(path),
                     // TODO: 过滤组件类 UI参数
-                    path => !R.startsWith('src/component/')(path),
+                    // path => !R.startsWith('src/component/')(path),
                     // 过滤组件类
                     path => !R.endsWith('.json')(path),
                     R.startsWith(SRC_PATH),

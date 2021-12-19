@@ -53,7 +53,7 @@ export const DiskStatusConfig: Record<
     NULL: {
         name: '-',
         color: ['palette', 'grey', 'dark'],
-        icon: '',
+        icon: 'null',
     },
     WRONGSERVER: {
         name: '配对异常',
@@ -94,12 +94,6 @@ export interface uploadServerType {
     uploadServerId: string
     uploadServerLocation: string
     slotInfos: slotInfoType[]
-}
-
-export interface stateType {
-    uploadServer: {
-        data: Array<uploadServerType>
-    }
 }
 
 export type UploadServerState = {

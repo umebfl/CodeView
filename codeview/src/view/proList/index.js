@@ -123,11 +123,16 @@ const ProList = ({ dispatch }) => {
                                 defaultOptions
                             )
 
+                            const isComponent = R.startsWith('src/component')(
+                                item.path
+                            )
+
                             return {
                                 ...item,
                                 parse,
                                 noNeedUnitTest: checkNoNeedUnitTest(parse),
                                 fileType: isUtil(item.path) ? 'util' : 'normal',
+                                isComponent,
                             }
                         }
 

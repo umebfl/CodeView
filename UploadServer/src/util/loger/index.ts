@@ -1,3 +1,4 @@
+/** No need unit test */
 export const info = (msg: string, ...arg: undefined[]) =>
     console.log('info | ', msg, ...arg)
 

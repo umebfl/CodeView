@@ -1,3 +1,4 @@
+/** No need unit test */
 import React from 'react'
 
 import {
@@ -105,7 +106,7 @@ export const DefaultTableBody = ({
 }: DefaultTableBodyProps) => {
     if (type(children) === 'Array') {
         return (
-            <TableBody>
+            <TableBody {...props}>
                 {(children as [])?.length > 0 ? children : <EmptyDataRow />}
             </TableBody>
         )

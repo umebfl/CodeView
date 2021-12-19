@@ -1,3 +1,4 @@
+/** No need unit test */
 import { Dispatch } from 'src/reducer/type'
 
 import { errorLog } from 'src/util/loger'
