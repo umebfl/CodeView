@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { Typography, useTheme } from '@mui/material'
 
 const NoMoreData: FC = () => {

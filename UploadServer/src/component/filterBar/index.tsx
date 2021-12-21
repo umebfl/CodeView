@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import React, { useState, useRef } from 'react'
 import { trim } from 'ramda'
 import { Box } from '@mui/system'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'

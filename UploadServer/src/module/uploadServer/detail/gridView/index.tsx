@@ -159,7 +159,7 @@ const GridItem = ({ item }: { item: slotInfoType }) => {
 }
 
 const DiskInfo = ({ data }: { data?: diskInfoType }) => {
-    return (
+    return data ? (
         <>
             <Box
                 sx={{
@@ -218,7 +218,7 @@ const DiskInfo = ({ data }: { data?: diskInfoType }) => {
                 </TooltipText>
             </Box>
         </>
-    )
+    ) : null
 }
 
 const SlotInfo = ({ id, busId }: { id: number; busId: string }) => {
