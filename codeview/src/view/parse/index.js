@@ -110,11 +110,11 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
                     // todo: 过滤指定后缀js/jsx
                     path => !R.endsWith('.css')(path),
                     // 过滤工具类
-                    // path => !R.startsWith('src/util/')(path),
+                    path => !R.startsWith('src/util/')(path),
                     // TODO: 过滤Hooks类 UI参数
-                    // path => !R.startsWith('src/hooks/')(path),
+                    path => !R.startsWith('src/hooks/')(path),
                     // TODO: 过滤组件类 UI参数
-                    // path => !R.startsWith('src/component/')(path),
+                    path => !R.startsWith('src/component/')(path),
                     // 过滤组件类
                     path => !R.endsWith('.json')(path),
                     R.startsWith(SRC_PATH),

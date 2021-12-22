@@ -19,6 +19,7 @@ import {
 import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
 import { DiskStatusConfig, diskStatusEnum } from 'src/reducer/uploadServer/type'
 import { useT } from 'src/hooks/language'
+import { langType } from 'src/reducer/language/package/type'
 
 const ListView = ({ data }: ViewPayloadType) => {
     const theme = useTheme()
@@ -89,12 +90,12 @@ const ListView = ({ data }: ViewPayloadType) => {
                                         : 'inherit',
                                 }}
                             >
-                                {
+                                {t(
                                     DiskStatusConfig[
                                         row.diskInfo?.diskStatus ||
                                             diskStatusEnum.NULL
-                                    ].name
-                                }
+                                    ].name as keyof langType
+                                )}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="center">
                                 {row.diskInfo?.updateTimeStr || '-'}

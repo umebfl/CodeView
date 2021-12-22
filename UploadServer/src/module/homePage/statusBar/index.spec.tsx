@@ -9,7 +9,7 @@ import { getInitStore } from 'src/reducer/store'
 
 const testVersion = '0.20.2'
 
-jest.mock('../../../../package.json', () => {
+jest.mock('src/../package.json', () => {
     return {
         version: testVersion,
     }

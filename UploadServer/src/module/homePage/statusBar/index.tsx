@@ -3,7 +3,7 @@ import Box from '@mui/material/Box'
 import { SxProps, Theme, useTheme } from '@mui/material/styles'
 import TranslateIcon from '@mui/icons-material/Translate'
 
-import { version } from '../../../../package.json'
+import { version } from 'src/../package.json'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dispatch, RootState } from 'src/reducer/type'
 
