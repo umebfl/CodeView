@@ -217,7 +217,9 @@ const DiskInfo = ({ data }: { data?: diskInfoType }) => {
                             width: 100,
                         }}
                     >
-                        {data?.vehicleIds.join(',')}
+                        {data?.vehicleIds.length
+                            ? data?.vehicleIds.join(',')
+                            : '-'}
                     </Box>
                 </TooltipText>
             </Box>

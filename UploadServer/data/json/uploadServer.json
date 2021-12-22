@@ -56,7 +56,7 @@
                             "diskStatus": "WAITING_TO_UPLOAD",
                             "updateTime": 1638264104.0,
                             "invalidMsg": "",
-                            "vehicleIds": ["byd-cn-4"],
+                            "vehicleIds": [],
                             "wrongServer": false,
                             "recommendedServerId": "superxray-sz-007"
                         }

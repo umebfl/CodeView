@@ -100,7 +100,9 @@ const ListView = ({ data }: ViewPayloadType) => {
                                 {row.diskInfo?.updateTimeStr || '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
-                                {row.diskInfo?.vehicleIds.join(', ') || '-'}
+                                {row.diskInfo?.vehicleIds.length
+                                    ? row.diskInfo?.vehicleIds.join(', ')
+                                    : '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
                                 {row.diskInfo?.tips}

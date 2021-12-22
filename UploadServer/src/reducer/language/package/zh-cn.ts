@@ -35,6 +35,8 @@ const lang: langType = {
     uploaded: '上传完成',
     finish: '结束',
     abnormalPairing: '配对异常',
+    pleasePlugThisHardDiskInto: '请把此硬盘插到',
+    pleaseUnplugTheHardDisk: '请拔出硬盘',
 }
 
 export default lang

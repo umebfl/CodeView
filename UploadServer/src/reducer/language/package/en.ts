@@ -35,6 +35,8 @@ const lang: langType = {
     uploaded: 'Uploaded',
     finish: 'Finish',
     abnormalPairing: 'Abnormal Pairing',
+    pleasePlugThisHardDiskInto: 'Please plug this hard disk into',
+    pleaseUnplugTheHardDisk: 'Please unplug the hard disk',
 }
 
 export default lang

@@ -35,4 +35,6 @@ export interface langType {
     uploaded: string
     finish: string
     abnormalPairing: string
+    pleasePlugThisHardDiskInto: string
+    pleaseUnplugTheHardDisk: string
 }

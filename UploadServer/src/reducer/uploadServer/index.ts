@@ -54,14 +54,6 @@ export const uploadServer = createModel<RootModel>()({
                                       : DiskStatusConfig[
                                             slot.diskInfo.diskStatus
                                         ].name,
-
-                                  // TODO: lang
-                                  tips: slot.diskInfo.wrongServer
-                                      ? `请把此硬盘插到: ${slot.diskInfo.recommendedServerId}`
-                                      : slot.diskInfo.diskStatus ===
-                                        diskStatusEnum.FORMATTED
-                                      ? '请拔出硬盘'
-                                      : slot.diskInfo?.invalidMsg,
                               },
                           }
                         : {}),
