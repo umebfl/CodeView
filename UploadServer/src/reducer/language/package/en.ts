@@ -1,3 +1,4 @@
+/** No need unit test */
 import { langType } from './type'
 
 const lang: langType = {
