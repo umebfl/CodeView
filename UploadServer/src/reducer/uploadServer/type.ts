@@ -56,7 +56,7 @@ export const DiskStatusConfig: Record<
         icon: 'null',
     },
     WRONGSERVER: {
-        name: 'abnormalPairing ',
+        name: 'abnormalPairing',
         color: ['palette', 'error', 'main'],
         icon: 'ErrorOutlineOutlinedIcon',
     },
