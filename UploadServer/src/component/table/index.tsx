@@ -24,6 +24,7 @@ import {
     DefaultTableCellProps,
     DefaultTableBodyProps,
 } from 'src/component/table/type'
+import { useT } from 'src/hooks/language'
 
 export const DefaultTableCellCell = ({
     children,
@@ -36,8 +37,8 @@ export const DefaultTableCellCell = ({
             {...props}
             sx={{
                 color: theme.color.grey20,
-                paddingTop: 1.6,
-                paddingBottom: 1.6,
+                paddingTop: 1.3,
+                paddingBottom: 1.3,
                 paddingLeft: 0.5,
                 paddingRight: 0.5,
                 border: 0,
@@ -125,6 +126,7 @@ export const EmptyDataRow = () => (
 
 export const EmptyDataMsg = () => {
     const theme = useTheme()
+    const t = useT()
 
     return (
         <Box
@@ -137,7 +139,7 @@ export const EmptyDataMsg = () => {
             }}
         >
             <SearchOffIcon />
-            列表数据为空。
+            {t('emptyList')}
         </Box>
     )
 }

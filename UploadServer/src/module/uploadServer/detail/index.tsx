@@ -19,12 +19,15 @@ import ListView from 'src/module/uploadServer/detail/listView'
 import FilterBar from 'src/component/filterBar'
 import { ViewType } from 'src/module/uploadServer/detail/type'
 
+import { useT } from 'src/hooks/language'
+
 const UploadServerDetail = () => {
     const { id } = useParams()
     const theme = useTheme()
     const { data } = useSelector((state: RootState) => state.uploadServer)
     const userConfig = useSelector((state: RootState) => state.userConfig)
     const dispatch = useDispatch<Dispatch>()
+    const t = useT()
 
     const [searchText, setSearchText] = useState('')
 
@@ -77,12 +80,12 @@ const UploadServerDetail = () => {
                 <Typography color="text.primary" fontSize={14}>
                     {id}
                 </Typography>
-                <Typography fontSize={13}>插槽列表</Typography>
+                <Typography fontSize={13}>{t('slotList')}</Typography>
             </Breadcrumbs>
 
             <FilterBar
                 inputProps={{
-                    placeholder: 'ID/名称/车辆...',
+                    placeholder: `ID/${t('slotList')}/${t('vehicle')}`,
                 }}
                 handleChange={setSearchText}
                 right={
@@ -155,7 +158,7 @@ const UploadServerDetail = () => {
                                 justifyContent: 'center',
                             }}
                         >
-                            没有找到匹配的上载服务器[{id}]
+                            {t('noMatchingUploadServer')}[{id}]
                         </Box>
                     )}
                 </Box>

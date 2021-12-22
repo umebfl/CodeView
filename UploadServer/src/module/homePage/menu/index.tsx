@@ -1,28 +1,28 @@
-import React from "react";
+import React from 'react'
 
-import Box from "@mui/material/Box";
-import List from "@mui/material/List";
-import ListItem, { ListItemBaseProps } from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import { useTheme } from "@mui/material/styles";
-import Tooltip from "@mui/material/Tooltip";
-import StorageIcon from "@mui/icons-material/Storage";
-import Fade from "@mui/material/Fade";
-import AlbumOutlinedIcon from "@mui/icons-material/AlbumOutlined";
+import Box from '@mui/material/Box'
+import List from '@mui/material/List'
+import ListItem, { ListItemBaseProps } from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import { useTheme } from '@mui/material/styles'
+import Tooltip from '@mui/material/Tooltip'
+import StorageIcon from '@mui/icons-material/Storage'
+import Fade from '@mui/material/Fade'
+import AlbumOutlinedIcon from '@mui/icons-material/AlbumOutlined'
 
-import { LinkProps, useMatch, useResolvedPath } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { LinkProps, useMatch, useResolvedPath } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const CustomLink = ({ children, to, ...props }: LinkProps) => {
-    const theme = useTheme();
+    const theme = useTheme()
 
-    let resolved = useResolvedPath(to);
-    let match = useMatch({ path: resolved.pathname, end: false });
+    let resolved = useResolvedPath(to)
+    let match = useMatch({ path: resolved.pathname, end: false })
 
     return (
         <div>
             <Link
-                style={{ textDecoration: match ? "underline" : "none" }}
+                style={{ textDecoration: match ? 'underline' : 'none' }}
                 to={to}
                 {...props}
             >
@@ -31,14 +31,14 @@ const CustomLink = ({ children, to, ...props }: LinkProps) => {
                         width: 40,
                         minWidth: 40,
                         height: 36,
-                        justifyContent: "center",
-                        alignItems: "center",
+                        justifyContent: 'center',
+                        alignItems: 'center',
                         borderRadius: 2,
-                        cursor: "pointer",
+                        cursor: 'pointer',
                         background: match
                             ? theme.color.grey5
                             : theme.color.grey2,
-                        ":hover": {
+                        ':hover': {
                             background: theme.color.grey5,
                         },
                     }}
@@ -47,11 +47,11 @@ const CustomLink = ({ children, to, ...props }: LinkProps) => {
                 </ListItemIcon>
             </Link>
         </div>
-    );
-};
+    )
+}
 
 interface ListItemType extends ListItemBaseProps {
-    title: string;
+    title: string
 }
 
 const CustomListItem = ({ children, ...props }: ListItemType) => {
@@ -64,13 +64,13 @@ const CustomListItem = ({ children, ...props }: ListItemType) => {
             TransitionComponent={Fade}
             TransitionProps={{ timeout: 400 }}
         >
-            <ListItem sx={{ justifyContent: "center" }}>{children}</ListItem>
+            <ListItem sx={{ justifyContent: 'center' }}>{children}</ListItem>
         </Tooltip>
-    );
-};
+    )
+}
 
 const Menu = () => {
-    const theme = useTheme();
+    const theme = useTheme()
 
     return (
         <Box
@@ -82,8 +82,8 @@ const Menu = () => {
             <nav>
                 <List>
                     <CustomListItem
-                        sx={{ justifyContent: "center" }}
-                        title={"Upload server"}
+                        sx={{ justifyContent: 'center' }}
+                        title={'Upload server'}
                     >
                         <CustomLink to="/up">
                             <StorageIcon
@@ -93,18 +93,18 @@ const Menu = () => {
                         </CustomLink>
                     </CustomListItem>
 
-                    <CustomListItem title={"Disk"}>
+                    {/* <CustomListItem title={"Disk"}>
                         <CustomLink to="/disk">
                             <AlbumOutlinedIcon
                                 sx={{ color: theme.color.grey15 }}
                                 fontSize="small"
                             />
                         </CustomLink>
-                    </CustomListItem>
+                    </CustomListItem> */}
                 </List>
             </nav>
         </Box>
-    );
-};
+    )
+}
 
-export default Menu;
+export default Menu

@@ -1,8 +1,8 @@
 import { createModel } from '@rematch/core'
+import { dissoc } from 'ramda'
 
 import { RootModel } from '..'
 import { snackbarType, snackbarPropsType } from 'src/reducer/snackbar/type'
-import { dissoc } from 'ramda'
 
 const initState: snackbarType = {
     data: {},

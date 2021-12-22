@@ -24,7 +24,8 @@ export const uploadServer = createModel<RootModel>()({
             const fixData = map((item: uploadServerType) => ({
                 ...item,
 
-                isRunningStr: item.isRunning ? '运行中' : '关闭',
+                isRunningStr: item.isRunning ? 'running' : 'close',
+
                 operationTips: '-',
 
                 slotInfos: map((slot: slotInfoType) => ({
@@ -54,6 +55,7 @@ export const uploadServer = createModel<RootModel>()({
                                             slot.diskInfo.diskStatus
                                         ].name,
 
+                                  // TODO: lang
                                   tips: slot.diskInfo.wrongServer
                                       ? `请把此硬盘插到: ${slot.diskInfo.recommendedServerId}`
                                       : slot.diskInfo.diskStatus ===
@@ -73,10 +75,10 @@ export const uploadServer = createModel<RootModel>()({
         },
     },
     effects: dispatch => ({
-        async initData() {
+        async initData(_, rootState) {
             const data = await request({
                 url: '/data_center/get_upload_server_list',
-                dispatch,
+                language: rootState.language.lang,
             })
 
             if (data?.uploadServerInfos) {

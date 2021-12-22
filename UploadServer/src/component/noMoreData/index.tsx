@@ -1,8 +1,11 @@
 import React, { FC } from 'react'
 import { Typography, useTheme } from '@mui/material'
+import { useT } from 'src/hooks/language'
 
 const NoMoreData: FC = () => {
     const theme = useTheme()
+    const t = useT()
+
     return (
         <Typography
             variant="caption"
@@ -16,7 +19,7 @@ const NoMoreData: FC = () => {
                 color: theme.color.grey8,
             }}
         >
-            没有更多了。
+            {t('noMoreData')}
         </Typography>
     )
 }

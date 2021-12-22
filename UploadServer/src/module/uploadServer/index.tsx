@@ -19,10 +19,10 @@ const UploadServer = () => {
     const dispatch = useDispatch<Dispatch>()
 
     useEffect(() => {
-        dispatch.uploadServer.initData()
+        dispatch.uploadServer.initData({})
 
         const timer = setInterval(() => {
-            dispatch.uploadServer.initData()
+            dispatch.uploadServer.initData({})
         }, INTERVAL_TIMEOUT)
 
         return () => {

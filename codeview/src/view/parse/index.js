@@ -111,6 +111,8 @@ const buildSankeyLink = (item, sankeyLinkMap) => {
                     path => !R.endsWith('.css')(path),
                     // 过滤工具类
                     path => !R.startsWith('src/util/')(path),
+                    // TODO: 过滤Hooks类 UI参数
+                    path => !R.startsWith('src/hooks/')(path),
                     // TODO: 过滤组件类 UI参数
                     path => !R.startsWith('src/component/')(path),
                     // 过滤组件类

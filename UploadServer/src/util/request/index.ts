@@ -1,4 +1,5 @@
 /** No need unit test */
+import { langSet } from 'src/reducer/language/type'
 import { Dispatch } from 'src/reducer/type'
 
 import { errorLog } from 'src/util/loger'
@@ -7,6 +8,7 @@ let loadingIndex = 0
 
 interface RequestPropsType {
     url: string
+    language: langSet
     payload?: RequestInit
     dispatch?: Dispatch
     loadingTips?: boolean
@@ -17,6 +19,7 @@ const Request = async ({
     url,
     payload,
     dispatch,
+    language,
     loadingTips = true,
     errorTips = true,
 }: RequestPropsType) => {
@@ -29,7 +32,10 @@ const Request = async ({
 
         const rv = await fetch(url, {
             method: 'GET',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept-Language': language,
+            },
             ...payload,
         })
 

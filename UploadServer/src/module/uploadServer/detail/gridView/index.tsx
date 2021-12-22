@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 
-import { cond, equals, map, path, T } from 'ramda'
+import { cond, equals, map, path } from 'ramda'
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import ClosedCaptionDisabledOutlinedIcon from '@mui/icons-material/ClosedCaptionDisabledOutlined'
@@ -23,6 +23,8 @@ import {
 } from 'src/reducer/uploadServer/type'
 import { EmptyDataMsg } from 'src/component/table'
 import TooltipText from 'src/module/uploadServer/detail/gridView/tooltipText'
+import { useT } from 'src/hooks/language'
+import { langType } from 'src/reducer/language/package/type'
 
 const iconSXProps: SxProps<Theme> = {
     fontSize: 48,
@@ -159,6 +161,8 @@ const GridItem = ({ item }: { item: slotInfoType }) => {
 }
 
 const DiskInfo = ({ data }: { data?: diskInfoType }) => {
+    const t = useT()
+
     return data ? (
         <>
             <Box
@@ -177,7 +181,7 @@ const DiskInfo = ({ data }: { data?: diskInfoType }) => {
                 >
                     <TooltipText
                         // showlen={20}
-                        title={`硬盘id: ${data?.diskId}`}
+                        title={`${t('disk')} ID: ${data?.diskId}`}
                     >
                         <Box
                             sx={{
@@ -222,9 +226,10 @@ const DiskInfo = ({ data }: { data?: diskInfoType }) => {
 }
 
 const SlotInfo = ({ id, busId }: { id: number; busId: string }) => {
+    const t = useT()
     return (
         <Box>
-            <TooltipText title={`插槽id:${busId}`}>
+            <TooltipText title={`${t('slot')} ID:${busId}`}>
                 <Typography variant="h4" display="inline-block">
                     {id}
                 </Typography>
@@ -240,6 +245,7 @@ const Status = ({
     data?: diskStatusEnum
     updateTimeShortStr?: string
 }) => {
+    const t = useT()
     return (
         <Box>
             {data && (
@@ -254,14 +260,16 @@ const Status = ({
                     {IconMap[DiskStatusConfig[data].icon]}
 
                     <TooltipText
-                        title={`更新时间: ${updateTimeShortStr || '-'}`}
+                        title={`${t('updateTime')}: ${
+                            updateTimeShortStr || '-'
+                        }`}
                     >
                         <Box
                             sx={{
                                 fontSize: 14,
                             }}
                         >
-                            {DiskStatusConfig[data].name}
+                            {t(DiskStatusConfig[data].name as keyof langType)}
                         </Box>
                     </TooltipText>
                 </Box>
@@ -291,6 +299,7 @@ const Tips = ({ data }: { data?: string }) => {
 
 const EmptySlot = ({ show }: { show: boolean }) => {
     const theme = useTheme()
+    const t = useT()
 
     return show ? (
         <Box
@@ -305,7 +314,7 @@ const EmptySlot = ({ show }: { show: boolean }) => {
             }}
         >
             <ClosedCaptionDisabledOutlinedIcon />
-            未插入硬盘
+            {t('hardDiskNotInserted')}
         </Box>
     ) : null
 }

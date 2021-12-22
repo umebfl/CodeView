@@ -9,7 +9,7 @@ import Paper from '@mui/material/Paper'
 import { useTheme } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import { filter, includes } from 'ramda'
+import { filter, includes, toLower } from 'ramda'
 
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -25,6 +25,8 @@ import {
     NoMoreDataCell,
 } from 'src/component/table'
 import { uploadServerType } from 'src/reducer/uploadServer/type'
+import { useT } from 'src/hooks/language'
+import { langType } from 'src/reducer/language/package/type'
 
 const UploadServerList: FC = () => {
     const theme = useTheme()
@@ -32,13 +34,15 @@ const UploadServerList: FC = () => {
     const { data } = useSelector((state: RootState) => state.uploadServer)
     const dispatch = useDispatch<Dispatch>()
     const [searchText, setSearchText] = useState('')
+    const t = useT()
 
     const filterData = filter((item: uploadServerType) => {
+        const text = toLower(searchText)
         return (
-            includes(searchText)(item.uploadServerId) ||
-            includes(searchText)(item.uploadServerLocation) ||
-            includes(searchText)(item.isRunningStr) ||
-            includes(searchText)(item.operationTips)
+            includes(text)(item.uploadServerId) ||
+            includes(text)(item.uploadServerLocation) ||
+            includes(text)(toLower(t(item.isRunningStr as keyof langType))) ||
+            includes(text)(item.operationTips)
         )
     })(data)
 
@@ -56,13 +60,15 @@ const UploadServerList: FC = () => {
             >
                 <Box>Upload Server</Box>
                 <Typography color="text.primary" fontSize={14}>
-                    列表
+                    {t('list')}
                 </Typography>
             </Breadcrumbs>
 
             <FilterBar
                 inputProps={{
-                    placeholder: 'ID/运行状态/位置/操作提示',
+                    placeholder: `ID/${t('runStatus')}/${t('position')}/${t(
+                        'operationTips'
+                    )}`,
                 }}
                 handleChange={setSearchText}
             />
@@ -72,37 +78,37 @@ const UploadServerList: FC = () => {
                     <TableHead>
                         <TableRow>
                             <DefaultTableCellHeaderCell align="center">
-                                序号
+                                {t('S/N')}
                             </DefaultTableCellHeaderCell>
                             <DefaultTableCellHeaderCell align="center">
                                 ID
                             </DefaultTableCellHeaderCell>
                             <DefaultTableCellHeaderCell align="center">
-                                运行状态
+                                {t('runStatus')}
                             </DefaultTableCellHeaderCell>
                             <DefaultTableCellHeaderCell width={100}>
-                                空插槽数
+                                {t('emptySlots')}
                             </DefaultTableCellHeaderCell>
                             <DefaultTableCellHeaderCell
                                 align="center"
                                 width={100}
                             >
-                                已完成数
+                                {t('completed')}
                             </DefaultTableCellHeaderCell>
                             <DefaultTableCellHeaderCell
                                 align="center"
                                 width={100}
                             >
-                                总插槽数
+                                {t('totalOfSlots')}
                             </DefaultTableCellHeaderCell>
                             <DefaultTableCellHeaderCell align="center">
-                                位置
+                                {t('position')}
                             </DefaultTableCellHeaderCell>
                             <DefaultTableCellHeaderCell align="center">
-                                操作提示
+                                {t('operationTips')}
                             </DefaultTableCellHeaderCell>
                             <DefaultTableCellHeaderCell align="center">
-                                操作
+                                {t('operate')}
                             </DefaultTableCellHeaderCell>
                         </TableRow>
                     </TableHead>
@@ -142,7 +148,7 @@ const UploadServerList: FC = () => {
                                                 : theme.palette.error.dark,
                                         }}
                                     >
-                                        {row.isRunningStr}
+                                        {t(row.isRunningStr as keyof langType)}
                                     </Box>
                                 </DefaultTableCellCell>
                                 <DefaultTableCellCell
@@ -174,7 +180,7 @@ const UploadServerList: FC = () => {
                                             )
                                         }
                                     >
-                                        查看
+                                        {t('viewMore')}
                                     </Button>
                                 </DefaultTableCellCell>
                             </DefaultTableRow>

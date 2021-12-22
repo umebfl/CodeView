@@ -15,37 +15,37 @@ export const DiskStatusConfig: Record<
     { name: string; color: string[]; icon: string }
 > = {
     UNMOUNT: {
-        name: '未挂载',
+        name: 'unmount',
         color: ['palette', 'warning', 'dark'],
         icon: 'DiscFullOutlinedIcon',
     },
     INVALID: {
-        name: '异常',
+        name: 'invalid',
         color: ['palette', 'error', 'dark'],
         icon: 'UploadOutlinedIcon',
     },
     WAITING_TO_UPLOAD: {
-        name: '等待上传',
+        name: 'waitingToUpload',
         color: ['palette', 'secondary', 'dark'],
         icon: 'UploadOutlinedIcon',
     },
     DATA_UPLOADING: {
-        name: '上传中',
+        name: 'uploading',
         color: ['palette', 'primary', 'dark'],
         icon: 'UploadOutlinedIcon',
     },
     DATA_UPLOAD_FAILED: {
-        name: '上传失败',
+        name: 'uploadFailed',
         color: ['palette', 'error', 'dark'],
         icon: 'ReportGmailerrorredOutlinedIcon',
     },
     DATA_UPLOADED: {
-        name: '上传完成',
+        name: 'uploaded',
         color: ['palette', 'success', 'dark'],
         icon: 'CloudDoneOutlinedIcon',
     },
     FORMATTED: {
-        name: '结束',
+        name: 'finish',
         color: ['palette', 'success', 'main'],
         icon: 'CheckCircleOutlineIcon',
     },
@@ -56,7 +56,7 @@ export const DiskStatusConfig: Record<
         icon: 'null',
     },
     WRONGSERVER: {
-        name: '配对异常',
+        name: 'abnormalPairing ',
         color: ['palette', 'error', 'main'],
         icon: 'ErrorOutlineOutlinedIcon',
     },

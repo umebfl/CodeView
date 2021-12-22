@@ -5,6 +5,7 @@ import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 
 import { uploadServer } from 'src/reducer/uploadServer'
+import { language } from 'src/reducer/language'
 
 import MockData from '../../../data/json/uploadServer.json'
 import { UploadServerState } from 'src/reducer/uploadServer/type'
@@ -42,7 +43,7 @@ afterAll(() => server.close())
 describe('Reducer - uploadServer', () => {
     it('should set data', () => {
         const store = init({
-            models: { uploadServer } as any,
+            models: { uploadServer, language } as any,
         })
 
         const { dispatch } = store
@@ -54,12 +55,12 @@ describe('Reducer - uploadServer', () => {
         expect(data.data.length).toBe(MockData.data.uploadServerInfos.length)
 
         const item = data.data[0]
-        expect(item.isRunningStr).toBe('运行中')
+        expect(item.isRunningStr).toBe('running')
     })
 
     it('should init data', async () => {
         const store = init({
-            models: { uploadServer } as any,
+            models: { uploadServer, language } as any,
         })
         const { dispatch } = store
 
@@ -70,6 +71,6 @@ describe('Reducer - uploadServer', () => {
         expect(data.data.length).toBe(MockData.data.uploadServerInfos.length)
 
         const item = data.data[0]
-        expect(item.isRunningStr).toBe('运行中')
+        expect(item.isRunningStr).toBe('running')
     })
 })

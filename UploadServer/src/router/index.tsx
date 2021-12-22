@@ -21,7 +21,6 @@ function Router() {
                             element={<UploadServerDetail />}
                         />
                     </Route>
-                    <Route path="disk" element={<div />} />
                     <Route path="*" element={<NoFound />} />
                 </Route>
             </Routes>

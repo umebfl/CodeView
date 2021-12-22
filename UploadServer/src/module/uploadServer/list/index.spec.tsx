@@ -60,7 +60,7 @@ describe('Upload Server', () => {
             </Context>
         )
 
-        dispatch.uploadServer.initData()
+        dispatch.uploadServer.initData({})
         await waitFor(() => screen.getAllByText(/superxray\-sz\-0/i))
 
         expect(screen.getAllByText(/superxray\-sz\-0/i).length).toBe(
@@ -79,7 +79,7 @@ describe('Upload Server', () => {
             </Context>
         )
 
-        dispatch.uploadServer.initData()
+        dispatch.uploadServer.initData({})
         await waitFor(() => screen.getAllByText(/列表数据为空。/i))
 
         expect(screen.getAllByText(/列表数据为空。/i).length).toBeDefined()

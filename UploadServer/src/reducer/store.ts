@@ -8,10 +8,10 @@ import { models, RootModel } from 'src/reducer'
 const persistPlugin = createRematchPersist<RootModel, any>({
     key: 'autox',
     storage: AsyncStorage,
-    whitelist: ['userConfig'],
+    whitelist: ['userConfig', 'language'],
     throttle: 1000,
     debug: false,
-    version: 3,
+    version: 4,
 })
 
 export const getInitStore = () =>

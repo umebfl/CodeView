@@ -18,40 +18,43 @@ import {
 } from 'src/component/table'
 import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
 import { DiskStatusConfig, diskStatusEnum } from 'src/reducer/uploadServer/type'
+import { useT } from 'src/hooks/language'
 
 const ListView = ({ data }: ViewPayloadType) => {
     const theme = useTheme()
+    const t = useT()
+
     return (
         <TableContainer component={Paper}>
             <Table stickyHeader>
                 <TableHead>
                     <TableRow>
                         <DefaultTableCellHeaderCell align="center">
-                            序号
+                            {t('S/N')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
-                            插槽ID
+                            {t('slot')} ID
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
-                            插槽名称
+                            {t('slotName')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="left">
-                            磁盘ID
+                            {t('disk')} ID
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="left">
-                            磁盘名称
+                            {t('diskName')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
-                            磁盘状态
+                            {t('diskStatus')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
-                            更新时间
+                            {t('updateTime')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="left">
-                            车辆信息
+                            {t('vehicleInfo')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="left">
-                            操作提示
+                            {t('operationTips')}
                         </DefaultTableCellHeaderCell>
                     </TableRow>
                 </TableHead>

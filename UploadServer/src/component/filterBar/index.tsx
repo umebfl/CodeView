@@ -41,6 +41,7 @@ const FilterBar = ({ right, handleChange, inputProps }: payloadType) => {
                 //     // inputRef?.current?.select()
                 // }}
                 sx={{
+                    width: 300,
                     background: theme.color.grey5,
                     paddingLeft: 1,
                     paddingRight: 1,
