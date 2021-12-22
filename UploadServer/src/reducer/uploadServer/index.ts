@@ -79,6 +79,7 @@ export const uploadServer = createModel<RootModel>()({
             const data = await request({
                 url: '/data_center/get_upload_server_list',
                 language: rootState.language.lang,
+                dispatch,
             })
 
             if (data?.uploadServerInfos) {
