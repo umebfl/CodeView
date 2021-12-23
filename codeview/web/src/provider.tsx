@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import React from 'react'
 
-import { Provider } from 'react-redux'
+import * as Redux from 'react-redux'
 import { ThemeProvider } from '@mui/material/styles'
 
 import DefaultTheme from 'src/theme'
@@ -15,15 +15,17 @@ interface ContextType {
 }
 
 export const Context = ({ children, initStore }: ContextType) => (
-    <Provider store={initStore || store}>
+    <Redux.Provider store={initStore || store}>
         <ThemeProvider theme={DefaultTheme}>{children}</ThemeProvider>
-    </Provider>
+    </Redux.Provider>
 )
 
-export default () => {
+const Provider = () => {
     return (
         <Context>
             <Module />
         </Context>
     )
 }
+
+export default Provider

@@ -1,7 +1,7 @@
 import Box from '@mui/system/Box'
 import { Outlet } from 'react-router-dom'
 
-const Homepage = ({}) => {
+const Homepage = () => {
     return (
         <Box
             sx={{

@@ -2,9 +2,9 @@ import { createModel } from '@rematch/core'
 import { dissoc } from 'ramda'
 
 import { RootModel } from '..'
-import { globalLoadingState } from 'src/reducer/globalLoading/type'
+import { globalLoadingType } from 'src/reducer/globalLoading/type'
 
-const initState: globalLoadingState = {
+const initState: globalLoadingType = {
     loadingMap: {},
 }
 
