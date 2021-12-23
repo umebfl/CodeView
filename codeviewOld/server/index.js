@@ -6,7 +6,8 @@ const app = express()
 // const proPath =
 // '/home/anqihuang/workspace/mapping-experimental/modules/data/uploader'
 // const proPath = '..'
-const proPath = '../'
+// const proPath = '../'
+const proPath = '../codeview'
 
 app.get('/pro', function (req, res) {
     const readDir = fs.readdirSync(proPath)

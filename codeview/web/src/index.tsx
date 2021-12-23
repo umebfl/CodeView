@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Module from './module'
+import Provider from 'src/provider'
 
 ReactDOM.render(
     <React.StrictMode>
-        <Module />
+        <Provider />
     </React.StrictMode>,
     document.getElementById('root')
 )

@@ -8,4 +8,6 @@ const source = (req: any, res: any) => {
     })
 }
 
-export default source
+export default (app: any) => {
+    app.get('/source/:path', source)
+}
