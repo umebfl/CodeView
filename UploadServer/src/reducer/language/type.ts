@@ -1,5 +1,3 @@
-import { langType } from './package/type'
-
 export enum langSet {
     en = 'EN',
     zh = 'ZH',

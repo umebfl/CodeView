@@ -1,6 +1,15 @@
 /** No need unit test */
 import { useState } from 'react'
-import { find, filter, includes, map, compose } from 'ramda'
+import {
+    find,
+    filter,
+    includes,
+    map,
+    compose,
+    toLower,
+    anyPass,
+    curry,
+} from 'ramda'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -24,6 +33,13 @@ import FilterBar from 'src/component/filterBar'
 import { ViewType } from 'src/module/uploadServer/detail/type'
 
 import { useT } from 'src/hooks/language'
+import { langType } from 'src/reducer/language/package/type'
+
+const isInclude = curry((list: string, s: string) => {
+    const llist = toLower(list)
+    const ls = toLower(s)
+    return includes(llist)(ls)
+})
 
 const UploadServerDetail = () => {
     const { id } = useParams()
@@ -71,7 +87,7 @@ const UploadServerDetail = () => {
                                             : slot.diskInfo?.invalidMsg,
                                     },
                                 }
-                              : {}),
+                              : undefined),
                       }))(upServer.slotInfos),
                   }
                 : undefined
@@ -79,21 +95,25 @@ const UploadServerDetail = () => {
         find((item: uploadServerType) => item.uploadServerId === id)
     )(data)
 
+    const isIncludeSearch = isInclude(searchText)
+
     const slotInfos: slotInfoType[] = searchText.length
         ? filter((item: slotInfoType) => {
-              if (includes(searchText)(item.slotBusId)) {
+              if (isIncludeSearch(item.slotBusId)) {
                   return true
               }
 
               if (item.diskInfo) {
-                  return (
-                      includes(searchText)(item.diskInfo.diskId) ||
-                      includes(searchText)(item.diskInfo.diskName) ||
-                      includes(searchText)(item.diskInfo.diskStatusStr) ||
-                      includes(searchText)(item.diskInfo.updateTimeStr) ||
-                      includes(searchText)(item.diskInfo.tips) ||
-                      includes(searchText)(item.diskInfo.vehicleIds.join(','))
-                  )
+                  return anyPass([
+                      info => isIncludeSearch(info.diskName),
+                      info => isIncludeSearch(info.tips),
+                      info => isIncludeSearch(info.updateTimeStr),
+                      info =>
+                          isIncludeSearch(
+                              t(info.diskStatusStr as keyof langType)
+                          ),
+                      info => isIncludeSearch(info.vehicleIds.join(',')),
+                  ])(item.diskInfo)
               }
 
               return false

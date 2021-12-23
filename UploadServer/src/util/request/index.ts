@@ -1,4 +1,5 @@
 /** No need unit test */
+import { toLower } from 'ramda'
 import { langSet } from 'src/reducer/language/type'
 import { Dispatch } from 'src/reducer/type'
 
@@ -34,7 +35,7 @@ const Request = async ({
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept-Language': language,
+                'Accept-Language': toLower(language),
             },
             ...payload,
         })
@@ -50,6 +51,7 @@ const Request = async ({
             throw new Error(data.msg)
         }
 
+        // TODO language
         throw new Error('内部错误，请刷新页面')
     } catch (error) {
         errorLog('Request error', `url: ${url}\n`, `error: ${error}\n`)

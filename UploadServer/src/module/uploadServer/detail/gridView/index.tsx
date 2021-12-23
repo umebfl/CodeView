@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import React from 'react'
 
-import { cond, equals, map, path } from 'ramda'
+import { map, path } from 'ramda'
 import DirectionsCarFilledOutlinedIcon from '@mui/icons-material/DirectionsCarFilledOutlined'
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined'
 import ClosedCaptionDisabledOutlinedIcon from '@mui/icons-material/ClosedCaptionDisabledOutlined'
