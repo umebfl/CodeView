@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { ThemeProvider } from '@mui/material/styles'
 
 import DefaultTheme from 'src/theme'
-import Router from 'src/router'
+import Router from 'src/module'
 import { store } from 'src/reducer/store'
 
 import SnackbarContainer from 'src/component/snackbar'

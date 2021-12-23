@@ -42,6 +42,7 @@ describe('ListView', () => {
                     diskName: 'test diskName',
                     diskStatus: diskStatusEnum.DATA_UPLOADING,
                     diskStatusStr: '上传中',
+
                     invalidMsg: '',
                     recommendedServerId: '',
                     slotId: 0,
