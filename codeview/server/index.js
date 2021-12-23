@@ -8,14 +8,6 @@ const app = express()
 // const proPath = '..'
 const proPath = '../'
 
-app.get('/uploadServer', function (req, res) {
-    console.log('/uploadServer')
-    res.json({
-        code: 'ok',
-        data: [88],
-    })
-})
-
 app.get('/pro', function (req, res) {
     const readDir = fs.readdirSync(proPath)
 
