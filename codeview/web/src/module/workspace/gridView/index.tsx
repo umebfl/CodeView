@@ -11,11 +11,13 @@ import 'src/module/workspace/gridView/react-resizable.css'
 import 'src/module/workspace/gridView/react-grid-layout.css'
 import 'src/module/workspace/gridView/react-grid-layout-fix.css'
 
-import Config from 'src/module/workspace/gridView/module/config'
-import MenuBar from 'src/module/workspace/gridView/module/menuBar'
 import { Dispatch, RootState } from 'src/reducer/type'
 import { useDispatch, useSelector } from 'react-redux'
 import { optionSubNodeType } from 'src/reducer/userConfig/type'
+
+import Config from 'src/module/workspace/gridView/module/config'
+import MenuBar from 'src/module/workspace/gridView/module/menuBar'
+import Graphin from 'src/module/workspace/gridView/module/graphin'
 
 const GridView = () => {
     const theme = useTheme()
@@ -38,7 +40,8 @@ const GridView = () => {
         })
     }
 
-    const lock = (option['root/gird/lock'] as optionSubNodeType).value
+    const lock = (option['root/gird/lock'] as optionSubNodeType)
+        .value as boolean
 
     const layout = map((item: GridLayout.Layout) => ({
         ...item,
@@ -70,6 +73,9 @@ const GridView = () => {
                 </div>
                 <div key="config">
                     <Config />
+                </div>
+                <div key={'graphin'}>
+                    <Graphin />
                 </div>
             </GridLayout>
         </Box>

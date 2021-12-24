@@ -25,7 +25,7 @@ export interface optionNodeType {
 }
 
 export interface optionSubNodeType extends optionNodeType {
-    defaultValue: boolean
-    value: boolean
+    defaultValue: boolean | string | number
+    value: boolean | string | number
     dataType: optionDataType
 }

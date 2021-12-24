@@ -2,11 +2,14 @@
 import { Models } from '@rematch/core'
 
 import { userConfig } from 'src/reducer/userConfig'
+import { snackbar } from 'src/reducer/snackbar'
 
 export interface RootModel extends Models<RootModel> {
     userConfig: typeof userConfig
+    snackbar: typeof snackbar
 }
 
 export const models: RootModel = {
     userConfig,
+    snackbar,
 }

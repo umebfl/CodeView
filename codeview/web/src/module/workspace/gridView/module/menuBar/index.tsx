@@ -43,6 +43,19 @@ const MenuBar: FC = ({ children, ...prpos }) => {
         dispatch.userConfig.setOption(newOption)
     }
 
+    const handleInputChange = (key: string, val: string) => {
+        const data = option[key] as optionSubNodeType
+
+        const newData: optionType = {
+            ...data,
+            value: val,
+        }
+
+        const newOption = assoc(key, newData, option)
+
+        dispatch.userConfig.setOption(newOption)
+    }
+
     const node = compose(
         map(item => {
             const key = item[0]
@@ -56,18 +69,40 @@ const MenuBar: FC = ({ children, ...prpos }) => {
                         flexDirection: 'row',
                         justifyContent: 'flex-start',
                         alignItems: 'center',
+                        paddingLeft: 1,
+                        paddingRight: 1,
                     }}
                 >
-                    {val.label}
+                    <Box
+                        sx={{
+                            width: 70,
+                            textAlign: 'right',
+                        }}
+                    >
+                        {val.label}
+                    </Box>
                     <Box
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
+                            marginLeft: 1,
+                            marginRight: 1,
+                            flex: 1,
                         }}
                     >
                         {val.dataType === optionDataType.switch ? (
-                            <Switch onChange={() => handleSwitchChange(key)} />
-                        ) : val.dataType === optionDataType.input ? null : null}
+                            <Switch
+                                checked={val.value as boolean}
+                                onChange={() => handleSwitchChange(key)}
+                            />
+                        ) : val.dataType === optionDataType.input ? (
+                            <Input
+                                value={val.value}
+                                onChange={e =>
+                                    handleInputChange(key, e.target.value)
+                                }
+                            />
+                        ) : null}
                     </Box>
                 </Box>
             )
@@ -82,6 +117,7 @@ const MenuBar: FC = ({ children, ...prpos }) => {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
+                overflow: 'hidden',
             }}
         >
             {/* <TreeView
