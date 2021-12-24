@@ -6,6 +6,7 @@
         "@emotion/react": "^11.7.1",
         "@emotion/styled": "^11.6.0",
         "@mui/icons-material": "^5.2.5",
+        "@mui/lab": "*",
         "@mui/material": "^5.2.5",
         "@react-native-community/async-storage": "^1.12.1",
         "@rematch/core": "^2.2.0",

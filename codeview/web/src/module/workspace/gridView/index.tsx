@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { useSize } from 'ahooks'
-import { max } from 'ramda'
+import { map, max } from 'ramda'
 
 import { useTheme } from '@mui/material/styles'
 import Box from '@mui/system/Box'
@@ -15,6 +15,7 @@ import Config from 'src/module/workspace/gridView/module/config'
 import MenuBar from 'src/module/workspace/gridView/module/menuBar'
 import { Dispatch, RootState } from 'src/reducer/type'
 import { useDispatch, useSelector } from 'react-redux'
+import { optionSubNodeType } from 'src/reducer/userConfig/type'
 
 const GridView = () => {
     const theme = useTheme()
@@ -24,7 +25,7 @@ const GridView = () => {
     const userConfig = useSelector((state: RootState) => state.userConfig)
     const dispatch = useDispatch<Dispatch>()
 
-    const { grid } = userConfig
+    const { grid, option } = userConfig
     const width = max(size?.width || 1024, 1024)
 
     const handleChange: ItemCallback = layout => {
@@ -36,6 +37,13 @@ const GridView = () => {
             },
         })
     }
+
+    const lock = (option['root/gird/lock'] as optionSubNodeType).value
+
+    const layout = map((item: GridLayout.Layout) => ({
+        ...item,
+        static: lock,
+    }))(grid.layout)
 
     return (
         <Box
@@ -50,7 +58,7 @@ const GridView = () => {
             }}
         >
             <GridLayout
-                layout={grid.layout}
+                layout={layout}
                 cols={24}
                 rowHeight={50}
                 width={width}

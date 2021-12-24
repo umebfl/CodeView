@@ -14,21 +14,18 @@ export interface userConfigType {
         layout: ReactGridLayout.Layout[]
         lock: boolean
     }
-    option: optionType
+    option: Record<string, optionType>
 }
 
-export type optionType = Record<string, {}>
+export type optionType = optionNodeType | optionSubNodeType
 
 export interface optionNodeType {
-    name: string
-    defalut: boolean
-    currentValue: boolean
+    label: string
+    type: 'parent' | 'children'
 }
 
-// export interface optionParentNodeType extends optionNodeType {
-//     children?: optionType
-// }
-
-// export interface optionSubNodeType extends optionNodeType {
-//     type: optionDataType
-// }
+export interface optionSubNodeType extends optionNodeType {
+    defaultValue: boolean
+    value: boolean
+    dataType: optionDataType
+}

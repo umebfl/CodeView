@@ -2,7 +2,11 @@ import { map } from 'ramda'
 import { createModel } from '@rematch/core'
 
 import { RootModel } from '..'
-import { optionDataType, userConfigType } from 'src/reducer/userConfig/type'
+import {
+    optionDataType,
+    optionType,
+    userConfigType,
+} from 'src/reducer/userConfig/type'
 
 const initState: userConfigType = {
     sourcePath: [],
@@ -16,7 +20,7 @@ const initState: userConfigType = {
                 h: 1,
                 minW: 1,
                 maxW: 100,
-                static: true,
+                static: false,
             },
             {
                 w: 24,
@@ -26,50 +30,48 @@ const initState: userConfigType = {
                 i: 'config',
                 minW: 1,
                 maxW: 100,
-                static: true,
+                static: false,
             },
         ],
-        lock: true,
+        lock: false,
     },
     option: {
-        grid: {
-            name: '布局',
-            defalut: false,
-            currentValue: false,
-            // children: {
-            //     lock: {
-            //         name: '锁定布局',
-            //         type: optionDataType.switch,
-            //         defalut: false,
-            //         currentValue: false,
-            //     },
-            // },
+        root: {
+            label: 'root',
+            type: 'parent',
         },
-        code: {
-            name: '代码',
-            defalut: false,
-            currentValue: false,
-            // children: {
-            //     unitTest: {
-            //         name: '单元测试',
-            //         defalut: false,
-            //         currentValue: false,
-            //         children: {
-            //             show: {
-            //                 name: '显示',
-            //                 type: optionDataType.switch,
-            //                 defalut: false,
-            //                 currentValue: false,
-            //             },
-            //             mapping: {
-            //                 name: '关系',
-            //                 type: optionDataType.switch,
-            //                 defalut: false,
-            //                 currentValue: false,
-            //             },
-            //         },
-            //     },
-            // },
+        'root/gird': {
+            label: '布局',
+            type: 'parent',
+        },
+        'root/gird/lock': {
+            label: '锁定布局',
+            type: 'children',
+            dataType: optionDataType.switch,
+            defaultValue: false,
+            value: false,
+        },
+        'root/code': {
+            label: '代码',
+            type: 'parent',
+        },
+        'root/code/unitTest': {
+            label: '单元测试',
+            type: 'parent',
+        },
+        'root/code/unitTest/show': {
+            label: '显示',
+            type: 'children',
+            defaultValue: false,
+            value: false,
+            dataType: optionDataType.switch,
+        },
+        'root/code/unitTest/mapping': {
+            label: '关系',
+            type: 'children',
+            defaultValue: false,
+            value: false,
+            dataType: optionDataType.switch,
         },
     },
 }
@@ -79,6 +81,13 @@ export const userConfig = createModel<RootModel>()({
     reducers: {
         set: (state, payload: userConfigType) => {
             return payload
+        },
+
+        setOption: (state, payload: Record<string, optionType>) => {
+            return {
+                ...state,
+                option: payload,
+            }
         },
 
         gridsingleCheckboxLock: state => {
