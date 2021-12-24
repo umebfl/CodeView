@@ -91,7 +91,7 @@ export const userConfig = createModel<RootModel>()({
             return payload
         },
 
-        setOption: (state, payload: Record<string, optionType>) => {
+        setOption: (state, payload: optionType) => {
             return {
                 ...state,
                 option: payload,
