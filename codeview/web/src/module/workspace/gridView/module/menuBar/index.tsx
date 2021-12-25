@@ -10,10 +10,6 @@ import {
     assoc,
 } from 'ramda'
 import Box from '@mui/material/Box'
-import TreeView from '@mui/lab/TreeView'
-import TreeItem from '@mui/lab/TreeItem'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import Switch from '@mui/material/Switch'
 import Input from '@mui/material/Input'
 
@@ -25,104 +21,103 @@ import {
     optionType,
     optionSubNodeType,
     optionDataType,
-    optionPath,
+    optionKeyType,
 } from 'src/reducer/userConfig/type'
+import { useDebounceFn } from 'ahooks'
 
 const MenuBar: FC = ({ children, ...prpos }) => {
     const { option } = useSelector((state: RootState) => state.userConfig)
     const dispatch = useDispatch<Dispatch>()
 
-    // const handleSwitchChange = (key: string) => {
-    //     const data = option[key] as optionSubNodeType
+    const handleSwitchChange = (key: keyof typeof optionKeyType) => {
+        const data = option[key] as optionSubNodeType
 
-    //     const newData: optionType = {
-    //         ...data,
-    //         value: !data.value,
-    //     }
+        const newData: optionSubNodeType = {
+            ...data,
+            value: !data.value,
+        }
 
-    //     const newOption = assoc(key, newData, option)
+        dispatch.userConfig.setOption({
+            key: key as unknown as optionKeyType,
+            val: newData,
+        })
+    }
 
-    //     dispatch.userConfig.setOption(newOption)
-    // }
+    const handleInputChange = (
+        key: keyof typeof optionKeyType,
+        val: string
+    ) => {
+        const data = option[key] as optionSubNodeType
 
-    // const handleInputChange = (key: string, val: string) => {
-    //     const data = option[key] as optionSubNodeType
+        const newData: optionSubNodeType = {
+            ...data,
+            value: val,
+        }
 
-    //     const newData: optionType = {
-    //         ...data,
-    //         value: val,
-    //     }
-
-    //     const newOption = assoc(key, newData, option)
-
-    //     dispatch.userConfig.setOption(newOption)
-    // }
-
-    // const node = compose(
-    //     // map(item => {
-    //     //     const key = item[0]
-    //     //     const val = item[1] as optionSubNodeType
-
-    //     //     return (
-    //     //         <Box
-    //     //             key={key}
-    //     //             sx={{
-    //     //                 display: 'flex',
-    //     //                 flexDirection: 'row',
-    //     //                 justifyContent: 'flex-start',
-    //     //                 alignItems: 'center',
-    //     //                 paddingLeft: 1,
-    //     //                 paddingRight: 1,
-    //     //             }}
-    //     //         >
-    //     //             <Box
-    //     //                 sx={{
-    //     //                     width: 70,
-    //     //                     textAlign: 'right',
-    //     //                 }}
-    //     //             >
-    //     //                 {val.label}
-    //     //             </Box>
-    //     //             <Box
-    //     //                 sx={{
-    //     //                     display: 'flex',
-    //     //                     flexDirection: 'column',
-    //     //                     marginLeft: 1,
-    //     //                     marginRight: 1,
-    //     //                     flex: 1,
-    //     //                 }}
-    //     //             >
-    //     //                 {val.dataType === optionDataType.switch ? (
-    //     //                     <Switch
-    //     //                         checked={val.value as boolean}
-    //     //                         onChange={() => handleSwitchChange(key)}
-    //     //                     />
-    //     //                 ) : val.dataType === optionDataType.input ? (
-    //     //                     <Input
-    //     //                         value={val.value}
-    //     //                         onChange={e =>
-    //     //                             handleInputChange(key, e.target.value)
-    //     //                         }
-    //     //                     />
-    //     //                 ) : null}
-    //     //             </Box>
-    //     //         </Box>
-    //     //     )
-    //     // }),
-    //     // toPairs,
-    //     // filter((key: string) => option[key].type === 'children'),
-    //     map((key: keyof typeof optionPath) => [key, option[key]]),
-    //     // Object.keys
-    // )(option)
+        dispatch.userConfig.setOption({
+            key: key as unknown as optionKeyType,
+            val: newData,
+        })
+    }
 
     const list = Object.keys(option)
 
     const node = list.map(item => {
-        const key = item as keyof typeof optionPath
-        option[key]
+        const key = item as keyof typeof optionKeyType
+        const { type, label, dataType, value } = option[
+            key
+        ] as optionSubNodeType
+
+        if (type === 'children') {
+            return (
+                <Box
+                    key={key}
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        justifyContent: 'flex-start',
+                        alignItems: 'center',
+                        paddingLeft: 1,
+                        paddingRight: 1,
+                    }}
+                >
+                    <Box
+                        sx={{
+                            width: 70,
+                            textAlign: 'right',
+                        }}
+                    >
+                        {label}
+                    </Box>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            marginLeft: 1,
+                            marginRight: 1,
+                            flex: 1,
+                        }}
+                    >
+                        {dataType === optionDataType.switch ? (
+                            <Switch
+                                checked={value as boolean}
+                                onChange={() => handleSwitchChange(key)}
+                            />
+                        ) : dataType === optionDataType.input ? (
+                            <Input
+                                value={value}
+                                onChange={e =>
+                                    handleInputChange(key, e.target.value)
+                                }
+                            />
+                        ) : null}
+                    </Box>
+                </Box>
+            )
+        }
+        return null
     })
 
-    debugger
     return (
         <GridPaper
             {...prpos}

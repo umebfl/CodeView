@@ -1,8 +1,11 @@
 import express from 'express'
+const bodyParser = require('body-parser')
 
 import source from './source'
 
 const app = express()
+
+app.use(bodyParser.json())
 
 source(app)
 

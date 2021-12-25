@@ -1,37 +1,45 @@
-import { map } from 'ramda'
+import { assoc, map } from 'ramda'
 import { createModel } from '@rematch/core'
 
 import { RootModel } from '..'
 import {
     optionDataType,
+    optionKeyType,
+    optionSubNodeType,
     optionType,
+    optionValType,
     userConfigType,
 } from 'src/reducer/userConfig/type'
 
 const initState: userConfigType = {
-    sourcePath: [],
     grid: {
         layout: [
             {
+                w: 6,
+                h: 19,
+                x: 18,
+                y: 0,
                 i: 'menuBar',
+                moved: false,
+                static: false,
+            },
+            {
+                w: 6,
+                h: 2,
+                x: 18,
+                y: 19,
+                i: 'config',
+                moved: false,
+                static: false,
+            },
+            {
+                w: 18,
+                h: 21,
                 x: 0,
                 y: 0,
-                w: 24,
-                h: 1,
-            },
-            {
-                i: 'config',
-                w: 24,
-                h: 1,
-                x: 0,
-                y: 1,
-            },
-            {
-                i: 'graphin',
-                w: 24,
-                h: 1,
-                x: 0,
-                y: 2,
+                i: 'source',
+                moved: false,
+                static: false,
             },
         ],
         lock: false,
@@ -59,8 +67,15 @@ const initState: userConfigType = {
         'root/code/path': {
             label: '代码目录',
             type: 'children',
-            defaultValue: '',
-            value: '',
+            defaultValue: `D:/workspace/CodeView/codeview/web/src`,
+            value: `D:/workspace/CodeView/codeview/web/src`,
+            dataType: optionDataType.input,
+        },
+        'root/code/matchSuffix': {
+            label: '代码匹配后缀',
+            type: 'children',
+            defaultValue: 'ts,tsx,js,jsx',
+            value: 'ts,tsx,js,jsx',
             dataType: optionDataType.input,
         },
         'root/code/unitTest': {
@@ -91,27 +106,44 @@ export const userConfig = createModel<RootModel>()({
             return payload
         },
 
-        setOption: (state, payload: optionType) => {
+        _setOption: (state, payload: optionType) => {
             return {
                 ...state,
                 option: payload,
             }
         },
 
-        gridsingleCheckboxLock: state => {
-            const lock = !state.grid.lock
+        // gridsingleCheckboxLock: state => {
+        //     const lock = !state.grid.lock
 
-            return {
-                ...state,
-                grid: {
-                    ...state.grid,
-                    layout: map((item: ReactGridLayout.Layout) => ({
-                        ...item,
-                        static: lock,
-                    }))(state.grid.layout),
-                    lock,
-                },
-            }
-        },
+        //     return {
+        //         ...state,
+        //         grid: {
+        //             ...state.grid,
+        //             layout: map((item: ReactGridLayout.Layout) => ({
+        //                 ...item,
+        //                 static: lock,
+        //             }))(state.grid.layout),
+        //             lock,
+        //         },
+        //     }
+        // },
     },
+
+    effects: dispatch => ({
+        async setOption(
+            payload: { key: optionKeyType; val: optionValType },
+            rootState
+        ) {
+            const option = rootState.userConfig.option
+
+            const newOption = assoc(
+                payload.key as unknown as string,
+                payload.val,
+                option
+            ) as optionType
+
+            dispatch.userConfig._setOption(newOption)
+        },
+    }),
 })

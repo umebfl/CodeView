@@ -1,11 +1,21 @@
-import { AlertColor } from '@mui/material/Alert'
-
-export interface sourcePropsType {
-    timeStamp: number
-    severity: AlertColor
-    msg: string
+export interface sourceDataType {
+    path: string
+    name: string
+    type: 'file' | 'dir'
 }
 
+export interface SourceFileType extends sourceDataType {
+    parse: any
+    source: string
+    suffix: string
+}
+export interface SourceDirType extends sourceDataType {
+    list: SourceDFType[]
+}
+
+export type SourceDFType = SourceFileType | SourceDirType
+
 export interface sourceType {
-    data: Record<number, sourcePropsType>
+    data: SourceDFType
+    disposeData: SourceDFType
 }

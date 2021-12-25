@@ -17,7 +17,7 @@ import { optionSubNodeType } from 'src/reducer/userConfig/type'
 
 import Config from 'src/module/workspace/gridView/module/config'
 import MenuBar from 'src/module/workspace/gridView/module/menuBar'
-import Graphin from 'src/module/workspace/gridView/module/graphin'
+import Source from 'src/module/workspace/gridView/module/source'
 
 const GridView = () => {
     const theme = useTheme()
@@ -74,8 +74,8 @@ const GridView = () => {
                 <div key="config">
                     <Config />
                 </div>
-                <div key={'graphin'}>
-                    <Graphin />
+                <div key={'source'}>
+                    <Source />
                 </div>
             </GridLayout>
         </Box>

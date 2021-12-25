@@ -20,7 +20,6 @@ const Request = async ({
     errorTips = true,
 }: RequestPropsType) => {
     const loadingFlag = `${url}-${loadingIndex++}`
-
     try {
         if (loadingTips !== false) {
             dispatch?.globalLoading?.push(loadingFlag)
@@ -37,7 +36,7 @@ const Request = async ({
         if (rv?.status === 200) {
             const data = await rv.json()
 
-            if (data.code === 0) {
+            if (data.code === 'ok') {
                 loadingTips && dispatch?.globalLoading?.remove(loadingFlag)
                 return data.data
             }
