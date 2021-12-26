@@ -1,14 +1,14 @@
 const R = require('ramda')
 const fs = require('fs')
 
-const getSource = (path: string) => {
+const getSource = (path: string, rootPath: string) => {
     const fileList = fs.readdirSync(path)
 
     return fileList.map((item: string) => {
         const filePath = `${path}/${item}`
         const stat = fs.statSync(filePath)
 
-        const repath = filePath // filePath.substring(`${proPath}/`.length)
+        const repath = filePath.replace(rootPath, '')
         const repathNoSuffix = R.compose(
             (item: string) => {
                 if (item === 'src/index') {
@@ -58,7 +58,7 @@ const getSource = (path: string) => {
             name: item,
             path: repath,
             stat,
-            list: getSource(filePath),
+            list: getSource(filePath, rootPath),
             pathNoSuffix: repathNoSuffix,
             filePath,
             shortName,
@@ -70,9 +70,11 @@ const getSource = (path: string) => {
 const source = (req: any, res: any) => {
     console.log('/source', req.body)
     const path = req.body.path
+    const rootPath = R.replace('src', '')(path)
+    console.log(rootPath)
 
     try {
-        const list = getSource(path)
+        const list = getSource(path, rootPath)
 
         res.json({
             code: 'ok',

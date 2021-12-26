@@ -16,30 +16,39 @@ const initState: userConfigType = {
         layout: [
             {
                 w: 6,
-                h: 19,
-                x: 18,
-                y: 0,
-                i: 'menuBar',
-                moved: false,
-                static: false,
-            },
-            {
-                w: 6,
                 h: 2,
                 x: 18,
                 y: 19,
-                i: 'config',
+                i: 'menuBar',
                 moved: false,
-                static: false,
+                static: true,
             },
             {
-                w: 18,
-                h: 21,
+                w: 8,
+                h: 2,
                 x: 0,
-                y: 0,
+                y: 19,
                 i: 'source',
                 moved: false,
-                static: false,
+                static: true,
+            },
+            {
+                w: 24,
+                h: 19,
+                x: 0,
+                y: 0,
+                i: 'graphin',
+                moved: false,
+                static: true,
+            },
+            {
+                w: 10,
+                h: 2,
+                x: 8,
+                y: 19,
+                i: 'statistics',
+                moved: false,
+                static: true,
             },
         ],
         lock: false,
@@ -72,11 +81,22 @@ const initState: userConfigType = {
             dataType: optionDataType.input,
         },
         'root/code/matchSuffix': {
-            label: '代码匹配后缀',
+            label: '匹配后缀',
             type: 'children',
             defaultValue: 'ts,tsx,js,jsx',
             value: 'ts,tsx,js,jsx',
             dataType: optionDataType.input,
+        },
+        'root/code/type': {
+            label: '类型',
+            type: 'parent',
+        },
+        'root/code/type/show': {
+            label: '展示类型',
+            type: 'children',
+            defaultValue: true,
+            value: true,
+            dataType: optionDataType.switch,
         },
         'root/code/unitTest': {
             label: '单元测试',
@@ -105,29 +125,6 @@ export const userConfig = createModel<RootModel>()({
         set: (state, payload: userConfigType) => {
             return payload
         },
-
-        _setOption: (state, payload: optionType) => {
-            return {
-                ...state,
-                option: payload,
-            }
-        },
-
-        // gridsingleCheckboxLock: state => {
-        //     const lock = !state.grid.lock
-
-        //     return {
-        //         ...state,
-        //         grid: {
-        //             ...state.grid,
-        //             layout: map((item: ReactGridLayout.Layout) => ({
-        //                 ...item,
-        //                 static: lock,
-        //             }))(state.grid.layout),
-        //             lock,
-        //         },
-        //     }
-        // },
     },
 
     effects: dispatch => ({
@@ -143,7 +140,10 @@ export const userConfig = createModel<RootModel>()({
                 option
             ) as optionType
 
-            dispatch.userConfig._setOption(newOption)
+            dispatch.userConfig.set({
+                ...rootState.userConfig,
+                option: newOption,
+            })
         },
     }),
 })

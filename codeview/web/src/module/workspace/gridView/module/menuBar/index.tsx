@@ -83,7 +83,7 @@ const MenuBar: FC = ({ children, ...prpos }) => {
                 >
                     <Box
                         sx={{
-                            width: 70,
+                            width: 80,
                             textAlign: 'right',
                         }}
                     >
@@ -124,7 +124,8 @@ const MenuBar: FC = ({ children, ...prpos }) => {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                overflow: 'hidden',
+                overflowX: 'hidden',
+                overflowY: 'auto',
             }}
         >
             {/* <TreeView

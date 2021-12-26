@@ -15,7 +15,6 @@ import { isEmpty, map } from 'ramda'
 import { SourceDFType, SourceDirType } from 'src/reducer/source/type'
 
 const Source: FC = ({ children, ...prpos }) => {
-    const s = useSelector((state: RootState) => state)
     const { option } = useSelector((state: RootState) => state.userConfig)
     const { data, disposeData } = useSelector(
         (state: RootState) => state.source

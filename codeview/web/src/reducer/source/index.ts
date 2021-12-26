@@ -1,5 +1,15 @@
 import { createModel } from '@rematch/core'
-import { map, endsWith, filter, split, anyPass, forEach, includes } from 'ramda'
+import {
+    map,
+    endsWith,
+    filter,
+    split,
+    anyPass,
+    forEach,
+    includes,
+    reduce,
+    startsWith,
+} from 'ramda'
 import * as babylon from '@babel/parser'
 
 import { RootModel } from '..'
@@ -9,6 +19,8 @@ import {
     SourceDirType,
     sourceType,
     SourceDFType,
+    statisticsType,
+    fileType,
 } from 'src/reducer/source/type'
 import request from 'src/util/request'
 import { optionSubNodeType, optionType } from 'src/reducer/userConfig/type'
@@ -27,6 +39,23 @@ const initState: sourceType = {
         type: 'dir',
         list: [],
     },
+
+    statistics: {
+        totalFile: 0,
+        totalLine: 0,
+    },
+}
+
+const getFileType = (data: SourceFileType): fileType => {
+    if (data.name === 'type.ts') {
+        return fileType.type
+    }
+
+    if (startsWith('src/component')(data.path)) {
+        return fileType.component
+    }
+
+    return fileType.component
 }
 
 const defaultOptions: any = {
@@ -98,10 +127,37 @@ const dispose = (payload: SourceDFType, option: optionType): SourceDFType => {
         parse = babylon.parse(file.source, defaultOptions)
     }
 
+    const fileType = getFileType(file)
+
     return {
         ...file,
         parse,
         suffix,
+        fileType,
+    }
+}
+
+const getStatistics = (
+    payload: SourceDFType,
+    statistics: statisticsType
+): statisticsType => {
+    if (payload.type === 'dir') {
+        const news = reduce((stc, item: SourceDFType) => {
+            const rv = getStatistics(item, statistics)
+            return {
+                totalFile: rv.totalFile + stc.totalFile,
+                totalLine: rv.totalLine + stc.totalLine,
+            }
+        }, statistics)((payload as SourceDirType).list)
+
+        return news
+    }
+
+    return {
+        totalFile: statistics.totalFile + 1,
+        totalLine:
+            statistics.totalLine +
+            (payload as SourceFileType).parse.loc.end.line,
     }
 }
 
@@ -138,12 +194,17 @@ export const source = createModel<RootModel>()({
                 })
 
                 const disposeData = dispose(data, option)
+                const statistics = getStatistics(disposeData, {
+                    totalFile: 0,
+                    totalLine: 0,
+                })
                 console.log(disposeData)
 
                 if (data) {
                     dispatch.source.setData({
                         data,
                         disposeData,
+                        statistics,
                     })
                 }
             }

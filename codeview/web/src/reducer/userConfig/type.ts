@@ -26,6 +26,8 @@ export const enum optionKeyType {
     'root/code/unitTest',
     'root/code/unitTest/show',
     'root/code/unitTest/mapping',
+    'root/code/type',
+    'root/code/type/show',
 }
 
 export type optionType = {
@@ -38,6 +40,8 @@ export type optionType = {
     'root/code/unitTest': optionNodeType
     'root/code/unitTest/show': optionSubNodeType
     'root/code/unitTest/mapping': optionSubNodeType
+    'root/code/type': optionNodeType
+    'root/code/type/show': optionSubNodeType
 }
 
 export type optionValType = optionNodeType | optionSubNodeType
