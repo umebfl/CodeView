@@ -185,6 +185,14 @@ const buildSankeyData = (
         return null
     }
 
+    // 排除Hook类型文件
+    if (
+        option['root/code/hook/show'].value === false &&
+        data.fileType === 'hook'
+    ) {
+        return null
+    }
+
     const size = data.parse.loc.end.line / 2
     const maxLine = 500 / 2
 

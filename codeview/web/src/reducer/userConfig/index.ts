@@ -112,6 +112,17 @@ const initState: userConfigType = {
             value: false,
             dataType: optionDataType.switch,
         },
+        'root/code/hook': {
+            label: '组件',
+            type: 'parent',
+        },
+        'root/code/hook/show': {
+            label: '展示Hook',
+            type: 'children',
+            defaultValue: false,
+            value: false,
+            dataType: optionDataType.switch,
+        },
         'root/code/util': {
             label: 'Util',
             type: 'parent',

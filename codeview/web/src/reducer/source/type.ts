@@ -9,6 +9,7 @@ export enum fileType {
     module = 'module',
     type = 'type',
     util = 'util',
+    hook = 'hook',
     unknown = 'unknown',
 }
 

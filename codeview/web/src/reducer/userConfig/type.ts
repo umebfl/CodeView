@@ -30,6 +30,8 @@ export const enum optionKeyType {
     'root/code/type/show',
     'root/code/component',
     'root/code/component/show',
+    'root/code/hook',
+    'root/code/hook/show',
     'root/code/util',
     'root/code/util/show',
 }
@@ -48,6 +50,8 @@ export type optionType = {
     'root/code/type/show': optionSubNodeType
     'root/code/component': optionNodeType
     'root/code/component/show': optionSubNodeType
+    'root/code/hook': optionNodeType
+    'root/code/hook/show': optionSubNodeType
     'root/code/util': optionNodeType
     'root/code/util/show': optionSubNodeType
 }

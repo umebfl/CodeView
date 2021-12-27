@@ -63,6 +63,10 @@ const getFileType = (data: SourceFileType): fileType => {
         return fileType.util
     }
 
+    if (startsWith('src/hook')(data.path)) {
+        return fileType.hook
+    }
+
     return fileType.module
 }
 
