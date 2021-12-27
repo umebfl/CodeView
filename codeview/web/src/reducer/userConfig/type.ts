@@ -23,11 +23,15 @@ export const enum optionKeyType {
     'root/code',
     'root/code/path',
     'root/code/matchSuffix',
-    'root/code/unitTest',
-    'root/code/unitTest/show',
-    'root/code/unitTest/mapping',
+    // 'root/code/unitTest',
+    // 'root/code/unitTest/show',
+    // 'root/code/unitTest/mapping',
     'root/code/type',
     'root/code/type/show',
+    'root/code/component',
+    'root/code/component/show',
+    'root/code/util',
+    'root/code/util/show',
 }
 
 export type optionType = {
@@ -37,11 +41,15 @@ export type optionType = {
     'root/code': optionNodeType
     'root/code/path': optionSubNodeType
     'root/code/matchSuffix': optionSubNodeType
-    'root/code/unitTest': optionNodeType
-    'root/code/unitTest/show': optionSubNodeType
-    'root/code/unitTest/mapping': optionSubNodeType
+    // 'root/code/unitTest': optionNodeType
+    // 'root/code/unitTest/show': optionSubNodeType
+    // 'root/code/unitTest/mapping': optionSubNodeType
     'root/code/type': optionNodeType
     'root/code/type/show': optionSubNodeType
+    'root/code/component': optionNodeType
+    'root/code/component/show': optionSubNodeType
+    'root/code/util': optionNodeType
+    'root/code/util/show': optionSubNodeType
 }
 
 export type optionValType = optionNodeType | optionSubNodeType

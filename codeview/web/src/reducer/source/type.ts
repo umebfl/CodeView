@@ -7,8 +7,8 @@ export interface sourceDataType {
 export enum fileType {
     component = 'component',
     module = 'module',
-    moduleComponent = 'moduleComponent',
     type = 'type',
+    util = 'util',
     unknown = 'unknown',
 }
 

@@ -12,6 +12,7 @@ import {
     endsWith,
     filter,
     flatten,
+    forEach,
     map,
     startsWith,
 } from 'ramda'
@@ -90,9 +91,10 @@ const buildSankeyLink = (
     // file
     const data = item as SourceFileType
 
-    // if (sankeyLinkMap[data.path] !== true) {
-    //     return null
-    // }
+    // 排除
+    if (sankeyLinkMap[data.pathNoSuffix] !== true) {
+        return null
+    }
 
     const importList = compose(
         map(target => {
@@ -113,9 +115,10 @@ const buildSankeyLink = (
                 // target => item.pathNoSuffix !== 'type',
                 // 过滤接口文件依赖type.ts
                 // path => !endsWith('/type')(path),
-                target => data.pathNoSuffix !== target,
+
                 // // todo: 过滤指定后缀js/jsx
                 path => !endsWith('.css')(path),
+
                 // // 过滤工具类
                 // path => !startsWith('src/util/')(path),
                 // // TODO: 过滤Hooks类 UI参数
@@ -125,7 +128,10 @@ const buildSankeyLink = (
                 // // 过滤组件类
                 // path => !endsWith('.json')(path),
                 // startsWith(SRC_PATH),
-                // target => sankeyLinkMap[target] !== true,
+
+                // 过滤不存在项
+                target => sankeyLinkMap[target] === true,
+                // 过滤非src项
                 contains('src/'),
             ])
         ),
@@ -139,12 +145,11 @@ const buildSankeyLink = (
 const buildSankeyData = (
     item: SourceDFType,
     theme: Theme,
-    option: optionType,
-    sankeyLinkMap: Record<string, true>
+    option: optionType
 ): any => {
     if (item.type === 'dir') {
         const data = map((item: SourceDFType) =>
-            buildSankeyData(item, theme, option, sankeyLinkMap)
+            buildSankeyData(item, theme, option)
         )((item as SourceDirType).list)
 
         return compose(
@@ -157,28 +162,45 @@ const buildSankeyData = (
     const data = item as SourceFileType
 
     // 排除type类型文件
-    // if (
-    //     option['root/code/type/show'].value === false &&
-    //     data.fileType === 'type'
-    // ) {
-    //     return null
-    // }
+    if (
+        option['root/code/type/show'].value === false &&
+        data.fileType === 'type'
+    ) {
+        return null
+    }
+
+    // 排除组件类型文件
+    if (
+        option['root/code/component/show'].value === false &&
+        data.fileType === 'component'
+    ) {
+        return null
+    }
+
+    // 排除Util类型文件
+    if (
+        option['root/code/util/show'].value === false &&
+        data.fileType === 'util'
+    ) {
+        return null
+    }
 
     const size = data.parse.loc.end.line / 2
     const maxLine = 500 / 2
 
-    sankeyLinkMap[data.path] = true
-
     return {
         comboId: undefined,
         id: data.pathNoSuffix,
-        label: data.shortName,
+        label:
+            data.fileType === fileType.type
+                ? data.pathNoSuffix
+                : data.shortName,
         style: {
             keyshape: {
                 fill: size > maxLine ? '#A52A2A' : 'green',
                 // line过大 红色边框标记
                 stroke: theme.palette.grey[900],
-                fillOpacity: 0.6,
+                fillOpacity: 1,
                 size: size < 10 ? 10 : size,
             },
             // icon: data.isComponent
@@ -204,16 +226,23 @@ const buildSankeyData = (
             label: {
                 value: data.shortName,
                 position: 'bottom',
-                fill: '#666',
-                fontSize: 16,
+                fill: 'white',
+                fontSize: 22,
                 opacity: 1,
             },
         },
         program: data.parse.program,
-        // type: 'graphin-circle',
         // style type: react(iconReact) store component(方形) util(icon把手) module
-        type: data.fileType === fileType.component ? 'graphin-circle' : 'rect',
+        type: data.fileType === fileType.module ? 'graphin-circle' : 'rect',
     }
+}
+
+const buildSankeyLinkMap = (sankeyData: any[]): Record<string, true> => {
+    return compose(target => {
+        let rv: Record<string, true> = {}
+        forEach((item: any) => (rv[item.id] = true))(target)
+        return rv
+    })(sankeyData)
 }
 
 const GraphinModule: FC = ({ children, ...prpos }) => {
@@ -227,14 +256,14 @@ const GraphinModule: FC = ({ children, ...prpos }) => {
     const { option } = useSelector((state: RootState) => state.userConfig)
     const dispatch = useDispatch<Dispatch>()
 
-    let sankeyLinkMap: Record<string, true> = {}
-    let sankeyData = buildSankeyData(disposeData, theme, option, sankeyLinkMap)
+    let sankeyData: any[] = buildSankeyData(disposeData, theme, option)
+    let sankeyLinkMap = buildSankeyLinkMap(sankeyData)
     let sankeyLink = buildSankeyLink(disposeData, theme, option, sankeyLinkMap)
-    const layoutType = 'dagre'
 
-    console.log(sankeyData)
-    console.log(sankeyLink)
-    console.log(option)
+    // console.log(sankeyData)
+    // console.log(sankeyLink)
+
+    const layoutType = 'dagre'
 
     const graphinData = {
         combos: undefined,

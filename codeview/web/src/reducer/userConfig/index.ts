@@ -18,7 +18,7 @@ const initState: userConfigType = {
                 w: 6,
                 h: 2,
                 x: 18,
-                y: 19,
+                y: 15,
                 i: 'menuBar',
                 moved: false,
                 static: true,
@@ -27,14 +27,14 @@ const initState: userConfigType = {
                 w: 8,
                 h: 2,
                 x: 0,
-                y: 19,
+                y: 15,
                 i: 'source',
                 moved: false,
                 static: true,
             },
             {
                 w: 24,
-                h: 19,
+                h: 15,
                 x: 0,
                 y: 0,
                 i: 'graphin',
@@ -45,7 +45,7 @@ const initState: userConfigType = {
                 w: 10,
                 h: 2,
                 x: 8,
-                y: 19,
+                y: 15,
                 i: 'statistics',
                 moved: false,
                 static: true,
@@ -76,8 +76,11 @@ const initState: userConfigType = {
         'root/code/path': {
             label: '代码目录',
             type: 'children',
-            defaultValue: `D:/workspace/CodeView/codeview/web/src`,
-            value: `D:/workspace/CodeView/codeview/web/src`,
+            // defaultValue: `D:/workspace/CodeView/codeview/web/src`,
+            // value: `D:/workspace/CodeView/codeview/web/src`,
+            defaultValue:
+                '/home/anqihuang/workspace2/CodeView/codeview/web/src',
+            value: '/home/anqihuang/workspace2/CodeView/codeview/web/src',
             dataType: optionDataType.input,
         },
         'root/code/matchSuffix': {
@@ -94,28 +97,50 @@ const initState: userConfigType = {
         'root/code/type/show': {
             label: '展示类型',
             type: 'children',
-            defaultValue: true,
-            value: true,
+            defaultValue: false,
+            value: false,
             dataType: optionDataType.switch,
         },
-        'root/code/unitTest': {
-            label: '单元测试',
+        'root/code/component': {
+            label: '组件',
             type: 'parent',
         },
-        'root/code/unitTest/show': {
-            label: '显示',
+        'root/code/component/show': {
+            label: '展示组件',
             type: 'children',
             defaultValue: false,
             value: false,
             dataType: optionDataType.switch,
         },
-        'root/code/unitTest/mapping': {
-            label: '关系',
+        'root/code/util': {
+            label: 'Util',
+            type: 'parent',
+        },
+        'root/code/util/show': {
+            label: '展示Util',
             type: 'children',
             defaultValue: false,
             value: false,
             dataType: optionDataType.switch,
         },
+        // 'root/code/unitTest': {
+        //     label: '单元测试',
+        //     type: 'parent',
+        // },
+        // 'root/code/unitTest/show': {
+        //     label: '显示',
+        //     type: 'children',
+        //     defaultValue: false,
+        //     value: false,
+        //     dataType: optionDataType.switch,
+        // },
+        // 'root/code/unitTest/mapping': {
+        //     label: '关系',
+        //     type: 'children',
+        //     defaultValue: false,
+        //     value: false,
+        //     dataType: optionDataType.switch,
+        // },
     },
 }
 

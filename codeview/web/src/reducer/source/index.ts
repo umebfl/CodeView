@@ -4,6 +4,7 @@ import {
     endsWith,
     filter,
     split,
+    test,
     anyPass,
     forEach,
     includes,
@@ -51,11 +52,18 @@ const getFileType = (data: SourceFileType): fileType => {
         return fileType.type
     }
 
-    if (startsWith('src/component')(data.path)) {
+    if (
+        startsWith('src/component')(data.path) ||
+        test(/src\/.+\/component\//)(data.path)
+    ) {
         return fileType.component
     }
 
-    return fileType.component
+    if (startsWith('src/util')(data.path)) {
+        return fileType.util
+    }
+
+    return fileType.module
 }
 
 const defaultOptions: any = {
@@ -198,7 +206,6 @@ export const source = createModel<RootModel>()({
                     totalFile: 0,
                     totalLine: 0,
                 })
-                console.log(disposeData)
 
                 if (data) {
                     dispatch.source.setData({
