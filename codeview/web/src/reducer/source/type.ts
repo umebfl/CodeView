@@ -14,6 +14,7 @@ export enum fileType {
 }
 
 export interface SourceFileType extends sourceDataType {
+    path: string
     parse: any
     source: string
     shortName: string
@@ -36,6 +37,16 @@ export type statisticsType = {
 
 export interface sourceType {
     data: SourceDFType
+
     disposeData: SourceDFType
+
+    // disposeData 文件类型的列表
+    disposeFileList: SourceFileType[]
+
     statistics: statisticsType
+
+    // 当前聚焦的代码
+    focusSource: {
+        data: SourceFileType | null
+    }
 }

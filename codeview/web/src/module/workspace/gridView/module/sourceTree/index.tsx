@@ -14,7 +14,7 @@ import { isEmpty, map } from 'ramda'
 
 import { SourceDFType, SourceDirType } from 'src/reducer/source/type'
 
-const Source: FC = ({ children, ...prpos }) => {
+const SourceTree: FC = ({ children, ...prpos }) => {
     const { option } = useSelector((state: RootState) => state.userConfig)
     const { data, disposeData } = useSelector(
         (state: RootState) => state.source
@@ -155,4 +155,4 @@ const Source: FC = ({ children, ...prpos }) => {
     )
 }
 
-export default Source
+export default SourceTree

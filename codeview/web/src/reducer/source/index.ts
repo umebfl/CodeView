@@ -10,6 +10,8 @@ import {
     includes,
     reduce,
     startsWith,
+    flatten,
+    compose,
 } from 'ramda'
 import * as babylon from '@babel/parser'
 
@@ -41,9 +43,15 @@ const initState: sourceType = {
         list: [],
     },
 
+    disposeFileList: [],
+
     statistics: {
         totalFile: 0,
         totalLine: 0,
+    },
+
+    focusSource: {
+        data: null,
     },
 }
 
@@ -149,6 +157,17 @@ const dispose = (payload: SourceDFType, option: optionType): SourceDFType => {
     }
 }
 
+const getDisposeFileList = (data: SourceDFType): SourceFileType[] => {
+    if (data.type === 'dir') {
+        return compose(
+            (item: SourceFileType[][]) => flatten(item),
+            map(getDisposeFileList)
+        )((data as SourceDirType).list)
+    }
+
+    return [data as SourceFileType]
+}
+
 const getStatistics = (
     payload: SourceDFType,
     statistics: statisticsType
@@ -182,6 +201,16 @@ export const source = createModel<RootModel>()({
                 ...payload,
             }
         },
+
+        setFocusSourceData: (state, payload: SourceFileType) => {
+            return {
+                ...state,
+                focusSource: {
+                    ...state.focusSource,
+                    data: payload,
+                },
+            }
+        },
     },
 
     effects: dispatch => ({
@@ -206,6 +235,7 @@ export const source = createModel<RootModel>()({
                 })
 
                 const disposeData = dispose(data, option)
+                const disposeFileList = getDisposeFileList(disposeData)
                 const statistics = getStatistics(disposeData, {
                     totalFile: 0,
                     totalLine: 0,
@@ -213,8 +243,10 @@ export const source = createModel<RootModel>()({
 
                 if (data) {
                     dispatch.source.setData({
+                        ...rootState.source,
                         data,
                         disposeData,
+                        disposeFileList,
                         statistics,
                     })
                 }

@@ -17,7 +17,8 @@ import { optionSubNodeType } from 'src/reducer/userConfig/type'
 
 import Config from 'src/module/workspace/gridView/module/config'
 import MenuBar from 'src/module/workspace/gridView/module/menuBar'
-import Source from 'src/module/workspace/gridView/module/source'
+import SourceTree from 'src/module/workspace/gridView/module/sourceTree'
+import SourceCode from 'src/module/workspace/gridView/module/sourceCode'
 import Graphin from 'src/module/workspace/gridView/module/graphin'
 import Statistics from 'src/module/workspace/gridView/module/statistics'
 
@@ -75,8 +76,11 @@ const GridView = () => {
                 <div key="menuBar">
                     <MenuBar />
                 </div>
-                <div key={'source'}>
-                    <Source />
+                <div key={'sourceTree'}>
+                    <SourceTree />
+                </div>
+                <div key={'sourceCode'}>
+                    <SourceCode />
                 </div>
                 <div key={'graphin'}>
                     <Graphin />

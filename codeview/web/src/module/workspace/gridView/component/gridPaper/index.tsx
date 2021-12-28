@@ -20,6 +20,7 @@ const GridPaper = ({ children, sx }: GridPaperType) => {
                 height: '100%',
                 background: theme.palette.grey[900],
                 color: theme.palette.text.primary,
+                overflow: 'hidden',
                 ...sx,
             }}
         >

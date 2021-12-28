@@ -11,9 +11,11 @@ import {
     contains,
     endsWith,
     filter,
+    find,
     flatten,
     forEach,
     map,
+    split,
     startsWith,
 } from 'ramda'
 import {
@@ -29,16 +31,25 @@ import { optionType } from 'src/reducer/userConfig/type'
 
 const Behavior = () => {
     const { graph } = useContext(GraphinContext)
+    const { disposeFileList } = useSelector((state: RootState) => state.source)
+    const dispatch = useDispatch<Dispatch>()
 
     useEffect(() => {
         const handleClick = (evt: any) => {
             const node = evt.item
             const model = node.getModel()
+
             // apis.focusNodeById(model.id)
             // dispatch({
             //     type: 'program/setData',
             //     payload: model.program.body,
             // })
+
+            const data = find(
+                (item: SourceFileType) => item.pathNoSuffix === model.id
+            )(disposeFileList)
+
+            data && dispatch.source.setFocusSourceData(data)
         }
 
         const handleHover = (evt: any) => {
@@ -62,7 +73,7 @@ const Behavior = () => {
             graph.off('node:mouseenter', handleHover)
             graph.off('node:mouseleave', handleMouseleave)
         }
-    }, [graph])
+    }, [graph, disposeFileList])
 
     return null
 }
@@ -133,6 +144,21 @@ const buildSankeyLink = (
                 target => sankeyLinkMap[target] === true,
                 // 过滤非src项
                 contains('src/'),
+                path => {
+                    const aliasList = split(',')(
+                        option['root/code/importSuffix'].value as string
+                    )
+
+                    let rv = false
+
+                    forEach((item: string) => {
+                        if (startsWith(item)(path)) {
+                            rv = true
+                        }
+                    })(aliasList)
+
+                    return rv
+                },
             ])
         ),
         map((item: any) => item.source.value),
