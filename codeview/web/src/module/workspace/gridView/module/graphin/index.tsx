@@ -143,7 +143,7 @@ const buildSankeyLink = (
                 // 过滤不存在项
                 target => sankeyLinkMap[target] === true,
                 // 过滤非src项
-                contains('src/'),
+                // contains('src/'),
                 path => {
                     const aliasList = split(',')(
                         option['root/code/importSuffix'].value as string
@@ -156,7 +156,7 @@ const buildSankeyLink = (
                             rv = true
                         }
                     })(aliasList)
-
+                    debugger
                     return rv
                 },
             ])
@@ -294,6 +294,7 @@ const GraphinModule: FC = ({ children, ...prpos }) => {
     let sankeyLinkMap = buildSankeyLinkMap(sankeyData)
     let sankeyLink = buildSankeyLink(disposeData, theme, option, sankeyLinkMap)
 
+    // console.log(disposeData)
     // console.log(sankeyData)
     // console.log(sankeyLink)
 
