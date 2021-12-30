@@ -38,6 +38,7 @@ const lang: langType = {
     abnormalPairing: '配对异常',
     pleasePlugThisHardDiskInto: '请把此硬盘插到',
     pleaseUnplugTheHardDisk: '请拔出硬盘',
+    mountPoint: '挂载路径',
 }
 
 export default lang

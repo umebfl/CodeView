@@ -23,9 +23,10 @@ describe('BreadcrumbsCmp', () => {
 
         render(
             <Context initStore={getInitStore()}>
-                <Breadcrumbs handleRefresh={loadData}>
-                    <Box>{BreadcrumbsCmpTitle}</Box>
-                </Breadcrumbs>
+                <Breadcrumbs
+                    handleRefresh={loadData}
+                    data={[{ name: BreadcrumbsCmpTitle, link: '/up' }]}
+                ></Breadcrumbs>
             </Context>
         )
 
@@ -38,9 +39,11 @@ describe('BreadcrumbsCmp', () => {
 
         render(
             <Context initStore={getInitStore()}>
-                <Breadcrumbs allowBack={false} handleRefresh={loadData}>
-                    <Box>{BreadcrumbsCmpTitle}</Box>
-                </Breadcrumbs>
+                <Breadcrumbs
+                    allowBack={false}
+                    handleRefresh={loadData}
+                    data={[{ name: BreadcrumbsCmpTitle, link: '/up' }]}
+                ></Breadcrumbs>
             </Context>
         )
 
@@ -50,7 +53,7 @@ describe('BreadcrumbsCmp', () => {
 
     it('the fallback icon cannot be clicked when allowback is false', () => {
         const loadData = jest.fn()
-        const handleBaforeBack = jest.fn()
+        const handleBeforeBack = jest.fn()
         const BreadcrumbsCmpTitle = 'test-title'
 
         render(
@@ -58,20 +61,19 @@ describe('BreadcrumbsCmp', () => {
                 <Breadcrumbs
                     handleRefresh={loadData}
                     allowBack={false}
-                    handleBaforeBack={handleBaforeBack}
-                >
-                    <Box>{BreadcrumbsCmpTitle}</Box>
-                </Breadcrumbs>
+                    handleBeforeBack={handleBeforeBack}
+                    data={[{ name: BreadcrumbsCmpTitle, link: '/up' }]}
+                ></Breadcrumbs>
             </Context>
         )
 
         fireEvent.click(screen.getByTestId('ArrowCircleLeftOutlinedIcon'))
-        expect(handleBaforeBack).not.toBeCalled()
+        expect(handleBeforeBack).not.toBeCalled()
     })
 
-    it('should called handleBaforeBack when the fallback icon is clicked', () => {
+    it('should called handleBeforeBack when the fallback icon is clicked', () => {
         const loadData = jest.fn()
-        const handleBaforeBack = jest.fn()
+        const handleBeforeBack = jest.fn()
         const BreadcrumbsCmpTitle = 'test-title'
 
         render(
@@ -79,14 +81,13 @@ describe('BreadcrumbsCmp', () => {
                 <Breadcrumbs
                     handleRefresh={loadData}
                     allowBack={true}
-                    handleBaforeBack={handleBaforeBack}
-                >
-                    <Box>{BreadcrumbsCmpTitle}</Box>
-                </Breadcrumbs>
+                    handleBeforeBack={handleBeforeBack}
+                    data={[{ name: BreadcrumbsCmpTitle, link: '/up' }]}
+                ></Breadcrumbs>
             </Context>
         )
 
         fireEvent.click(screen.getByTestId('ArrowCircleLeftOutlinedIcon'))
-        expect(handleBaforeBack).toBeCalled()
+        expect(handleBeforeBack).toBeCalled()
     })
 })

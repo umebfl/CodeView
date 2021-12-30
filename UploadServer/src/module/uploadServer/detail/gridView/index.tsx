@@ -12,6 +12,7 @@ import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerro
 import DiscFullOutlinedIcon from '@mui/icons-material/DiscFullOutlined'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
+import FolderOpenIcon from '@mui/icons-material/FolderOpen'
 
 import NoMoreData from 'src/component/noMoreData'
 import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
@@ -100,7 +101,7 @@ const GridItem = ({ item }: { item: slotInfoType }) => {
             sx={{
                 display: 'flex',
                 color: 'white',
-                height: 140,
+                height: 160,
                 padding: 1,
                 minWidth: 300,
                 flexBasis: {
@@ -214,12 +215,34 @@ const DiskInfo = ({ data }: { data?: diskInfoType }) => {
                             whiteSpace: 'nowrap',
                             textOverflow: 'ellipsis',
                             overflow: 'hidden',
-                            width: 100,
+                            width: 180,
                         }}
                     >
                         {data?.vehicleIds.length
                             ? data?.vehicleIds.join(',')
                             : '-'}
+                    </Box>
+                </TooltipText>
+            </Box>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginTop: 0.5,
+                }}
+            >
+                <FolderOpenIcon />
+                <TooltipText showlen={20} title={data?.mountPoint || ''}>
+                    <Box
+                        sx={{
+                            whiteSpace: 'nowrap',
+                            textOverflow: 'ellipsis',
+                            overflow: 'hidden',
+                            width: 180,
+                        }}
+                    >
+                        {data?.mountPoint || '-'}
                     </Box>
                 </TooltipText>
             </Box>

@@ -17,6 +17,7 @@
                             "diskName": "nvme0n0",
                             "slotId": 0,
                             "diskStatus": "UNMOUNT",
+                            "mountPoint": "/roadtest_disks/nvme3n2_A0764CB0",
                             "updateTime": 1638264104.0,
                             "invalidMsg": "",
                             "vehicleIds": [
@@ -58,6 +59,7 @@
                             "invalidMsg": "",
                             "vehicleIds": [],
                             "wrongServer": false,
+                            "mountPoint": "",
                             "recommendedServerId": "superxray-sz-007"
                         }
                     },

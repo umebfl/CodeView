@@ -37,4 +37,5 @@ export interface langType {
     abnormalPairing: string
     pleasePlugThisHardDiskInto: string
     pleaseUnplugTheHardDisk: string
+    mountPoint: string
 }

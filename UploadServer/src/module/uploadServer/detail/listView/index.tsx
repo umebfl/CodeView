@@ -49,6 +49,9 @@ const ListView = ({ data }: ViewPayloadType) => {
                             {t('diskStatus')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
+                            {t('mountPoint')}
+                        </DefaultTableCellHeaderCell>
+                        <DefaultTableCellHeaderCell align="center">
                             {t('updateTime')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="left">
@@ -96,6 +99,9 @@ const ListView = ({ data }: ViewPayloadType) => {
                                             diskStatusEnum.NULL
                                     ].name as keyof langType
                                 )}
+                            </DefaultTableCellCell>
+                            <DefaultTableCellCell align="center">
+                                {row.diskInfo?.mountPoint || '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="center">
                                 {row.diskInfo?.updateTimeStr || '-'}

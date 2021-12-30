@@ -38,6 +38,7 @@ const lang: langType = {
     abnormalPairing: 'Abnormal Pairing',
     pleasePlugThisHardDiskInto: 'Please plug this hard disk into',
     pleaseUnplugTheHardDisk: 'Please unplug the hard disk',
+    mountPoint: 'Mount Point',
 }
 
 export default lang

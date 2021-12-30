@@ -129,13 +129,20 @@ const UploadServerDetail = () => {
                 overflow: 'hidden',
             }}
         >
-            <Breadcrumbs handleRefresh={dispatch.uploadServer.initData}>
-                <Box>Upload Server</Box>
-                <Typography color="text.primary" fontSize={14}>
-                    {id}
-                </Typography>
-                <Typography fontSize={13}>{t('slotList')}</Typography>
-            </Breadcrumbs>
+            <Breadcrumbs
+                handleRefresh={dispatch.uploadServer.initData}
+                data={[
+                    {
+                        name: 'Upload Server',
+                        link: '/up',
+                    },
+                    {
+                        name: id as string,
+                        link: '/up',
+                    },
+                ]}
+                desc={t('slotList')}
+            />
 
             <FilterBar
                 inputProps={{

@@ -57,12 +57,14 @@ const UploadServerList: FC = () => {
             <Breadcrumbs
                 allowBack={false}
                 handleRefresh={dispatch.uploadServer.initData}
-            >
-                <Box>Upload Server</Box>
-                <Typography color="text.primary" fontSize={14}>
-                    {t('list')}
-                </Typography>
-            </Breadcrumbs>
+                data={[
+                    {
+                        name: 'Upload Server',
+                        link: '/up',
+                    },
+                ]}
+                desc={t('list')}
+            ></Breadcrumbs>
 
             <FilterBar
                 inputProps={{

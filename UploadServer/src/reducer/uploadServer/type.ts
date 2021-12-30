@@ -67,6 +67,7 @@ export interface diskInfoType {
     diskName: string
     diskStatus: diskStatusEnum
     diskStatusStr: string
+    mountPoint: string
     invalidMsg: string
     recommendedServerId: string
     slotId: number
