@@ -25,7 +25,7 @@ import {
 import { EmptyDataMsg } from 'src/component/table'
 import TooltipText from 'src/module/uploadServer/detail/gridView/tooltipText'
 import { useT } from 'src/hooks/language'
-import { langType } from 'src/reducer/language/package/type'
+import { langType } from 'src/hooks/language/package/type'
 
 const iconSXProps: SxProps<Theme> = {
     fontSize: 48,
@@ -189,6 +189,7 @@ const DiskInfo = ({ data }: { data?: diskInfoType }) => {
                                 whiteSpace: 'nowrap',
                                 textOverflow: 'ellipsis',
                                 overflow: 'hidden',
+                                marginLeft: 0.3,
                             }}
                         >
                             {data?.diskName}
@@ -216,6 +217,7 @@ const DiskInfo = ({ data }: { data?: diskInfoType }) => {
                             textOverflow: 'ellipsis',
                             overflow: 'hidden',
                             width: 180,
+                            marginLeft: 0.3,
                         }}
                     >
                         {data?.vehicleIds.length
@@ -240,6 +242,7 @@ const DiskInfo = ({ data }: { data?: diskInfoType }) => {
                             textOverflow: 'ellipsis',
                             overflow: 'hidden',
                             width: 180,
+                            marginLeft: 0.3,
                         }}
                     >
                         {data?.mountPoint || '-'}
@@ -314,6 +317,9 @@ const Tips = ({ data }: { data?: string }) => {
                     borderLeft: '4px solid white',
                     paddingLeft: 1,
                     marginTop: 1,
+                    whiteSpace: 'nowrap',
+                    textOverflow: 'ellipsis',
+                    overflow: 'hidden',
                 }}
             >
                 {data}

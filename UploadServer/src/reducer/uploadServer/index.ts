@@ -35,6 +35,8 @@ export const uploadServer = createModel<RootModel>()({
                               diskInfo: {
                                   ...slot.diskInfo,
 
+                                  mountPoint: slot.diskInfo.mountPoint || '',
+
                                   updateTimeStr: new Date(
                                       slot.diskInfo.updateTime * 1000
                                   ).toLocaleString(),

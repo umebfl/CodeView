@@ -3,17 +3,17 @@ import { RootState } from 'src/reducer/type'
 
 import { sprintf } from 'sprintf-js'
 
-import en from 'src/reducer/language/package/en'
-import zh from 'src/reducer/language/package/zh-cn'
+import langPackage from 'src/hooks/language/package'
+
 import { langSet } from 'src/reducer/language/type'
-import { langType } from 'src/reducer/language/package/type'
+import { langType } from 'src/hooks/language/package/type'
 
 export const useT = () => {
     const { lang } = useSelector((state: RootState) => state.language)
 
     const data = {
-        [langSet.en]: en,
-        [langSet.zh]: zh,
+        [langSet.en]: langPackage.en,
+        [langSet.zh]: langPackage.zh,
     }
 
     return (text: keyof langType, ...props: any[]) =>

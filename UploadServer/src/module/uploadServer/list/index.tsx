@@ -26,7 +26,7 @@ import {
 } from 'src/component/table'
 import { uploadServerType } from 'src/reducer/uploadServer/type'
 import { useT } from 'src/hooks/language'
-import { langType } from 'src/reducer/language/package/type'
+import { langType } from 'src/hooks/language/package/type'
 
 const UploadServerList: FC = () => {
     const theme = useTheme()

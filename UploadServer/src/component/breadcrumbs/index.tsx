@@ -99,7 +99,7 @@ const BreadcrumbsCmp = ({
                             <Typography
                                 onClick={() => !last && navigate(link)}
                                 key={name}
-                                color={last ? '' : 'text.primary'}
+                                color={last ? 'text.primary' : ''}
                                 fontSize={last ? 16 : 14}
                                 sx={{
                                     cursor: last ? 'inherit' : 'pointer',

@@ -33,7 +33,7 @@ import FilterBar from 'src/component/filterBar'
 import { ViewType } from 'src/module/uploadServer/detail/type'
 
 import { useT } from 'src/hooks/language'
-import { langType } from 'src/reducer/language/package/type'
+import { langType } from 'src/hooks/language/package/type'
 
 const isInclude = curry((list: string, s: string) => {
     const llist = toLower(list)
@@ -108,6 +108,7 @@ const UploadServerDetail = () => {
                       info => isIncludeSearch(info.diskName),
                       info => isIncludeSearch(info.tips),
                       info => isIncludeSearch(info.updateTimeStr),
+                      info => isIncludeSearch(info.mountPoint),
                       info =>
                           isIncludeSearch(
                               t(info.diskStatusStr as keyof langType)
@@ -146,7 +147,9 @@ const UploadServerDetail = () => {
 
             <FilterBar
                 inputProps={{
-                    placeholder: `ID/${t('slotList')}/${t('vehicle')}`,
+                    placeholder: `ID/${t('slotList')}/${t('vehicle')}/${t(
+                        'mountPoint'
+                    )}`,
                 }}
                 handleChange={setSearchText}
                 right={

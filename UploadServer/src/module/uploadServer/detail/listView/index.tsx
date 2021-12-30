@@ -19,7 +19,7 @@ import {
 import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
 import { DiskStatusConfig, diskStatusEnum } from 'src/reducer/uploadServer/type'
 import { useT } from 'src/hooks/language'
-import { langType } from 'src/reducer/language/package/type'
+import { langType } from 'src/hooks/language/package/type'
 
 const ListView = ({ data }: ViewPayloadType) => {
     const theme = useTheme()
@@ -118,7 +118,7 @@ const ListView = ({ data }: ViewPayloadType) => {
                     ))}
                 </DefaultTableBody>
 
-                {data.length > 0 && <NoMoreDataCell cellColSpan={9} />}
+                {data.length > 0 && <NoMoreDataCell cellColSpan={10} />}
             </Table>
         </TableContainer>
     )

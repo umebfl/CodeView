@@ -18,6 +18,7 @@ describe('GridView', () => {
                 diskInfo: {
                     diskId: 'test diskId',
                     diskName: 'test diskName',
+                    mountPoint: 'xxx',
                     diskStatus: diskStatusEnum.DATA_UPLOADING,
                     diskStatusStr: '上传中',
                     invalidMsg: '',
