@@ -38,11 +38,12 @@ const UploadServerList: FC = () => {
 
     const filterData = filter((item: uploadServerType) => {
         const text = toLower(searchText)
+        const includesText = includes(text)
         return (
-            includes(text)(item.uploadServerId) ||
-            includes(text)(item.uploadServerLocation) ||
-            includes(text)(toLower(t(item.isRunningStr as keyof langType))) ||
-            includes(text)(item.operationTips)
+            includesText(item.uploadServerId) ||
+            includesText(item.uploadServerLocation) ||
+            includesText(toLower(t(item.isRunningStr as keyof langType))) ||
+            includesText(item.operationTips)
         )
     })(data)
 

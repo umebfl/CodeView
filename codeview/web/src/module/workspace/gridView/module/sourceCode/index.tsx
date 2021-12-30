@@ -43,7 +43,15 @@ const SourceCode: FC = ({ children, ...prpos }) => {
                 }}
             >
                 {data && (
-                    <SyntaxHighlighter language="javascript" style={a11yDark}>
+                    <SyntaxHighlighter
+                        language="javascript"
+                        style={a11yDark}
+                        showLineNumbers={true}
+                        lineNumberStyle={{ color: 'grey' }}
+                        PreTag={({ children }: { children: any }) => (
+                            <pre>{children}</pre>
+                        )}
+                    >
                         {data?.source || ''}
                     </SyntaxHighlighter>
                 )}
