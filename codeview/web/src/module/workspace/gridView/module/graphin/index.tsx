@@ -15,8 +15,10 @@ import {
     flatten,
     forEach,
     map,
+    replace,
     split,
     startsWith,
+    tap,
 } from 'ramda'
 import {
     fileType,
@@ -28,6 +30,7 @@ import { useSize } from 'ahooks'
 import Box from '@mui/material/Box'
 import { Theme, useTheme } from '@mui/material/styles'
 import { optionType } from 'src/reducer/userConfig/type'
+import { StringDecoder } from 'string_decoder'
 
 const Behavior = () => {
     const { graph } = useContext(GraphinContext)
@@ -117,19 +120,19 @@ const buildSankeyLink = (
                 target: target,
             }
         }),
-        // (item: any) => {
-        //     debugger
-        //     return item
-        // },
         filter(
             allPass([
+                // 过滤非src的import
+                startsWith('src/'),
+                // 过滤不存在项
+                target => {
+                    return sankeyLinkMap[target] === true
+                },
                 // target => item.pathNoSuffix !== 'type',
                 // 过滤接口文件依赖type.ts
                 // path => !endsWith('/type')(path),
-
                 // // todo: 过滤指定后缀js/jsx
-                path => !endsWith('.css')(path),
-
+                // path => !endsWith('.css')(path),
                 // // 过滤工具类
                 // path => !startsWith('src/util/')(path),
                 // // TODO: 过滤Hooks类 UI参数
@@ -138,30 +141,50 @@ const buildSankeyLink = (
                 // path => !startsWith('src/component/')(path),
                 // // 过滤组件类
                 // path => !endsWith('.json')(path),
-                // startsWith(SRC_PATH),
-
-                // 过滤不存在项
-                target => sankeyLinkMap[target] === true,
-                // 过滤非src项
-                // contains('src/'),
-                path => {
-                    const aliasList = split(',')(
-                        option['root/code/importSuffix'].value as string
-                    )
-
-                    let rv = false
-
-                    forEach((item: string) => {
-                        if (startsWith(item)(path)) {
-                            rv = true
-                        }
-                    })(aliasList)
-                    debugger
-                    return rv
-                },
             ])
         ),
-        map((item: any) => item.source.value),
+        // filter((path: string) => {
+        //     return sankeyLinkMap[path] === true
+        // }),
+        // // tap(console.log),
+        // filter((path: string) => {
+        //     const aliasList = split(',')(
+        //         option['root/code/importSuffix'].value as string
+        //     )
+
+        //     let rv = false
+
+        //     forEach((item: string) => {
+        //         if (startsWith(item)(path)) {
+        //             rv = true
+        //         }
+        //     })(aliasList)
+
+        //     return rv
+        // }),
+        // 转换alias的前缀
+        map((path: string) => {
+            const aliasList = split(',')(
+                option['root/code/importSuffix'].value as string
+            )
+
+            let fixItem = path
+
+            forEach((item: string) => {
+                const val = item.split('=')
+                const ori = val[0]
+                const target = val[1]
+
+                if (startsWith(ori)(path)) {
+                    fixItem = replace(ori, target)(path)
+                }
+            })(aliasList)
+
+            return fixItem
+        }),
+        map((item: any) => {
+            return item.source.value
+        }),
         filter((item: any) => item.type === 'ImportDeclaration')
     )(data.parse.program.body)
 
@@ -224,6 +247,7 @@ const buildSankeyData = (
 
     return {
         comboId: undefined,
+        source: data,
         id: data.pathNoSuffix,
         label:
             data.fileType === fileType.type
@@ -235,7 +259,7 @@ const buildSankeyData = (
                 // line过大 红色边框标记
                 stroke: theme.palette.grey[900],
                 fillOpacity: 1,
-                size: size < 10 ? 10 : size,
+                size: size < 10 ? 10 : size > 100 ? 100 : size,
             },
             // icon: data.isComponent
             //     ? {
@@ -295,8 +319,8 @@ const GraphinModule: FC = ({ children, ...prpos }) => {
     let sankeyLink = buildSankeyLink(disposeData, theme, option, sankeyLinkMap)
 
     // console.log(disposeData)
-    // console.log(sankeyData)
-    // console.log(sankeyLink)
+    // console.log('sankeyData', sankeyData)
+    // console.log('sankeyLink', sankeyLink)
 
     const layoutType = 'dagre'
 

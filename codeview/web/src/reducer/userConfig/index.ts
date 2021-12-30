@@ -144,10 +144,11 @@ const initState: userConfigType = {
             dataType: optionDataType.switch,
         },
         'root/code/importSuffix': {
-            label: '分析前缀',
+            label: '前缀映射',
             type: 'children',
-            defaultValue: 'src/',
-            value: 'src/,',
+            defaultValue:
+                'utils/=src/utils/,store/=src/store/,components/=src/components/',
+            value: 'utils/=src/utils/,store/=src/store/,components/=src/components/',
             dataType: optionDataType.input,
         },
         // 'root/code/unitTest': {

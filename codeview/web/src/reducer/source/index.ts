@@ -241,7 +241,7 @@ export const source = createModel<RootModel>()({
                     totalLine: 0,
                 })
 
-                console.log(disposeFileList)
+                // console.log(disposeFileList)
 
                 if (data) {
                     dispatch.source.setData({
