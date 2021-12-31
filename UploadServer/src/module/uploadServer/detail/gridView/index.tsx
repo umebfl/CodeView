@@ -13,6 +13,7 @@ import DiscFullOutlinedIcon from '@mui/icons-material/DiscFullOutlined'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
 import FolderOpenIcon from '@mui/icons-material/FolderOpen'
+import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
 
 import NoMoreData from 'src/component/noMoreData'
 import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
@@ -232,20 +233,29 @@ const DiskInfo = ({ data }: { data?: diskInfoType }) => {
                     flexDirection: 'row',
                     alignItems: 'center',
                     marginTop: 0.5,
+                    fontSize: 14,
                 }}
             >
-                <FolderOpenIcon />
-                <TooltipText showlen={20} title={data?.mountPoint || ''}>
+                {data?.isMounted ? (
+                    <AdjustOutlinedIcon />
+                ) : (
+                    <DiscFullOutlinedIcon />
+                )}
+
+                <TooltipText
+                    showlen={0}
+                    title={
+                        data?.isMounted
+                            ? `${t('mountPoint')}: ${data?.mountPoint || '-'}`
+                            : ''
+                    }
+                >
                     <Box
                         sx={{
-                            whiteSpace: 'nowrap',
-                            textOverflow: 'ellipsis',
-                            overflow: 'hidden',
-                            width: 180,
                             marginLeft: 0.3,
                         }}
                     >
-                        {data?.mountPoint || '-'}
+                        {data?.isMounted ? t('mounted') : t('unmount')}
                     </Box>
                 </TooltipText>
             </Box>

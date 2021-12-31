@@ -39,6 +39,8 @@ const lang: langType = {
     pleasePlugThisHardDiskInto: 'Please plug this hard disk into',
     pleaseUnplugTheHardDisk: 'Please unplug the hard disk',
     mountPoint: 'Mount Point',
+    mounted: 'Mounted',
+    mountStatus: 'Mount Status',
 }
 
 export default lang

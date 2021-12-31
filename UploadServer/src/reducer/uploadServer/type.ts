@@ -1,5 +1,4 @@
 export enum diskStatusEnum {
-    UNMOUNT = 'UNMOUNT',
     INVALID = 'INVALID',
     WAITING_TO_UPLOAD = 'WAITING_TO_UPLOAD',
     DATA_UPLOADING = 'DATA_UPLOADING',
@@ -14,11 +13,6 @@ export const DiskStatusConfig: Record<
     diskStatusEnum,
     { name: string; color: string[]; icon: string }
 > = {
-    UNMOUNT: {
-        name: 'unmount',
-        color: ['palette', 'warning', 'dark'],
-        icon: 'DiscFullOutlinedIcon',
-    },
     INVALID: {
         name: 'invalid',
         color: ['palette', 'error', 'dark'],
@@ -77,6 +71,7 @@ export interface diskInfoType {
     tips: string
     vehicleIds: string[]
     wrongServer: boolean
+    isMounted: boolean
 }
 export interface slotInfoType {
     diskInfo?: diskInfoType

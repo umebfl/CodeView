@@ -46,6 +46,9 @@ const ListView = ({ data }: ViewPayloadType) => {
                             {t('diskName')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
+                            {t('mountStatus')}
+                        </DefaultTableCellHeaderCell>
+                        <DefaultTableCellHeaderCell align="center">
                             {t('diskStatus')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
@@ -80,6 +83,22 @@ const ListView = ({ data }: ViewPayloadType) => {
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
                                 {row.diskInfo?.diskName || '-'}
+                            </DefaultTableCellCell>
+                            <DefaultTableCellCell
+                                align="left"
+                                sx={{
+                                    color: row.diskInfo
+                                        ? row.diskInfo?.isMounted
+                                            ? theme.palette.success.dark
+                                            : theme.palette.error.dark
+                                        : 'inherit',
+                                }}
+                            >
+                                {row.diskInfo
+                                    ? row.diskInfo?.isMounted
+                                        ? t('mounted')
+                                        : t('unmount')
+                                    : '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell
                                 align="center"
@@ -118,7 +137,7 @@ const ListView = ({ data }: ViewPayloadType) => {
                     ))}
                 </DefaultTableBody>
 
-                {data.length > 0 && <NoMoreDataCell cellColSpan={10} />}
+                {data.length > 0 && <NoMoreDataCell cellColSpan={11} />}
             </Table>
         </TableContainer>
     )

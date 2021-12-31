@@ -39,6 +39,8 @@ const lang: langType = {
     pleasePlugThisHardDiskInto: '请把此硬盘插到',
     pleaseUnplugTheHardDisk: '请拔出硬盘',
     mountPoint: '挂载路径',
+    mounted: '已挂载',
+    mountStatus: '挂载状态',
 }
 
 export default lang

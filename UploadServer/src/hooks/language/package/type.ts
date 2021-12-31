@@ -38,4 +38,6 @@ export interface langType {
     pleasePlugThisHardDiskInto: string
     pleaseUnplugTheHardDisk: string
     mountPoint: string
+    mounted: string
+    mountStatus: string
 }

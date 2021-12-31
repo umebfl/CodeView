@@ -113,6 +113,10 @@ const UploadServerDetail = () => {
                           isIncludeSearch(
                               t(info.diskStatusStr as keyof langType)
                           ),
+                      info =>
+                          isIncludeSearch(
+                              t(info.isMounted ? 'mounted' : 'unmount')
+                          ),
                       info => isIncludeSearch(info.vehicleIds.join(',')),
                   ])(item.diskInfo)
               }
