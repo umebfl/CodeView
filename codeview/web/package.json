@@ -35,7 +35,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "server": "ts-node ./server/index.ts",
+        "server": "ts-node ../server/index.ts",
         "build": "rm -rf build && react-scripts build && tar cvf build.tar build",
         "test": "react-scripts test --coverage",
         "eject": "react-scripts eject"
