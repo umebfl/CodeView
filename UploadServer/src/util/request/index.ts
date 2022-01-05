@@ -1,5 +1,6 @@
 /** No need unit test */
 import { toLower } from 'ramda'
+import { useT } from 'src/hooks/language'
 import { langSet } from 'src/reducer/language/type'
 import { Dispatch } from 'src/reducer/type'
 
@@ -25,6 +26,7 @@ const Request = async ({
     errorTips = true,
 }: RequestPropsType) => {
     const loadingFlag = `${url}-${loadingIndex++}`
+    const t = useT()
 
     try {
         if (loadingTips !== false) {

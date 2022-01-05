@@ -85,7 +85,7 @@ const ListView = ({ data }: ViewPayloadType) => {
                                 {row.diskInfo?.diskName || '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell
-                                align="left"
+                                align="center"
                                 sx={{
                                     color: row.diskInfo
                                         ? row.diskInfo?.isMounted

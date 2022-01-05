@@ -14,6 +14,7 @@ const lang: langType = {
     position: '位置',
     totalOfSlots: '总插槽数',
     completed: '已完成数',
+
     emptySlots: '空插槽数',
     viewMore: '查看',
     slotList: '插槽列表',
@@ -21,8 +22,8 @@ const lang: langType = {
     vehicle: '车辆',
     noMatchingUploadServer: '没有找到匹配的上载服务器',
     slotName: '插槽名称',
-    diskName: '磁盘名称',
-    diskStatus: '磁盘状态',
+    diskName: '硬盘名称',
+    diskStatus: '硬盘状态',
     updateTime: '更新时间',
     vehicleInfo: '车辆信息',
     noMoreData: '没有更多了。',
