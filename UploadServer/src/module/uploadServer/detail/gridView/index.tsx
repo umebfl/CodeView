@@ -12,7 +12,6 @@ import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerro
 import DiscFullOutlinedIcon from '@mui/icons-material/DiscFullOutlined'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import ErrorOutlineOutlinedIcon from '@mui/icons-material/ErrorOutlineOutlined'
-import FolderOpenIcon from '@mui/icons-material/FolderOpen'
 import AdjustOutlinedIcon from '@mui/icons-material/AdjustOutlined'
 
 import NoMoreData from 'src/component/noMoreData'

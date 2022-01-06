@@ -11,20 +11,20 @@ const initState: globalLoadingType = {
 export const globalLoading = createModel<RootModel>()({
     state: initState,
     reducers: {
-        push: (state, payload: string) => ({
+        push: (state, payload: symbol) => ({
             ...state,
             loadingMap: {
                 ...state.loadingMap,
                 [payload]: true,
             },
         }),
-        pop: (state, payload: string) => ({
+        pop: (state, payload: symbol) => ({
             ...state,
-            loadingMap: dissoc(payload)(state.loadingMap),
+            loadingMap: dissoc(payload as unknown as string)(state.loadingMap),
         }),
     },
     effects: dispatch => ({
-        async remove(payload: string) {
+        async remove(payload: symbol) {
             await new Promise((resolve, reject) => {
                 setTimeout(() => {
                     resolve(true)

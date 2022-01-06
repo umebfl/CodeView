@@ -1,5 +1,5 @@
 export interface globalLoadingType {
-    loadingMap: Record<string, true>
+    loadingMap: Record<symbol, true>
 }
 
 export type globalLoadingState = {

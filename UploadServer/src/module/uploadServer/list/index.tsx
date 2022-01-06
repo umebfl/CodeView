@@ -7,7 +7,6 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { useTheme } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import { filter, includes, toLower } from 'ramda'
 

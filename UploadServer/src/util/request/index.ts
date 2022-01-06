@@ -1,17 +1,15 @@
 /** No need unit test */
+import { RematchRootState } from '@rematch/core'
 import { toLower } from 'ramda'
-import { useT } from 'src/hooks/language'
-import { langSet } from 'src/reducer/language/type'
+import { RootModel } from 'src/reducer'
 import { Dispatch } from 'src/reducer/type'
 
 import { errorLog } from 'src/util/loger'
 
-let loadingIndex = 0
-
 interface RequestPropsType {
     url: string
-    language: langSet
     payload?: RequestInit
+    rootState: RematchRootState<RootModel, Record<string, never>>
     dispatch?: Dispatch
     loadingTips?: boolean
     errorTips?: boolean
@@ -20,13 +18,13 @@ interface RequestPropsType {
 const Request = async ({
     url,
     payload,
+    rootState,
     dispatch,
-    language,
     loadingTips = true,
     errorTips = true,
 }: RequestPropsType) => {
-    const loadingFlag = `${url}-${loadingIndex++}`
-    const t = useT()
+    const loadingFlag = Symbol(url)
+    const { lang } = rootState.language
 
     try {
         if (loadingTips !== false) {
@@ -37,7 +35,7 @@ const Request = async ({
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept-Language': toLower(language),
+                'Accept-Language': toLower(lang),
             },
             ...payload,
         })
@@ -53,8 +51,7 @@ const Request = async ({
             throw new Error(data.msg)
         }
 
-        // TODO language
-        throw new Error('内部错误，请刷新页面')
+        throw new Error(rv.statusText)
     } catch (error) {
         errorLog('Request error', `url: ${url}\n`, `error: ${error}\n`)
 

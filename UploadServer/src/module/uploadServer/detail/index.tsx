@@ -13,7 +13,6 @@ import {
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import Typography from '@mui/material/Typography'
 import { Box } from '@mui/system'
 import FormatListBulletedOutlinedIcon from '@mui/icons-material/FormatListBulletedOutlined'
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined'

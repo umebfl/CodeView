@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
-import { addIndex, map, take, takeLast } from 'ramda'
+import { addIndex, map } from 'ramda'
 
 import { Box } from '@mui/system'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom'
 import Typography from '@mui/material/Typography'
 
 import { useKeyPress } from 'ahooks'
-import { compose } from 'msw'
 
 interface payloadType {
     children?: React.ReactNode

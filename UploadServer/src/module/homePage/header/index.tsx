@@ -6,7 +6,6 @@ import LinearProgress from '@mui/material/LinearProgress'
 import { useTheme } from '@mui/material/styles'
 import { useSelector } from 'react-redux'
 import { RootState } from 'src/reducer/type'
-import { isEmpty } from 'ramda'
 
 const Header = () => {
     const theme = useTheme()
@@ -39,7 +38,7 @@ const Header = () => {
                 src="/asset/logo.png"
             ></Box>
 
-            {!isEmpty(loadingMap) && (
+            {Reflect.ownKeys(loadingMap).length && (
                 <LinearProgress
                     sx={{
                         height: 1.01,

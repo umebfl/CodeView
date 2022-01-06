@@ -1,7 +1,9 @@
 import en from 'src/hooks/language/package/en'
 import zhCN from 'src/hooks/language/package/zh-cn'
 
-export default {
+const pack = {
     en,
     zh: zhCN,
 }
+
+export default pack
