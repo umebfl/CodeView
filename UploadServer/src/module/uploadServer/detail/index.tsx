@@ -72,7 +72,6 @@ const UploadServerDetail = () => {
                                     diskInfo: {
                                         ...slot.diskInfo,
 
-                                        // TODO: lang
                                         tips: slot.diskInfo.wrongServer
                                             ? `${t(
                                                   'pleasePlugThisHardDiskInto'

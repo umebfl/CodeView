@@ -1,0 +1,11 @@
+{
+    "experimentalStudio": true,
+    "viewportWidth": 1600,
+    "viewportHeight": 900,
+    "videoCompression": false,
+    "trashAssetsBeforeRuns": true,
+    "screenshotsFolder": "./cypress/snapshots/actual",
+    "env": {
+        "failSilently": false
+    }
+}

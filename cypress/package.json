@@ -1,0 +1,17 @@
+{
+    "name": "cypress",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "cypress": "^9.2.1",
+        "cypress-visual-regression": "^1.6.3"
+    },
+    "scripts": {
+        "start": "./node_modules/.bin/cypress open",
+        "cons": "./node_modules/.bin/cypress run"
+    },
+    "devDependencies": {
+        "cypress-image-diff-js": "^1.16.1"
+    }
+}

@@ -38,7 +38,7 @@ const Header = () => {
                 src="/asset/logo.png"
             ></Box>
 
-            {Reflect.ownKeys(loadingMap).length && (
+            {Reflect.ownKeys(loadingMap).length > 0 && (
                 <LinearProgress
                     sx={{
                         height: 1.01,
