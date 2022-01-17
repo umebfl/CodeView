@@ -10,6 +10,7 @@ export interface langType {
     runStatus: string
     operate: string
     operationTips: string
+    noteMountStatus: string
     position: string
     totalOfSlots: string
     completed: string

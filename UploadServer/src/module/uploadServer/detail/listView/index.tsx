@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {
+    Box,
     Paper,
     Table,
     TableContainer,
@@ -9,6 +10,9 @@ import {
     useTheme,
 } from '@mui/material'
 import { path } from 'ramda'
+import CircleNotificationsOutlinedIcon from '@mui/icons-material/CircleNotificationsOutlined'
+import Tooltip from '@mui/material/Tooltip'
+
 import {
     DefaultTableCellCell,
     DefaultTableCellHeaderCell,
@@ -61,7 +65,12 @@ const ListView = ({ data }: ViewPayloadType) => {
                             {t('vehicleInfo')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="left">
-                            {t('operationTips')}
+                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                {t('operationTips')}
+                                <Tooltip arrow title={t('noteMountStatus')}>
+                                    <CircleNotificationsOutlinedIcon />
+                                </Tooltip>
+                            </Box>
                         </DefaultTableCellHeaderCell>
                     </TableRow>
                 </TableHead>
@@ -131,7 +140,13 @@ const ListView = ({ data }: ViewPayloadType) => {
                                     : '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
-                                {row.diskInfo?.tips}
+                                <Box
+                                    sx={{
+                                        color: theme.palette.primary.dark,
+                                    }}
+                                >
+                                    {row.diskInfo?.tips}
+                                </Box>
                             </DefaultTableCellCell>
                         </DefaultTableRow>
                     ))}
