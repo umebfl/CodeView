@@ -29,7 +29,7 @@ const UploadServer = () => {
         return () => {
             clearInterval(timer)
         }
-    }, [lang])
+    }, [lang, dispatch])
 
     return (
         <Box

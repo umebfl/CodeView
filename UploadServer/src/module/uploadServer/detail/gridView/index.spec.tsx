@@ -22,6 +22,7 @@ describe('GridView', () => {
                     diskStatus: diskStatusEnum.DATA_UPLOADING,
                     diskStatusStr: '上传中',
                     invalidMsg: '',
+                    isMounted: true,
                     recommendedServerId: '',
                     slotId: 0,
                     updateTime: 100000,
