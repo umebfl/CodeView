@@ -318,7 +318,7 @@ const GraphinModule: FC = ({ children, ...prpos }) => {
     let sankeyLinkMap = buildSankeyLinkMap(sankeyData)
     let sankeyLink = buildSankeyLink(disposeData, theme, option, sankeyLinkMap)
 
-    // console.log(disposeData)
+    console.log(disposeData)
     // console.log('sankeyData', sankeyData)
     // console.log('sankeyLink', sankeyLink)
 

@@ -117,6 +117,19 @@ const dispose = (payload: SourceDFType, option: optionType): SourceDFType => {
     if (payload.type === 'dir') {
         // 文件夹处理
         const { list } = payload as SourceDirType
+
+        // 过滤指定文件夹
+        const filterDirList = (
+            option['root/code/filter/dir'].value as string
+        ).split(',')
+
+        if (includes(payload.path)(filterDirList)) {
+            return {
+                ...payload,
+                list: [],
+            }
+        }
+
         // 递归处理
         const rv = map((item: SourceDFType) => dispose(item, option))(list)
         // 过滤无法解析的文件
@@ -142,8 +155,16 @@ const dispose = (payload: SourceDFType, option: optionType): SourceDFType => {
 
     // 解析源代码
     let parse = null
-    if (includes(suffix, matchSuffix)) {
+    const filterFileList = (
+        option['root/code/filter/file'].value as string
+    ).split(',')
+
+    if (
         // 只有匹配后端的文件才解析
+        includes(suffix, matchSuffix) &&
+        // 过滤指定文件
+        !includes(file.pathNoSuffix)(filterFileList)
+    ) {
         parse = babylon.parse(file.source, defaultOptions)
     }
 

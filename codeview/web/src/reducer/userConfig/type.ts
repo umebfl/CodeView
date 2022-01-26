@@ -32,6 +32,9 @@ export const enum optionKeyType {
     'root/code/component/show',
     'root/code/hook',
     'root/code/hook/show',
+    'root/code/filter',
+    'root/code/filter/dir',
+    'root/code/filter/file',
     'root/code/util',
     'root/code/util/show',
     'root/code/importSuffix',
@@ -53,6 +56,9 @@ export type optionType = {
     'root/code/component/show': optionSubNodeType
     'root/code/hook': optionNodeType
     'root/code/hook/show': optionSubNodeType
+    'root/code/filter': optionNodeType
+    'root/code/filter/dir': optionSubNodeType
+    'root/code/filter/file': optionSubNodeType
     'root/code/util': optionNodeType
     'root/code/util/show': optionSubNodeType
     'root/code/importSuffix': optionSubNodeType

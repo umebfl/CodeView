@@ -132,6 +132,24 @@ const initState: userConfigType = {
             value: false,
             dataType: optionDataType.switch,
         },
+        'root/code/filter': {
+            label: '过滤',
+            type: 'parent',
+        },
+        'root/code/filter/dir': {
+            label: '过滤文件夹',
+            type: 'children',
+            defaultValue: '',
+            value: '',
+            dataType: optionDataType.input,
+        },
+        'root/code/filter/file': {
+            label: '过滤文件',
+            type: 'children',
+            defaultValue: '',
+            value: '',
+            dataType: optionDataType.input,
+        },
         'root/code/util': {
             label: 'Util',
             type: 'parent',
