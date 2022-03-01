@@ -282,7 +282,7 @@ export const get_品种基础信息列表 = () => {
             ...item,
             评分: cal_评分(item, 关注列表),
         }
-    })(fixList)
+    })(关注列表)
 
     const 评分排序列表 = sort((a: type_品种信息, b: type_品种信息) => {
         return b.评分 - a.评分

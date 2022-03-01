@@ -466,11 +466,12 @@ const Mode = () => {
             headerName: '持仓',
             children: [
                 {
-                    field: `持仓合约 / ${(总盈亏 / 10000).toFixed(1)}w / ${(
-                        总持仓金额 / 10000
-                    ).toFixed(0)}w / ${((总盈亏 / 总持仓金额) * 100).toFixed(
-                        0
-                    )}%`,
+                    field: `持仓合约 / ${Math.round(
+                        总盈亏 / 10000
+                    )}w / ${Math.round(总持仓金额 / 10000)}w / ${(
+                        (总盈亏 / 总持仓金额) *
+                        100
+                    ).toFixed(0)}%`,
                     width: 280,
                     sortable: true,
                     cellRenderer: (params: ValueFormatterParams) => {
