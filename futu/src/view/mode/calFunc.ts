@@ -290,7 +290,7 @@ export const get_品种基础信息列表 = () => {
 
     const fix3List: type_品种信息[] = addIndex(map)(
         (item: any, idx: number) => {
-            const sea = [2, 2, 2, 2, 0, 0, 0]
+            const sea = [2, 2, 2, 1.5, 1.5, 0, 0]
             const 品种最大持仓金额 = 最大持仓金额 * sea[idx]
 
             return {
