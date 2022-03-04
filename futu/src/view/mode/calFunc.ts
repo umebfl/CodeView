@@ -81,7 +81,7 @@ export const cal_评分 = (data: type_品种信息, fixList: type_品种信息[]
         }
     })(sort_按保证金)
 
-    // 历史波幅 1
+    // 历史波幅 1
     const 历史波幅列表 = sort((a: type_品种信息, b: type_品种信息) => {
         return b.历史波幅 - a.历史波幅
     })(fixList)
