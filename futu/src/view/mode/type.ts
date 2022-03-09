@@ -61,6 +61,8 @@ export const 品种信息_初始化: type_品种信息 = {
     推荐合约: [],
     持仓盈亏: 0,
     评分: 0,
+    杠杆: 0,
+    新品种: false,
 }
 
 export interface type_品种信息 {
@@ -106,4 +108,6 @@ export interface type_品种信息 {
     推荐合约: string[]
     持仓盈亏: number
     评分: number
+    杠杆: number
+    新品种: boolean
 }

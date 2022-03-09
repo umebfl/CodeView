@@ -4,11 +4,13 @@ import {
     dropLast,
     equals,
     filter,
+    propEq,
     find,
     map,
     match,
     prop,
     sort,
+    reduce,
 } from 'ramda'
 import ftText from 'src/数据/品种-比例'
 import 当前数据 from 'src/数据/当前'
@@ -28,6 +30,8 @@ export const 最大持仓金额 = 30000 // 23000
 
 export const 回撤止损比例 = 0.03 // 3%
 
+const 最大持仓品种数 = 5
+
 export const cal_计算持仓盈亏 = (
     方向: string,
     持仓价: number,
@@ -41,7 +45,7 @@ export const cal_计算持仓盈亏 = (
 }
 
 export const cal_计算杠杆 = (保证金比例: number) => {
-    return (1 / 保证金比例).toFixed(2)
+    return parseFloat((1 / 保证金比例).toFixed(2))
 }
 
 export const cal_一手保证金 = (
@@ -70,55 +74,75 @@ export const cal_持仓剩余天数 = (合约: string) => {
 export const cal_评分 = (data: type_品种信息, fixList: type_品种信息[]) => {
     let 分数 = 0
 
+    if (data.持仓手数 === 0 || data.预期列表.length === 0) {
+        return 0
+    }
+
     // 保证金排行 1
     const sort_按保证金 = sort((a: type_品种信息, b: type_品种信息) => {
         return a.保证金比例 - b.保证金比例
     })(fixList)
 
     addIndex(map)((item: any, idx: number) => {
-        if (item.Code === data.Code && idx < sort_按保证金.length - 1) {
+        if (item.Code === data.Code && idx < 最大持仓品种数) {
             分数 += 1
         }
     })(sort_按保证金)
 
     // 历史波幅 1
     const 历史波幅列表 = sort((a: type_品种信息, b: type_品种信息) => {
-        return b.历史波幅 - a.历史波幅
+        const a历史波幅 = a.历史波幅 || 0
+        const b历史波幅 = b.历史波幅 || 0
+
+        return b历史波幅 - a历史波幅
     })(fixList)
 
     addIndex(map)((item: any, idx: number) => {
-        if (item.Code === data.Code && idx < 历史波幅列表.length - 2) {
-            分数 += 1
+        if (item.Code === data.Code && idx < 最大持仓品种数) {
+            console.log(item.Code, '历史波幅+1')
+            分数 += 2
         }
     })(历史波幅列表)
 
     // 预期波动 2
     const sort_预期波动 = sort((a: type_品种信息, b: type_品种信息) => {
-        return Math.abs(b.预期波动) - Math.abs(a.预期波动)
+        const a预期波动 = a.预期波动 === null ? 0 : a.预期波动
+        const b预期波动 = b.预期波动 === null ? 0 : b.预期波动
+
+        return Math.abs(b预期波动) - Math.abs(a预期波动)
     })(fixList)
 
     addIndex(map)((item: any, idx: number) => {
-        if (item.Code === data.Code && idx < sort_预期波动.length - 2) {
+        if (item.Code === data.Code && idx < 最大持仓品种数) {
+            console.log(item.Code, '预期波动+2')
             分数 += 2
         }
     })(sort_预期波动)
 
     // 价格增减比例 1
     const sort_价格增减比例 = sort((a: type_品种信息, b: type_品种信息) => {
-        return b.价格增减比例 - a.价格增减比例
+        const a价格增减比例 = a.价格增减比例 || 0
+        const b价格增减比例 = b.价格增减比例 || 0
+
+        return b价格增减比例 - a价格增减比例
     })(fixList)
 
     addIndex(map)((item: any, idx: number) => {
-        if (item.Code === data.Code && idx < sort_价格增减比例.length - 2) {
+        if (item.Code === data.Code && idx < 最大持仓品种数) {
             分数 += 1
+            console.log(item.Code, '价格增减比例+1')
         }
     })(sort_价格增减比例)
 
     // 整体趋势 1
+    const 关注列表 = filter(
+        (item: type_品种信息) => item.预期趋势 !== 价格波幅类型.平
+    )(fixList)
+
     const 预期趋势统计 = compose(
         (list: any) => {
             if (list.length) {
-                if (list.length > fixList.length / 2) {
+                if (list.length > 关注列表.length / 2) {
                     return 价格波幅类型.多
                 }
                 return 价格波幅类型.空
@@ -130,10 +154,32 @@ export const cal_评分 = (data: type_品种信息, fixList: type_品种信息[]
     )(fixList)
 
     if (data.预期趋势 === 预期趋势统计) {
+        console.log(data.Code, '预期趋势+1')
         分数 += 1
     }
 
     // 盈利状态 3
+    const sort_持仓盈亏 = sort((a: type_品种信息, b: type_品种信息) => {
+        const a持仓盈亏 = a.持仓盈亏 || 0
+        const b持仓盈亏 = b.持仓盈亏 || 0
+
+        return b持仓盈亏 - a持仓盈亏
+    })(fixList)
+
+    addIndex(map)((item: any, idx: number) => {
+        if (item.Code === data.Code && idx < 最大持仓品种数) {
+            分数 += 1
+            console.log(item.Code, '持仓盈亏排序+1')
+        }
+    })(sort_持仓盈亏)
+
+    if (data.持仓盈亏 < 0) {
+        console.log(data.Code, '持仓盈亏-1')
+        分数 -= 1
+    } else {
+        分数 += 1
+        console.log(data.Code, '持仓盈亏+1')
+    }
 
     return 分数
 }
@@ -141,7 +187,7 @@ export const cal_评分 = (data: type_品种信息, fixList: type_品种信息[]
 export const get_品种基础信息列表 = () => {
     const list = match(/.*[a-zA-Z]{1,2} ?[:：] ?\d\d%/g)(ftText)
 
-    const fixList = map((item: string) => {
+    const 全品种列表 = map((item: string) => {
         const rateStr = match(/\d{1,2}%/)(item)
         const rate = parseInt(dropLast(1)(rateStr[0]))
 
@@ -245,17 +291,23 @@ export const get_品种基础信息列表 = () => {
                 基准比率 *
                 100,
 
-            预期波动: parseInt(
-                (
-                    ((预期列表[预期列表.length - 1] - 价格列表[0]) /
-                        价格列表[0]) *
-                    基准比率 *
-                    100
-                ).toFixed(0)
-            ),
+            预期波动:
+                预期列表.length && 价格列表.length
+                    ? parseInt(
+                          (
+                              ((预期列表[预期列表.length - 1] - 价格列表[0]) /
+                                  价格列表[0]) *
+                              基准比率 *
+                              100
+                          ).toFixed(0)
+                      )
+                    : 0,
 
             预期趋势:
-                预期列表[预期列表.length - 1] > 价格列表[价格列表.length - 1]
+                预期列表.length === 0 || 价格列表.length === 0
+                    ? 价格波幅类型.平
+                    : 预期列表[预期列表.length - 1] >
+                      价格列表[价格列表.length - 1]
                     ? 价格波幅类型.多
                     : 价格波幅类型.空,
 
@@ -273,25 +325,54 @@ export const get_品种基础信息列表 = () => {
         }
     })(list)
 
-    const 关注列表 = filter((item: type_品种信息) => {
-        return item.关注度 > 0
-    })(fixList)
-
-    const fix2List = map((item: type_品种信息) => {
+    const 计算评分列表 = map((item: type_品种信息) => {
         return {
             ...item,
-            评分: cal_评分(item, 关注列表),
+            评分: cal_评分(item, 全品种列表),
         }
-    })(关注列表)
+    })(全品种列表)
 
     const 评分排序列表 = sort((a: type_品种信息, b: type_品种信息) => {
         return b.评分 - a.评分
-    })(fix2List)
+    })(计算评分列表)
 
-    const fix3List: type_品种信息[] = addIndex(map)(
+    const 评分合计 = reduce((count: number, item: type_品种信息) => {
+        console.log(item, item.评分)
+        return count + item.评分
+    }, 0)(评分排序列表)
+
+    const 有评分品种列表 = filter((item: type_品种信息) => item.评分 > 0)(
+        评分排序列表
+    )
+
+    const 持仓信息列表: type_品种信息[] = addIndex(map)(
         (item: any, idx: number) => {
-            const sea = [2, 2, 2, 1.5, 1.5, 0, 0]
-            const 品种最大持仓金额 = 最大持仓金额 * sea[idx]
+            // const sea = [
+            //     // 0
+            //     2,
+            //     // 1
+            //     2,
+            //     // 2
+            //     2,
+            //     // 3
+            //     1.5,
+            //     // 4
+            //     1.5,
+            //     // 5
+            //     1,
+            //     // 6
+            //     0,
+            //     // 7
+            //     0,
+            // ]
+            let rate = 2
+
+            // 如果分数低于平均值的一半，就淘汰
+            if (item.评分 < (评分合计 / 有评分品种列表.length) * 0.5) {
+                rate = 0
+            }
+
+            const 品种最大持仓金额 = 最大持仓金额 * rate
 
             return {
                 ...item,
@@ -301,7 +382,43 @@ export const get_品种基础信息列表 = () => {
         }
     )(评分排序列表)
 
-    console.log('fixList', JSON.stringify(fix3List, null, 2))
+    // 过滤
 
-    return fix3List
+    const 过滤杠杆过低的品种列表 = filter(
+        (item: type_品种信息) => item.杠杆 > 5
+    )(持仓信息列表)
+
+    const 过滤关注度过低的品种列表 = filter(
+        (item: type_品种信息) => item.关注度 > 0
+    )(过滤杠杆过低的品种列表)
+
+    const 过滤新品种列表 = filter((item: type_品种信息) => !item.新品种)(
+        过滤关注度过低的品种列表
+    )
+
+    const 过滤保证金过高列表 = filter(
+        (item: type_品种信息) => item.一手保证金 < 17000
+    )(过滤新品种列表)
+
+    const 过滤历史波幅过低列表 = filter(
+        (item: type_品种信息) => item.历史波幅 > 120
+    )(过滤保证金过高列表)
+
+    const 未过滤加分列表 = map((item: type_品种信息) => {
+        const 存在 = find(propEq('Code', item.Code))(过滤历史波幅过低列表)
+
+        return {
+            ...item,
+            评分: 存在 ? item.评分 + 1 : item.评分,
+        }
+    })(持仓信息列表)
+
+    const 按评分排序全品种列表 = sort((a: type_品种信息, b: type_品种信息) => {
+        return b.评分 - a.评分
+    })(未过滤加分列表)
+
+    return [过滤历史波幅过低列表, 按评分排序全品种列表]
+}
+function reducer(arg0: (item: type_品种信息) => any) {
+    throw new Error('Function not implemented.')
 }

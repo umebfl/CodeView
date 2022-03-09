@@ -15,21 +15,14 @@ import moment from 'moment'
 import { get_品种基础信息列表 } from 'src/view/mode/calFunc'
 import { Button } from '@mui/material'
 import { type_品种信息, 价格波幅类型, 预期方向类型 } from './type'
+import 当前 from 'src/数据/当前'
 
 const ROW_HEIGHT = 130
 
-const fixData = (data: any) => {
-    return compose(
-        filter((item: type_品种信息) => {
-            return item.关注度 > 0
-        })
-    )(data)
-}
-
 const Mode = () => {
-    const 品种基础信息列表 = get_品种基础信息列表()
+    const [品种基础信息列表, 全品种列表] = get_品种基础信息列表()
 
-    const [rowData] = useState(fixData(品种基础信息列表))
+    const [rowData] = useState(品种基础信息列表)
 
     const 总盈亏 = reduce((count, item: type_品种信息) => {
         return item.最大持仓数 > 0 ? count + item.持仓盈亏 : count
@@ -44,9 +37,11 @@ const Mode = () => {
             headerName: '基础',
             children: [
                 {
-                    field: '序号',
-                    width: 80,
-                    columnGroupShow: 'open',
+                    field: `序号(${rowData.length}/-${
+                        全品种列表.length - rowData.length
+                    })`,
+                    width: 140,
+                    // columnGroupShow: 'open',
                     cellRenderer: (params: any) => {
                         return params.rowIndex + 1
                     },
@@ -172,6 +167,10 @@ const Mode = () => {
                         const { data } = params as { data: type_品种信息 }
 
                         const rate = data['当前价位']
+
+                        if (!rate) {
+                            return '-'
+                        }
 
                         return (
                             <Box
@@ -329,14 +328,19 @@ const Mode = () => {
                         nodeA: any,
                         nodeB: any
                     ) => {
-                        const a预期波动 = Math.abs(nodeA.data.预期波动)
-                        const b预期波动 = Math.abs(nodeB.data.预期波动)
+                        const a预期波动 = Math.abs(nodeA.data.预期波动) || 0
+                        const b预期波动 = Math.abs(nodeB.data.预期波动) || 0
 
                         if (a预期波动 == b预期波动) return 0
                         return a预期波动 > b预期波动 ? 1 : -1
                     },
                     cellRenderer: (params: ValueFormatterParams) => {
                         const { data } = params as { data: type_品种信息 }
+
+                        if (!data.预期波动) {
+                            return '-'
+                        }
+
                         const rate = parseInt(
                             ((data.价格增减比例 / data.预期波动) * 100).toFixed(
                                 0
@@ -743,7 +747,7 @@ const Mode = () => {
                 }}
             ></AgGridReact>
             <CopyToClipboard
-                text={JSON.stringify(品种基础信息列表, null, 2)}
+                text={JSON.stringify(全品种列表, null, 2)}
                 onCopy={handleCopyData}
             >
                 <Button sx={{ marginTop: 1, padding: 1, background: '#EEE' }}>
