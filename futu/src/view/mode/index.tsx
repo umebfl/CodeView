@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import { AgGridReact } from 'ag-grid-react'
-import 'ag-grid-enterprise'
 
-import 'ag-grid-community/dist/styles/ag-grid.css'
-import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 import { RowClassParams, ValueFormatterParams } from 'ag-grid-enterprise'
 import { addIndex, compose, filter, map, range, reduce } from 'ramda'
 import Box from '@mui/system/Box'

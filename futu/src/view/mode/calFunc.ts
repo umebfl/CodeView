@@ -26,7 +26,7 @@ moment.locale('zh-cn')
 
 export type 品种价格数据类型 = [当前价格: number, 三月价格预期: number]
 
-export const 最大持仓金额 = 30000 // 23000
+export const 最大持仓金额 = 25000 // 23000
 
 export const 回撤止损比例 = 0.03 // 3%
 
@@ -385,7 +385,7 @@ export const get_品种基础信息列表 = () => {
     // 过滤
 
     const 过滤杠杆过低的品种列表 = filter(
-        (item: type_品种信息) => item.杠杆 > 5
+        (item: type_品种信息) => item.杠杆 > 4
     )(持仓信息列表)
 
     const 过滤关注度过低的品种列表 = filter(
@@ -396,13 +396,13 @@ export const get_品种基础信息列表 = () => {
         过滤关注度过低的品种列表
     )
 
-    const 过滤保证金过高列表 = filter(
+    const 过滤保证金比例过高列表 = filter(
         (item: type_品种信息) => item.一手保证金 < 17000
     )(过滤新品种列表)
 
     const 过滤历史波幅过低列表 = filter(
         (item: type_品种信息) => item.历史波幅 > 120
-    )(过滤保证金过高列表)
+    )(过滤保证金比例过高列表)
 
     const 未过滤加分列表 = map((item: type_品种信息) => {
         const 存在 = find(propEq('Code', item.Code))(过滤历史波幅过低列表)

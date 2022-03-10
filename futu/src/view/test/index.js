@@ -1,1 +1,0 @@
-import test from 'src/view/test/test'
