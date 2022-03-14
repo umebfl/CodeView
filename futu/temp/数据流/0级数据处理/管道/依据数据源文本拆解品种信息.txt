@@ -1,0 +1,32 @@
+// import { dropLast, map, match } from 'ramda'
+
+// import 品种列表数据源 from 'src/数据流/0级数据处理/数据/品种列表数据源'
+
+// const 依据数据源文本拆解品种信息 = (): type_基础品种信息[] => {
+//     const list = match(/.*[a-zA-Z]{1,2} ?[:：] ?\d\d%/g)(品种列表数据源)
+
+//     const 全品种列表: type_基础品种信息[] = map((item: string) => {
+//         const rateStr = match(/\d{1,2}%/)(item)
+//         const rate = parseInt(dropLast(1)(rateStr[0]))
+
+//         const code = match(/[a-zA-Z]{1,2}/)(item)[0]
+//         const upCode = code.toUpperCase()
+//         const name = item.substr(0, item.indexOf(code)).trim()
+
+//         return {
+//             Code: upCode,
+//             name,
+//             rate,
+//         }
+//     })(list)
+
+//     return 全品种列表
+// }
+
+// export interface type_基础品种信息 {
+//     Code: string
+//     name: string
+//     rate: number
+// }
+
+// export default 依据数据源文本拆解品种信息
