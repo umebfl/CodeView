@@ -9,9 +9,9 @@ module.exports = function (app) {
             changeOrigin: true,
             secure: false,
             pathRewrite: { '/quan_ping_zhong_shu_ju': '' },
-            onProxyReq: (proxyReq, req, res) => {
-                console.log(proxyReq)
-            },
+            // onProxyReq: (proxyReq, req, res) => {
+            //     console.log(proxyReq)
+            // },
         })
     )
     app.use(
@@ -21,9 +21,9 @@ module.exports = function (app) {
             changeOrigin: true,
             secure: false,
             pathRewrite: { '/quan_ping_zhong_lie_biao': '' },
-            onProxyReq: (proxyReq, req, res) => {
-                console.log(proxyReq)
-            },
+            // onProxyReq: (proxyReq, req, res) => {
+            //     console.log(proxyReq)
+            // },
         })
     )
     app.use(
@@ -33,9 +33,33 @@ module.exports = function (app) {
             changeOrigin: true,
             secure: false,
             pathRewrite: { '/gen_xin_lian_xu_ri_shu_ju': '' },
-            onProxyReq: (proxyReq, req, res) => {
-                console.log(proxyReq)
-            },
+            // onProxyReq: (proxyReq, req, res) => {
+            //     console.log(proxyReq)
+            // },
+        })
+    )
+    app.use(
+        '/zui_xin_ping_zhong_shu_ju',
+        createProxyMiddleware({
+            target: 'http://localhost:9000/zui_xin_ping_zhong_shu_ju',
+            changeOrigin: true,
+            secure: false,
+            pathRewrite: { '/zui_xin_ping_zhong_shu_ju': '' },
+            // onProxyReq: (proxyReq, req, res) => {
+            //     console.log(proxyReq)
+            // },
+        })
+    )
+    app.use(
+        '/ping_zhong_ri_feng_shi_shu_ju',
+        createProxyMiddleware({
+            target: 'http://localhost:9000/ping_zhong_ri_feng_shi_shu_ju',
+            changeOrigin: true,
+            secure: false,
+            pathRewrite: { '/ping_zhong_ri_feng_shi_shu_ju': '' },
+            // onProxyReq: (proxyReq, req, res) => {
+            //     console.log(proxyReq)
+            // },
         })
     )
 
