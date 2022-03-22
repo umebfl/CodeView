@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 import {
     Box,
@@ -9,11 +9,11 @@ import {
     TableRow,
     Typography,
     useTheme,
-} from "@mui/material";
-import { path } from "ramda";
-import CircleNotificationsOutlinedIcon from "@mui/icons-material/CircleNotificationsOutlined";
-import Tooltip from "@mui/material/Tooltip";
-import LinearProgress from "@mui/material/LinearProgress";
+} from '@mui/material'
+import { path } from 'ramda'
+import CircleNotificationsOutlinedIcon from '@mui/icons-material/CircleNotificationsOutlined'
+import Tooltip from '@mui/material/Tooltip'
+import LinearProgress from '@mui/material/LinearProgress'
 
 import {
     DefaultTableCellCell,
@@ -21,20 +21,17 @@ import {
     DefaultTableRow,
     DefaultTableBody,
     NoMoreDataCell,
-} from "src/component/table";
-import { ViewPayloadType } from "src/module/uploadServer/detail/type";
-import {
-    DiskStatusConfig,
-    diskStatusEnum,
-} from "src/reducer/uploadServer/type";
-import { useT } from "src/hooks/language";
-import { langType } from "src/hooks/language/package/type";
-import UploadRecordsList from "src/module/uploadServer/detail/gridView/uploadRecordsList";
+} from 'src/component/table'
+import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
+import { DiskStatusConfig, diskStatusEnum } from 'src/reducer/uploadServer/type'
+import { useT } from 'src/hooks/language'
+import { langType } from 'src/hooks/language/package/type'
+import UploadRecordsList from 'src/module/uploadServer/detail/gridView/uploadRecordsList'
 
 function LinearProgressWithLabel(props: any) {
     return (
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Box sx={{ width: "100%", mr: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Box sx={{ width: '100%', mr: 1 }}>
                 <LinearProgress variant="determinate" {...props} />
             </Box>
             <Box sx={{ minWidth: 35 }}>
@@ -44,13 +41,13 @@ function LinearProgressWithLabel(props: any) {
                 >{`${Math.round(props.value)}%`}</Typography>
             </Box>
         </Box>
-    );
+    )
 }
 
 const ListView = ({ data }: ViewPayloadType) => {
-    const theme = useTheme();
-    const t = useT();
-    console.log(data);
+    const theme = useTheme()
+    const t = useT()
+    console.log(data)
 
     return (
         <TableContainer component={Paper}>
@@ -58,42 +55,42 @@ const ListView = ({ data }: ViewPayloadType) => {
                 <TableHead>
                     <TableRow>
                         <DefaultTableCellHeaderCell align="center">
-                            {t("S/N")}
+                            {t('S/N')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
-                            {t("slot")} ID
+                            {t('slot')} ID
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
-                            {t("slotName")}
+                            {t('slotName')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="left">
-                            {t("disk")} ID
+                            {t('disk')} ID
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="left">
-                            {t("diskName")}
+                            {t('diskName')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
-                            {t("mountStatus")}
+                            {t('mountStatus')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
-                            {t("diskStatus")}
+                            {t('diskStatus')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
-                            {t("uploadProgress")}
+                            {t('uploadProgress')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
-                            {t("mountPoint")}
+                            {t('mountPoint')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
-                            {t("updateTime")}
+                            {t('updateTime')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="left">
-                            {t("vehicleInfo")}
+                            {t('vehicleInfo')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="left">
-                            <Box sx={{ display: "flex", alignItems: "center" }}>
-                                {t("operationTips")}
-                                <Tooltip arrow title={t("noteMountStatus")}>
+                            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                                {t('operationTips')}
+                                <Tooltip arrow title={t('noteMountStatus')}>
                                     <CircleNotificationsOutlinedIcon />
                                 </Tooltip>
                             </Box>
@@ -114,10 +111,10 @@ const ListView = ({ data }: ViewPayloadType) => {
                                 {row.slotBusId}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
-                                {row.diskInfo?.diskId || "-"}
+                                {row.diskInfo?.diskId || '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
-                                {row.diskInfo?.diskName || "-"}
+                                {row.diskInfo?.diskName || '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell
                                 align="center"
@@ -126,14 +123,14 @@ const ListView = ({ data }: ViewPayloadType) => {
                                         ? row.diskInfo?.isMounted
                                             ? theme.palette.success.dark
                                             : theme.palette.error.dark
-                                        : "inherit",
+                                        : 'inherit',
                                 }}
                             >
                                 {row.diskInfo
                                     ? row.diskInfo?.isMounted
-                                        ? t("mounted")
-                                        : t("unmount")
-                                    : "-"}
+                                        ? t('mounted')
+                                        : t('unmount')
+                                    : '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell
                                 align="center"
@@ -144,7 +141,7 @@ const ListView = ({ data }: ViewPayloadType) => {
                                                   row.diskInfo.diskStatus
                                               ].color
                                           )(theme) as string)
-                                        : "inherit",
+                                        : 'inherit',
                                 }}
                             >
                                 {t(
@@ -177,19 +174,19 @@ const ListView = ({ data }: ViewPayloadType) => {
                                         </Box>
                                     </UploadRecordsList>
                                 ) : (
-                                    "-"
+                                    '-'
                                 )}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="center">
-                                {row.diskInfo?.mountPoint || "-"}
+                                {row.diskInfo?.mountPoint || '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="center">
-                                {row.diskInfo?.updateTimeStr || "-"}
+                                {row.diskInfo?.updateTimeStr || '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
                                 {row.diskInfo?.vehicleIds.length
-                                    ? row.diskInfo?.vehicleIds.join(", ")
-                                    : "-"}
+                                    ? row.diskInfo?.vehicleIds.join(', ')
+                                    : '-'}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
                                 <Box
@@ -204,10 +201,10 @@ const ListView = ({ data }: ViewPayloadType) => {
                     ))}
                 </DefaultTableBody>
 
-                {data.length > 0 && <NoMoreDataCell cellColSpan={11} />}
+                {data.length > 0 && <NoMoreDataCell cellColSpan={12} />}
             </Table>
         </TableContainer>
-    );
-};
+    )
+}
 
-export default ListView;
+export default ListView

@@ -125,7 +125,11 @@ const UploadServerList: FC = () => {
                                     sortDirection={'desc'}
                                 >
                                     <Link
-                                        to={`detail/${row.uploadServerId}`}
+                                        to={
+                                            row.isRunning
+                                                ? `detail/${row.uploadServerId}`
+                                                : ''
+                                        }
                                         style={{
                                             textDecoration: 'none',
                                         }}
@@ -157,14 +161,19 @@ const UploadServerList: FC = () => {
                                     component="th"
                                     scope="row"
                                 >
-                                    {row.emptySlotsNum}
+                                    {row.isRunning ? row.emptySlotsNum : '-'}
                                 </DefaultTableCellCell>
                                 <DefaultTableCellCell align="center">
-                                    {row.formattedDisksNum} /{' '}
-                                    {row.totalSlotsNum - row.emptySlotsNum}
+                                    {row.isRunning
+                                        ? `${row.formattedDisksNum} /${' '}
+                                        ${
+                                            row.totalSlotsNum -
+                                            row.emptySlotsNum
+                                        }`
+                                        : '-'}
                                 </DefaultTableCellCell>
                                 <DefaultTableCellCell align="center">
-                                    {row.totalSlotsNum}
+                                    {row.isRunning ? row.totalSlotsNum : '-'}
                                 </DefaultTableCellCell>
                                 <DefaultTableCellCell align="center">
                                     {row.uploadServerLocation}
@@ -173,17 +182,19 @@ const UploadServerList: FC = () => {
                                     {row.operationTips}
                                 </DefaultTableCellCell>
                                 <DefaultTableCellCell align="center">
-                                    <Button
-                                        size="small"
-                                        variant="text"
-                                        onClick={() =>
-                                            navigate(
-                                                `detail/${row.uploadServerId}`
-                                            )
-                                        }
-                                    >
-                                        {t('viewMore')}
-                                    </Button>
+                                    {row.isRunning ? (
+                                        <Button
+                                            size="small"
+                                            variant="text"
+                                            onClick={() =>
+                                                navigate(
+                                                    `detail/${row.uploadServerId}`
+                                                )
+                                            }
+                                        >
+                                            {t('viewMore')}
+                                        </Button>
+                                    ) : null}
                                 </DefaultTableCellCell>
                             </DefaultTableRow>
                         ))}

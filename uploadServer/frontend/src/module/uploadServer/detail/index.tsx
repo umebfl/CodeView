@@ -103,6 +103,7 @@ const UploadServerDetail = () => {
 
               if (item.diskInfo) {
                   return anyPass([
+                      info => isIncludeSearch(info.diskId),
                       info => isIncludeSearch(info.diskName),
                       info => isIncludeSearch(info.tips),
                       info => isIncludeSearch(info.updateTimeStr),
