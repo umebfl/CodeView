@@ -43,6 +43,9 @@
                             ],
                             "uploadingRecords": [],
                             "finishedRecords": [],
+                            "diskPlugTime": "2022-03-25 13:00:00",
+                            "startUploadTime": "",
+                            "endUploadTime": "",
                             "recommendedServerId": ""
                         }
                     },
@@ -90,6 +93,9 @@
                             ],
                             "uploadingRecords": [],
                             "finishedRecords": [],
+                            "diskPlugTime": "2022-03-25 13:00:00",
+                            "startUploadTime": "",
+                            "endUploadTime": "",
                             "recommendedServerId": "superxray-sz-007"
                         }
                     },
@@ -123,7 +129,10 @@
                             "finishedRecords": [
                                 "byd-cn-9_20210730_2021-07-30-15-19-11"
                             ],
-                            "recommendedServerId": ""
+                            "recommendedServerId": "",
+                            "diskPlugTime": "2022-03-25 13:00:00",
+                            "startUploadTime": "2022-03-25 14:00:00",
+                            "endUploadTime": ""
                         }
                     },
                     {
@@ -160,7 +169,10 @@
                             "finishedRecords": [
                                 "byd-cn-9_20210730_2021-07-30-15-19-11"
                             ],
-                            "recommendedServerId": ""
+                            "recommendedServerId": "",
+                            "diskPlugTime": "2022-03-25 13:00:00",
+                            "startUploadTime": "2022-03-25 14:00:00",
+                            "endUploadTime": ""
                         }
                     },
                     {
@@ -198,7 +210,10 @@
                             "finishedRecords": [
                                 "byd-cn-9_20210730_2021-07-30-15-19-11"
                             ],
-                            "recommendedServerId": ""
+                            "recommendedServerId": "",
+                            "diskPlugTime": "2022-03-25 13:00:00",
+                            "startUploadTime": "2022-03-25 14:00:00",
+                            "endUploadTime": ""
                         }
                     },
                     {
@@ -229,7 +244,10 @@
                                 "byd-cn-9_20210730_2021-07-30-15-19-13",
                                 "byd-cn-9_20210730_2021-07-30-15-19-14"
                             ],
-                            "recommendedServerId": ""
+                            "recommendedServerId": "",
+                            "diskPlugTime": "2022-03-25 13:00:00",
+                            "startUploadTime": "2022-03-25 14:00:00",
+                            "endUploadTime": "2022-03-25 15:02:00"
                         }
                     },
                     {

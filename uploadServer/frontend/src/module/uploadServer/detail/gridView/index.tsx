@@ -9,6 +9,7 @@ import {
     CircularProgress,
     SxProps,
     Theme,
+    Tooltip,
     Typography,
     useTheme,
 } from '@mui/material'
@@ -289,13 +290,43 @@ const DiskInfo = ({ data }: { data?: diskInfoType }) => {
                             : ''
                     }
                 >
-                    <Box
-                        sx={{
-                            marginLeft: 0.3,
-                        }}
-                    >
-                        {data?.isMounted ? t('mounted') : t('unmount')}
-                    </Box>
+                    <>
+                        <Box
+                            sx={{
+                                marginLeft: 0.3,
+                                marginRight: 1,
+                            }}
+                        >
+                            {data?.isMounted ? t('mounted') : t('unmount')}
+                        </Box>
+                        <Tooltip
+                            arrow
+                            placement="right"
+                            title={
+                                <Box>
+                                    <Box>
+                                        {t('diskPlugTime')}：
+                                        {data?.diskPlugTime || '-'}
+                                    </Box>
+                                    <Box>
+                                        {t('startUploadTime')}：
+                                        {data?.startUploadTime || '-'}
+                                    </Box>
+                                    <Box>
+                                        {t('endUploadTime')}：
+                                        {data?.endUploadTime || '-'}
+                                    </Box>
+                                </Box>
+                            }
+                        >
+                            <Box>
+                                耗时:{' '}
+                                {data?.timeConsuming.length
+                                    ? `${data?.timeConsuming}h`
+                                    : '-'}
+                            </Box>
+                        </Tooltip>
+                    </>
                 </TooltipText>
             </Box>
         </>
@@ -337,7 +368,7 @@ const Status = ({
                     {IconMap[DiskStatusConfig[data].icon]}
 
                     <TooltipText
-                        title={`${t('updateTime')}: ${
+                        title={`${t('statusUpdateTime')}: ${
                             updateTimeShortStr || '-'
                         }`}
                     >

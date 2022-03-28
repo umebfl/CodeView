@@ -1,21 +1,21 @@
-import { createModel } from "@rematch/core";
-import moment from "moment";
+import { createModel } from '@rematch/core'
+import moment from 'moment'
 
-import request from "src/util/request";
+import request from 'src/util/request'
 
-import { RootModel } from "..";
+import { RootModel } from '..'
 import {
     UploadServerState,
     uploadServerType,
     slotInfoType,
     DiskStatusConfig,
     diskStatusEnum,
-} from "src/reducer/uploadServer/type";
-import { map } from "ramda";
+} from 'src/reducer/uploadServer/type'
+import { map } from 'ramda'
 
 const initState: UploadServerState = {
     data: [],
-};
+}
 
 export const uploadServer = createModel<RootModel>()({
     state: initState,
@@ -24,9 +24,9 @@ export const uploadServer = createModel<RootModel>()({
             const fixData = map((item: uploadServerType) => ({
                 ...item,
 
-                isRunningStr: item.isRunning ? "running" : "close",
+                isRunningStr: item.isRunning ? 'running' : 'close',
 
-                operationTips: "-",
+                operationTips: '-',
 
                 slotInfos: map((slot: slotInfoType) => ({
                     ...slot,
@@ -35,7 +35,7 @@ export const uploadServer = createModel<RootModel>()({
                               diskInfo: {
                                   ...slot.diskInfo,
 
-                                  mountPoint: slot.diskInfo.mountPoint || "",
+                                  mountPoint: slot.diskInfo.mountPoint || '',
 
                                   updateTimeStr: new Date(
                                       slot.diskInfo.updateTime * 1000
@@ -43,7 +43,7 @@ export const uploadServer = createModel<RootModel>()({
 
                                   updateTimeShortStr: moment(
                                       slot.diskInfo.updateTime * 1000
-                                  ).format("MM-DD HH:MM:ss"),
+                                  ).format('MM-DD HH:MM:ss'),
 
                                   diskStatus: slot.diskInfo.wrongServer
                                       ? diskStatusEnum.WRONGSERVER
@@ -61,29 +61,44 @@ export const uploadServer = createModel<RootModel>()({
                                       (slot.diskInfo.finishedRecords?.length /
                                           slot.diskInfo.allRecords?.length) *
                                       100,
+
+                                  timeConsuming:
+                                      slot.diskInfo.startUploadTime?.length &&
+                                      slot.diskInfo.endUploadTime?.length
+                                          ? moment(slot.diskInfo.endUploadTime)
+                                                .diff(
+                                                    moment(
+                                                        slot.diskInfo
+                                                            .startUploadTime
+                                                    ),
+                                                    'h',
+                                                    true
+                                                )
+                                                .toFixed(2)
+                                          : '',
                               },
                           }
                         : {}),
                 }))(item.slotInfos),
-            }))(payload);
+            }))(payload)
 
             return {
                 ...state,
                 data: fixData,
-            };
+            }
         },
     },
     effects: dispatch => ({
         async initData(_, rootState) {
             const data = await request({
-                url: "/data_center/get_upload_server_list",
+                url: '/data_center/get_upload_server_list',
                 rootState,
                 dispatch,
-            });
+            })
 
             if (data?.uploadServerInfos) {
-                dispatch.uploadServer.setData(data.uploadServerInfos);
+                dispatch.uploadServer.setData(data.uploadServerInfos)
             }
         },
     }),
-});
+})

@@ -82,7 +82,7 @@ const ListView = ({ data }: ViewPayloadType) => {
                             {t('mountPoint')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="center">
-                            {t('updateTime')}
+                            {t('timeConsuming')}
                         </DefaultTableCellHeaderCell>
                         <DefaultTableCellHeaderCell align="left">
                             {t('vehicleInfo')}
@@ -144,11 +144,23 @@ const ListView = ({ data }: ViewPayloadType) => {
                                         : 'inherit',
                                 }}
                             >
-                                {t(
-                                    DiskStatusConfig[
-                                        row.diskInfo?.diskStatus ||
-                                            diskStatusEnum.NULL
-                                    ].name as keyof langType
+                                {row.diskInfo?.diskStatus ? (
+                                    <Tooltip
+                                        title={`${t('statusUpdateTime')}: ${
+                                            row.diskInfo?.updateTimeStr || '-'
+                                        }`}
+                                    >
+                                        <Box>
+                                            {t(
+                                                DiskStatusConfig[
+                                                    row.diskInfo?.diskStatus ||
+                                                        diskStatusEnum.NULL
+                                                ].name as keyof langType
+                                            )}
+                                        </Box>
+                                    </Tooltip>
+                                ) : (
+                                    '-'
                                 )}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="center">
@@ -180,8 +192,39 @@ const ListView = ({ data }: ViewPayloadType) => {
                             <DefaultTableCellCell align="center">
                                 {row.diskInfo?.mountPoint || '-'}
                             </DefaultTableCellCell>
-                            <DefaultTableCellCell align="center">
-                                {row.diskInfo?.updateTimeStr || '-'}
+                            <DefaultTableCellCell
+                                align="center"
+                                sx={{ width: 100 }}
+                            >
+                                <Tooltip
+                                    arrow
+                                    placement="right"
+                                    title={
+                                        <Box>
+                                            <Box>
+                                                {t('diskPlugTime')}：
+                                                {row.diskInfo?.diskPlugTime ||
+                                                    '-'}
+                                            </Box>
+                                            <Box>
+                                                {t('startUploadTime')}：
+                                                {row.diskInfo
+                                                    ?.startUploadTime || '-'}
+                                            </Box>
+                                            <Box>
+                                                {t('endUploadTime')}：
+                                                {row.diskInfo?.endUploadTime ||
+                                                    '-'}
+                                            </Box>
+                                        </Box>
+                                    }
+                                >
+                                    <Box sx={{ display: 'inline-block' }}>
+                                        {row.diskInfo?.timeConsuming.length
+                                            ? `${row.diskInfo?.timeConsuming}h`
+                                            : '-'}
+                                    </Box>
+                                </Tooltip>
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
                                 {row.diskInfo?.vehicleIds.length
