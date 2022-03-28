@@ -72,20 +72,20 @@ export interface diskInfoType {
     vehicleIds: string[]
     wrongServer: boolean
 
-    allRecords: string[]
-    waitingRecords: string[]
-    uploadingRecords: string[]
-    finishedRecords: string[]
+    allRecords?: string[]
+    waitingRecords?: string[]
+    uploadingRecords?: string[]
+    finishedRecords?: string[]
 
-    diskPlugTime: string
-    startUploadTime: string
-    endUploadTime: string
+    diskPlugTime?: string
+    startUploadTime?: string
+    endUploadTime?: string
 
-    timeConsuming: string
+    timeConsuming?: string
 
-    uploadFinishedRate: number
+    uploadFinishedRate?: number
 
-    isMounted: boolean
+    isMounted?: boolean
 }
 export interface slotInfoType {
     diskInfo?: diskInfoType

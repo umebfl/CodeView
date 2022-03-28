@@ -58,9 +58,14 @@ export const uploadServer = createModel<RootModel>()({
                                         ].name,
 
                                   uploadFinishedRate:
-                                      (slot.diskInfo.finishedRecords?.length /
-                                          slot.diskInfo.allRecords?.length) *
-                                      100,
+                                      slot.diskInfo.finishedRecords &&
+                                      slot.diskInfo.allRecords
+                                          ? (slot.diskInfo.finishedRecords
+                                                ?.length /
+                                                slot.diskInfo.allRecords
+                                                    ?.length) *
+                                            100
+                                          : 0,
 
                                   timeConsuming:
                                       slot.diskInfo.startUploadTime?.length &&

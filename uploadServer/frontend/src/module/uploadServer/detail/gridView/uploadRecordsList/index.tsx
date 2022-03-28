@@ -6,11 +6,7 @@ import Tooltip from '@mui/material/Tooltip'
 
 import { useT } from 'src/hooks/language'
 
-type Props = {
-    waitingRecords: string[]
-    uploadingRecords: string[]
-    finishedRecords: string[]
-}
+const PROGRESS_URL = 'https://szexa.xray.autox.tech'
 
 const RecordsList: FC<{
     data: string[]
@@ -18,7 +14,6 @@ const RecordsList: FC<{
 }> = ({ data, type }) => {
     const t = useT()
     const theme = useTheme()
-    console.log(theme.palette.success.dark)
 
     return (
         <Box>
@@ -70,7 +65,11 @@ const RecordsList: FC<{
     )
 }
 
-const UploadRecordsList: FC<Props> = props => {
+const UploadRecordsList: FC<{
+    waitingRecords?: string[]
+    uploadingRecords?: string[]
+    finishedRecords?: string[]
+}> = props => {
     const t = useT()
     const theme = useTheme()
     const { children, waitingRecords, uploadingRecords, finishedRecords } =
@@ -92,10 +91,10 @@ const UploadRecordsList: FC<Props> = props => {
                             }}
                         >
                             <Box sx={{ flex: 1 }}>{t('allRecords')}:</Box>
-                            {uploadingRecords.length ? (
+                            {uploadingRecords?.length ? (
                                 <a
                                     rel="noreferrer"
-                                    href="http://cn.xray0.autox.ds"
+                                    href={PROGRESS_URL}
                                     target="_blank"
                                     style={{
                                         color: theme.palette.primary.light,
@@ -106,15 +105,15 @@ const UploadRecordsList: FC<Props> = props => {
                             ) : null}
                         </Box>
                         <RecordsList
-                            data={finishedRecords}
+                            data={finishedRecords || []}
                             type={'finished'}
                         ></RecordsList>
                         <RecordsList
-                            data={uploadingRecords}
+                            data={uploadingRecords || []}
                             type={'uploading'}
                         ></RecordsList>
                         <RecordsList
-                            data={waitingRecords}
+                            data={waitingRecords || []}
                             type={'waiting'}
                         ></RecordsList>
                     </Box>

@@ -12,7 +12,7 @@ describe('GridView', () => {
     it('should render disk name', () => {
         const data: slotInfoType[] = [
             {
-                slotId: 0,
+                slotId: '0',
                 slotBusId: 'xxx',
                 isEmpty: false,
                 diskInfo: {
@@ -24,7 +24,7 @@ describe('GridView', () => {
                     invalidMsg: '',
                     isMounted: true,
                     recommendedServerId: '',
-                    slotId: 0,
+                    slotId: '0',
                     updateTime: 100000,
                     updateTimeStr: '2021-11-01 11:11:11',
                     updateTimeShortStr: '11-01 11:11:11',

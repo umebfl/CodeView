@@ -220,7 +220,7 @@ const ListView = ({ data }: ViewPayloadType) => {
                                     }
                                 >
                                     <Box sx={{ display: 'inline-block' }}>
-                                        {row.diskInfo?.timeConsuming.length
+                                        {row.diskInfo?.timeConsuming?.length
                                             ? `${row.diskInfo?.timeConsuming}h`
                                             : '-'}
                                     </Box>

@@ -12,7 +12,7 @@ describe('ListView', () => {
     it('should render table ', () => {
         const data: slotInfoType[] = [
             {
-                slotId: 0,
+                slotId: '0',
                 slotBusId: 'xxx',
                 isEmpty: true,
             },
@@ -34,7 +34,7 @@ describe('ListView', () => {
     it('should render diskInfo ', () => {
         const data: slotInfoType[] = [
             {
-                slotId: 0,
+                slotId: '0',
                 slotBusId: 'xxx',
                 isEmpty: false,
                 diskInfo: {
@@ -42,10 +42,10 @@ describe('ListView', () => {
                     diskName: 'test diskName',
                     diskStatus: diskStatusEnum.DATA_UPLOADING,
                     diskStatusStr: '上传中',
-
+                    mountPoint: 'xxx',
                     invalidMsg: '',
                     recommendedServerId: '',
-                    slotId: 0,
+                    slotId: '0',
                     updateTime: 100000,
                     updateTimeStr: '2021-11-01 11:11:11',
                     updateTimeShortStr: '11-01 11:11:11',

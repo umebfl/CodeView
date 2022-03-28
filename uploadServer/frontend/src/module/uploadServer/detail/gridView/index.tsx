@@ -323,7 +323,7 @@ const DiskInfo = ({ data }: { data?: diskInfoType }) => {
                         >
                             <Box>
                                 耗时:{' '}
-                                {data?.timeConsuming.length
+                                {data?.timeConsuming?.length
                                     ? `${data?.timeConsuming}h`
                                     : '-'}
                             </Box>
