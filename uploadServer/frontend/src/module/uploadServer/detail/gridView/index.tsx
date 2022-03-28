@@ -166,6 +166,8 @@ const GridItem = ({ item }: { item: slotInfoType }) => {
                         ></Status>
                         <Box
                             sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
                                 margin: 1,
                             }}
                         >
@@ -375,6 +377,7 @@ const Status = ({
                         <Box
                             sx={{
                                 fontSize: 14,
+                                textAlign: 'center',
                             }}
                         >
                             {t(DiskStatusConfig[data].name as keyof langType)}

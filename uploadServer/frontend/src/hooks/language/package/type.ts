@@ -50,4 +50,5 @@ export interface langType {
     startUploadTime: string
     endUploadTime: string
     timeConsuming: string
+    viewProgress: string
 }

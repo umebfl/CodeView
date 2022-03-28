@@ -51,6 +51,7 @@ const lang: langType = {
     startUploadTime: '开始上传时间',
     endUploadTime: '结束上传时间',
     timeConsuming: '耗时',
+    viewProgress: '查看进度',
 }
 
 export default lang

@@ -71,6 +71,7 @@ const RecordsList: FC<{
 
 const UploadRecordsList: FC<Props> = props => {
     const t = useT()
+    const theme = useTheme()
     const { children, waitingRecords, uploadingRecords, finishedRecords } =
         props
 
@@ -85,9 +86,23 @@ const UploadRecordsList: FC<Props> = props => {
                             sx={{
                                 fontSize: 14,
                                 fontWeight: 'bold',
+                                display: 'flex',
+                                justifyContent: 'space-around',
                             }}
                         >
-                            {t('allRecords')}:
+                            <Box sx={{ flex: 1 }}>{t('allRecords')}:</Box>
+                            {uploadingRecords.length ? (
+                                <a
+                                    rel="noreferrer"
+                                    href="http://cn.xray0.autox.ds"
+                                    target="_blank"
+                                    style={{
+                                        color: theme.palette.primary.light,
+                                    }}
+                                >
+                                    {t('viewProgress')}
+                                </a>
+                            ) : null}
                         </Box>
                         <RecordsList
                             data={finishedRecords}
