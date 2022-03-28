@@ -40,6 +40,7 @@ const RecordsList: FC<{
                                 display: 'flex',
                                 flex: 1,
                                 alignItems: 'center',
+                                wordBreak: 'break-all',
                             }}
                         >
                             {record}
