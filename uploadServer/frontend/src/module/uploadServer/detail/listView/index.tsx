@@ -175,6 +175,9 @@ const ListView = ({ data }: ViewPayloadType) => {
                                         finishedRecords={
                                             row.diskInfo?.finishedRecords
                                         }
+                                        failedRecords={
+                                            row.diskInfo?.failedRecords
+                                        }
                                     >
                                         <Box>
                                             <LinearProgressWithLabel

@@ -43,7 +43,7 @@
     },
     "scripts": {
         "start": "react-scripts start",
-        "build": "rm -rf build && react-scripts build && tar cvf build.tar build",
+        "build": "rm -rf build && rm -rf build.tar && react-scripts build && tar cvf build.tar build",
         "server": "node ./data/mockServer.js",
         "test-ci": "CI=true react-scripts test --env=jsdom --coverage --ci --reporters=default --reporters=jest-junit",
         "test": "react-scripts test --coverage",

@@ -75,6 +75,7 @@ export interface diskInfoType {
     allRecords?: string[]
     waitingRecords?: string[]
     uploadingRecords?: string[]
+    failedRecords?: string[]
     finishedRecords?: string[]
 
     diskPlugTime?: string
