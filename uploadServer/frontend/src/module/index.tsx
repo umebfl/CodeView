@@ -2,7 +2,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import Box from '@mui/system/Box'
+import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
 
 import HomePage from 'src/module/homePage'
@@ -10,9 +10,12 @@ import UploadServer, {
     UploadServerList,
     UploadServerDetail,
 } from 'src/module/uploadServer'
+import Disk, { DiskList } from 'src/module/disk'
+
 import NoFound from 'src/module/noFound'
 import { RootState } from 'src/reducer/type'
 
+// TODO: google analysis
 function Router() {
     const theme = useTheme()
     const { rehydrated } = useSelector((state: RootState) => state._persist)
@@ -35,6 +38,9 @@ function Router() {
                                     path="detail/:id"
                                     element={<UploadServerDetail />}
                                 />
+                            </Route>
+                            <Route path="disk" element={<Disk />}>
+                                <Route index element={<DiskList />} />
                             </Route>
                             <Route path="*" element={<NoFound />} />
                         </Route>

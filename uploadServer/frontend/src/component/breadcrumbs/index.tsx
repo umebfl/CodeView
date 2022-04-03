@@ -33,8 +33,9 @@ const BreadcrumbsCmp = ({
 
     const handleBack = async () => {
         handleBeforeBack && (await handleBeforeBack())
-        const prevNode = data[data.length - 2] || data[0]
-        navigate(prevNode.link)
+        // const prevNode = data[data.length - 2] || data[0]
+        // navigate(prevNode.link)
+        navigate(-1)
     }
 
     useKeyPress('Backspace', e => {

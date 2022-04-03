@@ -1,7 +1,6 @@
 import React, { FC } from 'react'
 
 import { Provider } from 'react-redux'
-import { ThemeProvider } from '@mui/material/styles'
 
 import DefaultTheme from 'src/theme'
 import Router from 'src/module'
@@ -11,6 +10,7 @@ import SnackbarContainer from 'src/component/snackbar'
 import { Store } from 'src/reducer/type'
 
 import './app.css'
+import { ThemeProvider } from '@mui/material/styles'
 
 interface ContextType {
     children: any

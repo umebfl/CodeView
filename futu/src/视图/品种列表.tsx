@@ -258,7 +258,7 @@ const 品种列表 = () => {
                     },
                 },
                 {
-                    field: '连续90日数据',
+                    field: '90日-方向标的',
                     sortable: true,
                     width: CHART_WIDTH,
                     cellRenderer: (params: ValueFormatterParams) => {
@@ -275,7 +275,7 @@ const 品种列表 = () => {
                     },
                 },
                 {
-                    field: '连续270日数据',
+                    field: '270日-方向标的',
                     sortable: true,
                     width: CHART_WIDTH,
                     cellRenderer: (params: ValueFormatterParams) => {

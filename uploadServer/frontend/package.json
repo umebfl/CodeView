@@ -9,6 +9,7 @@
         "@emotion/styled": "^11.6.0",
         "@mui/icons-material": "^5.2.0",
         "@mui/material": "^5.2.2",
+        "@mui/x-data-grid": "^5.7.0",
         "@react-native-community/async-storage": "^1.12.1",
         "@rematch/core": "^2.2.0",
         "@testing-library/jest-dom": "^5.11.4",

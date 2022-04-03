@@ -56,7 +56,7 @@ export const 全品种日数据获取 = async (全品种列表: type_基础品�
                 JSON.stringify(日数据)
             )
 
-            await new Promise(resolve => setTimeout(resolve, 100))
+            await new Promise(resolve => setTimeout(resolve, 300))
 
             数据[品种.代码] = 日数据
             console.log(`${品种.代码}0合约日数据获取成功`)
@@ -127,7 +127,7 @@ export const 全品种连续合约分时数据获取 = async (
                 JSON.stringify(日数据)
             )
 
-            await new Promise(resolve => setTimeout(resolve, 100))
+            await new Promise(resolve => setTimeout(resolve, 300))
 
             数据[品种.代码] = 日数据
             console.log(`${合约}合约分时数据获取成功`)

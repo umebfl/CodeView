@@ -2,18 +2,19 @@ import React from 'react'
 
 import {
     Box,
+    LinearProgress,
     Paper,
     Table,
     TableContainer,
     TableHead,
     TableRow,
+    Tooltip,
     Typography,
-    useTheme,
 } from '@mui/material'
 import { path } from 'ramda'
 import CircleNotificationsOutlinedIcon from '@mui/icons-material/CircleNotificationsOutlined'
-import Tooltip from '@mui/material/Tooltip'
-import LinearProgress from '@mui/material/LinearProgress'
+import useTheme from '@mui/system/useTheme'
+import { Link } from 'react-router-dom'
 
 import {
     DefaultTableCellCell,
@@ -47,7 +48,6 @@ function LinearProgressWithLabel(props: any) {
 const ListView = ({ data }: ViewPayloadType) => {
     const theme = useTheme()
     const t = useT()
-    console.log(data)
 
     return (
         <TableContainer component={Paper}>
@@ -111,7 +111,18 @@ const ListView = ({ data }: ViewPayloadType) => {
                                 {row.slotBusId}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
-                                {row.diskInfo?.diskId || '-'}
+                                {row.diskInfo?.diskId ? (
+                                    <Link
+                                        to={'/disk'}
+                                        style={{
+                                            color: theme.palette.primary.dark,
+                                        }}
+                                    >
+                                        {row.diskInfo?.diskId}
+                                    </Link>
+                                ) : (
+                                    '-'
+                                )}
                             </DefaultTableCellCell>
                             <DefaultTableCellCell align="left">
                                 {row.diskInfo?.diskName || '-'}
