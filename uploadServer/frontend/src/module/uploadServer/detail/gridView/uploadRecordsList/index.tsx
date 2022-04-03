@@ -10,7 +10,7 @@ const PROGRESS_URL = 'https://szexa.xray.autox.tech'
 
 const RecordsList: FC<{
     data: string[]
-    type: 'finished' | 'waiting' | 'uploading'
+    type: 'finished' | 'failed' | 'waiting' | 'uploading'
 }> = ({ data, type }) => {
     const t = useT()
     const theme = useTheme()
@@ -53,6 +53,8 @@ const RecordsList: FC<{
                                         ? theme.palette.success.dark
                                         : type === 'uploading'
                                         ? theme.palette.primary.dark
+                                        : type === 'failed'
+                                        ? theme.palette.error.dark
                                         : theme.color.grey15,
                             }}
                         >
@@ -69,11 +71,17 @@ const UploadRecordsList: FC<{
     waitingRecords?: string[]
     uploadingRecords?: string[]
     finishedRecords?: string[]
+    failedRecords?: string[]
 }> = props => {
     const t = useT()
     const theme = useTheme()
-    const { children, waitingRecords, uploadingRecords, finishedRecords } =
-        props
+    const {
+        children,
+        waitingRecords,
+        uploadingRecords,
+        finishedRecords,
+        failedRecords,
+    } = props
 
     if (children) {
         return (
@@ -107,6 +115,10 @@ const UploadRecordsList: FC<{
                         <RecordsList
                             data={finishedRecords || []}
                             type={'finished'}
+                        ></RecordsList>
+                        <RecordsList
+                            data={failedRecords || []}
+                            type={'failed'}
                         ></RecordsList>
                         <RecordsList
                             data={uploadingRecords || []}
