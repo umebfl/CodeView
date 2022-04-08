@@ -13,7 +13,7 @@ import { RootState, Dispatch } from 'src/reducer/type'
 export const UploadServerList = List
 export const UploadServerDetail = Detail
 
-const INTERVAL_TIMEOUT = 1000 * 60
+export const INTERVAL_TIMEOUT = 1000 * 60
 
 const UploadServer = () => {
     const dispatch = useDispatch<Dispatch>()

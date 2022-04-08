@@ -8,10 +8,10 @@ const data: type_垃圾品种[] = [
         Code: 'SR',
         name: '白糖',
     },
-    {
-        Code: 'M',
-        name: '豆粕',
-    },
+    // {
+    //     Code: 'M',
+    //     name: '豆粕',
+    // },
     {
         Code: 'WR',
         name: '线材',
@@ -76,14 +76,18 @@ const data: type_垃圾品种[] = [
         Code: 'ZC',
         name: '动力煤',
     },
-    {
-        Code: 'PB',
-        name: '沪铅',
-    },
-    {
-        Code: 'CF',
-        name: '郑棉',
-    },
+    // {
+    //     Code: 'PB',
+    //     name: '沪铅',
+    // },
+    // {
+    //     Code: 'CF',
+    //     name: '郑棉',
+    // },
+    // {
+    //     Code: 'AG',
+    //     name: '白银',
+    // },
 ]
 
 export default data

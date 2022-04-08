@@ -1,13 +1,25 @@
 import Box from '@mui/material/Box'
 
-const QuickFilter = () => {
+import FilterBar from 'src/component/filterBar'
+
+export interface QuickFilterProps {
+    value: string
+    handleChange: (val: string) => void
+}
+
+const QuickFilter = ({ value, handleChange }: QuickFilterProps) => {
     return (
         <Box
             sx={{
-                height: 100,
+                height: 60,
             }}
         >
-            QuickFilter
+            <FilterBar
+                inputProps={{
+                    placeholder: 'Filter any column...',
+                }}
+                handleChange={handleChange}
+            />
         </Box>
     )
 }

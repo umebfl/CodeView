@@ -16,6 +16,7 @@ export interface type_基础品种信息 {
     远近合约差价比例: number
     历史价位: number
     关注合约?: string
+    关注类型?: '可持仓' | '参考'
     指定合约价位: number
     可持仓手数: number
     可持仓金额: number

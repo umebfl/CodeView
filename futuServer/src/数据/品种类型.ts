@@ -8,4 +8,5 @@ export default {
     BU: '化工',
     FU: '能源',
     PB: '有色金属',
+    M: '饲料',
 }

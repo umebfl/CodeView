@@ -6,6 +6,7 @@ import { globalLoading } from 'src/reducer/globalLoading'
 import { snackbar } from 'src/reducer/snackbar'
 import { userConfig } from 'src/reducer/userConfig'
 import { language } from 'src/reducer/language'
+import { disk } from 'src/reducer/disk'
 
 export interface RootModel extends Models<RootModel> {
     uploadServer: typeof uploadServer
@@ -13,6 +14,7 @@ export interface RootModel extends Models<RootModel> {
     snackbar: typeof snackbar
     userConfig: typeof userConfig
     language: typeof language
+    disk: typeof disk
 }
 
 export const models: RootModel = {
@@ -21,4 +23,5 @@ export const models: RootModel = {
     snackbar,
     userConfig,
     language,
+    disk,
 }

@@ -7,13 +7,27 @@ import List from 'src/module/disk/list'
 import { Box } from '@mui/system'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import { RootState, Dispatch } from 'src/reducer/type'
+import { INTERVAL_TIMEOUT } from 'src/module/uploadServer'
 
 export const DiskList = List
 
 const Disk = () => {
     const dispatch = useDispatch<Dispatch>()
     const { lang } = useSelector((state: RootState) => state.language)
+
+    useEffect(() => {
+        dispatch.disk.initData({})
+
+        const timer = setInterval(() => {
+            dispatch.disk.initData({})
+        }, INTERVAL_TIMEOUT)
+
+        return () => {
+            clearInterval(timer)
+        }
+    }, [lang, dispatch])
 
     return (
         <Box

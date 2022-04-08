@@ -7,17 +7,22 @@ const path = require('path')
 import { type_基础品种信息 } from '../品种信息/全品种列表'
 
 const 单品种日数据获取 = async (合约: string) => {
-    const 请求 = await fetch(
-        `https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var%20_fsdata=/InnerFuturesNewService.getDailyKLine?symbol=${合约}`
-    )
-    const 数据 = await 请求.text()
-    const 日列表字符串_特殊 = match(/\[.*\]/)(数据)
-    const 日列表字符串 = 日列表字符串_特殊.length
-        ? replace('\\', '')(日列表字符串_特殊[0])
-        : ''
+    try {
+        const 请求 = await fetch(
+            `https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var%20_fsdata=/InnerFuturesNewService.getDailyKLine?symbol=${合约}`
+        )
+        const 数据 = await 请求.text()
+        const 日列表字符串_特殊 = match(/\[.*\]/)(数据)
+        const 日列表字符串 = 日列表字符串_特殊.length
+            ? replace('\\', '')(日列表字符串_特殊[0])
+            : ''
 
-    const 结果 = JSON.parse(日列表字符串)
-    return 结果
+        const 结果 = JSON.parse(日列表字符串)
+        return 结果
+    } catch (error) {
+        console.error(error)
+    }
+    return []
 }
 
 export const 全品种日数据获取 = async (全品种列表: type_基础品种信息[]) => {
@@ -67,16 +72,21 @@ export const 全品种日数据获取 = async (全品种列表: type_基础品�
 }
 
 const 单品种分时数据获取 = async (合约: string) => {
-    const 请求 = await fetch(
-        `https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var%20_fsdata=/InnerFuturesNewService.getMinLine?symbol=${合约}`
-    )
-    const 数据 = await 请求.text()
-    const 分时列表字符串_特殊 = match(/\[.*\]/)(数据)
-    const 结果 = 分时列表字符串_特殊.length
-        ? JSON.parse(分时列表字符串_特殊[0])
-        : []
+    try {
+        const 请求 = await fetch(
+            `https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var%20_fsdata=/InnerFuturesNewService.getMinLine?symbol=${合约}`
+        )
+        const 数据 = await 请求.text()
+        const 分时列表字符串_特殊 = match(/\[.*\]/)(数据)
+        const 结果 = 分时列表字符串_特殊.length
+            ? JSON.parse(分时列表字符串_特殊[0])
+            : []
 
-    return 结果
+        return 结果
+    } catch (error) {
+        console.error(error)
+    }
+    return []
 }
 
 export const 全品种连续合约分时数据获取 = async (

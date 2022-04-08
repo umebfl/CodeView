@@ -76,7 +76,7 @@ const 获取全品种列表 = () => {
         return 品种.保证金比例 < 25
     })(过滤后品种)
 
-    return 过滤保证金比例过高的品种列表
+    return 过滤后品种
 }
 
 export interface type_基础品种信息 {
@@ -91,6 +91,7 @@ export interface type_基础品种信息 {
     远近合约差价: number
     历史价位: number
     关注合约?: string
+    关注类型?: '可持仓' | '参考'
     指定合约价位?: number
     可持仓手数?: number
     可持仓金额?: number

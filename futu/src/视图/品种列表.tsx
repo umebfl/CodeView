@@ -12,7 +12,7 @@ import {
     获取指定品种的连续合约日数据,
     获取最新品种数据,
 } from 'src/数据/品种数据'
-import { map, reduce, sort, takeLast } from 'ramda'
+import { filter, map, reduce, sort, takeLast } from 'ramda'
 
 const CHART_WIDTH = 180
 const CHART_HEIGHT = 80
@@ -127,9 +127,44 @@ const 品种列表 = () => {
                 //         return params.rowIndex + 1
                 //     },
                 // },
+                // {
+                //     field: '关注类型',
+                //     width: 140,
+                //     sortable: true,
+                // },
                 {
                     field: '名称',
-                    width: 100,
+                    width: 120,
+                    cellRenderer: (params: any) => {
+                        const 数据: type_基础品种信息 = params.data
+                        return (
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    justifyContent: 'space-around',
+                                    flexDirection: 'column',
+                                    lineHeight: 1.5,
+                                }}
+                            >
+                                <Box
+                                    sx={{
+                                        fontWeight: 'bold',
+                                        color:
+                                            数据.关注类型 === '可持仓'
+                                                ? 'blue'
+                                                : 'grey',
+                                    }}
+                                >
+                                    {数据.名称}
+                                </Box>
+                                <Box>{数据.杠杆}倍</Box>
+                                <Box>
+                                    {`${数据.可持仓手数} /
+                                    ${(数据.可持仓金额 / 10000).toFixed(1)}w`}
+                                </Box>
+                            </Box>
+                        )
+                    },
                 },
                 // {
                 //     field: '代码',
@@ -207,7 +242,7 @@ const 品种列表 = () => {
                 //     },
                 // },
                 {
-                    field: '连续5日数据',
+                    field: '5日-减仓25%',
                     sortable: true,
                     width: CHART_WIDTH,
                     cellRenderer: (params: ValueFormatterParams) => {
@@ -224,7 +259,7 @@ const 品种列表 = () => {
                     },
                 },
                 {
-                    field: '连续10日数据',
+                    field: '10日-减仓50%',
                     sortable: true,
                     width: CHART_WIDTH,
                     cellRenderer: (params: ValueFormatterParams) => {
@@ -241,7 +276,7 @@ const 品种列表 = () => {
                     },
                 },
                 {
-                    field: '连续30日数据',
+                    field: '30日-减仓100%',
                     sortable: true,
                     width: CHART_WIDTH,
                     cellRenderer: (params: ValueFormatterParams) => {
@@ -358,7 +393,7 @@ const 品种列表 = () => {
                                 <Box
                                     sx={{
                                         width: '100%',
-                                        height: 30,
+                                        height: 20,
                                         background: 'black',
                                         border: '1px solid #EEE',
                                         color: 'white',
@@ -394,7 +429,7 @@ const 品种列表 = () => {
                                     <Box
                                         sx={{
                                             position: 'absolute',
-                                            top: -3,
+                                            top: -10,
                                             left: 0,
                                             width: '100%',
                                             height: '100%',
@@ -410,7 +445,7 @@ const 品种列表 = () => {
                                 <Box
                                     sx={{
                                         width: '100%',
-                                        height: 30,
+                                        height: 20,
                                         background: 'black',
                                         border: '1px solid #EEE',
                                         color: 'white',
@@ -447,7 +482,7 @@ const 品种列表 = () => {
                                     <Box
                                         sx={{
                                             position: 'absolute',
-                                            top: -5,
+                                            top: -10,
                                             left: 0,
                                             width: '100%',
                                             height: '100%',
@@ -533,13 +568,24 @@ const 品种列表 = () => {
 
     const 设置列表_全品种列表 = async () => {
         const 最新品种数据 = await 获取最新品种数据()
-        setRowData(最新品种数据)
+
+        const 可持仓列表 = filter((a: any) => {
+            return a.关注类型 === '可持仓'
+        })(最新品种数据)
+
+        const 参考列表 = filter((a: any) => {
+            return a.关注类型 === '参考'
+        })(最新品种数据)
+
+        const 最新品种列表 = [...可持仓列表, ...参考列表]
+
+        setRowData(最新品种列表)
 
         // 获取连续合约和关注合约的日数据和分时数据
         let 追加记录数据: any = []
 
-        for (let i = 0; i < 最新品种数据.length; i++) {
-            const 品种 = 最新品种数据[i]
+        for (let i = 0; i < 最新品种列表.length; i++) {
+            const 品种 = 最新品种列表[i]
             const code = 品种.代码
             const 请求 = await fetch(`/ping_zhong_ri_feng_shi_shu_ju/${code}`)
             const { 状态, 数据 } = await 请求.json()
@@ -568,7 +614,7 @@ const 品种列表 = () => {
                     takeLast(60)(修正_连续合约分时60数据),
                     `fengshi60min-${code}`,
                     0.1,
-                    1
+                    0.2
                 )
 
                 // const 修正_关注合约分时数据 = map((item: any) => {
@@ -685,7 +731,7 @@ const 品种列表 = () => {
         设置总可持仓金额(
             reduce((count, 品种: type_基础品种信息) => {
                 return count + 品种.可持仓金额
-            }, 0)(最新品种数据)
+            }, 0)(可持仓列表)
         )
     }
 
@@ -699,12 +745,15 @@ const 品种列表 = () => {
     return (
         <Box
             className="ag-theme-alpine"
-            sx={{ height: '85vh', width: '98%', margin: '5px 1%' }}
+            sx={{ height: '95vh', width: '98%', margin: '5px 1%' }}
         >
             <AgGridReact
                 rowData={rowData}
                 columnDefs={columnDefs}
-                rowHeight={140}
+                defaultColDef={{
+                    sortable: true,
+                }}
+                rowHeight={100}
                 getRowStyle={(params: RowClassParams) => {
                     return params.rowIndex % 2
                         ? { backgroundColor: '#EEE' }

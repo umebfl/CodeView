@@ -4,6 +4,10 @@ export interface type_同类品种 {
 }
 
 const data: type_同类品种[] = [
+    // {
+    //     Code: 'FU',
+    //     name: '燃油',
+    // },
     {
         Code: 'OI',
         name: '菜籽油',

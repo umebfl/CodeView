@@ -5,13 +5,23 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import { useTheme } from '@mui/material/styles'
 import Input from '@mui/material/Input'
 import InputAdornment from '@mui/material/InputAdornment'
+import { useDebounceFn } from 'ahooks'
 
 import { payloadType } from 'src/component/filterBar/type'
 
-const FilterBar = ({ right, handleChange, inputProps }: payloadType) => {
+const FilterBar = ({ value, right, handleChange, inputProps }: payloadType) => {
     const theme = useTheme()
-    const [searchText, setSearchText] = useState('')
+    const [searchText, setSearchText] = useState(value || '')
     const inputRef = useRef(null)
+
+    const { run } = useDebounceFn(
+        (text: string) => {
+            handleChange(text)
+        },
+        {
+            wait: 500,
+        }
+    )
 
     return (
         <Box
@@ -24,18 +34,19 @@ const FilterBar = ({ right, handleChange, inputProps }: payloadType) => {
             }}
         >
             <Input
+                autoComplete={'true'}
                 size={'small'}
                 // ref={inputRef}
                 inputProps={{
-                    maxLength: 50,
+                    maxLength: 25,
                     style: { paddingBottom: 0 },
                     ref: inputRef,
                 }}
                 value={searchText}
-                onChange={e => {
+                onChange={(e: any) => {
                     const text = trim(e.target.value)
                     setSearchText(text)
-                    handleChange(text)
+                    run(text)
                 }}
                 // onFocus={() => {
                 //     // inputRef?.current?.select()

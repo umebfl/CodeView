@@ -49,9 +49,9 @@ const 下载数据 = async () => {
         return !!品种.关注合约
     })(关注品种信息列表)
 
-    连续合约日数据存储 = await 全品种日数据获取(关注品种信息列表)
+    连续合约日数据存储 = await 全品种日数据获取(关注品种列表)
     连续合约分时数据存储 = await 全品种连续合约分时数据获取(
-        关注品种信息列表,
+        关注品种列表,
         '连续'
     )
 
@@ -83,6 +83,15 @@ export default (app: any) => {
         const 关注品种列表 = filter((品种: type_基础品种信息) => {
             return !!品种.关注合约
         })(关注品种信息列表)
+        console.log(关注品种列表)
+
+        const 可持仓品种列表 = filter((品种: type_基础品种信息) => {
+            return 品种.关注类型 === '可持仓'
+        })(关注品种列表)
+
+        const 参考品种列表 = filter((品种: type_基础品种信息) => {
+            return 品种.关注类型 === '参考'
+        })(关注品种列表)
 
         if (
             最后更新时间 === null ||
@@ -150,6 +159,7 @@ export default (app: any) => {
         // 获取最新价格
         const 全品种列表_最新价格 = map((品种: type_基础品种信息) => {
             const 品种分时数据 = 连续合约分时数据存储[品种.代码]
+            console.log(品种.代码, 品种分时数据?.length)
 
             if (品种分时数据.length) {
                 const 最新主力价格 = parseFloat(
@@ -171,7 +181,7 @@ export default (app: any) => {
                 最新主力价格: 0,
                 杠杆: parseFloat((1 / 品种.保证金比例).toFixed(2)),
             }
-        })(关注品种信息列表)
+        })(关注品种列表)
 
         // 加工 -指定合约价格
         const 指定合约列表 = map((品种: type_基础品种信息) => {
@@ -191,7 +201,7 @@ export default (app: any) => {
                 )
 
                 const 可持仓手数 = Math.floor(
-                    总投入 / 关注品种列表.length / 一手保证金
+                    总投入 / 可持仓品种列表.length / 一手保证金
                 )
 
                 const 可持仓金额 = 可持仓手数 * 一手保证金
@@ -215,7 +225,7 @@ export default (app: any) => {
 
         // 过滤保证金过高的品种
         const 过滤保证金过高的品种列表 = filter((品种: type_基础品种信息) => {
-            return 品种.一手保证金 < 20000
+            return 品种.一手保证金 < 1000000
         })(指定合约列表)
 
         // 加工

@@ -4,7 +4,12 @@ import React from 'react'
 import Box from '@mui/material/Box'
 import { useDispatch, useSelector } from 'react-redux'
 import Tooltip from '@mui/material/Tooltip'
-import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
+import {
+    GridColDef,
+    GridEditCellProps,
+    GridPreProcessEditCellProps,
+    GridValueGetterParams,
+} from '@mui/x-data-grid'
 import { Link, useNavigate } from 'react-router-dom'
 import useTheme from '@mui/system/useTheme'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
@@ -19,6 +24,7 @@ const DiskList = () => {
     const theme = useTheme()
     const navigate = useNavigate()
     const t = useT()
+    const { data } = useSelector((state: RootState) => state.disk)
 
     const handleRefresh = () => {}
 
@@ -40,6 +46,16 @@ const DiskList = () => {
             editable: true,
             type: 'singleSelect',
             valueOptions: ['在库', '丢失', '损坏'],
+            preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
+                dispatch.disk.changeDiskInventoryStatus({
+                    diskID: params.row.id,
+                    status: params.props.value,
+                })
+
+                return {
+                    value: params.props.value,
+                }
+            },
             renderCell: (params: GridValueGetterParams) => (
                 <Box
                     sx={{
@@ -211,120 +227,6 @@ const DiskList = () => {
         },
     ]
 
-    const oriData = [
-        {
-            id: 1,
-            diskID: 'S6P7SDFDS66789L',
-            diskName: 'nvme0n4',
-            serverID: 'superxray-sz-006',
-            slotId: 4,
-            mountPoint: '/roadtest_disks/nvme3n2_A0764CB0',
-            inventoryStatus: '在库',
-            mountStatus: '已挂载',
-            LastMountTime: '2022-03-25',
-            diskStatus: 'WAITING_TO_UPLOAD',
-            uploadProgress: 20,
-
-            diskPlugTime: '2022-03-25 13:00:00',
-            startUploadTime: '2022-03-25 14:00:00',
-            endUploadTime: '',
-
-            vehicleIds: [
-                'byd-cn-0',
-                'byd-cn-2',
-                'byd-cn-3',
-                'byd-cn-4',
-                'byd-cn-5',
-            ].join(','),
-            allRecords: [
-                'byd-cn-9_20210730_2021-07-30-15-19-11',
-                'byd-cn-9_20210730_2021-07-30-15-19-12',
-                'byd-cn-9_20210730_2021-07-30-15-19-13',
-                'byd-cn-9_20210730_2021-07-30-15-19-14',
-            ],
-            waitingRecords: ['byd-cn-9_20210730_2021-07-30-15-19-14'],
-            uploadingRecords: ['byd-cn-9_20210730_2021-07-30-15-19-12'],
-            finishedRecords: ['byd-cn-9_20210730_2021-07-30-15-19-11'],
-
-            timeConsuming: 2,
-        },
-        {
-            id: 2,
-            diskID: 'S6P7SDFDS66789L2',
-            diskName: 'nvme0n42',
-            serverID: 'superxray-sz-0062',
-            slotId: 5,
-            mountPoint: '/roadtest_disks/nvme3n2_A0764CB02',
-            inventoryStatus: '在库',
-            mountStatus: '已挂载',
-            LastMountTime: '2022-03-26',
-            diskStatus: 'WAITING_TO_UPLOAD',
-            uploadProgress: 22,
-
-            diskPlugTime: '2022-03-25 14:00:00',
-            startUploadTime: '2022-03-25 15:00:00',
-            endUploadTime: '',
-
-            vehicleIds: [
-                'byd-cn-1',
-                'byd-cn-2',
-                'byd-cn-3',
-                'byd-cn-4',
-                'byd-cn-5',
-            ].join(','),
-            allRecords: [
-                'byd-cn-9_20210730_2021-07-30-15-19-11',
-                'byd-cn-9_20210730_2021-07-30-15-19-12',
-                'byd-cn-9_20210730_2021-07-30-15-19-13',
-                'byd-cn-9_20210730_2021-07-30-15-19-14',
-            ],
-            waitingRecords: ['byd-cn-9_20210730_2021-07-30-15-19-14'],
-            uploadingRecords: ['byd-cn-9_20210730_2021-07-30-15-19-12'],
-            finishedRecords: ['byd-cn-9_20210730_2021-07-30-15-19-11'],
-
-            timeConsuming: 3,
-        },
-
-        {
-            id: 3,
-            diskID: 'S6P7SDFDS66789L2',
-            diskName: 'nvme0n42',
-            serverID: 'superxray-sz-0062',
-            slotId: 5,
-            mountPoint: '/roadtest_disks/nvme3n2_A0764CB02',
-            inventoryStatus: '丢失',
-            mountStatus: '未挂载',
-            LastMountTime: '2022-03-26',
-            diskStatus: 'WAITING_TO_UPLOAD',
-            uploadProgress: 22,
-
-            diskPlugTime: '2022-03-25 14:00:00',
-            startUploadTime: '2022-03-25 15:00:00',
-            endUploadTime: '',
-
-            vehicleIds: [
-                'byd-cn-1',
-                'byd-cn-2',
-                'byd-cn-3',
-                'byd-cn-4',
-                'byd-cn-5',
-            ].join(','),
-            allRecords: [
-                'byd-cn-9_20210730_2021-07-30-15-19-11',
-                'byd-cn-9_20210730_2021-07-30-15-19-12',
-                'byd-cn-9_20210730_2021-07-30-15-19-13',
-                'byd-cn-9_20210730_2021-07-30-15-19-14',
-            ],
-            waitingRecords: ['byd-cn-9_20210730_2021-07-30-15-19-14'],
-            uploadingRecords: ['byd-cn-9_20210730_2021-07-30-15-19-12'],
-            finishedRecords: ['byd-cn-9_20210730_2021-07-30-15-19-11'],
-
-            timeConsuming: 3,
-        },
-    ]
-
-    const rows = oriData
-
     return (
         <Box
             sx={{
@@ -345,7 +247,27 @@ const DiskList = () => {
                 desc={t('list')}
             ></Breadcrumbs>
 
-            <Grid rows={rows} columns={columns} quickFilter={true} />
+            <Grid
+                rows={data}
+                columns={columns}
+                quickFilter={true}
+                initialState={{
+                    sorting: {
+                        sortModel: [{ field: 'LastMountTime', sort: 'desc' }],
+                    },
+                    filter: {
+                        filterModel: {
+                            items: [
+                                {
+                                    columnField: 'mountStatus',
+                                    operatorValue: 'is',
+                                    value: '已挂载',
+                                },
+                            ],
+                        },
+                    },
+                }}
+            />
         </Box>
     )
 }

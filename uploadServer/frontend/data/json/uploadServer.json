@@ -5700,7 +5700,7 @@
                     }
                 ],
                 "totalSlotsNum": 24,
-                "emptySlotsNum": 9,
+                "emptySlotsNum": 10,
                 "formattedDisksNum": 1
             },
             {
@@ -5709,8 +5709,8 @@
                 "isRunning": true,
                 "slotInfos": [],
                 "totalSlotsNum": 24,
-                "emptySlotsNum": 9,
-                "formattedDisksNum": 1
+                "emptySlotsNum": 24,
+                "formattedDisksNum": 2
             }
         ]
     }

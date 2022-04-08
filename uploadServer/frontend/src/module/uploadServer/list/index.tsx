@@ -8,7 +8,7 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { useTheme } from '@mui/material/styles'
 import Button from '@mui/material/Button'
-import { filter, includes, toLower } from 'ramda'
+import { filter, includes, map, toLower } from 'ramda'
 
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -26,6 +26,11 @@ import {
 import { uploadServerType } from 'src/reducer/uploadServer/type'
 import { useT } from 'src/hooks/language'
 import { langType } from 'src/hooks/language/package/type'
+import Grid from 'src/component/grid'
+import {
+    GridValueFormatterParams,
+    GridValueGetterParams,
+} from '@mui/x-data-grid'
 
 const UploadServerList: FC = () => {
     const theme = useTheme()
@@ -45,6 +50,130 @@ const UploadServerList: FC = () => {
             includesText(item.operationTips)
         )
     })(data)
+
+    const columns = [
+        {
+            field: 'uploadServerId',
+            headerName: 'ID',
+            width: 180,
+            type: 'string',
+            sortable: true,
+            renderCell: (params: GridValueGetterParams) => (
+                <Box
+                    sx={{
+                        overflow: 'hidden',
+                    }}
+                >
+                    <Link
+                        to={
+                            params.row.isRunning
+                                ? `detail/${params.row.uploadServerId}`
+                                : ''
+                        }
+                        style={{
+                            textDecoration: 'none',
+                            color: theme.palette.primary.dark,
+                        }}
+                    >
+                        {params.row.uploadServerId}
+                    </Link>
+                </Box>
+            ),
+        },
+        {
+            field: 'isRunningStr',
+            headerName: t('runStatus'),
+            width: 180,
+            type: 'string',
+            sortable: true,
+            valueGetter: (params: GridValueGetterParams) => {
+                return t(params.row.isRunningStr as keyof langType)
+            },
+            renderCell: (params: GridValueGetterParams) => (
+                <Box
+                    sx={{
+                        color: params.row.isRunning
+                            ? theme.palette.success.dark
+                            : theme.palette.error.dark,
+                    }}
+                >
+                    {t(params.row.isRunningStr as keyof langType)}
+                </Box>
+            ),
+        },
+        {
+            field: 'totalOfSlots',
+            headerName: t('totalOfSlots'),
+            width: 180,
+            type: 'number',
+            sortable: true,
+            description: '',
+            valueGetter: (params: GridValueGetterParams) => {
+                return `${params.row.totalSlotsNum}`
+            },
+            renderCell: (params: GridValueGetterParams) =>
+                params.row.isRunning ? params.row.totalSlotsNum : '-',
+        },
+        {
+            field: 'completed',
+            headerName: t('completed'),
+            width: 180,
+            type: 'number',
+            sortable: true,
+            valueGetter: (params: GridValueGetterParams) => {
+                return params.row.formattedDisksNum
+            },
+            renderCell: (params: GridValueGetterParams) =>
+                params.row.isRunning ? params.row.formattedDisksNum : '-',
+        },
+        {
+            field: 'used',
+            headerName: '使用中插槽数',
+            width: 180,
+            type: 'number',
+            sortable: true,
+            valueGetter: (params: GridValueGetterParams) => {
+                return `${params.row.totalSlotsNum - params.row.emptySlotsNum}`
+            },
+            renderCell: (params: GridValueGetterParams) =>
+                params.row.isRunning
+                    ? `${params.row.totalSlotsNum - params.row.emptySlotsNum}`
+                    : '-',
+        },
+        {
+            field: 'emptySlotsNum',
+            headerName: t('emptySlots'),
+            width: 180,
+            type: 'number',
+            sortable: true,
+            valueGetter: (params: GridValueGetterParams) => {
+                return `${params.row.emptySlotsNum}`
+            },
+            renderCell: (params: GridValueGetterParams) =>
+                params.row.isRunning ? params.row.emptySlotsNum : '-',
+        },
+        {
+            field: 'uploadServerLocation',
+            headerName: t('position'),
+            width: 180,
+            type: 'string',
+            sortable: true,
+        },
+        {
+            field: 'operationTips',
+            headerName: t('operationTips'),
+            width: 180,
+            type: 'string',
+            sortable: true,
+        },
+    ]
+
+    const transData = map((row: uploadServerType) => {
+        return {
+            id: row.uploadServerId,
+            ...row,
+        }
+    })
 
     return (
         <Box
@@ -66,145 +195,16 @@ const UploadServerList: FC = () => {
                 desc={t('list')}
             ></Breadcrumbs>
 
-            <FilterBar
-                inputProps={{
-                    placeholder: `ID/${t('runStatus')}/${t('position')}/${t(
-                        'operationTips'
-                    )}`,
+            <Grid
+                rows={transData(data)}
+                columns={columns}
+                quickFilter={true}
+                initialState={{
+                    sorting: {
+                        sortModel: [{ field: 'uploadServerId', sort: 'asc' }],
+                    },
                 }}
-                handleChange={setSearchText}
             />
-
-            <TableContainer component={Paper}>
-                <Table stickyHeader>
-                    <TableHead>
-                        <TableRow>
-                            <DefaultTableCellHeaderCell align="center">
-                                {t('S/N')}
-                            </DefaultTableCellHeaderCell>
-                            <DefaultTableCellHeaderCell align="center">
-                                ID
-                            </DefaultTableCellHeaderCell>
-                            <DefaultTableCellHeaderCell align="center">
-                                {t('runStatus')}
-                            </DefaultTableCellHeaderCell>
-                            <DefaultTableCellHeaderCell width={100}>
-                                {t('emptySlots')}
-                            </DefaultTableCellHeaderCell>
-                            <DefaultTableCellHeaderCell
-                                align="center"
-                                width={100}
-                            >
-                                {t('completed')}
-                            </DefaultTableCellHeaderCell>
-                            <DefaultTableCellHeaderCell
-                                align="center"
-                                width={100}
-                            >
-                                {t('totalOfSlots')}
-                            </DefaultTableCellHeaderCell>
-                            <DefaultTableCellHeaderCell align="center">
-                                {t('position')}
-                            </DefaultTableCellHeaderCell>
-                            <DefaultTableCellHeaderCell align="center">
-                                {t('operationTips')}
-                            </DefaultTableCellHeaderCell>
-                            <DefaultTableCellHeaderCell align="center">
-                                {t('operate')}
-                            </DefaultTableCellHeaderCell>
-                        </TableRow>
-                    </TableHead>
-                    <DefaultTableBody>
-                        {filterData.map((row, index) => (
-                            <DefaultTableRow key={row.uploadServerId}>
-                                <DefaultTableCellCell align="center">
-                                    {index + 1}
-                                </DefaultTableCellCell>
-                                <DefaultTableCellCell
-                                    align="center"
-                                    sortDirection={'desc'}
-                                >
-                                    <Link
-                                        to={
-                                            row.isRunning
-                                                ? `detail/${row.uploadServerId}`
-                                                : ''
-                                        }
-                                        style={{
-                                            textDecoration: 'none',
-                                        }}
-                                    >
-                                        <Box
-                                            sx={{
-                                                color: theme.color.grey15,
-                                                ': hover': {
-                                                    color: theme.color.grey20,
-                                                },
-                                            }}
-                                        >
-                                            {row.uploadServerId}
-                                        </Box>
-                                    </Link>
-                                </DefaultTableCellCell>
-                                <DefaultTableCellCell align="center">
-                                    <Box
-                                        sx={{
-                                            color: row.isRunning
-                                                ? theme.palette.success.dark
-                                                : theme.palette.error.dark,
-                                        }}
-                                    >
-                                        {t(row.isRunningStr as keyof langType)}
-                                    </Box>
-                                </DefaultTableCellCell>
-                                <DefaultTableCellCell
-                                    component="th"
-                                    scope="row"
-                                >
-                                    {row.isRunning ? row.emptySlotsNum : '-'}
-                                </DefaultTableCellCell>
-                                <DefaultTableCellCell align="center">
-                                    {row.isRunning
-                                        ? `${row.formattedDisksNum} /${' '}
-                                        ${
-                                            row.totalSlotsNum -
-                                            row.emptySlotsNum
-                                        }`
-                                        : '-'}
-                                </DefaultTableCellCell>
-                                <DefaultTableCellCell align="center">
-                                    {row.isRunning ? row.totalSlotsNum : '-'}
-                                </DefaultTableCellCell>
-                                <DefaultTableCellCell align="center">
-                                    {row.uploadServerLocation}
-                                </DefaultTableCellCell>
-                                <DefaultTableCellCell align="center">
-                                    {row.operationTips}
-                                </DefaultTableCellCell>
-                                <DefaultTableCellCell align="center">
-                                    {row.isRunning ? (
-                                        <Button
-                                            size="small"
-                                            variant="text"
-                                            onClick={() =>
-                                                navigate(
-                                                    `detail/${row.uploadServerId}`
-                                                )
-                                            }
-                                        >
-                                            {t('viewMore')}
-                                        </Button>
-                                    ) : null}
-                                </DefaultTableCellCell>
-                            </DefaultTableRow>
-                        ))}
-                    </DefaultTableBody>
-
-                    {filterData.length > 0 && (
-                        <NoMoreDataCell cellColSpan={9} />
-                    )}
-                </Table>
-            </TableContainer>
         </Box>
     )
 }
