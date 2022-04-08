@@ -31,8 +31,6 @@ const UploadServer = () => {
         }
     }, [lang, dispatch])
 
-    console.log('xxx')
-
     return (
         <Box
             sx={{

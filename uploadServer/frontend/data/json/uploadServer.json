@@ -14,7 +14,7 @@
                         "isEmpty": false,
                         "diskInfo": {
                             "isMounted": true,
-                            "diskId": "S6P7NG0R867852L",
+                            "diskId": "S6P7NG0R867852L111",
                             "diskName": "nvme0n0",
                             "slotId": 0,
                             "diskStatus": "WAITING_TO_UPLOAD",
@@ -70,7 +70,7 @@
                         "isEmpty": false,
                         "diskInfo": {
                             "isMounted": true,
-                            "diskId": "S6P7SDFDS66789L",
+                            "diskId": "S6P7SDFDS66789L212",
                             "diskName": "nvme0n4",
                             "slotId": 4,
                             "diskStatus": "WAITING_TO_UPLOAD",
@@ -105,7 +105,7 @@
                         "isEmpty": false,
                         "diskInfo": {
                             "isMounted": true,
-                            "diskId": "ASDF8IO88899SDFG",
+                            "diskId": "ASDF8IO88899SDFG212",
                             "diskName": "nvme0n5",
                             "slotId": 5,
                             "diskStatus": "DATA_UPLOADING",
@@ -149,7 +149,7 @@
                         "isEmpty": false,
                         "diskInfo": {
                             "isMounted": true,
-                            "diskId": "DF098709870SDG897",
+                            "diskId": "DF098709870SDG8973232",
                             "diskName": "nvme0n7",
                             "slotId": 7,
                             "diskStatus": "DATA_UPLOADING",
@@ -184,7 +184,7 @@
                         "isEmpty": false,
                         "diskInfo": {
                             "isMounted": true,
-                            "diskId": "SDGF789798789DSG87",
+                            "diskId": "SDGF789798789DSG873232",
                             "diskName": "nvme0n8",
                             "slotId": 8,
                             "diskStatus": "DATA_UPLOAD_FAILED",
@@ -225,7 +225,7 @@
                         "isEmpty": false,
                         "diskInfo": {
                             "isMounted": true,
-                            "diskId": "SDA76897898SF87897",
+                            "diskId": "SDA76897898SF878973232",
                             "diskName": "nvme0n9",
                             "slotId": 9,
                             "diskStatus": "DATA_UPLOADED",
@@ -286,7 +286,7 @@
                         "isEmpty": false,
                         "diskInfo": {
                             "isMounted": true,
-                            "diskId": "GJHF766969DS8979898",
+                            "diskId": "GJHF766969DS8979898323",
                             "diskName": "nvme0n13",
                             "slotId": 13,
                             "diskStatus": "FORMATTED",
@@ -398,13 +398,13 @@
                         "isEmpty": false,
                         "diskInfo": {
                             "isMounted": true,
-                            "diskId": "DSA7677669879S8798S08",
+                            "diskId": "DSA7677669879S8798S081",
                             "diskName": "nvme0n21",
                             "slotId": 21,
                             "diskStatus": "DATA_UPLOADING",
                             "updateTime": 1638264104.0,
                             "invalidMsg": "",
-                            "vehicleIds": ["byd-cn-21"],
+                            "vehicleIds": ["byd-cn-21", "byd-cn-222"],
                             "wrongServer": false,
                             "recommendedServerId": ""
                         }

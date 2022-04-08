@@ -62,7 +62,7 @@ const filterRows = (payload: filterRowsProps) => {
                 val = item[col.field]
             }
 
-            if (contains(quickFilterText)(val)) {
+            if (contains(quickFilterText)(val || '')) {
                 rv = true
                 break
             }
@@ -116,7 +116,13 @@ const Grid: FC<GridProps> = props => {
                 localeText={
                     localText.components.MuiDataGrid.defaultProps.localeText
                 }
-                initialState={initialState}
+                initialState={{
+                    pagination: {
+                        pageSize: 25,
+                    },
+                    ...initialState,
+                }}
+                rowsPerPageOptions={[5, 10, 25, 50, 100]}
                 components={{
                     Toolbar: () => (
                         <GridToolbarContainer>

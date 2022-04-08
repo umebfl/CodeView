@@ -89,6 +89,13 @@ const UploadServerList: FC = () => {
             ),
         },
         {
+            field: 'uploadServerLocation',
+            headerName: t('position'),
+            width: 180,
+            type: 'string',
+            sortable: true,
+        },
+        {
             field: 'totalOfSlots',
             headerName: t('totalOfSlots'),
             width: 180,
@@ -139,20 +146,13 @@ const UploadServerList: FC = () => {
             renderCell: (params: GridValueGetterParams) =>
                 params.row.isRunning ? params.row.emptySlotsNum : '-',
         },
-        {
-            field: 'uploadServerLocation',
-            headerName: t('position'),
-            width: 180,
-            type: 'string',
-            sortable: true,
-        },
-        {
-            field: 'operationTips',
-            headerName: t('operationTips'),
-            width: 180,
-            type: 'string',
-            sortable: true,
-        },
+        // {
+        //     field: 'operationTips',
+        //     headerName: t('operationTips'),
+        //     width: 180,
+        //     type: 'string',
+        //     sortable: true,
+        // },
     ]
 
     const transData = map((row: uploadServerType) => {
