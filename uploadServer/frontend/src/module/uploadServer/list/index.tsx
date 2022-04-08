@@ -34,22 +34,9 @@ import {
 
 const UploadServerList: FC = () => {
     const theme = useTheme()
-    const navigate = useNavigate()
     const { data } = useSelector((state: RootState) => state.uploadServer)
     const dispatch = useDispatch<Dispatch>()
-    const [searchText, setSearchText] = useState('')
     const t = useT()
-
-    const filterData = filter((item: uploadServerType) => {
-        const text = toLower(searchText)
-        const includesText = includes(text)
-        return (
-            includesText(item.uploadServerId) ||
-            includesText(item.uploadServerLocation) ||
-            includesText(toLower(t(item.isRunningStr as keyof langType))) ||
-            includesText(item.operationTips)
-        )
-    })(data)
 
     const columns = [
         {

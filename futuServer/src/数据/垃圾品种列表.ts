@@ -56,10 +56,10 @@ const data: type_垃圾品种[] = [
         Code: 'WH',
         name: '强麦',
     },
-    {
-        Code: 'SM',
-        name: '锰硅',
-    },
+    // {
+    //     Code: 'SM',
+    //     name: '锰硅',
+    // },
     {
         Code: 'SF',
         name: '硅铁',

@@ -71,6 +71,12 @@ export default {
         交易所: 'sh',
         一手单位: 10,
     },
+    SM: {
+        Code: 'SM',
+        夜盘: false,
+        交易所: 'sh',
+        一手单位: 5,
+    },
     C: {
         Code: 'C',
         夜盘: true,

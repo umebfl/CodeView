@@ -3,7 +3,7 @@ import { render, fireEvent, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 
-import TooltipText from 'src/module/uploadServer/detail/gridView/tooltipText'
+import TooltipText from 'src/module/uploadServer/detail/listView/tooltipText'
 
 describe('TooltipText', () => {
     it('should render title', () => {

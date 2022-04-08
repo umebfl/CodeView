@@ -745,7 +745,7 @@ const 品种列表 = () => {
     return (
         <Box
             className="ag-theme-alpine"
-            sx={{ height: '95vh', width: '98%', margin: '5px 1%' }}
+            sx={{ height: '98vh', width: '98%', margin: '5px 1%' }}
         >
             <AgGridReact
                 rowData={rowData}
@@ -753,7 +753,7 @@ const 品种列表 = () => {
                 defaultColDef={{
                     sortable: true,
                 }}
-                rowHeight={100}
+                rowHeight={95}
                 getRowStyle={(params: RowClassParams) => {
                     return params.rowIndex % 2
                         ? { backgroundColor: '#EEE' }

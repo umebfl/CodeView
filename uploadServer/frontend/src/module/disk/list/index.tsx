@@ -18,6 +18,7 @@ import Breadcrumbs from 'src/component/breadcrumbs'
 import { RootState, Dispatch } from 'src/reducer/type'
 import { useT } from 'src/hooks/language'
 import Grid from 'src/component/grid'
+import TooltipField from 'src/component/grid/tooltipField'
 
 const DiskList = () => {
     const dispatch = useDispatch<Dispatch>()
@@ -164,27 +165,9 @@ const DiskList = () => {
             description: '',
             sortable: true,
             renderCell: (params: GridValueGetterParams) => (
-                <Box
-                    sx={{
-                        overflow: 'hidden',
-                    }}
-                >
-                    <Tooltip
-                        placement="bottom"
-                        title={params.row.mountPoint}
-                        arrow
-                    >
-                        <Box
-                            sx={{
-                                overflow: 'hidden',
-                                whiteSpace: 'nowrap',
-                                textOverflow: 'ellipsis',
-                            }}
-                        >
-                            {params.row.mountPoint}
-                        </Box>
-                    </Tooltip>
-                </Box>
+                <TooltipField title={params.row.mountPoint}>
+                    {params.row.mountPoint}
+                </TooltipField>
             ),
         },
         {
@@ -202,27 +185,9 @@ const DiskList = () => {
             description: '',
             sortable: true,
             renderCell: (params: GridValueGetterParams) => (
-                <Box
-                    sx={{
-                        overflow: 'hidden',
-                    }}
-                >
-                    <Tooltip
-                        placement="bottom"
-                        title={params.row.vehicleIds}
-                        arrow
-                    >
-                        <Box
-                            sx={{
-                                overflow: 'hidden',
-                                whiteSpace: 'nowrap',
-                                textOverflow: 'ellipsis',
-                            }}
-                        >
-                            {params.row.vehicleIds}
-                        </Box>
-                    </Tooltip>
-                </Box>
+                <TooltipField title={params.row.vehicleIds}>
+                    {params.row.vehicleIds}
+                </TooltipField>
             ),
         },
     ]
@@ -258,11 +223,11 @@ const DiskList = () => {
                     filter: {
                         filterModel: {
                             items: [
-                                {
-                                    columnField: 'mountStatus',
-                                    operatorValue: 'is',
-                                    value: '已挂载',
-                                },
+                                // {
+                                //     columnField: 'mountStatus',
+                                //     operatorValue: 'is',
+                                //     value: '已挂载',
+                                // },
                             ],
                         },
                     },
