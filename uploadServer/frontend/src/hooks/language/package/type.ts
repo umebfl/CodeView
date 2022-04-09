@@ -52,4 +52,7 @@ export interface langType {
     timeConsuming: string
     viewProgress: string
     failed: string
+    normal: string
+    lose: string
+    damage: string
 }

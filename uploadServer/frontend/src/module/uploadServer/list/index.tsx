@@ -1,36 +1,19 @@
-import React, { useState, FC } from 'react'
+import React, { FC } from 'react'
 
 import Box from '@mui/material/Box'
-import Table from '@mui/material/Table'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
 import { useTheme } from '@mui/material/styles'
-import Button from '@mui/material/Button'
-import { filter, includes, map, toLower } from 'ramda'
+import { map } from 'ramda'
 
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Breadcrumbs from 'src/component/breadcrumbs'
-import FilterBar from 'src/component/filterBar'
 import { RootState, Dispatch } from 'src/reducer/type'
-import {
-    DefaultTableCellCell,
-    DefaultTableCellHeaderCell,
-    DefaultTableRow,
-    DefaultTableBody,
-    NoMoreDataCell,
-} from 'src/component/table'
 import { uploadServerType } from 'src/reducer/uploadServer/type'
 import { useT } from 'src/hooks/language'
 import { langType } from 'src/hooks/language/package/type'
 import Grid from 'src/component/grid'
-import {
-    GridValueFormatterParams,
-    GridValueGetterParams,
-} from '@mui/x-data-grid'
+import { GridValueGetterParams } from '@mui/x-data-grid'
 
 const UploadServerList: FC = () => {
     const theme = useTheme()

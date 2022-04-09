@@ -53,6 +53,9 @@ const lang: langType = {
     timeConsuming: '耗时',
     viewProgress: '查看进度',
     failed: '失败',
+    normal: '正常',
+    lose: '丢失',
+    damage: '损坏',
 }
 
 export default lang

@@ -1,6 +1,6 @@
 /** No need unit test */
-import { useState } from 'react'
-import { find, includes, map, compose, toLower, curry } from 'ramda'
+import React from 'react'
+import { find } from 'ramda'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -8,11 +8,7 @@ import { Box } from '@mui/system'
 import { useTheme } from '@mui/material/styles'
 
 import Breadcrumbs from 'src/component/breadcrumbs'
-import {
-    uploadServerType,
-    slotInfoType,
-    diskStatusEnum,
-} from 'src/reducer/uploadServer/type'
+import { uploadServerType } from 'src/reducer/uploadServer/type'
 import { RootState, Dispatch } from 'src/reducer/type'
 
 import ListView from 'src/module/uploadServer/detail/listView'
@@ -26,40 +22,9 @@ const UploadServerDetail = () => {
     const dispatch = useDispatch<Dispatch>()
     const t = useT()
 
-    const [searchText, setSearchText] = useState('')
-
-    const detail = compose(
-        (upServer: uploadServerType | undefined) => {
-            return upServer
-                ? {
-                      ...upServer,
-                      slotInfos: map((slot: slotInfoType) => ({
-                          ...slot,
-                          ...(slot.diskInfo
-                              ? {
-                                    diskInfo: {
-                                        ...slot.diskInfo,
-
-                                        tips: slot.diskInfo.wrongServer
-                                            ? `${t(
-                                                  'pleasePlugThisHardDiskInto'
-                                              )}: ${
-                                                  slot.diskInfo
-                                                      .recommendedServerId
-                                              }`
-                                            : slot.diskInfo.diskStatus ===
-                                              diskStatusEnum.FORMATTED
-                                            ? t('pleaseUnplugTheHardDisk')
-                                            : slot.diskInfo?.invalidMsg,
-                                    },
-                                }
-                              : undefined),
-                      }))(upServer.slotInfos),
-                  }
-                : undefined
-        },
-        find((item: uploadServerType) => item.uploadServerId === id)
-    )(data)
+    const detail = find((item: uploadServerType) => item.uploadServerId === id)(
+        data
+    )
 
     return (
         <Box

@@ -1,11 +1,9 @@
 import { createModel } from '@rematch/core'
-import moment from 'moment'
 
 import request from 'src/util/request'
 
 import { RootModel } from '..'
 import { diskType, diskState } from 'src/reducer/disk/type'
-import { map } from 'ramda'
 
 const initState: diskState = {
     data: [],

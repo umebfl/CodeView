@@ -4,6 +4,7 @@ import { Box, LinearProgress, Tooltip, Typography } from '@mui/material'
 import { map, path } from 'ramda'
 import useTheme from '@mui/system/useTheme'
 import { Link } from 'react-router-dom'
+import { Theme } from '@mui/system'
 
 import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
 import {
@@ -12,7 +13,7 @@ import {
     diskStatusEnum,
     slotInfoType,
 } from 'src/reducer/uploadServer/type'
-import { useT } from 'src/hooks/language'
+import { TProps, useT } from 'src/hooks/language'
 import { langType } from 'src/hooks/language/package/type'
 import UploadRecordsList from 'src/module/uploadServer/detail/listView/uploadRecordsList'
 import Grid from 'src/component/grid'
@@ -35,9 +36,230 @@ function LinearProgressWithLabel(props: any) {
     )
 }
 
+export const getCommonColumnsConfig = (
+    theme: Theme,
+    t: TProps,
+    paramsPath: string[]
+) => {
+    return {
+        mountStatus: {
+            field: 'mountStatus',
+            headerName: t('mountStatus'),
+            width: 110,
+            description: '',
+            sortable: true,
+            type: 'singleSelect',
+            valueOptions: [t('mounted'), t('unmount')],
+            valueGetter: (params: GridValueGetterParams) => {
+                const data = path(paramsPath)(params) as diskInfoType
+
+                return data
+                    ? data.isMounted
+                        ? t('mounted')
+                        : t('unmount')
+                    : '-'
+            },
+            renderCell: (params: GridValueGetterParams) => {
+                const data = path(paramsPath)(params) as diskInfoType
+                return data ? (
+                    <Box
+                        sx={{
+                            color: data.isMounted
+                                ? theme.palette.success.dark
+                                : theme.palette.error.dark,
+                        }}
+                    >
+                        {data.isMounted ? t('mounted') : t('unmount')}
+                    </Box>
+                ) : (
+                    '-'
+                )
+            },
+        },
+
+        diskStatus: {
+            field: 'diskStatus',
+            headerName: t('diskStatus'),
+            width: 140,
+            type: 'singleSelect',
+            valueOptions: [
+                t('invalid'),
+                t('waitingToUpload'),
+                t('uploading'),
+                t('uploadFailed'),
+                t('uploaded'),
+                t('finish'),
+                t('abnormalPairing'),
+            ],
+            sortable: true,
+            valueGetter: (params: GridValueGetterParams) => {
+                const diskInfo = path(paramsPath)(params) as diskInfoType
+
+                if (diskInfo && diskInfo.diskStatus) {
+                    const diskStatus = diskInfo.diskStatus
+                    return t(
+                        DiskStatusConfig[diskStatus || diskStatusEnum.NULL]
+                            .name as keyof langType
+                    )
+                }
+                return '-'
+            },
+            renderCell: (params: GridValueGetterParams) => {
+                const diskInfo = path(paramsPath)(params) as diskInfoType
+
+                if (diskInfo && diskInfo.diskStatus) {
+                    const diskStatus = diskInfo.diskStatus
+                    const colorPath = DiskStatusConfig[diskStatus].color
+
+                    return (
+                        <Box
+                            sx={{
+                                color: diskInfo
+                                    ? `${path(colorPath)(theme)}`
+                                    : 'inherit',
+                            }}
+                        >
+                            <Tooltip
+                                title={`${t('statusUpdateTime')}: ${
+                                    diskInfo?.updateTimeStr || '-'
+                                }`}
+                            >
+                                <Box>
+                                    {t(
+                                        DiskStatusConfig[
+                                            diskStatus || diskStatusEnum.NULL
+                                        ].name as keyof langType
+                                    )}
+                                </Box>
+                            </Tooltip>
+                        </Box>
+                    )
+                } else {
+                    return '-'
+                }
+            },
+        },
+
+        uploadProgress: {
+            field: 'uploadProgress',
+            headerName: t('uploadProgress'),
+            width: 180,
+            type: 'number',
+            sortable: true,
+            valueGetter: (params: GridValueGetterParams) => {
+                const data = path(paramsPath)(params) as diskInfoType
+                console.log(data?.uploadFinishedRate)
+
+                return data?.uploadFinishedRate || '-'
+            },
+            renderCell: (params: GridValueGetterParams) => {
+                const data = path(paramsPath)(params) as diskInfoType
+                return data?.allRecords?.length ? (
+                    <UploadRecordsList
+                        waitingRecords={data.waitingRecords}
+                        uploadingRecords={data.uploadingRecords}
+                        finishedRecords={data.finishedRecords}
+                        failedRecords={data.failedRecords}
+                    >
+                        <Box
+                            sx={{
+                                width: 150,
+                            }}
+                        >
+                            <LinearProgressWithLabel
+                                value={data.uploadFinishedRate}
+                            />
+                        </Box>
+                    </UploadRecordsList>
+                ) : (
+                    '-'
+                )
+            },
+        },
+
+        operationTips: {
+            field: 'operationTips',
+            headerName: t('operationTips'),
+            width: 260,
+            type: 'string',
+            sortable: true,
+            description: t('noteMountStatus'),
+            valueGetter: (params: GridValueGetterParams) => {
+                const data = path(paramsPath)(params) as diskInfoType
+                return data?.tips || '-'
+            },
+            renderCell: (params: GridValueGetterParams) => {
+                const data = path(paramsPath)(params) as diskInfoType
+                const tips = data?.tips
+                debugger
+                if (tips?.length) {
+                    return (
+                        <TooltipField title={tips}>
+                            <Box
+                                sx={{
+                                    color: theme.palette.primary.dark,
+                                }}
+                            >
+                                {tips}
+                            </Box>
+                        </TooltipField>
+                    )
+                }
+
+                return '-'
+            },
+        },
+
+        timeConsuming: {
+            field: 'timeConsuming',
+            headerName: `${t('timeConsuming')}(h)`,
+            width: 180,
+            type: 'number',
+            sortable: true,
+            renderCell: (params: GridValueGetterParams) => {
+                const data = path(paramsPath)(params) as diskInfoType
+
+                return (
+                    <Box sx={{ width: 100 }}>
+                        {data && data.timeConsuming?.length ? (
+                            <Tooltip
+                                arrow
+                                placement="right"
+                                title={
+                                    <Box>
+                                        <Box>
+                                            {t('startUploadTime')}：
+                                            {data.startUploadTime || '-'}
+                                        </Box>
+                                        <Box>
+                                            {t('endUploadTime')}：
+                                            {data.endUploadTime || '-'}
+                                        </Box>
+                                    </Box>
+                                }
+                            >
+                                <Box sx={{ display: 'inline-block' }}>
+                                    {`${data.timeConsuming}h`}
+                                </Box>
+                            </Tooltip>
+                        ) : (
+                            '-'
+                        )}
+                    </Box>
+                )
+            },
+        },
+    }
+}
+
 const ListView = ({ data }: ViewPayloadType) => {
     const theme = useTheme()
     const t = useT()
+
+    const commonColumnsConfig = getCommonColumnsConfig(theme, t, [
+        'row',
+        'diskInfo',
+    ])
 
     const columns = [
         {
@@ -101,122 +323,11 @@ const ListView = ({ data }: ViewPayloadType) => {
             renderCell: (params: GridValueGetterParams) =>
                 params.row.diskInfo?.diskPlugTime || '-',
         },
-        {
-            field: 'mountStatus',
-            headerName: t('mountStatus'),
-            width: 140,
-            type: 'string',
-            sortable: true,
-            valueGetter: (params: GridValueGetterParams) => {
-                return params.row.diskInfo
-                    ? params.row.diskInfo?.isMounted
-                        ? t('mounted')
-                        : t('unmount')
-                    : '-'
-            },
-            renderCell: (params: GridValueGetterParams) => (
-                <Box
-                    sx={{
-                        color: params.row.diskInfo
-                            ? params.row.diskInfo?.isMounted
-                                ? theme.palette.success.dark
-                                : theme.palette.error.dark
-                            : 'inherit',
-                    }}
-                >
-                    {params.row.diskInfo
-                        ? params.row.diskInfo?.isMounted
-                            ? t('mounted')
-                            : t('unmount')
-                        : '-'}
-                </Box>
-            ),
-        },
-        {
-            field: 'diskStatus',
-            headerName: t('diskStatus'),
-            width: 140,
-            type: 'string',
-            sortable: true,
-            valueGetter: (params: GridValueGetterParams) => {
-                const diskInfo = params.row.diskInfo as diskInfoType
 
-                if (diskInfo && diskInfo.diskStatus) {
-                    const diskStatus = diskInfo.diskStatus
-                    const colorPath = DiskStatusConfig[diskStatus].color
-                    return t(
-                        DiskStatusConfig[diskStatus || diskStatusEnum.NULL]
-                            .name as keyof langType
-                    )
-                }
-                return '-'
-            },
-            renderCell: (params: GridValueGetterParams) => {
-                const diskInfo = params.row.diskInfo as diskInfoType
+        commonColumnsConfig.mountStatus,
+        commonColumnsConfig.diskStatus,
+        commonColumnsConfig.uploadProgress,
 
-                if (diskInfo && diskInfo.diskStatus) {
-                    const diskStatus = diskInfo.diskStatus
-                    const colorPath = DiskStatusConfig[diskStatus].color
-
-                    return (
-                        <Box
-                            sx={{
-                                color: diskInfo
-                                    ? `${path(colorPath)(theme)}`
-                                    : 'inherit',
-                            }}
-                        >
-                            <Tooltip
-                                title={`${t('statusUpdateTime')}: ${
-                                    diskInfo?.updateTimeStr || '-'
-                                }`}
-                            >
-                                <Box>
-                                    {t(
-                                        DiskStatusConfig[
-                                            diskStatus || diskStatusEnum.NULL
-                                        ].name as keyof langType
-                                    )}
-                                </Box>
-                            </Tooltip>
-                        </Box>
-                    )
-                } else {
-                    return '-'
-                }
-            },
-        },
-        {
-            field: 'uploadProgress',
-            headerName: t('uploadProgress'),
-            width: 180,
-            type: 'string',
-            sortable: true,
-            valueGetter: (params: GridValueGetterParams) => {
-                return params.row.diskInfo?.uploadFinishedRate || '-'
-            },
-            renderCell: (params: GridValueGetterParams) =>
-                params.row.diskInfo?.allRecords?.length ? (
-                    <UploadRecordsList
-                        waitingRecords={params.row.diskInfo?.waitingRecords}
-                        uploadingRecords={params.row.diskInfo?.uploadingRecords}
-                        finishedRecords={params.row.diskInfo?.finishedRecords}
-                        failedRecords={params.row.diskInfo?.failedRecords}
-                    >
-                        <Box
-                            sx={{
-                                width: 150,
-                            }}
-                        >
-                            <LinearProgressWithLabel
-                                value={params.row.diskInfo?.uploadFinishedRate}
-                            />
-                        </Box>
-                    </UploadRecordsList>
-                ) : (
-                    '-'
-                ),
-        },
         {
             field: 'mountPoint',
             headerName: t('mountPoint'),
@@ -232,45 +343,9 @@ const ListView = ({ data }: ViewPayloadType) => {
                 return <TooltipField title={point}>{point}</TooltipField>
             },
         },
-        {
-            field: 'timeConsuming',
-            headerName: t('timeConsuming'),
-            width: 180,
-            type: 'string',
-            sortable: true,
-            valueGetter: (params: GridValueGetterParams) => {
-                return params.row.diskInfo?.timeConsuming?.length
-                    ? `${params.row.diskInfo?.timeConsuming}h`
-                    : '-'
-            },
-            renderCell: (params: GridValueGetterParams) => (
-                <Box sx={{ width: 100 }}>
-                    <Tooltip
-                        arrow
-                        placement="right"
-                        title={
-                            <Box>
-                                <Box>
-                                    {t('startUploadTime')}：
-                                    {params.row.diskInfo?.startUploadTime ||
-                                        '-'}
-                                </Box>
-                                <Box>
-                                    {t('endUploadTime')}：
-                                    {params.row.diskInfo?.endUploadTime || '-'}
-                                </Box>
-                            </Box>
-                        }
-                    >
-                        <Box sx={{ display: 'inline-block' }}>
-                            {params.row.diskInfo?.timeConsuming?.length
-                                ? `${params.row.diskInfo?.timeConsuming}h`
-                                : '-'}
-                        </Box>
-                    </Tooltip>
-                </Box>
-            ),
-        },
+
+        commonColumnsConfig.timeConsuming,
+
         {
             field: 'vehicleInfo',
             headerName: t('vehicleInfo'),
@@ -291,36 +366,8 @@ const ListView = ({ data }: ViewPayloadType) => {
                 return <TooltipField title={info}>{info}</TooltipField>
             },
         },
-        {
-            field: 'operationTips',
-            headerName: t('operationTips'),
-            width: 260,
-            type: 'string',
-            sortable: true,
-            description: t('noteMountStatus'),
-            valueGetter: (params: GridValueGetterParams) => {
-                return params.row.diskInfo?.tips || '-'
-            },
-            renderCell: (params: GridValueGetterParams) => {
-                const tips = params.row.diskInfo?.tips
 
-                if (tips?.length) {
-                    return (
-                        <TooltipField title={tips}>
-                            <Box
-                                sx={{
-                                    color: theme.palette.primary.dark,
-                                }}
-                            >
-                                {tips}
-                            </Box>
-                        </TooltipField>
-                    )
-                }
-
-                return '-'
-            },
-        },
+        commonColumnsConfig.operationTips,
     ]
 
     const transData = map((row: slotInfoType) => {

@@ -2,33 +2,25 @@
 import React from 'react'
 
 import Box from '@mui/material/Box'
-import { useDispatch, useSelector } from 'react-redux'
-import Tooltip from '@mui/material/Tooltip'
-import {
-    GridColDef,
-    GridEditCellProps,
-    GridPreProcessEditCellProps,
-    GridValueGetterParams,
-} from '@mui/x-data-grid'
-import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
+import { Link } from 'react-router-dom'
 import useTheme from '@mui/system/useTheme'
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
+import { filter, map, reduce } from 'ramda'
 
 import Breadcrumbs from 'src/component/breadcrumbs'
-import { RootState, Dispatch } from 'src/reducer/type'
-import { useT } from 'src/hooks/language'
+import { RootState } from 'src/reducer/type'
+import { TProps, useT } from 'src/hooks/language'
 import Grid from 'src/component/grid'
 import TooltipField from 'src/component/grid/tooltipField'
-import { filter, map, reduce } from 'ramda'
 import {
     slotInfoType,
     uploadServerType,
     diskInfoType,
 } from 'src/reducer/uploadServer/type'
+import { getCommonColumnsConfig } from 'src/module/uploadServer/detail/listView'
 
-const transformDiskData = (data: uploadServerType[]) => {
-    let i = 0
-
+const transformDiskData = (data: uploadServerType[], t: TProps) => {
     return reduce((list: any[], item: uploadServerType) => {
         const diskList = map((slot: slotInfoType) => {
             return slot.diskInfo
@@ -41,9 +33,9 @@ const transformDiskData = (data: uploadServerType[]) => {
         const idList = map((disk: diskInfoType) => {
             return {
                 ...disk,
-                id: disk.diskId + i++,
+                id: disk.diskId,
                 serverID: item.uploadServerId,
-                inventoryStatus: '在库',
+                inventoryStatus: 'normal',
             }
         })(filterData)
 
@@ -52,13 +44,14 @@ const transformDiskData = (data: uploadServerType[]) => {
 }
 
 const DiskList = () => {
-    const dispatch = useDispatch<Dispatch>()
     const theme = useTheme()
     const t = useT()
+
+    const commonColumnsConfig = getCommonColumnsConfig(theme, t, ['row'])
+
     // const { data } = useSelector((state: RootState) => state.disk)
     const { data } = useSelector((state: RootState) => state.uploadServer)
-    const transData = transformDiskData(data)
-    console.log(transData)
+    const transData = transformDiskData(data, t)
 
     const handleRefresh = () => {}
 
@@ -87,12 +80,12 @@ const DiskList = () => {
         {
             field: 'inventoryStatus',
             headerName: '库存状态',
-            width: 130,
+            width: 110,
             description: '双击库存状态可进行编辑',
             sortable: true,
-            editable: true,
+            // editable: true,
             type: 'singleSelect',
-            valueOptions: ['在库', '丢失', '损坏'],
+            valueOptions: ['normal', 'lose', 'damage'],
             // preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
             //     dispatch.disk.changeDiskInventoryStatus({
             //         diskID: params.row.id,
@@ -107,7 +100,7 @@ const DiskList = () => {
                 <Box
                     sx={{
                         color:
-                            params.row.inventoryStatus === '在库'
+                            params.row.inventoryStatus === 'normal'
                                 ? theme.palette.primary.dark
                                 : 'red',
                         // display: 'flex',
@@ -118,40 +111,20 @@ const DiskList = () => {
                         // alignItems: 'center',
                     }}
                 >
-                    {params.row.inventoryStatus}
+                    {t(params.row.inventoryStatus)}
                     {/* <EditOutlinedIcon
                         sx={{ fontSize: 12, color: theme.palette.grey[600] }}
                     /> */}
                 </Box>
             ),
         },
+
+        commonColumnsConfig.mountStatus,
+
         {
-            field: 'mountStatus',
-            headerName: '挂载状态',
-            width: 130,
-            description: '',
-            sortable: true,
-            type: 'singleSelect',
-            valueOptions: ['已挂载', '未挂载'],
-            valueGetter: (params: GridValueGetterParams) => {
-                return params.row.isMounted ? '已挂载' : '未挂载'
-            },
-            renderCell: (params: GridValueGetterParams) => (
-                <Box
-                    sx={{
-                        color: params.row.isMounted
-                            ? theme.palette.success.dark
-                            : 'inherit',
-                    }}
-                >
-                    {params.row.isMounted ? '已挂载' : '未挂载'}
-                </Box>
-            ),
-        },
-        {
-            field: 'LastMountTime',
-            headerName: '最后挂载时间',
-            width: 130,
+            field: 'updateTimeStr',
+            headerName: '最近更新时间',
+            width: 180,
             description: '',
             sortable: true,
             type: 'date',
@@ -159,34 +132,14 @@ const DiskList = () => {
         {
             field: 'slotId',
             headerName: '插槽ID',
-            width: 130,
+            width: 90,
             description: '',
             sortable: true,
         },
-        {
-            field: 'diskStatus',
-            headerName: '上传状态',
-            width: 180,
-            description: '',
-            sortable: true,
-            type: 'singleSelect',
-            valueOptions: [
-                '等待上传',
-                '上传中',
-                '上传失败',
-                '上传完成',
-                '异常',
-                '结束',
-            ],
-        },
-        {
-            field: 'uploadProgress',
-            headerName: '上传进度',
-            width: 130,
-            description: '',
-            sortable: true,
-            type: 'number',
-        },
+
+        commonColumnsConfig.diskStatus,
+        commonColumnsConfig.uploadProgress,
+
         {
             field: 'mountPoint',
             headerName: '挂载路径',
@@ -199,14 +152,9 @@ const DiskList = () => {
                 </TooltipField>
             ),
         },
-        {
-            field: 'timeConsuming',
-            headerName: '耗时',
-            width: 130,
-            description: '',
-            sortable: true,
-            type: 'number',
-        },
+
+        commonColumnsConfig.timeConsuming,
+
         {
             field: 'vehicleIds',
             headerName: '车辆',
@@ -223,36 +171,8 @@ const DiskList = () => {
                 )
             },
         },
-        {
-            field: 'operationTips',
-            headerName: t('operationTips'),
-            width: 260,
-            type: 'string',
-            sortable: true,
-            description: t('noteMountStatus'),
-            valueGetter: (params: GridValueGetterParams) => {
-                return params.row.tips || '-'
-            },
-            renderCell: (params: GridValueGetterParams) => {
-                const tips = params.row.tips
 
-                if (tips?.length) {
-                    return (
-                        <TooltipField title={tips}>
-                            <Box
-                                sx={{
-                                    color: theme.palette.primary.dark,
-                                }}
-                            >
-                                {tips}
-                            </Box>
-                        </TooltipField>
-                    )
-                }
-
-                return '-'
-            },
-        },
+        commonColumnsConfig.operationTips,
     ]
 
     return (

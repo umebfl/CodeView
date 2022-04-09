@@ -12,6 +12,8 @@ import {
     diskStatusEnum,
 } from 'src/reducer/uploadServer/type'
 import { map } from 'ramda'
+import { tranText } from 'src/hooks/language'
+import { langSet } from 'src/reducer/language/type'
 
 const initState: UploadServerState = {
     data: [],
@@ -20,7 +22,18 @@ const initState: UploadServerState = {
 export const uploadServer = createModel<RootModel>()({
     state: initState,
     reducers: {
-        setData: (state, payload: uploadServerType[]) => {
+        setData: (
+            state,
+            {
+                lang,
+                payload,
+            }: {
+                lang: langSet
+                payload: uploadServerType[]
+            }
+        ) => {
+            const t = tranText(lang)
+
             const fixData = map((item: uploadServerType) => ({
                 ...item,
 
@@ -81,6 +94,15 @@ export const uploadServer = createModel<RootModel>()({
                                                 )
                                                 .toFixed(2)
                                           : '',
+
+                                  tips: slot.diskInfo.wrongServer
+                                      ? `${t('pleasePlugThisHardDiskInto')}: ${
+                                            slot.diskInfo.recommendedServerId
+                                        }`
+                                      : slot.diskInfo.diskStatus ===
+                                        diskStatusEnum.FORMATTED
+                                      ? t('pleaseUnplugTheHardDisk')
+                                      : slot.diskInfo?.invalidMsg,
                               },
                           }
                         : {}),
@@ -95,6 +117,8 @@ export const uploadServer = createModel<RootModel>()({
     },
     effects: dispatch => ({
         async initData(_, rootState) {
+            console.log(rootState)
+
             const data = await request({
                 url: '/data_center/get_upload_server_list',
                 rootState,
@@ -102,7 +126,10 @@ export const uploadServer = createModel<RootModel>()({
             })
 
             if (data?.uploadServerInfos) {
-                dispatch.uploadServer.setData(data.uploadServerInfos)
+                dispatch.uploadServer.setData({
+                    lang: rootState.language.lang,
+                    payload: data.uploadServerInfos,
+                })
             }
         },
     }),

@@ -53,6 +53,9 @@ const lang: langType = {
     timeConsuming: 'TimeConsuming',
     viewProgress: 'View Progress',
     failed: 'failed',
+    normal: 'normal',
+    lose: 'lose',
+    damage: 'damage',
 }
 
 export default lang

@@ -8,14 +8,19 @@ import langPackage from 'src/hooks/language/package'
 import { langSet } from 'src/reducer/language/type'
 import { langType } from 'src/hooks/language/package/type'
 
-export const useT = () => {
-    const { lang } = useSelector((state: RootState) => state.language)
+export type TProps = (text: keyof langType, ...props: any[]) => string
 
-    const data = {
+export const tranText = (lang: langSet) => {
+    const langData = {
         [langSet.en]: langPackage.en,
         [langSet.zh]: langPackage.zh,
     }
 
     return (text: keyof langType, ...props: any[]) =>
-        sprintf(data[lang][text], props) || text
+        sprintf(langData[lang][text], props) || text
+}
+
+export const useT = (): TProps => {
+    const { lang } = useSelector((state: RootState) => state.language)
+    return tranText(lang)
 }
