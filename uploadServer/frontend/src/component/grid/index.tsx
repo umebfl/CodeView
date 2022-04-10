@@ -141,7 +141,6 @@ const Grid: FC<GridProps> = props => {
                         </GridToolbarContainer>
                     ),
                 }}
-                /* eslint-enable */
             />
         </Box>
     )
