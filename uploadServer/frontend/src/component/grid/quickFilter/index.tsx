@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 
 import FilterBar from 'src/component/filterBar'
+import { useT } from 'src/hooks/language'
 
 export interface QuickFilterProps {
     value: string
@@ -8,6 +9,8 @@ export interface QuickFilterProps {
 }
 
 const QuickFilter = ({ value, handleChange }: QuickFilterProps) => {
+    const t = useT()
+
     return (
         <Box
             sx={{
@@ -16,7 +19,7 @@ const QuickFilter = ({ value, handleChange }: QuickFilterProps) => {
         >
             <FilterBar
                 inputProps={{
-                    placeholder: 'Filter any column...',
+                    placeholder: t('filterAnyColumn'),
                 }}
                 handleChange={handleChange}
             />

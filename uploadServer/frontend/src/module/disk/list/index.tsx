@@ -58,7 +58,7 @@ const DiskList = () => {
     const columns: GridColDef[] = [
         {
             field: 'serverID',
-            headerName: '服务器ID',
+            headerName: `${t('server')}ID`,
             width: 180,
             description: '',
             sortable: true,
@@ -75,13 +75,13 @@ const DiskList = () => {
             // valueGetter: (params: GridValueGetterParams) =>
             //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
         },
-        { field: 'id', headerName: '硬盘ID', width: 240 },
-        { field: 'diskName', headerName: '硬盘名称', width: 130 },
+        { field: 'id', headerName: `${t('disk')}ID`, width: 240 },
+        { field: 'diskName', headerName: t('diskName'), width: 130 },
         {
             field: 'inventoryStatus',
-            headerName: '库存状态',
+            headerName: t('inventoryStatus'),
             width: 110,
-            description: '双击库存状态可进行编辑',
+            description: t('doubleClickToEdit'),
             sortable: true,
             // editable: true,
             type: 'singleSelect',
@@ -123,7 +123,7 @@ const DiskList = () => {
 
         {
             field: 'updateTimeStr',
-            headerName: '最近更新时间',
+            headerName: t('lastUpdatedTime'),
             width: 180,
             description: '',
             sortable: true,
@@ -131,7 +131,7 @@ const DiskList = () => {
         },
         {
             field: 'slotId',
-            headerName: '插槽ID',
+            headerName: `${t('slot')}ID`,
             width: 90,
             description: '',
             sortable: true,
@@ -142,7 +142,7 @@ const DiskList = () => {
 
         {
             field: 'mountPoint',
-            headerName: '挂载路径',
+            headerName: t('mountPoint'),
             width: 160,
             description: '',
             sortable: true,
@@ -157,7 +157,7 @@ const DiskList = () => {
 
         {
             field: 'vehicleIds',
-            headerName: '车辆',
+            headerName: t('vehicle'),
             width: 180,
             description: '',
             sortable: true,

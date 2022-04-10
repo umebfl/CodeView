@@ -55,4 +55,10 @@ export interface langType {
     normal: string
     lose: string
     damage: string
+    filterAnyColumn: string
+    lastUpdatedTime: string
+    inventoryStatus: string
+    doubleClickToEdit: string
+    server: string
+    runningSlots: string
 }

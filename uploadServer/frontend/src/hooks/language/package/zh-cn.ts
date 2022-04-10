@@ -56,6 +56,12 @@ const lang: langType = {
     normal: '正常',
     lose: '丢失',
     damage: '损坏',
+    filterAnyColumn: '过滤任何列...',
+    lastUpdatedTime: '最近更新时间',
+    inventoryStatus: '库存状态',
+    doubleClickToEdit: '双击可进行编辑',
+    server: '服务器',
+    runningSlots: '运行中插槽数',
 }
 
 export default lang

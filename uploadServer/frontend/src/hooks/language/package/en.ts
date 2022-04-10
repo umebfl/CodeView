@@ -56,6 +56,12 @@ const lang: langType = {
     normal: 'normal',
     lose: 'lose',
     damage: 'damage',
+    filterAnyColumn: 'Filter any column...',
+    lastUpdatedTime: 'lastUpdatedTime',
+    inventoryStatus: 'inventoryStatus',
+    doubleClickToEdit: 'doubleClickToEdit',
+    server: 'server',
+    runningSlots: 'Running Slots',
 }
 
 export default lang

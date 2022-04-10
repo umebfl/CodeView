@@ -105,7 +105,7 @@ const UploadServerList: FC = () => {
         },
         {
             field: 'used',
-            headerName: '使用中插槽数',
+            headerName: t('runningSlots'),
             width: 180,
             type: 'number',
             sortable: true,
