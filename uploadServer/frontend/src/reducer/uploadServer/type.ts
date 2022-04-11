@@ -94,9 +94,11 @@ export interface slotInfoType {
     isEmpty: boolean
     slotBusId: string
     slotId: string
+    seq: number
 }
 
 export interface uploadServerType {
+    seq: number
     emptySlotsNum: number
     formattedDisksNum: number
     isRunning: boolean

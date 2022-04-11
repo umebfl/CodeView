@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-const uploadServerData = require('./json/uploadServer.json')
+const uploadServerData = require('./json/uploadServer2.json')
 const diskData = require('./json/disk')
 
 app.get('/data_center/get_upload_server_list', function (req, res) {

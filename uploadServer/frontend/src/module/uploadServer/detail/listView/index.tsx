@@ -52,7 +52,6 @@ export const getCommonColumnsConfig = (
             valueOptions: [t('mounted'), t('unmount')],
             valueGetter: (params: GridValueGetterParams) => {
                 const data = path(paramsPath)(params) as diskInfoType
-
                 return data
                     ? data.isMounted
                         ? t('mounted')
@@ -143,14 +142,15 @@ export const getCommonColumnsConfig = (
         uploadProgress: {
             field: 'uploadProgress',
             headerName: t('uploadProgress'),
-            width: 180,
+            flex: 1,
+            // minWidth: 180,
             type: 'number',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
                 const data = path(paramsPath)(params) as diskInfoType
                 return data?.allRecords?.length
-                    ? data?.uploadFinishedRate || '-'
-                    : '-'
+                    ? data?.uploadFinishedRate || 0
+                    : 0
             },
             renderCell: (params: GridValueGetterParams) => {
                 const data = path(paramsPath)(params) as diskInfoType
@@ -180,7 +180,8 @@ export const getCommonColumnsConfig = (
         operationTips: {
             field: 'operationTips',
             headerName: t('operationTips'),
-            width: 260,
+            flex: 1,
+            minWidth: 260,
             type: 'string',
             sortable: true,
             description: t('noteMountStatus'),
@@ -194,14 +195,13 @@ export const getCommonColumnsConfig = (
 
                 if (tips?.length) {
                     return (
-                        <TooltipField title={tips}>
-                            <Box
-                                sx={{
-                                    color: theme.palette.primary.dark,
-                                }}
-                            >
-                                {tips}
-                            </Box>
+                        <TooltipField
+                            title={tips}
+                            sx={{
+                                color: theme.palette.primary.dark,
+                            }}
+                        >
+                            {tips}
                         </TooltipField>
                     )
                 }
@@ -213,7 +213,8 @@ export const getCommonColumnsConfig = (
         timeConsuming: {
             field: 'timeConsuming',
             headerName: `${t('timeConsuming')}(h)`,
-            width: 180,
+            flex: 1,
+            // minWidth: 180,
             type: 'number',
             sortable: true,
             renderCell: (params: GridValueGetterParams) => {
@@ -253,7 +254,8 @@ export const getCommonColumnsConfig = (
         vehicleIds: {
             field: 'vehicleIds',
             headerName: t('vehicle'),
-            width: 180,
+            flex: 1,
+            // minWidth: 180,
             description: '',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
@@ -287,6 +289,13 @@ const ListView = ({ data }: ViewPayloadType) => {
 
     const columns = [
         {
+            field: 'seq',
+            headerName: t('S/N'),
+            width: 100,
+            type: 'string',
+            sortable: true,
+        },
+        {
             field: 'slotId',
             headerName: 'ID',
             width: 100,
@@ -296,14 +305,15 @@ const ListView = ({ data }: ViewPayloadType) => {
         {
             field: 'slotBusId',
             headerName: t('slotName'),
-            width: 180,
+            width: 150,
             type: 'string',
             sortable: true,
         },
         {
             field: 'diskId',
             headerName: `${t('disk')} ID`,
-            width: 220,
+            flex: 1,
+            minWidth: 260,
             type: 'string',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
@@ -314,10 +324,13 @@ const ListView = ({ data }: ViewPayloadType) => {
                     <Link
                         to={'/disk'}
                         style={{
+                            width: '100%',
                             color: theme.palette.primary.dark,
                         }}
                     >
-                        {params.row.diskInfo?.diskId}
+                        <TooltipField title={params.row.diskInfo?.diskId}>
+                            {params.row.diskInfo?.diskId}
+                        </TooltipField>
                     </Link>
                 ) : (
                     '-'
@@ -326,19 +339,22 @@ const ListView = ({ data }: ViewPayloadType) => {
         {
             field: 'diskName',
             headerName: t('diskName'),
-            width: 180,
+            flex: 1,
+            // minWidth: 180,
             type: 'string',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
                 return params.row.diskInfo?.diskName || '-'
             },
-            renderCell: (params: GridValueGetterParams) =>
-                params.row.diskInfo?.diskName || '-',
+            renderCell: (params: GridValueGetterParams) => {
+                const name = params.row.diskInfo?.diskName || '-'
+                return <TooltipField title={name}>{name}</TooltipField>
+            },
         },
         {
             field: 'diskPlugTime',
             headerName: t('diskPlugTime'),
-            width: 180,
+            width: 170,
             type: 'string',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
@@ -355,7 +371,8 @@ const ListView = ({ data }: ViewPayloadType) => {
         {
             field: 'mountPoint',
             headerName: t('mountPoint'),
-            width: 260,
+            flex: 1,
+            // minWidth: 260,
             type: 'string',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
@@ -391,11 +408,11 @@ const ListView = ({ data }: ViewPayloadType) => {
                 rows={transData(data)}
                 columns={columns}
                 quickFilter={true}
-                initialState={{
-                    sorting: {
-                        sortModel: [{ field: 'slotId', sort: 'asc' }],
-                    },
-                }}
+                // initialState={{
+                //     sorting: {
+                //         sortModel: [{ field: 'slotId', sort: 'asc' }],
+                //     },
+                // }}
             />
         </Box>
     )

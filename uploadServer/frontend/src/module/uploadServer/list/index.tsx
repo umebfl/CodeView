@@ -13,7 +13,7 @@ import { uploadServerType } from 'src/reducer/uploadServer/type'
 import { useT } from 'src/hooks/language'
 import { langType } from 'src/hooks/language/package/type'
 import Grid from 'src/component/grid'
-import { GridValueGetterParams } from '@mui/x-data-grid'
+import { GridCellValue, GridValueGetterParams } from '@mui/x-data-grid'
 
 const UploadServerList: FC = () => {
     const theme = useTheme()
@@ -23,11 +23,20 @@ const UploadServerList: FC = () => {
 
     const columns = [
         {
-            field: 'uploadServerId',
-            headerName: 'ID',
-            width: 180,
+            field: 'seq',
+            headerName: t('S/N'),
+            width: 100,
             type: 'string',
             sortable: true,
+        },
+        {
+            field: 'uploadServerId',
+            headerName: 'ID',
+            width: 240,
+            type: 'string',
+            sortable: true,
+            sortComparator: (v1: GridCellValue, v2: GridCellValue) =>
+                (v1 as string)?.length - (v2 as string)?.length,
             renderCell: (params: GridValueGetterParams) => (
                 <Box
                     sx={{
@@ -42,7 +51,9 @@ const UploadServerList: FC = () => {
                         }
                         style={{
                             textDecoration: 'none',
-                            color: theme.palette.primary.dark,
+                            color: params.row.isRunning
+                                ? theme.palette.primary.dark
+                                : theme.color.grey15,
                         }}
                     >
                         {params.row.uploadServerId}
@@ -54,7 +65,8 @@ const UploadServerList: FC = () => {
             field: 'isRunningStr',
             headerName: t('runStatus'),
             width: 180,
-            type: 'string',
+            type: 'singleSelect',
+            valueOptions: [t('running'), t('close')],
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
                 return t(params.row.isRunningStr as keyof langType)
@@ -169,11 +181,13 @@ const UploadServerList: FC = () => {
                 rows={transData(data)}
                 columns={columns}
                 quickFilter={true}
-                initialState={{
-                    sorting: {
-                        sortModel: [{ field: 'uploadServerId', sort: 'asc' }],
-                    },
-                }}
+                initialState={
+                    {
+                        // sorting: {
+                        //     sortModel: [{ field: 'uploadServerId', sort: 'asc' }],
+                        // },
+                    }
+                }
             />
         </Box>
     )

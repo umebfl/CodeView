@@ -11,7 +11,7 @@ import {
     DiskStatusConfig,
     diskStatusEnum,
 } from 'src/reducer/uploadServer/type'
-import { map } from 'ramda'
+import { addIndex, map } from 'ramda'
 import { tranText } from 'src/hooks/language'
 import { langSet } from 'src/reducer/language/type'
 
@@ -34,80 +34,99 @@ export const uploadServer = createModel<RootModel>()({
         ) => {
             const t = tranText(lang)
 
-            const fixData = map((item: uploadServerType) => ({
-                ...item,
+            const fixData: uploadServerType[] = addIndex(map)(
+                (item: any, serverIdx: number) => ({
+                    ...item,
 
-                isRunningStr: item.isRunning ? 'running' : 'close',
+                    seq: serverIdx + 1,
 
-                operationTips: '-',
+                    isRunningStr: item.isRunning ? 'running' : 'close',
 
-                slotInfos: map((slot: slotInfoType) => ({
-                    ...slot,
-                    ...(slot.diskInfo
-                        ? {
-                              diskInfo: {
-                                  ...slot.diskInfo,
+                    operationTips: '-',
 
-                                  mountPoint: slot.diskInfo.mountPoint || '',
+                    slotInfos: addIndex(map)((item: any, idx: number) => {
+                        const slot: slotInfoType = item
+                        return {
+                            ...slot,
+                            seq: idx + 1,
+                            ...(slot.diskInfo
+                                ? {
+                                      diskInfo: {
+                                          ...slot.diskInfo,
 
-                                  updateTimeStr: new Date(
-                                      slot.diskInfo.updateTime * 1000
-                                  ).toLocaleString(),
+                                          mountPoint:
+                                              slot.diskInfo.mountPoint || '',
 
-                                  updateTimeShortStr: moment(
-                                      slot.diskInfo.updateTime * 1000
-                                  ).format('MM-DD HH:MM:ss'),
+                                          updateTimeStr: new Date(
+                                              slot.diskInfo.updateTime * 1000
+                                          ).toLocaleString(),
 
-                                  diskStatus: slot.diskInfo.wrongServer
-                                      ? diskStatusEnum.WRONGSERVER
-                                      : slot.diskInfo?.diskStatus,
+                                          updateTimeShortStr: moment(
+                                              slot.diskInfo.updateTime * 1000
+                                          ).format('MM-DD HH:MM:ss'),
 
-                                  diskStatusStr: slot.diskInfo.wrongServer
-                                      ? DiskStatusConfig[
-                                            diskStatusEnum.WRONGSERVER
-                                        ].name
-                                      : DiskStatusConfig[
-                                            slot.diskInfo.diskStatus
-                                        ].name,
+                                          diskStatus: slot.diskInfo.wrongServer
+                                              ? diskStatusEnum.WRONGSERVER
+                                              : slot.diskInfo?.diskStatus,
 
-                                  uploadFinishedRate:
-                                      slot.diskInfo.finishedRecords &&
-                                      slot.diskInfo.allRecords
-                                          ? (slot.diskInfo.finishedRecords
-                                                ?.length /
-                                                slot.diskInfo.allRecords
-                                                    ?.length) *
-                                            100
-                                          : 0,
+                                          diskStatusStr: slot.diskInfo
+                                              .wrongServer
+                                              ? DiskStatusConfig[
+                                                    diskStatusEnum.WRONGSERVER
+                                                ].name
+                                              : DiskStatusConfig[
+                                                    slot.diskInfo.diskStatus
+                                                ].name,
 
-                                  timeConsuming:
-                                      slot.diskInfo.startUploadTime?.length &&
-                                      slot.diskInfo.endUploadTime?.length
-                                          ? moment(slot.diskInfo.endUploadTime)
-                                                .diff(
-                                                    moment(
+                                          uploadFinishedRate:
+                                              slot.diskInfo.finishedRecords &&
+                                              slot.diskInfo.allRecords
+                                                  ? (slot.diskInfo
+                                                        .finishedRecords
+                                                        ?.length /
+                                                        slot.diskInfo.allRecords
+                                                            ?.length) *
+                                                    100
+                                                  : 0,
+
+                                          timeConsuming:
+                                              slot.diskInfo.startUploadTime
+                                                  ?.length &&
+                                              slot.diskInfo.endUploadTime
+                                                  ?.length
+                                                  ? moment(
                                                         slot.diskInfo
-                                                            .startUploadTime
-                                                    ),
-                                                    'h',
-                                                    true
-                                                )
-                                                .toFixed(2)
-                                          : '',
+                                                            .endUploadTime
+                                                    )
+                                                        .diff(
+                                                            moment(
+                                                                slot.diskInfo
+                                                                    .startUploadTime
+                                                            ),
+                                                            'h',
+                                                            true
+                                                        )
+                                                        .toFixed(2)
+                                                  : '',
 
-                                  tips: slot.diskInfo.wrongServer
-                                      ? `${t('pleasePlugThisHardDiskInto')}: ${
-                                            slot.diskInfo.recommendedServerId
-                                        }`
-                                      : slot.diskInfo.diskStatus ===
-                                        diskStatusEnum.FORMATTED
-                                      ? t('pleaseUnplugTheHardDisk')
-                                      : slot.diskInfo?.invalidMsg,
-                              },
-                          }
-                        : {}),
-                }))(item.slotInfos),
-            }))(payload)
+                                          tips: slot.diskInfo.wrongServer
+                                              ? `${t(
+                                                    'pleasePlugThisHardDiskInto'
+                                                )}: ${
+                                                    slot.diskInfo
+                                                        .recommendedServerId
+                                                }`
+                                              : slot.diskInfo.diskStatus ===
+                                                diskStatusEnum.FORMATTED
+                                              ? t('pleaseUnplugTheHardDisk')
+                                              : slot.diskInfo?.invalidMsg,
+                                      },
+                                  }
+                                : {}),
+                        }
+                    })(item.slotInfos) as slotInfoType[],
+                })
+            )(payload)
 
             return {
                 ...state,
