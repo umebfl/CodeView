@@ -143,7 +143,7 @@ export const getCommonColumnsConfig = (
             field: 'uploadProgress',
             headerName: t('uploadProgress'),
             flex: 1,
-            // minWidth: 180,
+            minWidth: 180,
             type: 'number',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
@@ -214,7 +214,7 @@ export const getCommonColumnsConfig = (
             field: 'timeConsuming',
             headerName: `${t('timeConsuming')}(h)`,
             flex: 1,
-            // minWidth: 180,
+            minWidth: 100,
             type: 'number',
             sortable: true,
             renderCell: (params: GridValueGetterParams) => {
@@ -255,7 +255,7 @@ export const getCommonColumnsConfig = (
             field: 'vehicleIds',
             headerName: t('vehicle'),
             flex: 1,
-            // minWidth: 180,
+            minWidth: 150,
             description: '',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
@@ -340,7 +340,7 @@ const ListView = ({ data }: ViewPayloadType) => {
             field: 'diskName',
             headerName: t('diskName'),
             flex: 1,
-            // minWidth: 180,
+            minWidth: 150,
             type: 'string',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
@@ -372,7 +372,7 @@ const ListView = ({ data }: ViewPayloadType) => {
             field: 'mountPoint',
             headerName: t('mountPoint'),
             flex: 1,
-            // minWidth: 260,
+            minWidth: 200,
             type: 'string',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
