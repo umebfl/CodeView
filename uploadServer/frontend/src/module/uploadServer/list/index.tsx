@@ -85,12 +85,65 @@ const UploadServerList: FC = () => {
             ),
         },
         {
-            field: 'uploadServerLocation',
-            headerName: t('position'),
+            field: 'completed',
+            headerName: t('completed'),
             flex: 1,
             minWidth: 100,
-            type: 'string',
+            type: 'number',
             sortable: true,
+            description: `${t('completed')} / ${t('totalDisk')}`,
+            valueGetter: (params: GridValueGetterParams) => {
+                return params.row.formattedDisksNum
+            },
+            renderCell: (params: GridValueGetterParams) => {
+                const runNum =
+                    params.row.totalSlotsNum - params.row.emptySlotsNum
+
+                return (
+                    <Box
+                        sx={{
+                            color:
+                                params.row.isRunning &&
+                                params.row.formattedDisksNum > 0 &&
+                                params.row.formattedDisksNum === runNum
+                                    ? theme.palette.success.dark
+                                    : 'inherit',
+                        }}
+                    >
+                        {params.row.isRunning
+                            ? `${params.row.formattedDisksNum} / ${runNum}`
+                            : '-'}
+                    </Box>
+                )
+            },
+        },
+        // {
+        //     field: 'used',
+        //     headerName: t('runningSlots'),
+        //     flex: 1,
+        //     minWidth: 100,
+        //     type: 'number',
+        //     sortable: true,
+        //     valueGetter: (params: GridValueGetterParams) => {
+        //         return `${params.row.totalSlotsNum - params.row.emptySlotsNum}`
+        //     },
+        //     renderCell: (params: GridValueGetterParams) =>
+        //         params.row.isRunning
+        //             ? `${params.row.totalSlotsNum - params.row.emptySlotsNum}`
+        //             : '-',
+        // },
+        {
+            field: 'emptySlotsNum',
+            headerName: t('emptySlots'),
+            flex: 1,
+            minWidth: 100,
+            type: 'number',
+            sortable: true,
+            valueGetter: (params: GridValueGetterParams) => {
+                return `${params.row.emptySlotsNum}`
+            },
+            renderCell: (params: GridValueGetterParams) =>
+                params.row.isRunning ? params.row.emptySlotsNum : '-',
         },
         {
             field: 'totalOfSlots',
@@ -107,45 +160,12 @@ const UploadServerList: FC = () => {
                 params.row.isRunning ? params.row.totalSlotsNum : '-',
         },
         {
-            field: 'completed',
-            headerName: t('completed'),
+            field: 'uploadServerLocation',
+            headerName: t('position'),
             flex: 1,
             minWidth: 100,
-            type: 'number',
+            type: 'string',
             sortable: true,
-            valueGetter: (params: GridValueGetterParams) => {
-                return params.row.formattedDisksNum
-            },
-            renderCell: (params: GridValueGetterParams) =>
-                params.row.isRunning ? params.row.formattedDisksNum : '-',
-        },
-        {
-            field: 'used',
-            headerName: t('runningSlots'),
-            flex: 1,
-            minWidth: 100,
-            type: 'number',
-            sortable: true,
-            valueGetter: (params: GridValueGetterParams) => {
-                return `${params.row.totalSlotsNum - params.row.emptySlotsNum}`
-            },
-            renderCell: (params: GridValueGetterParams) =>
-                params.row.isRunning
-                    ? `${params.row.totalSlotsNum - params.row.emptySlotsNum}`
-                    : '-',
-        },
-        {
-            field: 'emptySlotsNum',
-            headerName: t('emptySlots'),
-            flex: 1,
-            minWidth: 100,
-            type: 'number',
-            sortable: true,
-            valueGetter: (params: GridValueGetterParams) => {
-                return `${params.row.emptySlotsNum}`
-            },
-            renderCell: (params: GridValueGetterParams) =>
-                params.row.isRunning ? params.row.emptySlotsNum : '-',
         },
         // {
         //     field: 'operationTips',

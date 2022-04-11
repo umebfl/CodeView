@@ -25,6 +25,7 @@ import {
 import { getCommonColumnsConfig } from 'src/module/uploadServer/detail/listView'
 
 const transformDiskData = (data: uploadServerType[], t: TProps) => {
+    let idx = 1
     return reduce((list: any[], item: uploadServerType) => {
         const diskList = map((slot: slotInfoType) => {
             return slot.diskInfo
@@ -37,6 +38,7 @@ const transformDiskData = (data: uploadServerType[], t: TProps) => {
         const idList = map((disk: diskInfoType) => {
             return {
                 ...disk,
+                seq: idx++,
                 id: disk.diskId,
                 serverID: item.uploadServerId,
                 inventoryStatus: 'normal',
@@ -60,6 +62,14 @@ const DiskList = () => {
     const handleRefresh = () => {}
 
     const columns: GridColDef[] = [
+        {
+            field: 'seq',
+            headerName: t('S/N'),
+            width: 100,
+            type: 'string',
+            sortable: true,
+        },
+
         {
             field: 'serverID',
             headerName: `${t('server')}ID`,

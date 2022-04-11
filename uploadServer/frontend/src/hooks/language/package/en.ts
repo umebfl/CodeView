@@ -62,6 +62,7 @@ const lang: langType = {
     doubleClickToEdit: 'DoubleClickToEdit',
     server: 'Server',
     runningSlots: 'Running Slots',
+    totalDisk: 'Total Disk',
 }
 
 export default lang
