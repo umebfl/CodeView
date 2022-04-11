@@ -154,23 +154,7 @@ const DiskList = () => {
         },
 
         commonColumnsConfig.timeConsuming,
-
-        {
-            field: 'vehicleIds',
-            headerName: t('vehicle'),
-            width: 180,
-            description: '',
-            sortable: true,
-            renderCell: (params: GridValueGetterParams) => {
-                const vehicleIds = params.row.vehicleIds?.length
-                    ? params.row.vehicleIds.join(', ')
-                    : '-'
-
-                return (
-                    <TooltipField title={vehicleIds}>{vehicleIds}</TooltipField>
-                )
-            },
-        },
+        commonColumnsConfig.vehicleIds,
 
         commonColumnsConfig.operationTips,
     ]

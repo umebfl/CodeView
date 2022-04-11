@@ -148,9 +148,9 @@ export const getCommonColumnsConfig = (
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
                 const data = path(paramsPath)(params) as diskInfoType
-                console.log(data?.uploadFinishedRate)
-
-                return data?.uploadFinishedRate || '-'
+                return data?.allRecords?.length
+                    ? data?.uploadFinishedRate || '-'
+                    : '-'
             },
             renderCell: (params: GridValueGetterParams) => {
                 const data = path(paramsPath)(params) as diskInfoType
@@ -191,7 +191,7 @@ export const getCommonColumnsConfig = (
             renderCell: (params: GridValueGetterParams) => {
                 const data = path(paramsPath)(params) as diskInfoType
                 const tips = data?.tips
-                debugger
+
                 if (tips?.length) {
                     return (
                         <TooltipField title={tips}>
@@ -246,6 +246,30 @@ export const getCommonColumnsConfig = (
                             '-'
                         )}
                     </Box>
+                )
+            },
+        },
+
+        vehicleIds: {
+            field: 'vehicleIds',
+            headerName: t('vehicle'),
+            width: 180,
+            description: '',
+            sortable: true,
+            valueGetter: (params: GridValueGetterParams) => {
+                const data = path(paramsPath)(params) as diskInfoType
+                return data?.vehicleIds?.length
+                    ? data.vehicleIds.join(', ')
+                    : '-'
+            },
+            renderCell: (params: GridValueGetterParams) => {
+                const data = path(paramsPath)(params) as diskInfoType
+                const vehicleIds = data?.vehicleIds?.length
+                    ? data.vehicleIds.join(', ')
+                    : '-'
+
+                return (
+                    <TooltipField title={vehicleIds}>{vehicleIds}</TooltipField>
                 )
             },
         },
@@ -345,27 +369,7 @@ const ListView = ({ data }: ViewPayloadType) => {
         },
 
         commonColumnsConfig.timeConsuming,
-
-        {
-            field: 'vehicleInfo',
-            headerName: t('vehicleInfo'),
-            width: 260,
-            type: 'string',
-            sortable: true,
-            valueGetter: (params: GridValueGetterParams) => {
-                const info = params.row.diskInfo?.vehicleIds.length
-                    ? params.row.diskInfo?.vehicleIds.join(', ')
-                    : '-'
-                return info
-            },
-            renderCell: (params: GridValueGetterParams) => {
-                const info = params.row.diskInfo?.vehicleIds.length
-                    ? params.row.diskInfo?.vehicleIds.join(', ')
-                    : '-'
-
-                return <TooltipField title={info}>{info}</TooltipField>
-            },
-        },
+        commonColumnsConfig.vehicleIds,
 
         commonColumnsConfig.operationTips,
     ]

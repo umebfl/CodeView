@@ -86,8 +86,6 @@ const Grid: FC<GridProps> = props => {
         ? filterRows({ rows, columns, quickFilterText })
         : rows
 
-    console.log(data)
-
     return (
         <Box
             sx={{

@@ -117,8 +117,6 @@ export const uploadServer = createModel<RootModel>()({
     },
     effects: dispatch => ({
         async initData(_, rootState) {
-            console.log(rootState)
-
             const data = await request({
                 url: '/data_center/get_upload_server_list',
                 rootState,
