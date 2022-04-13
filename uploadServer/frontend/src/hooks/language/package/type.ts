@@ -61,4 +61,5 @@ export interface langType {
     doubleClickToEdit: string
     server: string
     runningSlots: string
+    totalDisk: string
 }

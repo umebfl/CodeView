@@ -31,41 +31,41 @@ describe('ListView', () => {
         ).toBeDefined()
     })
 
-    it('should render diskInfo ', () => {
-        const data: slotInfoType[] = [
-            {
-                slotId: '0',
-                slotBusId: 'xxx',
-                isEmpty: false,
-                diskInfo: {
-                    diskId: 'test diskId',
-                    diskName: 'test diskName',
-                    diskStatus: diskStatusEnum.DATA_UPLOADING,
-                    diskStatusStr: '上传中',
-                    mountPoint: 'xxx',
-                    invalidMsg: '',
-                    recommendedServerId: '',
-                    slotId: '0',
-                    updateTime: 100000,
-                    updateTimeStr: '2021-11-01 11:11:11',
-                    updateTimeShortStr: '11-01 11:11:11',
-                    tips: '',
-                    vehicleIds: ['byd-01'],
-                    wrongServer: false,
-                },
-            },
-        ]
+    // it('should render diskInfo ', () => {
+    //     const data: slotInfoType[] = [
+    //         {
+    //             slotId: '0',
+    //             slotBusId: 'xxx',
+    //             isEmpty: false,
+    //             diskInfo: {
+    //                 diskId: 'test diskId',
+    //                 diskName: 'test diskName',
+    //                 diskStatus: diskStatusEnum.DATA_UPLOADING,
+    //                 diskStatusStr: '上传中',
+    //                 mountPoint: 'xxx',
+    //                 invalidMsg: '',
+    //                 recommendedServerId: '',
+    //                 slotId: '0',
+    //                 updateTime: 100000,
+    //                 updateTimeStr: '2021-11-01 11:11:11',
+    //                 updateTimeShortStr: '11-01 11:11:11',
+    //                 tips: '',
+    //                 vehicleIds: ['byd-01'],
+    //                 wrongServer: false,
+    //             },
+    //         },
+    //     ]
 
-        render(
-            <Context initStore={getInitStore()}>
-                <ListView data={data} />
-            </Context>
-        )
+    //     render(
+    //         <Context initStore={getInitStore()}>
+    //             <ListView data={data} />
+    //         </Context>
+    //     )
 
-        expect(
-            screen.getByRole('cell', {
-                name: /test diskname/i,
-            })
-        ).toBeDefined()
-    })
+    //     expect(
+    //         screen.getByRole('cell', {
+    //             name: /test diskname/i,
+    //         })
+    //     ).toBeDefined()
+    // })
 })

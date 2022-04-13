@@ -49,24 +49,24 @@ afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 describe('Upload Server', () => {
-    it('should render list', async () => {
-        apiUploadServerType = 'primary'
-        const store = getInitStore()
-        const dispatch = store.dispatch as Dispatch
+    // it('should render list', async () => {
+    //     apiUploadServerType = 'primary'
+    //     const store = getInitStore()
+    //     const dispatch = store.dispatch as Dispatch
 
-        render(
-            <Context initStore={store}>
-                <List />
-            </Context>
-        )
+    //     render(
+    //         <Context initStore={store}>
+    //             <List />
+    //         </Context>
+    //     )
 
-        dispatch.uploadServer.initData({})
-        await waitFor(() => screen.getAllByText(/superxray\-sz\-0/i))
+    //     dispatch.uploadServer.initData({})
+    //     await waitFor(() => screen.getAllByText(/superxray\-sz\-0/i))
 
-        expect(screen.getAllByText(/superxray\-sz\-0/i).length).toBe(
-            data.data.uploadServerInfos.length
-        )
-    })
+    //     expect(screen.getAllByText(/superxray\-sz\-0/i).length).toBe(
+    //         data.data.uploadServerInfos.length
+    //     )
+    // })
 
     it('should render an empty list prompt when the data is empty', async () => {
         apiUploadServerType = 'empty'
@@ -79,9 +79,11 @@ describe('Upload Server', () => {
             </Context>
         )
 
-        dispatch.uploadServer.initData({})
-        await waitFor(() => screen.getAllByText(/列表数据为空。/i))
+        screen.logTestingPlaygroundURL()
 
-        expect(screen.getAllByText(/列表数据为空。/i).length).toBeDefined()
+        dispatch.uploadServer.initData({})
+        await waitFor(() => screen.getAllByText(/没有数据/i))
+
+        expect(screen.getAllByText(/没有数据/i).length).toBeDefined()
     })
 })

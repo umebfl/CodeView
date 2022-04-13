@@ -13,7 +13,7 @@ import { uploadServerType } from 'src/reducer/uploadServer/type'
 import { useT } from 'src/hooks/language'
 import { langType } from 'src/hooks/language/package/type'
 import Grid from 'src/component/grid'
-import { GridValueGetterParams } from '@mui/x-data-grid'
+import { GridCellValue, GridValueGetterParams } from '@mui/x-data-grid'
 
 const UploadServerList: FC = () => {
     const theme = useTheme()
@@ -23,11 +23,20 @@ const UploadServerList: FC = () => {
 
     const columns = [
         {
-            field: 'uploadServerId',
-            headerName: 'ID',
-            width: 180,
+            field: 'seq',
+            headerName: t('S/N'),
+            width: 100,
             type: 'string',
             sortable: true,
+        },
+        {
+            field: 'uploadServerId',
+            headerName: 'ID',
+            width: 240,
+            type: 'string',
+            sortable: true,
+            sortComparator: (v1: GridCellValue, v2: GridCellValue) =>
+                (v1 as string)?.length - (v2 as string)?.length,
             renderCell: (params: GridValueGetterParams) => (
                 <Box
                     sx={{
@@ -42,7 +51,9 @@ const UploadServerList: FC = () => {
                         }
                         style={{
                             textDecoration: 'none',
-                            color: theme.palette.primary.dark,
+                            color: params.row.isRunning
+                                ? theme.palette.primary.dark
+                                : theme.color.grey15,
                         }}
                     >
                         {params.row.uploadServerId}
@@ -53,8 +64,10 @@ const UploadServerList: FC = () => {
         {
             field: 'isRunningStr',
             headerName: t('runStatus'),
-            width: 180,
-            type: 'string',
+            flex: 1,
+            minWidth: 100,
+            type: 'singleSelect',
+            valueOptions: [t('running'), t('close')],
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
                 return t(params.row.isRunningStr as keyof langType)
@@ -72,16 +85,71 @@ const UploadServerList: FC = () => {
             ),
         },
         {
-            field: 'uploadServerLocation',
-            headerName: t('position'),
-            width: 180,
-            type: 'string',
+            field: 'completed',
+            headerName: t('completed'),
+            flex: 1,
+            minWidth: 100,
+            type: 'number',
             sortable: true,
+            description: `${t('completed')} / ${t('totalDisk')}`,
+            valueGetter: (params: GridValueGetterParams) => {
+                return params.row.formattedDisksNum
+            },
+            renderCell: (params: GridValueGetterParams) => {
+                const runNum =
+                    params.row.totalSlotsNum - params.row.emptySlotsNum
+
+                return (
+                    <Box
+                        sx={{
+                            color:
+                                params.row.isRunning &&
+                                params.row.formattedDisksNum > 0 &&
+                                params.row.formattedDisksNum === runNum
+                                    ? theme.palette.success.dark
+                                    : 'inherit',
+                        }}
+                    >
+                        {params.row.isRunning
+                            ? `${params.row.formattedDisksNum} / ${runNum}`
+                            : '-'}
+                    </Box>
+                )
+            },
+        },
+        // {
+        //     field: 'used',
+        //     headerName: t('runningSlots'),
+        //     flex: 1,
+        //     minWidth: 100,
+        //     type: 'number',
+        //     sortable: true,
+        //     valueGetter: (params: GridValueGetterParams) => {
+        //         return `${params.row.totalSlotsNum - params.row.emptySlotsNum}`
+        //     },
+        //     renderCell: (params: GridValueGetterParams) =>
+        //         params.row.isRunning
+        //             ? `${params.row.totalSlotsNum - params.row.emptySlotsNum}`
+        //             : '-',
+        // },
+        {
+            field: 'emptySlotsNum',
+            headerName: t('emptySlots'),
+            flex: 1,
+            minWidth: 100,
+            type: 'number',
+            sortable: true,
+            valueGetter: (params: GridValueGetterParams) => {
+                return `${params.row.emptySlotsNum}`
+            },
+            renderCell: (params: GridValueGetterParams) =>
+                params.row.isRunning ? params.row.emptySlotsNum : '-',
         },
         {
             field: 'totalOfSlots',
             headerName: t('totalOfSlots'),
-            width: 180,
+            flex: 1,
+            minWidth: 100,
             type: 'number',
             sortable: true,
             description: '',
@@ -92,42 +160,12 @@ const UploadServerList: FC = () => {
                 params.row.isRunning ? params.row.totalSlotsNum : '-',
         },
         {
-            field: 'completed',
-            headerName: t('completed'),
-            width: 180,
-            type: 'number',
+            field: 'uploadServerLocation',
+            headerName: t('position'),
+            flex: 1,
+            minWidth: 100,
+            type: 'string',
             sortable: true,
-            valueGetter: (params: GridValueGetterParams) => {
-                return params.row.formattedDisksNum
-            },
-            renderCell: (params: GridValueGetterParams) =>
-                params.row.isRunning ? params.row.formattedDisksNum : '-',
-        },
-        {
-            field: 'used',
-            headerName: t('runningSlots'),
-            width: 180,
-            type: 'number',
-            sortable: true,
-            valueGetter: (params: GridValueGetterParams) => {
-                return `${params.row.totalSlotsNum - params.row.emptySlotsNum}`
-            },
-            renderCell: (params: GridValueGetterParams) =>
-                params.row.isRunning
-                    ? `${params.row.totalSlotsNum - params.row.emptySlotsNum}`
-                    : '-',
-        },
-        {
-            field: 'emptySlotsNum',
-            headerName: t('emptySlots'),
-            width: 180,
-            type: 'number',
-            sortable: true,
-            valueGetter: (params: GridValueGetterParams) => {
-                return `${params.row.emptySlotsNum}`
-            },
-            renderCell: (params: GridValueGetterParams) =>
-                params.row.isRunning ? params.row.emptySlotsNum : '-',
         },
         // {
         //     field: 'operationTips',
@@ -169,11 +207,13 @@ const UploadServerList: FC = () => {
                 rows={transData(data)}
                 columns={columns}
                 quickFilter={true}
-                initialState={{
-                    sorting: {
-                        sortModel: [{ field: 'uploadServerId', sort: 'asc' }],
-                    },
-                }}
+                initialState={
+                    {
+                        // sorting: {
+                        //     sortModel: [{ field: 'uploadServerId', sort: 'asc' }],
+                        // },
+                    }
+                }
             />
         </Box>
     )

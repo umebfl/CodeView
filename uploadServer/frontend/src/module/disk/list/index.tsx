@@ -3,7 +3,11 @@ import React from 'react'
 
 import Box from '@mui/material/Box'
 import { useSelector } from 'react-redux'
-import { GridColDef, GridValueGetterParams } from '@mui/x-data-grid'
+import {
+    GridCellValue,
+    GridColDef,
+    GridValueGetterParams,
+} from '@mui/x-data-grid'
 import { Link } from 'react-router-dom'
 import useTheme from '@mui/system/useTheme'
 import { filter, map, reduce } from 'ramda'
@@ -21,6 +25,7 @@ import {
 import { getCommonColumnsConfig } from 'src/module/uploadServer/detail/listView'
 
 const transformDiskData = (data: uploadServerType[], t: TProps) => {
+    let idx = 1
     return reduce((list: any[], item: uploadServerType) => {
         const diskList = map((slot: slotInfoType) => {
             return slot.diskInfo
@@ -33,6 +38,7 @@ const transformDiskData = (data: uploadServerType[], t: TProps) => {
         const idList = map((disk: diskInfoType) => {
             return {
                 ...disk,
+                seq: idx++,
                 id: disk.diskId,
                 serverID: item.uploadServerId,
                 inventoryStatus: 'normal',
@@ -57,11 +63,21 @@ const DiskList = () => {
 
     const columns: GridColDef[] = [
         {
+            field: 'seq',
+            headerName: t('S/N'),
+            width: 100,
+            type: 'string',
+            sortable: true,
+        },
+
+        {
             field: 'serverID',
             headerName: `${t('server')}ID`,
             width: 180,
             description: '',
             sortable: true,
+            sortComparator: (v1: GridCellValue, v2: GridCellValue) =>
+                (v1 as string)?.length - (v2 as string)?.length,
             renderCell: (params: GridValueGetterParams) => (
                 <Link
                     to={`/up/detail/${params.row.serverID}`}
@@ -75,7 +91,23 @@ const DiskList = () => {
             // valueGetter: (params: GridValueGetterParams) =>
             //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
         },
-        { field: 'id', headerName: `${t('disk')}ID`, width: 240 },
+        {
+            field: 'id',
+            headerName: `${t('disk')}ID`,
+            flex: 1,
+            minWidth: 260,
+            valueGetter: (params: GridValueGetterParams) => {
+                return params.row.diskId || '-'
+            },
+            renderCell: (params: GridValueGetterParams) =>
+                params.row.diskId ? (
+                    <TooltipField title={params.row.diskId}>
+                        {params.row.diskId}
+                    </TooltipField>
+                ) : (
+                    '-'
+                ),
+        },
         { field: 'diskName', headerName: t('diskName'), width: 130 },
         {
             field: 'inventoryStatus',
@@ -143,7 +175,8 @@ const DiskList = () => {
         {
             field: 'mountPoint',
             headerName: t('mountPoint'),
-            width: 160,
+            flex: 1,
+            minWidth: 160,
             description: '',
             sortable: true,
             renderCell: (params: GridValueGetterParams) => (
@@ -184,9 +217,9 @@ const DiskList = () => {
                 columns={columns}
                 quickFilter={true}
                 initialState={{
-                    sorting: {
-                        sortModel: [{ field: 'serverID', sort: 'asc' }],
-                    },
+                    // sorting: {
+                    //     sortModel: [{ field: 'serverID', sort: 'asc' }],
+                    // },
                     filter: {
                         filterModel: {
                             items: [

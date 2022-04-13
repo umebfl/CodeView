@@ -62,6 +62,7 @@ const lang: langType = {
     doubleClickToEdit: '双击可进行编辑',
     server: '服务器',
     runningSlots: '运行中插槽数',
+    totalDisk: '总硬盘数',
 }
 
 export default lang

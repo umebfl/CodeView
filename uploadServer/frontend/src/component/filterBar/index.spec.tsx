@@ -15,7 +15,7 @@ jest.mock('react-router-dom', () => ({
 }))
 
 describe('FilterBar', () => {
-    it('should called handleChange when text is entered', () => {
+    it('should called handleChange when text is entered', async () => {
         const handleChange = jest.fn()
 
         render(
@@ -27,6 +27,8 @@ describe('FilterBar', () => {
         fireEvent.change(screen.getByRole('textbox'), {
             target: { value: '006' },
         })
+
+        await jest.setTimeout(1000)
 
         expect(handleChange).toBeCalled()
     })

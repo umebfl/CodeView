@@ -9,6 +9,7 @@ import { language } from 'src/reducer/language'
 
 import MockData from '../../../data/json/uploadServer.json'
 import { UploadServerState } from 'src/reducer/uploadServer/type'
+import { langSet } from '../language/type'
 
 // error Primary one empty
 let apiUploadServerType = 'primary'
@@ -48,7 +49,10 @@ describe('Reducer - uploadServer', () => {
 
         const { dispatch } = store
 
-        dispatch.uploadServer.setData(MockData.data.uploadServerInfos)
+        dispatch.uploadServer.setData({
+            lang: langSet.zh,
+            payload: MockData.data.uploadServerInfos,
+        })
 
         const data: UploadServerState = store.getState().uploadServer
 
