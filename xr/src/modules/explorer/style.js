@@ -70,6 +70,9 @@ const ExplorerStyles = makeStyles(theme => ({
 
     colFileName: {
         marginRight: 10,
+        maxWidth: 260,
+        textOverflow: 'ellipsis',
+        overflow: 'hidden',
         '&:hover': {
             textDecoration: 'underline',
         },

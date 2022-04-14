@@ -2,149 +2,6 @@ import _ from 'lodash'
 import Explorer from './modules/explorer'
 
 function App() {
-    let data = {
-        dataSet: {
-            name: 'playback',
-            fullName: 'playback',
-            type: 'folder',
-            lastModifiedTimestamp: 1648020504,
-            childCount: 1,
-            children: [
-                {
-                    name: '12',
-                    fullName: 'playback/12',
-                    childCount: 7,
-                    lastModifiedTimestamp: 1648020504,
-                    type: 'folder',
-                    children: [
-                        {
-                            name: 'www',
-                            fullName: 'playback/12/ww',
-                            type: 'folder',
-                            lastModifiedTimestamp: 2648020504,
-                            childCount: 1,
-                            children: [
-                                {
-                                    name: 't3',
-                                    fullName: 'playback/12/t3',
-                                    childCount: 0,
-                                    lastModifiedTimestamp: 1648020504,
-                                    type: 'folder',
-                                    children: [],
-                                    file: [
-                                        {
-                                            id: '3',
-                                            isArchived: true,
-                                            lastModifiedTimestamp: 1648020504,
-                                            location: 'LOCAL',
-                                            name: 'xxx',
-                                            path: '/applo/xx',
-                                            sizeByte: 1,
-                                            state: 'AVAILABEL',
-                                            type: 'file',
-                                        },
-                                    ],
-                                },
-                            ],
-                            file: [
-                                {
-                                    id: '2',
-                                    isArchived: true,
-                                    lastModifiedTimestamp: 1648020504,
-                                    location: 'LOCAL',
-                                    name: 'xxx',
-                                    path: '/applo/xx',
-                                    sizeByte: 1,
-                                    state: 'AVAILABEL',
-                                    type: 'file',
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
-            file: [
-                {
-                    id: '1',
-                    isArchived: true,
-                    lastModifiedTimestamp: 1948020504,
-                    location: 'LOCAL',
-                    name: 'xxx',
-                    path: '/applo/xx',
-                    sizeByte: 1,
-                    state: 'AVAILABEL',
-                    type: 'file',
-                },
-                {
-                    id: '12',
-                    isArchived: true,
-                    lastModifiedTimestamp: 1948020504,
-                    location: 'LOCAL',
-                    name: 'xxx',
-                    path: '/applo/xx',
-                    sizeByte: 1,
-                    state: 'AVAILABEL',
-                    type: 'file',
-                },
-                {
-                    id: '13',
-                    isArchived: true,
-                    lastModifiedTimestamp: 1948020504,
-                    location: 'LOCAL',
-                    name: 'xxx',
-                    path: '/applo/xx',
-                    sizeByte: 1,
-                    state: 'AVAILABEL',
-                    type: 'file',
-                },
-                {
-                    id: '14',
-                    isArchived: true,
-                    lastModifiedTimestamp: 1948020504,
-                    location: 'LOCAL',
-                    name: 'xxx',
-                    path: '/applo/xx',
-                    sizeByte: 1,
-                    state: 'AVAILABEL',
-                    type: 'file',
-                },
-                {
-                    id: '15',
-                    isArchived: true,
-                    lastModifiedTimestamp: 1948020504,
-                    location: 'LOCAL',
-                    name: 'xxx',
-                    path: '/applo/xx',
-                    sizeByte: 1,
-                    state: 'AVAILABEL',
-                    type: 'file',
-                },
-                {
-                    id: '16',
-                    isArchived: true,
-                    lastModifiedTimestamp: 1948020504,
-                    location: 'LOCAL',
-                    name: 'xxx',
-                    path: '/applo/xx',
-                    sizeByte: 1,
-                    state: 'AVAILABEL',
-                    type: 'file',
-                },
-                {
-                    id: '17',
-                    isArchived: true,
-                    lastModifiedTimestamp: 1948020504,
-                    location: 'LOCAL',
-                    name: 'xxx',
-                    path: '/applo/xx',
-                    sizeByte: 1,
-                    state: 'AVAILABEL',
-                    type: 'file',
-                },
-            ],
-        },
-    }
-
     const fetchData = async path => {
         // {
         //     name: 'playback',
@@ -293,12 +150,12 @@ function App() {
                 dir: [
                     {
                         childCount: 2,
-                        lastModifiedTimestamp: 1647650345,
+                        lastModifiedTimestamp: 1649909284894,
                         name: 'root/1',
                     },
                     {
                         childCount: 1,
-                        lastModifiedTimestamp: 1647650345,
+                        lastModifiedTimestamp: 1749909284894,
                         name: 'root/2',
                     },
                 ],
@@ -322,12 +179,12 @@ function App() {
                 dir: [
                     {
                         childCount: 2,
-                        lastModifiedTimestamp: 1647650345,
+                        lastModifiedTimestamp: 1649909284894,
                         name: 'root/1',
                     },
                     {
                         childCount: 1,
-                        lastModifiedTimestamp: 1647650345,
+                        lastModifiedTimestamp: 1749909284894,
                         name: 'root/2',
                     },
                 ],
@@ -336,7 +193,7 @@ function App() {
                     {
                         id: 'playback/byd-cn-1_2022-03-10-11-03_all_1646881422-1646881452.xray',
                         isArchived: false,
-                        lastModifiedTimestamp: 1648020504,
+                        lastModifiedTimestamp: 1649509284894,
                         location: 'LOCAL',
                         name: 'byd-cn-1_2022-03-10-11-03_all_1646881422-1646881452.xray.play',
                         path: '/apollo/playback/byd-cn-1_2022-03-10-11-03_all_1646881422-1646881452.xray',
@@ -411,7 +268,7 @@ function App() {
                     },
                 ],
                 ok: true,
-                prefix: 'root/2',
+                prefix: 'root/1/a',
             },
             'root/1/b': {
                 dir: [],
@@ -429,7 +286,7 @@ function App() {
                     },
                 ],
                 ok: true,
-                prefix: 'root/2',
+                prefix: 'root/1/b',
             },
         }
 
@@ -439,7 +296,7 @@ function App() {
             const transData = data => {
                 return {
                     name: _.last(_.split(data.prefix, '/')),
-                    fullName: path,
+                    fullName: data.prefix,
                     type: 'folder',
                     childCount: data.dir.length,
                     load: true,
@@ -484,18 +341,14 @@ function App() {
             }}
         >
             <Explorer
+                handleFileClick={path => {
+                    alert(path)
+                }}
+                handleFileInfoBtnClick={path => {
+                    alert(path)
+                }}
                 loadData={async (path = '') => {
-                    // const rv = await fetch(`/api/filebrowsingv2`, {
-                    //     method: 'POST',
-                    //     headers: {
-                    //         'Content-Type': 'application/json',
-                    //     },
-                    //     body: JSON.stringify({ prefix: 'path' }),
-                    // })
-
-                    // const data = await rv.json()
                     const data = await fetchData(path)
-
                     return data
                 }}
             />

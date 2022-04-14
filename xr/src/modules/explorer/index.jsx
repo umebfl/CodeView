@@ -4,18 +4,21 @@ import FolderIcon from '@material-ui/icons/Folder'
 import _ from 'lodash'
 import moment from 'moment'
 import { Button } from '@material-ui/core'
+import Tooltip from '@material-ui/core/Tooltip'
+import TextField from '@material-ui/core/TextField'
+
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
 
 import ExplorerStyles from './style'
-import Breadcrumbs from './Breadcrumbs'
+import Breadcrumbs from './breadcrumbs'
 
 const getModifiedTime = timestamp =>
     moment(timestamp).format('YYYY-MM-DD HH:mm:ss')
 
 const Explorer = props => {
     const classes = ExplorerStyles()
-    const { loadData } = props
+    const { handleFileClick, handleFileInfoBtnClick, loadData } = props
 
     const [data, setData] = useState({})
     const [currentPath, setCurrentPath] = useState('')
@@ -25,6 +28,9 @@ const Explorer = props => {
     const dirRows = currentData?.children || []
     const fileRows = currentData?.file || []
     const rows = [...dirRows, ...fileRows]
+
+    let filterStartTime = null
+    let filterEndTime = null
 
     const breadcrumbsVal = _.split(currentPath, '/').reduce(
         ({ path, val }, item) => {
@@ -43,53 +49,34 @@ const Explorer = props => {
         { path: '', val: [] }
     ).val
 
-    console.log('data', data, currentPath, rows)
-    const handleFileClick = path => {
-        alert(path)
-    }
-
-    const handleFileInfoBtnClick = path => {
-        alert(path)
-    }
-
     const handleFolderClick = async index => {
-        setLoading(true)
-        let node = currentData.children[index]
-        const path = `${currentPath}/${node.name}`
-        let fullData = node
+        try {
+            setLoading(true)
+            let node = currentData.children[index]
+            const path = `${currentPath}/${node.name}`
+            let fullData = node
 
-        console.log('node', node)
-        if (node.load === false) {
-            fullData = await loadData(path)
-        }
+            if (node.load === false) {
+                fullData = await loadData(path)
+            }
 
-        setData({
-            ...data,
-            [path]: fullData,
-        })
-        setCurrentPath(path)
+            setData({
+                ...data,
+                [path]: fullData,
+            })
+            setCurrentPath(path)
 
-        setTimeout(() => {
+            setTimeout(() => {
+                setLoading(false)
+            }, 500)
+        } catch (error) {
+            console.error(error)
             setLoading(false)
-        }, 500)
+        }
     }
 
     const handleBreadcumbsClick = path => {
         setCurrentPath(path)
-    }
-
-    const handleBreadcumbsReload = async () => {
-        setLoading(true)
-        const rv = await loadData(currentPath)
-
-        setData({
-            ...data,
-            [currentPath]: rv,
-        })
-
-        setTimeout(() => {
-            setLoading(false)
-        }, 500)
     }
 
     const columns = [
@@ -107,17 +94,19 @@ const Explorer = props => {
                         />
                     )}
 
-                    <div
-                        className={classes.colFileName}
-                        onClick={e => {
-                            props.original.type === 'folder'
-                                ? handleFolderClick(props.index)
-                                : handleFileClick(props.original.name)
-                            e.stopPropagation()
-                        }}
-                    >
-                        {props.original.name}
-                    </div>
+                    <Tooltip title={props.original.name}>
+                        <div
+                            className={classes.colFileName}
+                            onClick={e => {
+                                props.original.type === 'folder'
+                                    ? handleFolderClick(props.index)
+                                    : handleFileClick(props.original.name)
+                                e.stopPropagation()
+                            }}
+                        >
+                            {props.original.name}
+                        </div>
+                    </Tooltip>
 
                     {props.original.type === 'file' && (
                         <Button
@@ -171,11 +160,78 @@ const Explorer = props => {
         {
             Header: 'Last Modified',
             accessor: 'lastModifiedTimestamp',
+            width: 430,
             Cell: props => (
-                <span>
+                <div
+                    style={{
+                        textAlign: 'center',
+                    }}
+                >
                     {getModifiedTime(props.original.lastModifiedTimestamp)}
-                </span>
+                </div>
             ),
+            filterMethod: (filter, row, column) => {
+                const { lastModifiedTimestamp } = row
+                const startTimestamp = filterStartTime?.getTime()
+                const endTimestamp = filterEndTime?.getTime()
+
+                if (filterStartTime) {
+                    if (filterEndTime) {
+                        return (
+                            lastModifiedTimestamp > startTimestamp &&
+                            lastModifiedTimestamp < endTimestamp
+                        )
+                    }
+                    return lastModifiedTimestamp > startTimestamp
+                }
+
+                if (filterEndTime) {
+                    return lastModifiedTimestamp < endTimestamp
+                }
+
+                return true
+            },
+            Filter: props => {
+                return (
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'space-around',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <TextField
+                            type="datetime-local"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            onChange={e => {
+                                if (e.target.value) {
+                                    filterStartTime = new Date(e.target.value)
+                                } else {
+                                    filterStartTime = null
+                                }
+                                props.onChange()
+                            }}
+                        />
+                        －
+                        <TextField
+                            type="datetime-local"
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                            onChange={e => {
+                                if (e.target.value) {
+                                    filterEndTime = new Date(e.target.value)
+                                } else {
+                                    filterEndTime = null
+                                }
+                                props.onChange()
+                            }}
+                        />
+                    </div>
+                )
+            },
         },
         {
             // TODO: 过滤大小区间？
@@ -216,15 +272,31 @@ const Explorer = props => {
         },
     ]
 
-    const initData = async () => {
-        if (_.isEmpty(data[currentPath])) {
+    const handleLoadData = async () => {
+        try {
+            setLoading(true)
             const rv = await loadData(currentPath)
-            const rootName = rv.name
+            const rootName = rv.fullName
 
             setData({
+                ...data,
                 [rootName]: rv,
             })
+
             setCurrentPath(rootName)
+
+            setTimeout(() => {
+                setLoading(false)
+            }, 500)
+        } catch (error) {
+            console.error(error)
+            setLoading(false)
+        }
+    }
+
+    const initData = async () => {
+        if (_.isEmpty(data[currentPath])) {
+            handleLoadData()
         }
     }
 
@@ -238,7 +310,7 @@ const Explorer = props => {
                 loading={loading}
                 data={breadcrumbsVal}
                 handleClick={handleBreadcumbsClick}
-                handleReload={handleBreadcumbsReload}
+                handleReload={handleLoadData}
             />
             {/* <div className={classes.filter}>Filter</div> */}
 
@@ -250,6 +322,14 @@ const Explorer = props => {
                 className={classes.content}
                 data={rows}
                 columns={columns}
+                // FilterComponent={(a, b, c, d) => {
+                //     console.log(a)
+                //     if (a.column.id === 'lastModifiedTimestamp') {
+                //         return <div>456</div>
+                //     }
+
+                //     return null
+                // }}
                 getTrProps={(state, rowInfo, column) => {
                     return {
                         onClick: () => {

@@ -32,9 +32,9 @@ const Styles = makeStyles(theme => ({
         marginRight: 10,
         background: '#333',
         borderRadius: 20,
-        // '&:hover': {
-        //     background: '#63717c',
-        // },
+        '&:hover': {
+            background: '#63717c',
+        },
     },
 }))
 
