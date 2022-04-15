@@ -5,6 +5,7 @@ export enum diskStatusEnum {
     DATA_UPLOAD_FAILED = 'DATA_UPLOAD_FAILED',
     DATA_UPLOADED = 'DATA_UPLOADED',
     FORMATTED = 'FORMATTED',
+    FINISHED_MANUALLY = 'FINISHED_MANUALLY',
     NULL = 'NULL',
     WRONGSERVER = 'WRONGSERVER',
 }
@@ -40,6 +41,11 @@ export const DiskStatusConfig: Record<
     },
     FORMATTED: {
         name: 'finish',
+        color: ['palette', 'success', 'main'],
+        icon: 'CheckCircleOutlineIcon',
+    },
+    FINISHED_MANUALLY: {
+        name: 'finish_manually',
         color: ['palette', 'success', 'main'],
         icon: 'CheckCircleOutlineIcon',
     },

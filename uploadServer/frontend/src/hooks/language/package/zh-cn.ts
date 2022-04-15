@@ -63,6 +63,7 @@ const lang: langType = {
     server: '服务器',
     runningSlots: '运行中插槽数',
     totalDisk: '总硬盘数',
+    finish_manually: '结束(手动)',
 }
 
 export default lang

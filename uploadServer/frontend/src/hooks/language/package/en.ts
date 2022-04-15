@@ -63,6 +63,7 @@ const lang: langType = {
     server: 'Server',
     runningSlots: 'Running Slots',
     totalDisk: 'Total Disk',
+    finish_manually: 'Finish(Manually)',
 }
 
 export default lang

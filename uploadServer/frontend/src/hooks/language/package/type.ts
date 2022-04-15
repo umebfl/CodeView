@@ -62,4 +62,5 @@ export interface langType {
     server: string
     runningSlots: string
     totalDisk: string
+    finish_manually: string
 }
