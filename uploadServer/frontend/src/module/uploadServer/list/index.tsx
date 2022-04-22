@@ -88,17 +88,17 @@ const UploadServerList: FC = () => {
         },
 
         {
-            field: 'removable_slots_sequence_nums',
+            field: 'removableSlotsSequenceNums',
             headerName: t('slotsSequenceOfRemovable'),
             flex: 1,
             minWidth: 100,
             type: 'string',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
-                return params.row.removable_slots_sequence_nums?.join(', ')
+                return params.row.removableSlotsSequenceNums?.join(', ')
             },
             renderCell: (params: GridValueGetterParams) =>
-                params.row.removable_slots_sequence_nums?.join(', ') || '-',
+                params.row.removableSlotsSequenceNums?.join(', ') || '-',
         },
 
         {
