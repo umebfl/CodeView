@@ -267,6 +267,7 @@
                 "uploadServerId": "sz-exa-upload-1",
                 "uploadServerLocation": "4:12:15-16",
                 "isRunning": true,
+                "removable_slots_sequence_nums": [1, 2, 3, 5],
                 "slotInfos": [
                     {
                         "slotId": "0-5",
