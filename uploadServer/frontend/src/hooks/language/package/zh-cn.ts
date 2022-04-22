@@ -64,6 +64,7 @@ const lang: langType = {
     runningSlots: '运行中插槽数',
     totalDisk: '总硬盘数',
     finish_manually: '结束(手动)',
+    slotsSequenceOfRemovable: '可拔出插槽序列',
 }
 
 export default lang

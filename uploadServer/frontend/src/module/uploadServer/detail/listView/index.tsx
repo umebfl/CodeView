@@ -5,7 +5,11 @@ import { map, path } from 'ramda'
 import useTheme from '@mui/system/useTheme'
 import { Link } from 'react-router-dom'
 import { Theme } from '@mui/system'
+import { useDispatch, useSelector } from 'react-redux'
+import { GridInitialStateCommunity } from '@mui/x-data-grid/models/gridStateCommunity'
+import { GridValueGetterParams } from '@mui/x-data-grid'
 
+import { RootState, Dispatch } from 'src/reducer/type'
 import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
 import {
     diskInfoType,
@@ -17,7 +21,6 @@ import { TProps, useT } from 'src/hooks/language'
 import { langType } from 'src/hooks/language/package/type'
 import UploadRecordsList from 'src/module/uploadServer/detail/listView/uploadRecordsList'
 import Grid from 'src/component/grid'
-import { GridValueGetterParams } from '@mui/x-data-grid'
 import TooltipField from 'src/component/grid/tooltipField'
 
 function LinearProgressWithLabel(props: any) {
@@ -281,6 +284,8 @@ export const getCommonColumnsConfig = (
 const ListView = ({ data }: ViewPayloadType) => {
     const theme = useTheme()
     const t = useT()
+    const userConfig = useSelector((state: RootState) => state.userConfig)
+    const dispatch = useDispatch<Dispatch>()
 
     const commonColumnsConfig = getCommonColumnsConfig(theme, t, [
         'row',
@@ -398,6 +403,15 @@ const ListView = ({ data }: ViewPayloadType) => {
         }
     })
 
+    const saveGridConfig = (config: GridInitialStateCommunity) => {
+        dispatch.userConfig.set({
+            uploadServer_detailListConfig: {
+                ...userConfig.uploadServer_detailListConfig,
+                ...config,
+            },
+        })
+    }
+
     return (
         <Box
             style={{
@@ -408,11 +422,8 @@ const ListView = ({ data }: ViewPayloadType) => {
                 rows={transData(data)}
                 columns={columns}
                 quickFilter={true}
-                // initialState={{
-                //     sorting: {
-                //         sortModel: [{ field: 'slotId', sort: 'asc' }],
-                //     },
-                // }}
+                saveGridConfig={saveGridConfig}
+                initialState={userConfig.uploadServer_detailListConfig}
             />
         </Box>
     )

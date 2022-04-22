@@ -63,4 +63,5 @@ export interface langType {
     runningSlots: string
     totalDisk: string
     finish_manually: string
+    slotsSequenceOfRemovable: string
 }

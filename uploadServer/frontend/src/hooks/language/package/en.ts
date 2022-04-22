@@ -64,6 +64,7 @@ const lang: langType = {
     runningSlots: 'Running Slots',
     totalDisk: 'Total Disk',
     finish_manually: 'Finish(Manually)',
+    slotsSequenceOfRemovable: 'Slots sequence of removable',
 }
 
 export default lang

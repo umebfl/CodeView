@@ -6,18 +6,20 @@ import { map } from 'ramda'
 
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import { GridCellValue, GridValueGetterParams } from '@mui/x-data-grid'
+import { GridInitialStateCommunity } from '@mui/x-data-grid/models/gridStateCommunity'
 
-import Breadcrumbs from 'src/component/breadcrumbs'
 import { RootState, Dispatch } from 'src/reducer/type'
+import Breadcrumbs from 'src/component/breadcrumbs'
 import { uploadServerType } from 'src/reducer/uploadServer/type'
 import { useT } from 'src/hooks/language'
 import { langType } from 'src/hooks/language/package/type'
 import Grid from 'src/component/grid'
-import { GridCellValue, GridValueGetterParams } from '@mui/x-data-grid'
 
 const UploadServerList: FC = () => {
     const theme = useTheme()
     const { data } = useSelector((state: RootState) => state.uploadServer)
+    const userConfig = useSelector((state: RootState) => state.userConfig)
     const dispatch = useDispatch<Dispatch>()
     const t = useT()
 
@@ -84,6 +86,21 @@ const UploadServerList: FC = () => {
                 </Box>
             ),
         },
+
+        {
+            field: 'removable_slots_sequence_nums',
+            headerName: t('slotsSequenceOfRemovable'),
+            flex: 1,
+            minWidth: 100,
+            type: 'string',
+            sortable: true,
+            valueGetter: (params: GridValueGetterParams) => {
+                return params.row.removable_slots_sequence_nums?.join(', ')
+            },
+            renderCell: (params: GridValueGetterParams) =>
+                params.row.removable_slots_sequence_nums?.join(', ') || '-',
+        },
+
         {
             field: 'completed',
             headerName: t('completed'),
@@ -183,6 +200,16 @@ const UploadServerList: FC = () => {
         }
     })
 
+    const saveGridConfig = (config: GridInitialStateCommunity) => {
+        console.log(config)
+        dispatch.userConfig.set({
+            uploadServer_listConfig: {
+                ...userConfig.uploadServer_listConfig,
+                ...config,
+            },
+        })
+    }
+
     return (
         <Box
             sx={{
@@ -205,15 +232,10 @@ const UploadServerList: FC = () => {
 
             <Grid
                 rows={transData(data)}
+                saveGridConfig={saveGridConfig}
                 columns={columns}
                 quickFilter={true}
-                initialState={
-                    {
-                        // sorting: {
-                        //     sortModel: [{ field: 'uploadServerId', sort: 'asc' }],
-                        // },
-                    }
-                }
+                initialState={userConfig.uploadServer_listConfig}
             />
         </Box>
     )
