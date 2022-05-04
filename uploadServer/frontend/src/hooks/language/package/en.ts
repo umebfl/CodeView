@@ -64,6 +64,10 @@ const lang: langType = {
     runningSlots: 'Running Slots',
     totalDisk: 'Total Disk',
     finish_manually: 'Finish(Manually)',
+    plugAndUnplugDiskRecords: 'Plug And Unplug Disk Records',
+    target: 'Target',
+    targetType: 'Target Type',
+    diskUnPlugTime: 'Disk Unplug Time',
 }
 
 export default lang

@@ -7,10 +7,12 @@ import Input from '@mui/material/Input'
 import InputAdornment from '@mui/material/InputAdornment'
 import { useDebounceFn } from 'ahooks'
 
-import { payloadType } from 'src/component/filterBar/type'
+import { useT } from 'src/hooks/language'
+import { payloadType } from 'src/component/grid/toolbar/filterBar/type'
 
 const FilterBar = ({ value, right, handleChange, inputProps }: payloadType) => {
     const theme = useTheme()
+    const t = useT()
     const [searchText, setSearchText] = useState(value || '')
     const inputRef = useRef(null)
 
@@ -30,7 +32,6 @@ const FilterBar = ({ value, right, handleChange, inputProps }: payloadType) => {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 padding: 1.5,
-                borderBottom: theme.borderLine.lightSolid,
             }}
         >
             <Input
@@ -41,6 +42,7 @@ const FilterBar = ({ value, right, handleChange, inputProps }: payloadType) => {
                     maxLength: 25,
                     style: { paddingBottom: 0 },
                     ref: inputRef,
+                    placeholder: t('filterAnyColumn'),
                 }}
                 value={searchText}
                 onChange={(e: any) => {

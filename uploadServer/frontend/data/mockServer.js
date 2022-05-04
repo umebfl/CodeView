@@ -22,4 +22,20 @@ app.get('/data_center/change_disk_inventory_status', function (req, res) {
     })
 })
 
+app.get('/data_center/get_diskPAURecords_list', function (req, res) {
+    console.log('/data_center/get_diskPAURecords_list')
+    res.json({
+        code: 0,
+        msg: 'success',
+        data: {
+            diskPAURecords: [
+                {
+                    id: 1,
+                    seq: 1,
+                },
+            ],
+        },
+    })
+})
+
 app.listen(8000)

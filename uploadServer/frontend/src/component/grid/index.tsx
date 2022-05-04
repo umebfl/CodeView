@@ -17,7 +17,7 @@ import { RootState } from 'src/reducer/type'
 import { langSet } from 'src/reducer/language/type'
 import { useTheme } from '@mui/material/styles'
 import { GridInitialStateCommunity } from '@mui/x-data-grid/models/gridStateCommunity'
-import QuickFilter from 'src/component/grid/quickFilter'
+import Toolbar from 'src/component/grid/toolbar'
 import { contains, filter } from 'ramda'
 import { GridValueGetterParams } from '@mui/x-data-grid'
 
@@ -31,6 +31,7 @@ export interface Grid_Rows_Columns {
 export interface GridProps extends Grid_Rows_Columns {
     quickFilter?: boolean
     initialState?: GridInitialStateCommunity
+    toolbarRight?: React.FC
 }
 
 export interface filterRowsProps extends Grid_Rows_Columns {
@@ -72,7 +73,7 @@ const filterRows = (payload: filterRowsProps) => {
 }
 
 const Grid: FC<GridProps> = props => {
-    const { rows, columns, quickFilter, initialState } = props
+    const { rows, columns, quickFilter, toolbarRight, initialState } = props
     const { lang } = useSelector((state: RootState) => state.language)
     const theme = useTheme()
 
@@ -94,12 +95,14 @@ const Grid: FC<GridProps> = props => {
                 height: '100%',
             }}
         >
-            {quickFilter && (
-                <QuickFilter
-                    value={quickFilterText}
-                    handleChange={setQuickFilterText}
-                />
-            )}
+            <Toolbar
+                quickFilterProps={{
+                    open: quickFilter,
+                    value: quickFilterText,
+                    handleChange: setQuickFilterText,
+                }}
+                ToolbarRight={toolbarRight}
+            />
 
             <DataGrid
                 sx={{

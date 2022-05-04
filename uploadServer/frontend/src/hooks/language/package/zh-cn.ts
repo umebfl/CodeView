@@ -64,6 +64,10 @@ const lang: langType = {
     runningSlots: '运行中插槽数',
     totalDisk: '总硬盘数',
     finish_manually: '结束(手动)',
+    plugAndUnplugDiskRecords: '插拔盘记录',
+    target: '目标',
+    targetType: '目标类型',
+    diskUnPlugTime: '拔盘时间',
 }
 
 export default lang

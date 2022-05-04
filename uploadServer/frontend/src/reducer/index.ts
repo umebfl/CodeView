@@ -7,6 +7,7 @@ import { snackbar } from 'src/reducer/snackbar'
 import { userConfig } from 'src/reducer/userConfig'
 import { language } from 'src/reducer/language'
 import { disk } from 'src/reducer/disk'
+import { diskPAURecords } from 'src/reducer/diskPAURecords'
 
 export interface RootModel extends Models<RootModel> {
     uploadServer: typeof uploadServer
@@ -15,6 +16,7 @@ export interface RootModel extends Models<RootModel> {
     userConfig: typeof userConfig
     language: typeof language
     disk: typeof disk
+    diskPAURecords: typeof diskPAURecords
 }
 
 export const models: RootModel = {
@@ -24,4 +26,5 @@ export const models: RootModel = {
     userConfig,
     language,
     disk,
+    diskPAURecords,
 }

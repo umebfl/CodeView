@@ -63,4 +63,8 @@ export interface langType {
     runningSlots: string
     totalDisk: string
     finish_manually: string
+    plugAndUnplugDiskRecords: string
+    target: string
+    targetType: string
+    diskUnPlugTime: string
 }

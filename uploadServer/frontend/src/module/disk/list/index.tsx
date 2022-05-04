@@ -1,5 +1,6 @@
 /** No need unit test */
 import React from 'react'
+import { filter, map, reduce } from 'ramda'
 
 import Box from '@mui/material/Box'
 import { useSelector } from 'react-redux'
@@ -9,8 +10,8 @@ import {
     GridValueGetterParams,
 } from '@mui/x-data-grid'
 import { Link } from 'react-router-dom'
+import Button from '@mui/material/Button'
 import useTheme from '@mui/system/useTheme'
-import { filter, map, reduce } from 'ramda'
 
 import Breadcrumbs from 'src/component/breadcrumbs'
 import { RootState } from 'src/reducer/type'
@@ -216,6 +217,23 @@ const DiskList = () => {
                 rows={transData}
                 columns={columns}
                 quickFilter={true}
+                // toolbarRight={() => (
+                //     <Link to={'/disk/records'}>
+                //         <Button
+                //             sx={{
+                //                 color: 'white',
+                //                 background: 'rgb(52, 52, 52)',
+                //                 paddingLeft: 2,
+                //                 paddingRight: 2,
+                //             }}
+                //             color="primary"
+                //             // 跳转到plugAndUnplugDiskRecords页面
+                //             onClick={() => {}}
+                //         >
+                //             {t('plugAndUnplugDiskRecords')}
+                //         </Button>
+                //     </Link>
+                // )}
                 initialState={{
                     // sorting: {
                     //     sortModel: [{ field: 'serverID', sort: 'asc' }],
