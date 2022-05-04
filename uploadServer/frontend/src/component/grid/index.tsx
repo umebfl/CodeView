@@ -32,6 +32,7 @@ export interface GridProps extends Grid_Rows_Columns {
     quickFilter?: boolean
     initialState?: GridInitialStateCommunity
     toolbarRight?: React.FC
+    saveGridConfig?: (state: GridInitialStateCommunity) => void
 }
 
 export interface filterRowsProps extends Grid_Rows_Columns {
@@ -73,7 +74,14 @@ const filterRows = (payload: filterRowsProps) => {
 }
 
 const Grid: FC<GridProps> = props => {
-    const { rows, columns, quickFilter, toolbarRight, initialState } = props
+    const {
+        rows,
+        columns,
+        quickFilter,
+        toolbarRight,
+        initialState,
+        saveGridConfig,
+    } = props
     const { lang } = useSelector((state: RootState) => state.language)
     const theme = useTheme()
 
@@ -108,6 +116,18 @@ const Grid: FC<GridProps> = props => {
                 sx={{
                     border: 0,
                 }}
+                // onStateChange={(state: any, details: any) => {
+                //     console.log(state, details)
+                // }}
+                onColumnVisibilityModelChange={model => {
+                    if (saveGridConfig) {
+                        saveGridConfig({
+                            columns: {
+                                columnVisibilityModel: model,
+                            },
+                        })
+                    }
+                }}
                 density="compact"
                 rows={data}
                 columns={columns}
@@ -118,6 +138,7 @@ const Grid: FC<GridProps> = props => {
                     pagination: {
                         pageSize: 25,
                     },
+
                     ...initialState,
                 }}
                 rowsPerPageOptions={[5, 10, 25, 50, 100]}

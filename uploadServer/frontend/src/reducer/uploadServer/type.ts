@@ -114,6 +114,7 @@ export interface uploadServerType {
     uploadServerId: string
     uploadServerLocation: string
     slotInfos: slotInfoType[]
+    removableSlotsSequenceNums: number[]
 }
 
 export type UploadServerState = {

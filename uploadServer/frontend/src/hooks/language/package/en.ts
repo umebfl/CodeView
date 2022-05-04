@@ -68,6 +68,7 @@ const lang: langType = {
     target: 'Target',
     targetType: 'Target Type',
     diskUnPlugTime: 'Disk Unplug Time',
+    slotsSequenceOfRemovable: 'Slots sequence of removable',
 }
 
 export default lang

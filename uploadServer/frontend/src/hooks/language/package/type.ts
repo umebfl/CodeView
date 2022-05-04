@@ -67,4 +67,5 @@ export interface langType {
     target: string
     targetType: string
     diskUnPlugTime: string
+    slotsSequenceOfRemovable: string
 }

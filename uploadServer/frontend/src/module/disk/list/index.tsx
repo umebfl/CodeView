@@ -3,7 +3,6 @@ import React from 'react'
 import { filter, map, reduce } from 'ramda'
 
 import Box from '@mui/material/Box'
-import { useSelector } from 'react-redux'
 import {
     GridCellValue,
     GridColDef,
@@ -12,9 +11,10 @@ import {
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import useTheme from '@mui/system/useTheme'
+import { useDispatch, useSelector } from 'react-redux'
 
+import { RootState, Dispatch } from 'src/reducer/type'
 import Breadcrumbs from 'src/component/breadcrumbs'
-import { RootState } from 'src/reducer/type'
 import { TProps, useT } from 'src/hooks/language'
 import Grid from 'src/component/grid'
 import TooltipField from 'src/component/grid/tooltipField'
@@ -24,6 +24,7 @@ import {
     diskInfoType,
 } from 'src/reducer/uploadServer/type'
 import { getCommonColumnsConfig } from 'src/module/uploadServer/detail/listView'
+import { GridInitialStateCommunity } from '@mui/x-data-grid/models/gridStateCommunity'
 
 const transformDiskData = (data: uploadServerType[], t: TProps) => {
     let idx = 1
@@ -58,6 +59,9 @@ const DiskList = () => {
 
     // const { data } = useSelector((state: RootState) => state.disk)
     const { data } = useSelector((state: RootState) => state.uploadServer)
+    const userConfig = useSelector((state: RootState) => state.userConfig)
+    const dispatch = useDispatch<Dispatch>()
+
     const transData = transformDiskData(data, t)
 
     const handleRefresh = () => {}
@@ -193,6 +197,15 @@ const DiskList = () => {
         commonColumnsConfig.operationTips,
     ]
 
+    const saveGridConfig = (config: GridInitialStateCommunity) => {
+        dispatch.userConfig.set({
+            disk_listConfig: {
+                ...userConfig.disk_listConfig,
+                ...config,
+            },
+        })
+    }
+
     return (
         <Box
             sx={{
@@ -217,39 +230,25 @@ const DiskList = () => {
                 rows={transData}
                 columns={columns}
                 quickFilter={true}
-                // toolbarRight={() => (
-                //     <Link to={'/disk/records'}>
-                //         <Button
-                //             sx={{
-                //                 color: 'white',
-                //                 background: 'rgb(52, 52, 52)',
-                //                 paddingLeft: 2,
-                //                 paddingRight: 2,
-                //             }}
-                //             color="primary"
-                //             // 跳转到plugAndUnplugDiskRecords页面
-                //             onClick={() => {}}
-                //         >
-                //             {t('plugAndUnplugDiskRecords')}
-                //         </Button>
-                //     </Link>
-                // )}
-                initialState={{
-                    // sorting: {
-                    //     sortModel: [{ field: 'serverID', sort: 'asc' }],
-                    // },
-                    filter: {
-                        filterModel: {
-                            items: [
-                                // {
-                                //     columnField: 'mountStatus',
-                                //     operatorValue: 'is',
-                                //     value: '已挂载',
-                                // },
-                            ],
-                        },
-                    },
-                }}
+                toolbarRight={() => (
+                    <Link to={'/disk/records'}>
+                        <Button
+                            sx={{
+                                color: 'white',
+                                background: 'rgb(52, 52, 52)',
+                                paddingLeft: 2,
+                                paddingRight: 2,
+                            }}
+                            color="primary"
+                            // 跳转到plugAndUnplugDiskRecords页面
+                            onClick={() => {}}
+                        >
+                            {t('plugAndUnplugDiskRecords')}
+                        </Button>
+                    </Link>
+                )}
+                saveGridConfig={saveGridConfig}
+                initialState={userConfig.disk_listConfig}
             />
         </Box>
     )

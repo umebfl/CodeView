@@ -68,6 +68,7 @@ const lang: langType = {
     target: '目标',
     targetType: '目标类型',
     diskUnPlugTime: '拔盘时间',
+    slotsSequenceOfRemovable: '可拔出插槽序列',
 }
 
 export default lang
