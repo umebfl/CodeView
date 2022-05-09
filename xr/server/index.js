@@ -5,11 +5,19 @@ const app = express()
 
 app.use(bodyParser.json())
 
-app.post('/api/filebrowsingv2', (req, res) => {
-    console.log('/filebrowsingv2', req.body)
+app.get('te', (req, res) => {
+    console.log('te', req.body)
     res.json({
         ok: true,
-        msg: JSON.stringify(req.body),
+        // msg: JSON.stringify(req.body),
+    })
+})
+
+app.post('te', (req, res) => {
+    console.log('te', req.body)
+    res.json({
+        ok: true,
+        // msg: JSON.stringify(req.body),
     })
 })
 

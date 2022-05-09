@@ -28,6 +28,7 @@ import { GridInitialStateCommunity } from '@mui/x-data-grid/models/gridStateComm
 
 const transformDiskData = (data: uploadServerType[], t: TProps) => {
     let idx = 1
+
     return reduce((list: any[], item: uploadServerType) => {
         const diskList = map((slot: slotInfoType) => {
             return slot.diskInfo
@@ -41,7 +42,8 @@ const transformDiskData = (data: uploadServerType[], t: TProps) => {
             return {
                 ...disk,
                 seq: idx++,
-                id: disk.diskId,
+                id: idx,
+                diskId: disk.diskId,
                 serverID: item.uploadServerId,
                 inventoryStatus: 'normal',
             }
@@ -71,7 +73,7 @@ const DiskList = () => {
             field: 'seq',
             headerName: t('S/N'),
             width: 100,
-            type: 'string',
+            type: 'number',
             sortable: true,
         },
 
@@ -97,7 +99,7 @@ const DiskList = () => {
             //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
         },
         {
-            field: 'id',
+            field: 'disk_id',
             headerName: `${t('disk')}ID`,
             flex: 1,
             minWidth: 260,

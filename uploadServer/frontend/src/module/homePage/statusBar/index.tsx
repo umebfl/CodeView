@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import { SxProps, Theme, useTheme } from '@mui/material/styles'
 import TranslateIcon from '@mui/icons-material/Translate'
@@ -70,6 +70,22 @@ const VersionBox = () => {
     return <LightBox>Version: {version}</LightBox>
 }
 
+const CurrentTimeBox = () => {
+    const [time, setTime] = useState(new Date().toLocaleTimeString())
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setTime(new Date().toLocaleTimeString())
+        }, 1000)
+
+        return () => {
+            clearInterval(timer)
+        }
+    }, [])
+
+    return <LightBox>{time}</LightBox>
+}
+
 const StatusBar = () => {
     const theme = useTheme()
 
@@ -83,15 +99,25 @@ const StatusBar = () => {
                 color: theme.color.grey15,
                 fontSize: 14,
                 borderTop: theme.borderLine.lightSolid,
-                justifyContent: 'flex-end',
+                justifyContent: 'space-between',
                 alignItems: 'center',
                 paddingRight: 1,
                 paddingLeft: 1,
                 overflow: 'hidden',
             }}
         >
-            <LanguageBox />
-            <VersionBox />
+            <CurrentTimeBox />
+            <Box
+                sx={{
+                    display: 'flex',
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'flex-end',
+                }}
+            >
+                <LanguageBox />
+                <VersionBox />
+            </Box>
         </Box>
     )
 }
