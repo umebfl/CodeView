@@ -231,19 +231,20 @@ const 品种筛选 = () => {
             // })(data)
 
             // localStorage.setItem(品种详情数据KEY, JSON.stringify(沉淀))
-            const obj = {}
-            const sdata = sort((a: type_品种, b: type_品种) => {
-                return a.代码.localeCompare(b.代码)
-            })(data)
 
-            map((品种: type_品种) => {
-                obj[品种.代码] = {
-                    一手手数: 0,
-                    名称: 品种.名称,
-                }
-            })(sdata)
+            // const obj = {}
+            // const sdata = sort((a: type_品种, b: type_品种) => {
+            //     return a.代码.localeCompare(b.代码)
+            // })(data)
 
-            console.log(JSON.stringify(obj, null, 2))
+            // map((品种: type_品种) => {
+            //     obj[品种.代码] = {
+            //         一手手数: 0,
+            //         名称: 品种.名称,
+            //     }
+            // })(sdata)
+
+            // console.log(JSON.stringify(data, null, 2))
 
             if (data) {
                 set全部品种(data)
