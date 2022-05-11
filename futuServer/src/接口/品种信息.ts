@@ -26,8 +26,8 @@ import 品种类型 from '../数据/品种类型'
 import 关注品种 from '../数据/关注品种'
 
 const 更新间隔秒数 = 5
-const 可用资金 = 310000
-const 总投入 = 可用资金 * 0.9
+const 可用资金 = 410000
+const 总投入 = 可用资金 * 0.7
 
 let 最后更新时间: moment.Moment | null = null
 let 连续合约分时数据存储 = {}
@@ -131,6 +131,11 @@ export default (app: any) => {
             forEach((key: string) => {
                 const 日数据: any[] = 连续合约日数据存储[key]
                 const 分时数据: any[] = 连续合约分时数据存储[key]
+
+                if (!分时数据 || !分时数据.length) {
+                    return
+                }
+
                 const 最新价格 = 分时数据[分时数据.length - 1][1]
                 const 最后日数据 = 日数据[日数据.length - 1]
                 const 当前日期 = moment().format('YYYY-MM-DD')

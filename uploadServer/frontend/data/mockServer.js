@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 
 const uploadServerData = require('./json/uploadServer3.json')
+const getDisksInfoData = require('./json/get_disks_info.json')
 const diskData = require('./json/disk')
 
 app.get('/data_center/get_upload_server_list', function (req, res) {
@@ -36,6 +37,11 @@ app.get('/data_center/get_diskPAURecords_list', function (req, res) {
             ],
         },
     })
+})
+
+app.get('/disk_management/get_disks_info', function (req, res) {
+    console.log('/disk_management/get_disks_info')
+    res.json(getDisksInfoData)
 })
 
 app.listen(8000)

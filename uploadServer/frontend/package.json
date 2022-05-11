@@ -68,7 +68,7 @@
             "last 1 safari version"
         ]
     },
-    "proxy": "http://10.112.0.103:30000",
+    "proxy": "http://localhost:8000",
     "jest": {
         "coverageReporters": [
             "text-summary",

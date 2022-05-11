@@ -1,3 +1,4 @@
+import { addIndex, map } from 'ramda'
 import { createModel } from '@rematch/core'
 
 import request from 'src/util/request'
@@ -22,13 +23,18 @@ export const disk = createModel<RootModel>()({
     effects: dispatch => ({
         async initData(_, rootState) {
             const data = await request({
-                url: '/data_center/get_disk_list',
+                url: '/disk_management/get_disks_info',
                 rootState,
                 dispatch,
             })
 
-            if (data?.diskInfos) {
-                dispatch.disk.setData(data.diskInfos)
+            if (data) {
+                const transData: diskType[] = addIndex(map)((disk, idx) => ({
+                    ...(disk as diskType),
+                    id: idx,
+                }))(data)
+
+                dispatch.disk.setData(transData)
             }
         },
 

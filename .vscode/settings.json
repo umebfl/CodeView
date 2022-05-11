@@ -64,5 +64,5 @@
     // "eslint.options": {
     //     "configFile": "/home/anqihuang/workspace2/CodeView/.eslitrc.js"
     // },
-    "commentTranslate.targetLanguage": "en"
+    "commentTranslate.targetLanguage": "zh-CN"
 }

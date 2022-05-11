@@ -59,12 +59,16 @@ const DiskList = () => {
 
     const commonColumnsConfig = getCommonColumnsConfig(theme, t, ['row'])
 
-    // const { data } = useSelector((state: RootState) => state.disk)
-    const { data } = useSelector((state: RootState) => state.uploadServer)
+    const diskData = useSelector((state: RootState) => state.disk)
+    const uploadServerData = useSelector(
+        (state: RootState) => state.uploadServer
+    )
     const userConfig = useSelector((state: RootState) => state.userConfig)
     const dispatch = useDispatch<Dispatch>()
 
-    const transData = transformDiskData(data, t)
+    const transData = transformDiskData(uploadServerData.data, t)
+    const mergeData = map(diskInfo => {})(diskData.data)
+    // const transData = diskData.data
 
     const handleRefresh = () => {}
 
@@ -232,23 +236,21 @@ const DiskList = () => {
                 rows={transData}
                 columns={columns}
                 quickFilter={true}
-                toolbarRight={() => (
-                    <Link to={'/disk/records'}>
-                        <Button
-                            sx={{
-                                color: 'white',
-                                background: 'rgb(52, 52, 52)',
-                                paddingLeft: 2,
-                                paddingRight: 2,
-                            }}
-                            color="primary"
-                            // 跳转到plugAndUnplugDiskRecords页面
-                            onClick={() => {}}
-                        >
-                            {t('plugAndUnplugDiskRecords')}
-                        </Button>
-                    </Link>
-                )}
+                // toolbarRight={() => (
+                //     <Link to={'/disk/records'}>
+                //         <Button
+                //             sx={{
+                //                 color: 'white',
+                //                 background: 'rgb(52, 52, 52)',
+                //                 paddingLeft: 2,
+                //                 paddingRight: 2,
+                //             }}
+                //             color="primary"
+                //         >
+                //             {t('plugAndUnplugDiskRecords')}
+                //         </Button>
+                //     </Link>
+                // )}
                 saveGridConfig={saveGridConfig}
                 initialState={userConfig.disk_listConfig}
             />

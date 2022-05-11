@@ -24,6 +24,10 @@ const 渲染图表 = (
     扩幅: number,
     关注阈值: number
 ) => {
+    if (!数据.length) {
+        return
+    }
+
     const 开盘价 = 数据[0].scales
     const 收盘价 = 数据[数据.length - 1].scales
 
@@ -747,6 +751,7 @@ const 品种列表 = () => {
             className="ag-theme-alpine"
             sx={{ height: '98vh', width: '98%', margin: '5px 1%' }}
         >
+            123
             <AgGridReact
                 rowData={rowData}
                 columnDefs={columnDefs}
@@ -760,7 +765,6 @@ const 品种列表 = () => {
                         : { backgroundColor: 'white' }
                 }}
             ></AgGridReact>
-
             <Box>
                 <Box>总可持仓金额: {(总可持仓金额 / 10000).toFixed(2)}w</Box>
             </Box>
