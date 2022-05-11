@@ -12,7 +12,7 @@ const 视图 = () => {
 
     useEffect(() => {
         if (location.pathname === '/') {
-            navigate('/jiao_yi_jue_ce')
+            navigate('/liu_cheng')
         }
     }, [])
 
