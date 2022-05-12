@@ -1,6 +1,18 @@
 import { FC, useEffect, useState } from 'react'
 import Box from '@mui/system/Box'
-import { match, map, dropLast, filter, sort, replace } from 'ramda'
+import {
+    match,
+    map,
+    dropLast,
+    filter,
+    sort,
+    replace,
+    groupBy,
+    take,
+    values,
+    compose,
+    flatten,
+} from 'ramda'
 
 import Accordion from '@mui/material/Accordion'
 import AccordionDetails from '@mui/material/AccordionDetails'
@@ -16,16 +28,27 @@ import 全品种基础信息, {
 } from 'src/视图/流程/1品种筛选/数据/全品种基础信息'
 
 const 最低杠杆比例 = 4
-const 最低沉淀资金 = 5
+const 最低沉淀资金 = 13
+const 最高保证金 = 18000
 const 品种详情数据KEY = '品种详情数据'
+
+const 全品种基础信息FIX = map((item: any) => {
+    return {
+        ...item,
+        新品种: false,
+    }
+})(全品种基础信息 as any)
+console.log(JSON.stringify(全品种基础信息FIX, null, 2))
 
 interface type_品种 {
     代码: string
     名称: string
     保证金比例: number
+    一手保证金: number
     杠杆: number
     沉淀资金: number
     一手手数: number
+    行业: string
     一日数据: {
         c: number
         p: number
@@ -37,7 +60,7 @@ const 获取全部品种 = () => {
 
     const 数据: type_品种[] = map((item: string) => {
         const rateStr = match(/\d{1,2}%/)(item)
-        const 保证金比例 = parseInt(dropLast(1)(rateStr[0]))
+        const 保证金比例 = parseInt(dropLast(1)(rateStr[0])) / 100
 
         const code = match(/[a-zA-Z]{1,2}/)(item)[0]
         const upCode = code.toUpperCase()
@@ -47,8 +70,10 @@ const 获取全部品种 = () => {
             代码: upCode,
             名称,
             保证金比例,
-            杠杆: parseFloat((1 / (保证金比例 / 100)).toFixed(2)),
+            杠杆: parseFloat((1 / 保证金比例).toFixed(2)),
             沉淀资金: 0,
+            一手保证金: 0,
+            行业: '',
             一手手数: 0,
             一日数据: {
                 c: 0,
@@ -102,7 +127,7 @@ const CustomAccordion: FC<{
                     flexDirection: 'row',
                     flexWrap: 'wrap',
                     padding: 0,
-                    height: 400,
+                    height: 600,
                     overflow: 'auto',
                 }}
             >
@@ -115,6 +140,7 @@ const CustomAccordion: FC<{
 const 品种方块: FC<{ 品种: type_品种; 可交易: boolean }> = ({
     品种,
     可交易,
+    children,
 }) => {
     return (
         <Box
@@ -132,10 +158,9 @@ const 品种方块: FC<{ 品种: type_品种; 可交易: boolean }> = ({
                 },
             }}
         >
-            <Box sx={{ width: 40 }}>{品种.代码}</Box>
-            <Box sx={{ width: 50 }}>{品种.杠杆}</Box>
-            <Box sx={{ width: 50 }}>{品种.沉淀资金.toFixed(0)}亿</Box>
-            <Box sx={{ width: 100, overflow: 'hidden' }}>{品种.名称}</Box>
+            <Box sx={{ width: 30 }}>{品种.代码}</Box>
+            <Box sx={{ width: 60, overflow: 'hidden' }}>{品种.名称}</Box>
+            {children}
         </Box>
     )
 }
@@ -151,7 +176,7 @@ const 单品种日数据获取 = async (合约: string) => {
             ? replace('\\', '')(日列表字符串_特殊[0])
             : ''
 
-        await new Promise(resolve => setTimeout(resolve, 500))
+        await new Promise(resolve => setTimeout(resolve, 1000))
 
         const 结果 = JSON.parse(日列表字符串)
         return 结果 && 结果[结果.length - 1]
@@ -169,6 +194,8 @@ const 品种筛选 = () => {
     const [expanded2, setExpanded2] = useState(false)
     const [expanded3, setExpanded3] = useState(false)
     const [expanded4, setExpanded4] = useState(false)
+    const [expanded5, setExpanded5] = useState(false)
+    const [expanded6, setExpanded6] = useState(false)
 
     const [openSnackbar, setOpenSnackbar] = useState(false)
 
@@ -179,19 +206,39 @@ const 品种筛选 = () => {
         return !!无法交易品种列表[品种.代码]
     })(全部品种)
 
-    const 保证金正常品种 = filter((品种: type_品种) => {
+    const 杠杆正常品种 = filter((品种: type_品种) => {
         return 品种.杠杆 > 最低杠杆比例
     })(可交易品种)
-    const 保证金过低品种 = filter((品种: type_品种) => {
+    const 杠杆过低品种 = filter((品种: type_品种) => {
         return 品种.杠杆 < 最低杠杆比例
     })(可交易品种)
 
+    const sort沉淀资金 = sort((a: type_品种, b: type_品种) => {
+        return b.沉淀资金 - a.沉淀资金
+    })(杠杆正常品种)
     const 沉淀资金正常品种 = filter((品种: type_品种) => {
         return 品种.沉淀资金 >= 最低沉淀资金
-    })(保证金正常品种)
+    })(sort沉淀资金)
     const 沉淀资金过低品种 = filter((品种: type_品种) => {
         return 品种.沉淀资金 < 最低沉淀资金
+    })(sort沉淀资金)
+
+    const sort保证金 = sort((a: type_品种, b: type_品种) => {
+        return a.一手保证金 - b.一手保证金
+    })(沉淀资金正常品种)
+    const 保证金正常品种 = filter((品种: type_品种) => {
+        return 品种.一手保证金 <= 最高保证金
+    })(sort保证金)
+    const 保证金过高品种 = filter((品种: type_品种) => {
+        return 品种.一手保证金 > 最高保证金
+    })(sort保证金)
+
+    const group行业 = groupBy((品种: type_品种) => {
+        return 品种.行业
     })(保证金正常品种)
+    const group行业列表 = compose((list: type_品种[]) => {
+        return flatten(list)
+    }, values)(group行业)
 
     const handle加载品种详情数据 = async () => {
         const rv: any[] = []
@@ -201,12 +248,20 @@ const 品种筛选 = () => {
             const 合约 = `${品种.代码}0`
             const 结果 = await 单品种日数据获取(合约)
 
+            const 当前价格 = 结果.c
             const 一手手数 = 全品种基础信息[品种.代码].一手手数
+            const 一手保证金 = 当前价格 * 一手手数 * 品种.保证金比例
 
             rv.push({
                 ...品种,
                 一日数据: 结果,
-                沉淀资金: 结果.p * 结果.c,
+                沉淀资金:
+                    (品种.一日数据.p *
+                        当前价格 *
+                        品种.一手手数 *
+                        品种.保证金比例) /
+                    100000000,
+                一手保证金,
                 一手手数,
             })
         }
@@ -220,17 +275,30 @@ const 品种筛选 = () => {
         if (rv) {
             const data: type_品种[] = JSON.parse(rv)
 
-            // const 沉淀 = map((品种: type_品种) => {
+            // const fixData = map((品种: type_品种) => {
             //     if (品种.一日数据) {
+            //         const 当前价格 = 品种.一日数据.c
+
             //         return {
             //             ...品种,
-            //             沉淀资金:
-            //                 (品种.一日数据?.p * 品种.一日数据?.c) / 100000000,
+            //             // 保证金比例: 品种.保证金比例 / 100,
+            //             // 杠杆: parseFloat(
+            //             //     (1 / (品种.保证金比例 / 100)).toFixed(2)
+            //             // ),
+            //             // 一手保证金: 当前价格 * 品种.一手手数 * 品种.保证金比例,
+            //             // 沉淀资金:
+            //             //     (品种.一日数据.p *
+            //             //         当前价格 *
+            //             //         品种.一手手数 *
+            //             //         品种.保证金比例) /
+            //             //     100000000,
+            //             行业: 全品种基础信息[品种.代码].行业,
             //         }
             //     }
             // })(data)
 
-            // localStorage.setItem(品种详情数据KEY, JSON.stringify(沉淀))
+            // console.log(fixData)
+            // localStorage.setItem(品种详情数据KEY, JSON.stringify(fixData))
 
             // const obj = {}
             // const sdata = sort((a: type_品种, b: type_品种) => {
@@ -314,15 +382,19 @@ const 品种筛选 = () => {
             <CustomAccordion
                 expanded={expanded3}
                 setExpanded={setExpanded3}
-                title={`保证金正常品种 - ${保证金正常品种.length}`}
+                title={`杠杆正常品种 - ${杠杆正常品种.length}`}
             >
                 {map((品种: type_品种) => (
-                    <品种方块 key={品种.代码} 品种={品种} 可交易={true} />
-                ))(保证金正常品种)}
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={true}>
+                        <Box sx={{ width: 50 }}>{品种.杠杆}</Box>
+                    </品种方块>
+                ))(杠杆正常品种)}
 
                 {map((品种: type_品种) => (
-                    <品种方块 key={品种.代码} 品种={品种} 可交易={false} />
-                ))(保证金过低品种)}
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={false}>
+                        <Box sx={{ width: 50 }}>{品种.杠杆}</Box>
+                    </品种方块>
+                ))(杠杆过低品种)}
             </CustomAccordion>
 
             <CustomAccordion
@@ -331,12 +403,61 @@ const 品种筛选 = () => {
                 title={`沉淀资金正常品种 - ${沉淀资金正常品种.length}`}
             >
                 {map((品种: type_品种) => (
-                    <品种方块 key={品种.代码} 品种={品种} 可交易={true} />
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={true}>
+                        <Box sx={{ width: 50 }}>
+                            {品种.沉淀资金.toFixed(0)}亿
+                        </Box>
+                    </品种方块>
                 ))(沉淀资金正常品种)}
 
                 {map((品种: type_品种) => (
-                    <品种方块 key={品种.代码} 品种={品种} 可交易={false} />
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={false}>
+                        <Box sx={{ width: 50 }}>
+                            {品种.沉淀资金.toFixed(0)}亿
+                        </Box>
+                    </品种方块>
                 ))(沉淀资金过低品种)}
+            </CustomAccordion>
+
+            <CustomAccordion
+                expanded={expanded5}
+                setExpanded={setExpanded5}
+                title={`保证金正常品种 - ${保证金正常品种.length}`}
+            >
+                {map((品种: type_品种) => (
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={true}>
+                        <Box sx={{ width: 60 }}>
+                            {(品种.一手保证金 / 10000).toFixed(2)}
+                        </Box>
+                    </品种方块>
+                ))(保证金正常品种)}
+
+                {map((品种: type_品种) => (
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={false}>
+                        <Box sx={{ width: 60 }}>
+                            {(品种.一手保证金 / 10000).toFixed(2)}
+                        </Box>
+                    </品种方块>
+                ))(保证金过高品种)}
+            </CustomAccordion>
+
+            <CustomAccordion
+                expanded={expanded6}
+                setExpanded={setExpanded6}
+                title={`行业 - ${group行业列表.length}`}
+            >
+                {map((品种: type_品种) => (
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={true}>
+                        <Box sx={{ width: 60 }}>{take(2)(品种.行业)}</Box>
+                        <Box sx={{ width: 60 }}>
+                            {(品种.一手保证金 / 10000).toFixed(2)}
+                        </Box>
+                        <Box sx={{ width: 50 }}>
+                            {品种.沉淀资金.toFixed(0)}亿
+                        </Box>
+                        <Box sx={{ width: 50 }}>{品种.杠杆}</Box>
+                    </品种方块>
+                ))(group行业列表)}
             </CustomAccordion>
 
             <Snackbar
