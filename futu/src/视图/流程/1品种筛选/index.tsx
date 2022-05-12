@@ -30,15 +30,16 @@ import 全品种基础信息, {
 const 最低杠杆比例 = 4
 const 最低沉淀资金 = 13
 const 最高保证金 = 18000
+const 最少年期 = 2018
 const 品种详情数据KEY = '品种详情数据'
 
-const 全品种基础信息FIX = map((item: any) => {
-    return {
-        ...item,
-        新品种: false,
-    }
-})(全品种基础信息 as any)
-console.log(JSON.stringify(全品种基础信息FIX, null, 2))
+// const 全品种基础信息FIX = map((item: any) => {
+//     return {
+//         ...item,
+//         新品种: false,
+//     }
+// })(全品种基础信息 as any)
+// console.log(JSON.stringify(全品种基础信息FIX, null, 2))
 
 interface type_品种 {
     代码: string
@@ -49,6 +50,7 @@ interface type_品种 {
     沉淀资金: number
     一手手数: number
     行业: string
+    上市日期: number
     一日数据: {
         c: number
         p: number
@@ -75,6 +77,7 @@ const 获取全部品种 = () => {
             一手保证金: 0,
             行业: '',
             一手手数: 0,
+            上市日期: 2000,
             一日数据: {
                 c: 0,
                 p: 0,
@@ -196,6 +199,7 @@ const 品种筛选 = () => {
     const [expanded4, setExpanded4] = useState(false)
     const [expanded5, setExpanded5] = useState(false)
     const [expanded6, setExpanded6] = useState(false)
+    const [expanded7, setExpanded7] = useState(false)
 
     const [openSnackbar, setOpenSnackbar] = useState(false)
 
@@ -233,9 +237,19 @@ const 品种筛选 = () => {
         return 品种.一手保证金 > 最高保证金
     })(sort保证金)
 
+    const sort上市日期 = sort((a: type_品种, b: type_品种) => {
+        return a.上市日期 - b.上市日期
+    })(保证金正常品种)
+    const 老品种列表 = filter((品种: type_品种) => {
+        return 品种.上市日期 <= 最少年期
+    })(sort上市日期)
+    const 新品种列表 = filter((品种: type_品种) => {
+        return 品种.上市日期 > 最少年期
+    })(sort上市日期)
+
     const group行业 = groupBy((品种: type_品种) => {
         return 品种.行业
-    })(保证金正常品种)
+    })(老品种列表)
     const group行业列表 = compose((list: type_品种[]) => {
         return flatten(list)
     }, values)(group行业)
@@ -292,7 +306,8 @@ const 品种筛选 = () => {
             //             //         品种.一手手数 *
             //             //         品种.保证金比例) /
             //             //     100000000,
-            //             行业: 全品种基础信息[品种.代码].行业,
+            //             // 行业: 全品种基础信息[品种.代码].行业,
+            //             上市日期: 全品种基础信息[品种.代码].上市日期,
             //         }
             //     }
             // })(data)
@@ -444,6 +459,24 @@ const 品种筛选 = () => {
             <CustomAccordion
                 expanded={expanded6}
                 setExpanded={setExpanded6}
+                title={`老品种 - ${老品种列表.length}`}
+            >
+                {map((品种: type_品种) => (
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={true}>
+                        <Box sx={{ width: 60 }}>{品种.上市日期}</Box>
+                    </品种方块>
+                ))(老品种列表)}
+
+                {map((品种: type_品种) => (
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={false}>
+                        <Box sx={{ width: 60 }}>{品种.上市日期}</Box>
+                    </品种方块>
+                ))(新品种列表)}
+            </CustomAccordion>
+
+            <CustomAccordion
+                expanded={expanded7}
+                setExpanded={setExpanded7}
                 title={`行业 - ${group行业列表.length}`}
             >
                 {map((品种: type_品种) => (
