@@ -32,6 +32,7 @@ const 视图 = () => {
                     display: 'flex',
                     flex: 1,
                     flexDirection: 'row',
+                    width: '100%',
                     height: '100%',
                     overflow: 'hidden',
                 }}
@@ -39,6 +40,7 @@ const 视图 = () => {
                 <一级导航 />
                 <Box
                     sx={{
+                        width: '100%',
                         height: '100%',
                         overflow: 'auto',
                     }}

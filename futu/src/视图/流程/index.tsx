@@ -17,6 +17,7 @@ import {
 
 import 品种筛选 from 'src/视图/流程/1品种筛选'
 import 辅助决策 from 'src/视图/流程/2辅助决策'
+import 实盘交易 from 'src/视图/流程/3实盘交易'
 
 import 广发交易提示 from 'src/视图/流程/数据/广发交易提示'
 import 无法交易品种列表 from 'src/视图/流程/数据/无法交易品种列表'
@@ -31,7 +32,7 @@ const 最小年限5历史波幅 = 1
 const 品种详情数据KEY = '品种详情数据'
 
 const 总投资金 = 410000
-const 可持仓资金系数 = 0.3
+const 可持仓资金系数 = 0.4
 const 可持仓资金 = 总投资金 * 可持仓资金系数
 
 // const 全品种基础信息FIX = map((item: any) => {
@@ -231,7 +232,10 @@ const 流程 = () => {
         return flatten(list)
     }, values)(group行业)
 
-    const 交易品种 = group行业
+    const 交易品种 = group行业列表
+
+    const 交易行业总数 = values(group行业).length
+    const 初始可持仓额度 = 可持仓资金 / 交易行业总数
 
     const handle加载品种详情数据 = async () => {
         const rv: any[] = []
@@ -347,6 +351,7 @@ const 流程 = () => {
                 display: 'flex',
                 justifyContent: 'flex-start',
                 flexDirection: 'row',
+                width: '100%',
                 height: '100%',
                 overflow: 'hidden',
             }}
@@ -379,8 +384,13 @@ const 流程 = () => {
                 {...{
                     总投资金,
                     可持仓资金,
+                    交易行业总数,
+                    交易品种,
+                    初始可持仓额度,
                 }}
             />
+
+            <实盘交易 />
         </Box>
     )
 }

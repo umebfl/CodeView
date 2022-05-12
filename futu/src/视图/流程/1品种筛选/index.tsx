@@ -163,7 +163,8 @@ const 品种筛选: FC<{
                     borderBottom: '1px solid rgb(52, 52, 52)',
                 }}
             >
-                品种筛选
+                {/* 品种筛选 */}
+                Variety screening
                 <CachedIcon
                     sx={{
                         cursor: 'pointer',
