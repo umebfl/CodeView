@@ -32,10 +32,19 @@ const 视图 = () => {
                     display: 'flex',
                     flex: 1,
                     flexDirection: 'row',
+                    height: '100%',
+                    overflow: 'hidden',
                 }}
             >
                 <一级导航 />
-                <Outlet></Outlet>
+                <Box
+                    sx={{
+                        height: '100%',
+                        overflow: 'auto',
+                    }}
+                >
+                    <Outlet></Outlet>
+                </Box>
             </Box>
             <底部 />
         </Box>

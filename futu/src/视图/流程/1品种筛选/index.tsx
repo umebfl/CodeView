@@ -12,6 +12,7 @@ import {
     values,
     compose,
     flatten,
+    takeLast,
 } from 'ramda'
 
 import Accordion from '@mui/material/Accordion'
@@ -31,12 +32,14 @@ const 最低杠杆比例 = 4
 const 最低沉淀资金 = 13
 const 最高保证金 = 18000
 const 最少年期 = 2018
+const 最小全历史波幅 = 1.5
+const 最小年限5历史波幅 = 1
 const 品种详情数据KEY = '品种详情数据'
 
 // const 全品种基础信息FIX = map((item: any) => {
 //     return {
 //         ...item,
-//         新品种: false,
+//         手动过滤: false,
 //     }
 // })(全品种基础信息 as any)
 // console.log(JSON.stringify(全品种基础信息FIX, null, 2))
@@ -51,10 +54,22 @@ interface type_品种 {
     一手手数: number
     行业: string
     上市日期: number
+    全历史波幅: number
+    全历史最低价格: number
+    全历史最高价格: number
+    年限5历史最低价格: number
+    年限5历史最高价格: number
+    年限5历史波幅: number
+    手动过滤: boolean
     一日数据: {
         c: number
         p: number
     }
+}
+
+interface type_单品种日数 {
+    p: number
+    c: number
 }
 
 const 获取全部品种 = () => {
@@ -78,6 +93,13 @@ const 获取全部品种 = () => {
             行业: '',
             一手手数: 0,
             上市日期: 2000,
+            全历史波幅: 0,
+            全历史最低价格: 0,
+            全历史最高价格: 0,
+            年限5历史最低价格: 0,
+            年限5历史最高价格: 0,
+            年限5历史波幅: 0,
+            手动过滤: false,
             一日数据: {
                 c: 0,
                 p: 0,
@@ -155,14 +177,16 @@ const 品种方块: FC<{ 品种: type_品种; 可交易: boolean }> = ({
                 border: '1px solid rgb(52, 52, 52)',
                 margin: 0.5,
                 justifyContent: 'space-between',
-                background: 可交易 ? 'inhreft' : 'rgba(63, 28, 28, 0.7)',
+                background: 可交易 ? 'inherit' : 'rgba(63, 28, 28, 0.7)',
                 '&:hover': {
                     background: 'rgb(52, 52, 52)',
                 },
             }}
         >
             <Box sx={{ width: 30 }}>{品种.代码}</Box>
-            <Box sx={{ width: 60, overflow: 'hidden' }}>{品种.名称}</Box>
+            <Box sx={{ width: 60, overflow: 'hidden' }}>
+                {take(4)(品种.名称)}
+            </Box>
             {children}
         </Box>
     )
@@ -170,6 +194,8 @@ const 品种方块: FC<{ 品种: type_品种; 可交易: boolean }> = ({
 
 const 单品种日数据获取 = async (合约: string) => {
     try {
+        await new Promise(resolve => setTimeout(resolve, 600))
+
         const 请求 = await fetch(
             `https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var%20_fsdata=/InnerFuturesNewService.getDailyKLine?symbol=${合约}`
         )
@@ -179,15 +205,29 @@ const 单品种日数据获取 = async (合约: string) => {
             ? replace('\\', '')(日列表字符串_特殊[0])
             : ''
 
-        await new Promise(resolve => setTimeout(resolve, 1000))
-
         const 结果 = JSON.parse(日列表字符串)
-        return 结果 && 结果[结果.length - 1]
+        return 结果 as type_单品种日数[]
     } catch (error) {
         console.error(error)
     }
 
     return []
+}
+
+const 获取极端价格 = (日数据列表: type_单品种日数[]) => {
+    const 全部当前价: number[] = compose(
+        filter((数据: number) => 数据 > 0),
+        map((数据: type_单品种日数) => {
+            return 数据.c
+        })
+    )(日数据列表)
+
+    const 价格排序 = sort((a: number, b: number) => b - a)(全部当前价)
+
+    const 最高价 = 价格排序[0]
+    const 最低价 = 价格排序[价格排序.length - 1]
+
+    return [最低价, 最高价]
 }
 
 const 品种筛选 = () => {
@@ -200,6 +240,9 @@ const 品种筛选 = () => {
     const [expanded5, setExpanded5] = useState(false)
     const [expanded6, setExpanded6] = useState(false)
     const [expanded7, setExpanded7] = useState(false)
+    const [expanded8, setExpanded8] = useState(false)
+    const [expanded9, setExpanded9] = useState(false)
+    const [expanded10, setExpanded10] = useState(false)
 
     const [openSnackbar, setOpenSnackbar] = useState(false)
 
@@ -210,12 +253,19 @@ const 品种筛选 = () => {
         return !!无法交易品种列表[品种.代码]
     })(全部品种)
 
+    const 未手动过滤品种 = filter((品种: type_品种) => {
+        return !全品种基础信息[品种.代码].手动过滤
+    })(可交易品种)
+    const 手动过滤品种 = filter((品种: type_品种) => {
+        return 全品种基础信息[品种.代码].手动过滤
+    })(可交易品种)
+
     const 杠杆正常品种 = filter((品种: type_品种) => {
         return 品种.杠杆 > 最低杠杆比例
-    })(可交易品种)
+    })(未手动过滤品种)
     const 杠杆过低品种 = filter((品种: type_品种) => {
         return 品种.杠杆 < 最低杠杆比例
-    })(可交易品种)
+    })(未手动过滤品种)
 
     const sort沉淀资金 = sort((a: type_品种, b: type_品种) => {
         return b.沉淀资金 - a.沉淀资金
@@ -247,9 +297,29 @@ const 品种筛选 = () => {
         return 品种.上市日期 > 最少年期
     })(sort上市日期)
 
+    const sort全历史波幅 = sort((a: type_品种, b: type_品种) => {
+        return b.全历史波幅 - a.全历史波幅
+    })(老品种列表)
+    const 全历史波幅正常列表 = filter((品种: type_品种) => {
+        return 品种.全历史波幅 > 最小全历史波幅
+    })(sort全历史波幅)
+    const 全历史波幅过低列表 = filter((品种: type_品种) => {
+        return 品种.全历史波幅 <= 最小全历史波幅
+    })(sort全历史波幅)
+
+    const sort年限5历史波幅 = sort((a: type_品种, b: type_品种) => {
+        return b.年限5历史波幅 - a.年限5历史波幅
+    })(老品种列表)
+    const 年限5历史波幅正常列表 = filter((品种: type_品种) => {
+        return 品种.年限5历史波幅 > 最小年限5历史波幅
+    })(sort年限5历史波幅)
+    const 年限5历史波幅过低列表 = filter((品种: type_品种) => {
+        return 品种.年限5历史波幅 <= 最小年限5历史波幅
+    })(sort年限5历史波幅)
+
     const group行业 = groupBy((品种: type_品种) => {
         return 品种.行业
-    })(老品种列表)
+    })(年限5历史波幅正常列表)
     const group行业列表 = compose((list: type_品种[]) => {
         return flatten(list)
     }, values)(group行业)
@@ -257,26 +327,47 @@ const 品种筛选 = () => {
     const handle加载品种详情数据 = async () => {
         const rv: any[] = []
 
+        //  全部品种.length
         for (let i = 0; i < 全部品种.length; i++) {
             const 品种 = 全部品种[i]
             const 合约 = `${品种.代码}0`
-            const 结果 = await 单品种日数据获取(合约)
+            const 单品种日数据: type_单品种日数[] = await 单品种日数据获取(合约)
+            const 一日数据 = 单品种日数据[单品种日数据.length - 1]
+            const [全历史最低价格, 全历史最高价格] = 获取极端价格(单品种日数据)
+            const 全历史波幅 =
+                (全历史最高价格 - 全历史最低价格) / 全历史最低价格
 
-            const 当前价格 = 结果.c
+            const [年限5历史最低价格, 年限5历史最高价格] = 获取极端价格(
+                takeLast(5 * 4 * 12 * 5)(单品种日数据)
+            )
+            const 年限5历史波幅 =
+                (年限5历史最高价格 - 年限5历史最低价格) / 年限5历史最低价格
+
+            const 当前价格 = 一日数据.c
             const 一手手数 = 全品种基础信息[品种.代码].一手手数
             const 一手保证金 = 当前价格 * 一手手数 * 品种.保证金比例
+            const 行业 = 全品种基础信息[品种.代码].行业
+            const 上市日期 = 全品种基础信息[品种.代码].上市日期
 
             rv.push({
                 ...品种,
-                一日数据: 结果,
+                一日数据,
                 沉淀资金:
-                    (品种.一日数据.p *
-                        当前价格 *
-                        品种.一手手数 *
-                        品种.保证金比例) /
+                    (一日数据.p * 当前价格 * 一手手数 * 品种.保证金比例) /
                     100000000,
                 一手保证金,
                 一手手数,
+                行业,
+                上市日期,
+                全历史波幅,
+                全历史最低价格,
+                全历史最高价格,
+
+                年限5历史最低价格,
+                年限5历史最高价格,
+                年限5历史波幅,
+
+                手动过滤: 全品种基础信息[品种.代码].手动过滤,
             })
         }
 
@@ -300,14 +391,14 @@ const 品种筛选 = () => {
             //             //     (1 / (品种.保证金比例 / 100)).toFixed(2)
             //             // ),
             //             // 一手保证金: 当前价格 * 品种.一手手数 * 品种.保证金比例,
-            //             // 沉淀资金:
-            //             //     (品种.一日数据.p *
-            //             //         当前价格 *
-            //             //         品种.一手手数 *
-            //             //         品种.保证金比例) /
-            //             //     100000000,
+            //             沉淀资金:
+            //                 (品种.一日数据.p *
+            //                     当前价格 *
+            //                     品种.一手手数 *
+            //                     品种.保证金比例) /
+            //                 100000000,
             //             // 行业: 全品种基础信息[品种.代码].行业,
-            //             上市日期: 全品种基础信息[品种.代码].上市日期,
+            //             // 上市日期: 全品种基础信息[品种.代码].上市日期,
             //         }
             //     }
             // })(data)
@@ -395,6 +486,20 @@ const 品种筛选 = () => {
             </CustomAccordion>
 
             <CustomAccordion
+                expanded={expanded10}
+                setExpanded={setExpanded10}
+                title={`未手动过滤品种 - ${未手动过滤品种.length}`}
+            >
+                {map((品种: type_品种) => (
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={true} />
+                ))(未手动过滤品种)}
+
+                {map((品种: type_品种) => (
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={false} />
+                ))(手动过滤品种)}
+            </CustomAccordion>
+
+            <CustomAccordion
                 expanded={expanded3}
                 setExpanded={setExpanded3}
                 title={`杠杆正常品种 - ${杠杆正常品种.length}`}
@@ -477,6 +582,58 @@ const 品种筛选 = () => {
             <CustomAccordion
                 expanded={expanded7}
                 setExpanded={setExpanded7}
+                title={`全历史波幅正常列表 - ${全历史波幅正常列表.length}`}
+            >
+                {map((品种: type_品种) => (
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={true}>
+                        <Box sx={{ width: 60 }}>{品种.上市日期}</Box>
+                        <Box sx={{ width: 60 }}>{take(2)(品种.行业)}</Box>
+                        <Box sx={{ width: 60 }}>
+                            {品种.全历史波幅.toFixed(2)}
+                        </Box>
+                    </品种方块>
+                ))(全历史波幅正常列表)}
+
+                {map((品种: type_品种) => (
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={false}>
+                        <Box sx={{ width: 60 }}>{品种.上市日期}</Box>
+                        <Box sx={{ width: 60 }}>{take(2)(品种.行业)}</Box>
+                        <Box sx={{ width: 60 }}>
+                            {品种.全历史波幅.toFixed(2)}
+                        </Box>
+                    </品种方块>
+                ))(全历史波幅过低列表)}
+            </CustomAccordion>
+
+            <CustomAccordion
+                expanded={expanded8}
+                setExpanded={setExpanded8}
+                title={`年限5历史波幅正常列表 - ${年限5历史波幅正常列表.length}`}
+            >
+                {map((品种: type_品种) => (
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={true}>
+                        <Box sx={{ width: 60 }}>{品种.上市日期}</Box>
+                        <Box sx={{ width: 60 }}>{take(2)(品种.行业)}</Box>
+                        <Box sx={{ width: 60 }}>
+                            {品种.年限5历史波幅.toFixed(2)}
+                        </Box>
+                    </品种方块>
+                ))(年限5历史波幅正常列表)}
+
+                {map((品种: type_品种) => (
+                    <品种方块 key={品种.代码} 品种={品种} 可交易={false}>
+                        <Box sx={{ width: 60 }}>{品种.上市日期}</Box>
+                        <Box sx={{ width: 60 }}>{take(2)(品种.行业)}</Box>
+                        <Box sx={{ width: 60 }}>
+                            {品种.年限5历史波幅.toFixed(2)}
+                        </Box>
+                    </品种方块>
+                ))(年限5历史波幅过低列表)}
+            </CustomAccordion>
+
+            <CustomAccordion
+                expanded={expanded9}
+                setExpanded={setExpanded9}
                 title={`行业 - ${group行业列表.length}`}
             >
                 {map((品种: type_品种) => (
@@ -485,10 +642,10 @@ const 品种筛选 = () => {
                         <Box sx={{ width: 60 }}>
                             {(品种.一手保证金 / 10000).toFixed(2)}
                         </Box>
-                        <Box sx={{ width: 50 }}>
+                        <Box sx={{ width: 40 }}>
                             {品种.沉淀资金.toFixed(0)}亿
                         </Box>
-                        <Box sx={{ width: 50 }}>{品种.杠杆}</Box>
+                        {/* <Box sx={{ width: 50 }}>{品种.杠杆}</Box> */}
                     </品种方块>
                 ))(group行业列表)}
             </CustomAccordion>
