@@ -48,6 +48,7 @@ const 实盘交易: FC<{ 交易品种: type_品种[]; 全品种初始持仓总�
                 >
                     <Box sx={{ width: 50 }}>Code</Box>
                     <Box sx={{ width: 70 }}>行业</Box>
+                    <Box sx={{ width: 50 }}>杠杆</Box>
                     <Box sx={{ width: 70 }}>当前价</Box>
                     <Box sx={{ width: 70 }}>保证金</Box>
                     <Box sx={{ width: 120 }}>
@@ -73,6 +74,7 @@ const 实盘交易: FC<{ 交易品种: type_品种[]; 全品种初始持仓总�
                         >
                             <Box sx={{ width: 50 }}>{品种.代码}</Box>
                             <Box sx={{ width: 70 }}>{品种.行业}</Box>
+                            <Box sx={{ width: 50 }}>{品种.杠杆}</Box>
                             <Box sx={{ width: 70 }}>
                                 {parseInt(品种.一日数据.c as unknown as string)}
                             </Box>
