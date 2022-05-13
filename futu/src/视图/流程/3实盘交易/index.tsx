@@ -14,7 +14,7 @@ const 实盘交易: FC<{ 交易品种: type_品种[]; 全品种初始持仓总�
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                width: 600,
+                width: 800,
                 height: '100%',
                 borderRight: '1px solid rgb(52, 52, 52)',
             }}
@@ -54,8 +54,13 @@ const 实盘交易: FC<{ 交易品种: type_品种[]; 全品种初始持仓总�
                     <Box sx={{ width: 120 }}>
                         初始可持仓手数({转换为万元单位(全品种初始持仓总额度)})
                     </Box>
-                    <Box sx={{ width: 70 }}>第一次补仓亏损额度</Box>
-                    <Box sx={{ width: 70 }}>第二次补仓亏损额度</Box>
+                    <Box sx={{ width: 70 }}>第一次补仓亏损额度/价格</Box>
+                    <Box sx={{ width: 70 }}>第二次补仓亏损额度/价格</Box>
+                    <Box sx={{ width: 70 }}>持仓合约</Box>
+                    <Box sx={{ width: 70 }}>方向</Box>
+                    <Box sx={{ width: 70 }}>持仓手数</Box>
+                    <Box sx={{ width: 70 }}>持仓价格</Box>
+                    <Box sx={{ width: 70 }}>盈亏</Box>
                 </Box>
                 {map((品种: type_品种) => {
                     return (
