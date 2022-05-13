@@ -54,6 +54,7 @@ const CustomAccordion: FC<{
             expanded={expanded}
             onChange={() => setExpanded(!expanded)}
             sx={{
+                fontSize: 10,
                 marginLeft: 2,
                 '&.MuiPaper-elevation': {
                     background: 'none',
@@ -70,7 +71,7 @@ const CustomAccordion: FC<{
                 },
             }}
         >
-            <AccordionSummary expandIcon={<ExpandMoreIcon color={'info'} />}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon color="info" />}>
                 {title}
             </AccordionSummary>
             <AccordionDetails
