@@ -14,8 +14,8 @@
                         "isEmpty": false,
                         "diskInfo": {
                             "isMounted": true,
-                            "diskId": "S6P7NG0R867852L111",
-                            "diskName": "nvme0n0",
+                            "diskId": "UNKNOWN_DISK_ID_0000:60:00.0",
+                            "diskName": "UNKNOWN",
                             "slotId": 0,
                             "diskStatus": "WAITING_TO_UPLOAD",
                             "mountPoint": "/roadtest_disks/nvme3n2_A0764CB0",

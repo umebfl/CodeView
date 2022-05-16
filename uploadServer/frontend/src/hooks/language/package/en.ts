@@ -54,8 +54,8 @@ const lang: langType = {
     viewProgress: 'View Progress',
     failed: 'Failed',
     normal: 'Normal',
-    lose: 'Lose',
-    damage: 'Damage',
+    lost: 'Lost',
+    damaged: 'Damaged',
     filterAnyColumn: 'Filter any column...',
     lastUpdatedTime: 'LastUpdatedTime',
     inventoryStatus: 'InventoryStatus',
@@ -69,6 +69,7 @@ const lang: langType = {
     targetType: 'Target Type',
     diskUnPlugTime: 'Disk Unplug Time',
     slotsSequenceOfRemovable: 'Slots sequence of removable',
+    identified: 'identified',
 }
 
 export default lang

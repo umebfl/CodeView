@@ -54,8 +54,8 @@ const lang: langType = {
     viewProgress: '查看进度',
     failed: '失败',
     normal: '正常',
-    lose: '丢失',
-    damage: '损坏',
+    lost: '丢失',
+    damaged: '损坏',
     filterAnyColumn: '过滤任何列...',
     lastUpdatedTime: '最近更新时间',
     inventoryStatus: '库存状态',
@@ -69,6 +69,7 @@ const lang: langType = {
     targetType: '目标类型',
     diskUnPlugTime: '拔盘时间',
     slotsSequenceOfRemovable: '可拔出插槽序列',
+    identified: '已识别',
 }
 
 export default lang

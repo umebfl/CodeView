@@ -65,6 +65,10 @@ export const uploadServer = createModel<RootModel>()({
                                               slot.diskInfo.updateTime * 1000
                                           ).format('MM-DD HH:MM:ss'),
 
+                                          identified:
+                                              slot.diskInfo.diskName !==
+                                              'UNKNOWN',
+
                                           diskStatus: slot.diskInfo.wrongServer
                                               ? diskStatusEnum.WRONGSERVER
                                               : slot.diskInfo?.diskStatus,

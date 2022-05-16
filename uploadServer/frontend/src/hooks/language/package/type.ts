@@ -53,8 +53,8 @@ export interface langType {
     viewProgress: string
     failed: string
     normal: string
-    lose: string
-    damage: string
+    lost: string
+    damaged: string
     filterAnyColumn: string
     lastUpdatedTime: string
     inventoryStatus: string
@@ -68,4 +68,5 @@ export interface langType {
     targetType: string
     diskUnPlugTime: string
     slotsSequenceOfRemovable: string
+    identified: string
 }

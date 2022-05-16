@@ -1,17 +1,19 @@
 /** No need unit test */
 import React from 'react'
-import { filter, map, reduce } from 'ramda'
+import { filter, find, map, reduce } from 'ramda'
 
 import Box from '@mui/material/Box'
 import {
     GridCellValue,
     GridColDef,
+    GridPreProcessEditCellProps,
     GridValueGetterParams,
 } from '@mui/x-data-grid'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import useTheme from '@mui/system/useTheme'
 import { useDispatch, useSelector } from 'react-redux'
+import EditOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined'
 
 import { RootState, Dispatch } from 'src/reducer/type'
 import Breadcrumbs from 'src/component/breadcrumbs'
@@ -25,6 +27,24 @@ import {
 } from 'src/reducer/uploadServer/type'
 import { getCommonColumnsConfig } from 'src/module/uploadServer/detail/listView'
 import { GridInitialStateCommunity } from '@mui/x-data-grid/models/gridStateCommunity'
+import { DiskInventoryStatusType } from 'src/reducer/disk/type'
+import { langType } from 'src/hooks/language/package/type'
+
+const getMergeData = (allDisk: any, onServerDisk: any) => {
+    return map((diskInfo: any) => {
+        const matchDisk = find((disk: any) => {
+            return disk.diskId === diskInfo.diskId
+        }, onServerDisk)
+
+        if (matchDisk) {
+            return {
+                ...matchDisk,
+                ...diskInfo,
+            }
+        }
+        return diskInfo
+    })(allDisk)
+}
 
 const transformDiskData = (data: uploadServerType[], t: TProps) => {
     let idx = 1
@@ -65,10 +85,11 @@ const DiskList = () => {
     )
     const userConfig = useSelector((state: RootState) => state.userConfig)
     const dispatch = useDispatch<Dispatch>()
+    console.log(uploadServerData)
 
     const transData = transformDiskData(uploadServerData.data, t)
-    const mergeData = map(diskInfo => {})(diskData.data)
-    // const transData = diskData.data
+    const mergeData = getMergeData(diskData.data, transData)
+    console.log('mergeData', theme.palette)
 
     const handleRefresh = () => {}
 
@@ -121,45 +142,104 @@ const DiskList = () => {
         },
         { field: 'diskName', headerName: t('diskName'), width: 130 },
         {
+            field: 'identified',
+            headerName: t('identified'),
+            width: 130,
+            type: 'singleSelect',
+            valueOptions: ['T', 'F'],
+            valueGetter: (params: GridValueGetterParams) => {
+                const val = params.row.identified
+                const text = val === true ? 'T' : val === false ? 'F' : '-'
+                return text
+            },
+            renderCell: (params: GridValueGetterParams) => {
+                const val = params.row.identified
+                const text = val === true ? 'T' : val === false ? 'F' : '-'
+
+                return (
+                    <div
+                        style={{
+                            color:
+                                val === false
+                                    ? theme.palette.error.dark
+                                    : 'inherit',
+                        }}
+                    >
+                        {text}
+                    </div>
+                )
+            },
+        },
+
+        {
             field: 'inventoryStatus',
             headerName: t('inventoryStatus'),
             width: 110,
             description: t('doubleClickToEdit'),
             sortable: true,
-            // editable: true,
+            editable: true,
             type: 'singleSelect',
-            valueOptions: ['normal', 'lose', 'damage'],
-            // preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
-            //     dispatch.disk.changeDiskInventoryStatus({
-            //         diskID: params.row.id,
-            //         status: params.props.value,
-            //     })
+            valueOptions: [t('normal'), t('lost'), t('damaged')],
+            preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
+                const text = params.props.value
+                const inventoryStatus: DiskInventoryStatusType =
+                    text === t('normal')
+                        ? DiskInventoryStatusType.NORMAL
+                        : text === t('lost')
+                        ? DiskInventoryStatusType.LOST
+                        : DiskInventoryStatusType.DAMAGED
 
-            //     return {
-            //         value: params.props.value,
-            //     }
-            // },
-            renderCell: (params: GridValueGetterParams) => (
-                <Box
-                    sx={{
-                        color:
-                            params.row.inventoryStatus === 'normal'
-                                ? theme.palette.primary.dark
-                                : 'red',
-                        // display: 'flex',
-                        // flexDirection: 'row',
-                        // justifyContent: 'space-around',
-                        // flex: 1,
-                        // cursor: 'text',
-                        // alignItems: 'center',
-                    }}
-                >
-                    {t(params.row.inventoryStatus)}
-                    {/* <EditOutlinedIcon
-                        sx={{ fontSize: 12, color: theme.palette.grey[600] }}
-                    /> */}
-                </Box>
-            ),
+                dispatch.disk.changeDiskInventoryStatus({
+                    ...params.row,
+                    diskId: params.row.id,
+                    inventoryStatus,
+                })
+
+                return {
+                    value: text,
+                }
+            },
+            renderCell: (params: GridValueGetterParams) => {
+                const val = params.row.inventoryStatus
+                const text =
+                    val === DiskInventoryStatusType.NORMAL
+                        ? t('normal')
+                        : val === DiskInventoryStatusType.LOST
+                        ? t('lost')
+                        : t('damaged')
+
+                return (
+                    <Box
+                        sx={{
+                            color:
+                                params.row.inventoryStatus ===
+                                DiskInventoryStatusType.NORMAL
+                                    ? theme.palette.primary.dark
+                                    : theme.palette.error.dark,
+                            display: 'flex',
+                            flexDirection: 'row',
+                            justifyContent: 'space-around',
+                            flex: 1,
+                            cursor: 'text',
+                            alignItems: 'center',
+                            '& :hover': {
+                                '&.MuiSvgIcon-root': {
+                                    display: 'inline-block',
+                                },
+                            },
+                        }}
+                    >
+                        {t(text as keyof langType)}
+                        <EditOutlinedIcon
+                            sx={{
+                                display: 'none',
+                                fontSize: 12,
+                                color: theme.palette.grey[600],
+                            }}
+                        />
+                    </Box>
+                )
+            },
         },
 
         commonColumnsConfig.mountStatus,
@@ -233,7 +313,7 @@ const DiskList = () => {
             ></Breadcrumbs>
 
             <Grid
-                rows={transData}
+                rows={mergeData}
                 columns={columns}
                 quickFilter={true}
                 // toolbarRight={() => (

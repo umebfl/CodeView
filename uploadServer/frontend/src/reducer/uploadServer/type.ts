@@ -93,7 +93,9 @@ export interface diskInfoType {
     uploadFinishedRate?: number
 
     isMounted?: boolean
-    inventoryStatus?: 'normal' | 'lose' | 'damage'
+    inventoryStatus?: 'normal' | 'lost' | 'damaged'
+
+    identified: boolean
 }
 export interface slotInfoType {
     diskInfo?: diskInfoType
