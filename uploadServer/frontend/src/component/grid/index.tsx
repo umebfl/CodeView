@@ -33,6 +33,7 @@ export interface GridProps extends Grid_Rows_Columns {
     initialState?: GridInitialStateCommunity
     toolbarRight?: React.FC
     saveGridConfig?: (state: GridInitialStateCommunity) => void
+    dataGridProps?: any
 }
 
 export interface filterRowsProps extends Grid_Rows_Columns {
@@ -81,6 +82,7 @@ const Grid: FC<GridProps> = props => {
         toolbarRight,
         initialState,
         saveGridConfig,
+        dataGridProps,
     } = props
     const { lang } = useSelector((state: RootState) => state.language)
     const theme = useTheme()
@@ -163,6 +165,7 @@ const Grid: FC<GridProps> = props => {
                         </GridToolbarContainer>
                     ),
                 }}
+                {...dataGridProps}
             />
         </Box>
     )

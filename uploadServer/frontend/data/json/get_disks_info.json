@@ -5,104 +5,91 @@
             "owner": 1,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info",
-            "diskName": "UNKNOWN"
+            "comment": "test_disk_info"
         },
         {
             "disk_sn": "A0765C71",
             "owner": 1,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info",
-            "diskName": "nvme1n1"
+            "comment": "test_disk_info"
         },
         {
             "disk_sn": "A0764F58",
             "owner": 1,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info",
-            "diskName": "nvme1n1"
+            "comment": "test_disk_info"
         },
         {
             "disk_sn": "aA0766410",
             "owner": 1,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info",
-            "diskName": "nvme1n1"
+            "comment": "test_disk_info"
         },
         {
             "disk_sn": "aA0769460",
             "owner": 1,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info",
-            "diskName": "nvme1n1"
+            "comment": "test_disk_info"
         },
         {
             "disk_sn": "aA076751D",
             "owner": 1,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info",
-            "diskName": "nvme1n1"
+            "comment": "test_disk_info"
         },
         {
             "disk_sn": "aS6CKNE0R916032",
             "owner": 1,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info",
-            "diskName": "nvme1n1"
+            "comment": "test_disk_info"
         },
         {
             "disk_sn": "aA0769831",
             "owner": 1,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info",
-            "diskName": "nvme1n1"
+            "comment": "test_disk_info"
         },
         {
             "disk_sn": "aA0763EDA",
             "owner": 1,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info",
-            "diskName": "nvme1n1"
+            "comment": "test_disk_info"
         },
         {
             "disk_sn": "aA07661EA",
             "owner": 1,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info",
-            "diskName": "nvme1n1"
+            "comment": "test_disk_info"
         },
         {
             "disk_sn": "aUNKNOWN_DISK_ID_0000:67:00.0",
             "owner": 1,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info",
-            "diskName": "nvme1n1"
+            "comment": "test_disk_info"
         },
         {
             "disk_sn": "aUNKNOWN_DISK_ID_0000:68:00.0",
             "owner": 1,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info",
-            "diskName": "nvme1n1"
+            "comment": "test_disk_info"
         },
         {
             "disk_sn": "aS6CKNE0R723303",
             "owner": 1,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info",
-            "diskName": "nvme1n1"
+            "comment": "test_disk_info"
         }
     ],
     "code": 0,

@@ -7,7 +7,9 @@ import {
     GridCellValue,
     GridColDef,
     GridPreProcessEditCellProps,
+    GridRenderEditCellParams,
     GridValueGetterParams,
+    useGridApiContext,
 } from '@mui/x-data-grid'
 import { Link } from 'react-router-dom'
 import Button from '@mui/material/Button'
@@ -31,10 +33,14 @@ import { DiskInventoryStatusType } from 'src/reducer/disk/type'
 import { langType } from 'src/hooks/language/package/type'
 
 const getMergeData = (allDisk: any, onServerDisk: any) => {
+    let idx = 0
+
     return map((diskInfo: any) => {
         const matchDisk = find((disk: any) => {
             return disk.diskId === diskInfo.diskId
         }, onServerDisk)
+
+        idx++
 
         if (matchDisk) {
             return {
@@ -42,7 +48,10 @@ const getMergeData = (allDisk: any, onServerDisk: any) => {
                 ...diskInfo,
             }
         }
-        return diskInfo
+        return {
+            ...diskInfo,
+            seq: idx,
+        }
     })(allDisk)
 }
 
@@ -76,7 +85,6 @@ const transformDiskData = (data: uploadServerType[], t: TProps) => {
 const DiskList = () => {
     const theme = useTheme()
     const t = useT()
-
     const commonColumnsConfig = getCommonColumnsConfig(theme, t, ['row'])
 
     const diskData = useSelector((state: RootState) => state.disk)
@@ -85,11 +93,9 @@ const DiskList = () => {
     )
     const userConfig = useSelector((state: RootState) => state.userConfig)
     const dispatch = useDispatch<Dispatch>()
-    console.log(uploadServerData)
 
     const transData = transformDiskData(uploadServerData.data, t)
     const mergeData = getMergeData(diskData.data, transData)
-    console.log('mergeData', theme.palette)
 
     const handleRefresh = () => {}
 
@@ -110,16 +116,21 @@ const DiskList = () => {
             sortable: true,
             sortComparator: (v1: GridCellValue, v2: GridCellValue) =>
                 (v1 as string)?.length - (v2 as string)?.length,
-            renderCell: (params: GridValueGetterParams) => (
-                <Link
-                    to={`/up/detail/${params.row.serverID}`}
-                    style={{
-                        color: theme.palette.primary.dark,
-                    }}
-                >
-                    {params.row.serverID}
-                </Link>
-            ),
+            renderCell: (params: GridValueGetterParams) => {
+                if (params.row.serverID) {
+                    return (
+                        <Link
+                            to={`/up/detail/${params.row.serverID}`}
+                            style={{
+                                color: theme.palette.primary.dark,
+                            }}
+                        >
+                            {params.row.serverID}
+                        </Link>
+                    )
+                }
+                return '-'
+            },
             // valueGetter: (params: GridValueGetterParams) =>
             //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
         },
@@ -140,7 +151,17 @@ const DiskList = () => {
                     '-'
                 ),
         },
-        { field: 'diskName', headerName: t('diskName'), width: 130 },
+        {
+            field: 'diskName',
+            headerName: t('diskName'),
+            width: 130,
+            valueGetter: (params: GridValueGetterParams) => {
+                return params.row.diskName || '-'
+            },
+            renderCell: (params: GridValueGetterParams) => {
+                return params.row.diskName || '-'
+            },
+        },
         {
             field: 'identified',
             headerName: t('identified'),
@@ -160,7 +181,9 @@ const DiskList = () => {
                     <div
                         style={{
                             color:
-                                val === false
+                                val === true
+                                    ? theme.palette.success.dark
+                                    : val === false
                                     ? theme.palette.error.dark
                                     : 'inherit',
                         }}
@@ -180,6 +203,18 @@ const DiskList = () => {
             editable: true,
             type: 'singleSelect',
             valueOptions: [t('normal'), t('lost'), t('damaged')],
+            // valueGetter: (params: GridValueGetterParams) => {
+            //     const val = params.row.inventoryStatus
+
+            //     const text =
+            //         val === DiskInventoryStatusType.NORMAL
+            //             ? t('normal')
+            //             : val === DiskInventoryStatusType.LOST
+            //             ? t('lost')
+            //             : t('damaged')
+
+            //     return text
+            // },
             preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
                 const text = params.props.value
                 const inventoryStatus: DiskInventoryStatusType =
@@ -189,18 +224,20 @@ const DiskList = () => {
                         ? DiskInventoryStatusType.LOST
                         : DiskInventoryStatusType.DAMAGED
 
-                dispatch.disk.changeDiskInventoryStatus({
-                    ...params.row,
-                    diskId: params.row.id,
+                console.log(
+                    'preProcessEditCellProps',
+                    params.row,
                     inventoryStatus,
-                })
+                    text
+                )
 
                 return {
-                    value: text,
+                    value: inventoryStatus,
                 }
             },
             renderCell: (params: GridValueGetterParams) => {
                 const val = params.row.inventoryStatus
+
                 const text =
                     val === DiskInventoryStatusType.NORMAL
                         ? t('normal')
@@ -251,6 +288,9 @@ const DiskList = () => {
             description: '',
             sortable: true,
             type: 'date',
+            renderCell: (params: GridValueGetterParams) => {
+                return params.row.updateTimeStr || '-'
+            },
         },
         {
             field: 'slotId',
@@ -258,6 +298,9 @@ const DiskList = () => {
             width: 90,
             description: '',
             sortable: true,
+            renderCell: (params: GridValueGetterParams) => {
+                return params.row.slotId || '-'
+            },
         },
 
         commonColumnsConfig.diskStatus,
@@ -270,15 +313,41 @@ const DiskList = () => {
             minWidth: 160,
             description: '',
             sortable: true,
-            renderCell: (params: GridValueGetterParams) => (
-                <TooltipField title={params.row.mountPoint}>
-                    {params.row.mountPoint}
-                </TooltipField>
-            ),
+            renderCell: (params: GridValueGetterParams) => {
+                const mountPoint = params.row.mountPoint
+                if (mountPoint) {
+                    return (
+                        <TooltipField title={params.row.mountPoint}>
+                            {mountPoint}
+                        </TooltipField>
+                    )
+                }
+
+                return '-'
+            },
         },
 
         commonColumnsConfig.timeConsuming,
         commonColumnsConfig.vehicleIds,
+
+        {
+            field: 'comment',
+            headerName: t('comment'),
+            width: 220,
+            description: '',
+            editable: true,
+            sortable: true,
+            renderCell: (params: GridValueGetterParams) => {
+                const comment = params.row.comment
+                if (comment) {
+                    return (
+                        <TooltipField title={comment}>{comment}</TooltipField>
+                    )
+                }
+
+                return '-'
+            },
+        },
 
         commonColumnsConfig.operationTips,
     ]
@@ -291,6 +360,22 @@ const DiskList = () => {
             },
         })
     }
+
+    const processRowUpdate = React.useCallback(
+        async (newRow: any) => {
+            await dispatch.disk.changeDiskInfo(newRow)
+
+            dispatch.snackbar.push({
+                timeStamp: new Date().getTime(),
+                severity: 'success',
+                msg: 'successfully saved',
+            })
+
+            return newRow
+        },
+        [mergeData]
+    )
+    console.log(mergeData)
 
     return (
         <Box
@@ -333,6 +418,13 @@ const DiskList = () => {
                 // )}
                 saveGridConfig={saveGridConfig}
                 initialState={userConfig.disk_listConfig}
+                dataGridProps={{
+                    processRowUpdate: processRowUpdate,
+                    onProcessRowUpdateError: () => {
+                        console.log(456)
+                    },
+                    experimentalFeatures: { newEditingApi: true },
+                }}
             />
         </Box>
     )

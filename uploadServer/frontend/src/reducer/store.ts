@@ -21,4 +21,3 @@ export const getInitStore = () =>
     })
 
 export const store = getInitStore()
-console.log(store.getState())

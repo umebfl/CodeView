@@ -70,6 +70,7 @@ const lang: langType = {
     diskUnPlugTime: 'Disk Unplug Time',
     slotsSequenceOfRemovable: 'Slots sequence of removable',
     identified: 'identified',
+    comment: 'Comment',
 }
 
 export default lang

@@ -70,6 +70,7 @@ const lang: langType = {
     diskUnPlugTime: '拔盘时间',
     slotsSequenceOfRemovable: '可拔出插槽序列',
     identified: '已识别',
+    comment: '备注',
 }
 
 export default lang

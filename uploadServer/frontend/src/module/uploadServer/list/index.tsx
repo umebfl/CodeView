@@ -201,7 +201,6 @@ const UploadServerList: FC = () => {
     })
 
     const saveGridConfig = (config: GridInitialStateCommunity) => {
-        console.log(config)
         dispatch.userConfig.set({
             uploadServer_listConfig: {
                 ...userConfig.uploadServer_listConfig,

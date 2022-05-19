@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Box, LinearProgress, Tooltip, Typography } from '@mui/material'
-import { map, path } from 'ramda'
+import { isNil, map, path } from 'ramda'
 import useTheme from '@mui/system/useTheme'
 import { Link } from 'react-router-dom'
 import { Theme } from '@mui/system'
@@ -63,7 +63,8 @@ export const getCommonColumnsConfig = (
             },
             renderCell: (params: GridValueGetterParams) => {
                 const data = path(paramsPath)(params) as diskInfoType
-                return data ? (
+
+                return data && !isNil(data.isMounted) ? (
                     <Box
                         sx={{
                             color: data.isMounted
@@ -269,13 +270,17 @@ export const getCommonColumnsConfig = (
             },
             renderCell: (params: GridValueGetterParams) => {
                 const data = path(paramsPath)(params) as diskInfoType
-                const vehicleIds = data?.vehicleIds?.length
-                    ? data.vehicleIds.join(', ')
-                    : '-'
+                const vehicleIds = data?.vehicleIds?.join(', ')
 
-                return (
-                    <TooltipField title={vehicleIds}>{vehicleIds}</TooltipField>
-                )
+                if (vehicleIds) {
+                    return (
+                        <TooltipField title={vehicleIds}>
+                            {vehicleIds}
+                        </TooltipField>
+                    )
+                }
+
+                return '-'
             },
         },
     }

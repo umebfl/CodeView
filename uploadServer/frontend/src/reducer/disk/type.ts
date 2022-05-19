@@ -5,7 +5,6 @@ export interface DiskType {
     inventoryStatus: DiskInventoryStatusType
     onServer: boolean
     comment: string
-    diskName: string
 }
 
 export interface DiskResponseType {
@@ -14,8 +13,6 @@ export interface DiskResponseType {
     status: DiskInventoryStatusType
     on_server: boolean
     comment: string
-
-    diskName: string
 }
 
 export enum DiskOwnerType {

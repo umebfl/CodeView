@@ -1,4 +1,4 @@
-import { addIndex, map } from 'ramda'
+import { addIndex, find, findIndex, map, propEq, update } from 'ramda'
 import { createModel } from '@rematch/core'
 
 import request from 'src/util/request'
@@ -37,7 +37,6 @@ export const disk = createModel<RootModel>()({
                         inventoryStatus: disk.status,
                         onServer: disk.on_server,
                         comment: disk.comment,
-                        diskName: disk.diskName,
                     })
                 )(data)
 
@@ -45,19 +44,30 @@ export const disk = createModel<RootModel>()({
             }
         },
 
-        async changeDiskInventoryStatus(payload: DiskType, rootState) {
-            const data = await request({
-                url: '/data_center/change_disk_inventory_status',
-                payload: {
-                    method: 'POST',
-                    body: JSON.stringify(payload),
-                },
-                rootState,
-                dispatch,
-            })
+        async changeDiskInfo(payload: DiskType, rootState) {
+            console.log('payload', payload)
 
-            if (data?.diskInfos) {
-                dispatch.disk.setData(data.diskInfos)
+            try {
+                await request({
+                    url: '/disk_management/upsert_disk_info',
+                    payload: {
+                        method: 'POST',
+                        body: JSON.stringify(payload),
+                    },
+                    rootState,
+                    dispatch,
+                })
+
+                const idx = findIndex(
+                    propEq('diskId', payload.diskId),
+                    rootState.disk.data
+                )
+
+                const newData = update(idx, payload, rootState.disk.data)
+
+                dispatch.disk.setData(newData)
+            } catch (error) {
+                console.error(error)
             }
         },
     }),

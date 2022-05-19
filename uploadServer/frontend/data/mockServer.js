@@ -44,4 +44,12 @@ app.get('/disk_management/get_disks_info', function (req, res) {
     res.json(getDisksInfoData)
 })
 
+app.post('/disk_management/upsert_disk_info', function (req, res) {
+    console.log('/disk_management/get_disks_info')
+    res.json({
+        code: 0,
+        msg: 'success',
+    })
+})
+
 app.listen(8000)

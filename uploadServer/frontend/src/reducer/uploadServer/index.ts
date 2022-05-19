@@ -11,7 +11,7 @@ import {
     DiskStatusConfig,
     diskStatusEnum,
 } from 'src/reducer/uploadServer/type'
-import { addIndex, map } from 'ramda'
+import { addIndex, map, startsWith } from 'ramda'
 import { tranText } from 'src/hooks/language'
 import { langSet } from 'src/reducer/language/type'
 
@@ -65,9 +65,10 @@ export const uploadServer = createModel<RootModel>()({
                                               slot.diskInfo.updateTime * 1000
                                           ).format('MM-DD HH:MM:ss'),
 
-                                          identified:
-                                              slot.diskInfo.diskName !==
+                                          identified: !startsWith(
                                               'UNKNOWN',
+                                              slot.diskInfo.diskId
+                                          ),
 
                                           diskStatus: slot.diskInfo.wrongServer
                                               ? diskStatusEnum.WRONGSERVER
