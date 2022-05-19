@@ -45,7 +45,7 @@ const Request = async ({
 
             if (data.code === 0) {
                 loadingTips && dispatch?.globalLoading?.remove(loadingFlag)
-                return data.data
+                return data
             }
 
             throw new Error(data.msg)

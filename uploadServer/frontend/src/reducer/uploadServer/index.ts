@@ -147,10 +147,12 @@ export const uploadServer = createModel<RootModel>()({
                 dispatch,
             })
 
-            if (data?.uploadServerInfos) {
+            const { upload_server_infos } = data
+
+            if (upload_server_infos) {
                 dispatch.uploadServer.setData({
                     lang: rootState.language.lang,
-                    payload: data.uploadServerInfos,
+                    payload: upload_server_infos,
                 })
             }
         },

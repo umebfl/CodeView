@@ -71,6 +71,10 @@ const lang: langType = {
     slotsSequenceOfRemovable: '可拔出插槽序列',
     identified: '已识别',
     comment: '备注',
+    owner: '归属',
+    nanShan: '南山',
+    pinShan: '坪山',
+    unknown: '未知',
 }
 
 export default lang

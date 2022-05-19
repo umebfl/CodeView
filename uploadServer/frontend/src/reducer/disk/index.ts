@@ -4,7 +4,12 @@ import { createModel } from '@rematch/core'
 import request from 'src/util/request'
 
 import { RootModel } from '..'
-import { DiskType, diskState, DiskResponseType } from 'src/reducer/disk/type'
+import {
+    DiskType,
+    diskState,
+    DiskResponseType,
+    DiskOwnerType,
+} from 'src/reducer/disk/type'
 
 const initState: diskState = {
     data: [],
@@ -22,13 +27,17 @@ export const disk = createModel<RootModel>()({
     },
     effects: dispatch => ({
         async initData(_, rootState) {
-            const data: DiskResponseType[] = await request({
+            const data: {
+                disks_info: DiskResponseType[]
+            } = await request({
                 url: '/disk_management/get_disks_info',
                 rootState,
                 dispatch,
             })
 
-            if (data) {
+            const { disks_info } = data
+
+            if (disks_info) {
                 const transData: DiskType[] = addIndex<DiskResponseType>(map)(
                     (disk: DiskResponseType, idx: number): DiskType => ({
                         id: idx,
@@ -38,34 +47,41 @@ export const disk = createModel<RootModel>()({
                         onServer: disk.on_server,
                         comment: disk.comment,
                     })
-                )(data)
+                )(disks_info)
 
                 dispatch.disk.setData(transData)
             }
         },
 
-        async changeDiskInfo(payload: DiskType, rootState) {
+        async changeDiskInfo(
+            payload: {
+                newRow: DiskType
+                params: DiskResponseType
+            },
+            rootState
+        ) {
             console.log('payload', payload)
+            const { newRow, params } = payload
 
             try {
                 await request({
                     url: '/disk_management/upsert_disk_info',
                     payload: {
                         method: 'POST',
-                        body: JSON.stringify(payload),
+                        body: JSON.stringify(params),
                     },
                     rootState,
                     dispatch,
                 })
 
                 const idx = findIndex(
-                    propEq('diskId', payload.diskId),
+                    propEq('diskId', newRow.diskId),
                     rootState.disk.data
                 )
 
-                const newData = update(idx, payload, rootState.disk.data)
+                const fixData = update(idx, newRow, rootState.disk.data)
 
-                dispatch.disk.setData(newData)
+                dispatch.disk.setData(fixData)
             } catch (error) {
                 console.error(error)
             }

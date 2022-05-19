@@ -71,6 +71,10 @@ const lang: langType = {
     slotsSequenceOfRemovable: 'Slots sequence of removable',
     identified: 'identified',
     comment: 'Comment',
+    owner: 'owner',
+    nanShan: 'NanShan',
+    pinShan: 'PinShan',
+    unknown: 'Unknown',
 }
 
 export default lang

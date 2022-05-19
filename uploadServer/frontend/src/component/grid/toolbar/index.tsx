@@ -40,6 +40,7 @@ const Toolbar = ({ quickFilterProps, ToolbarRight }: ToolbarProps) => {
                     alignItems: 'center',
                     color: 'white',
                     paddingRight: 2,
+                    userSelect: 'none',
                 }}
             >
                 {ToolbarRight && <ToolbarRight />}

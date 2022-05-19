@@ -70,4 +70,8 @@ export interface langType {
     slotsSequenceOfRemovable: string
     identified: string
     comment: string
+    owner: string
+    nanShan: string
+    pinShan: string
+    unknown: string
 }

@@ -4,8 +4,10 @@ import { filter, find, map, reduce } from 'ramda'
 
 import Box from '@mui/material/Box'
 import {
+    GridCellParams,
     GridCellValue,
     GridColDef,
+    GridColumnHeaderParams,
     GridPreProcessEditCellProps,
     GridRenderEditCellParams,
     GridValueGetterParams,
@@ -29,7 +31,11 @@ import {
 } from 'src/reducer/uploadServer/type'
 import { getCommonColumnsConfig } from 'src/module/uploadServer/detail/listView'
 import { GridInitialStateCommunity } from '@mui/x-data-grid/models/gridStateCommunity'
-import { DiskInventoryStatusType } from 'src/reducer/disk/type'
+import {
+    DiskInventoryStatusType,
+    DiskOwnerType,
+    DiskType,
+} from 'src/reducer/disk/type'
 import { langType } from 'src/hooks/language/package/type'
 
 const getMergeData = (allDisk: any, onServerDisk: any) => {
@@ -154,7 +160,7 @@ const DiskList = () => {
         {
             field: 'diskName',
             headerName: t('diskName'),
-            width: 130,
+            width: 150,
             valueGetter: (params: GridValueGetterParams) => {
                 return params.row.diskName || '-'
             },
@@ -165,7 +171,7 @@ const DiskList = () => {
         {
             field: 'identified',
             headerName: t('identified'),
-            width: 130,
+            width: 110,
             type: 'singleSelect',
             valueOptions: ['T', 'F'],
             valueGetter: (params: GridValueGetterParams) => {
@@ -196,8 +202,20 @@ const DiskList = () => {
 
         {
             field: 'inventoryStatus',
-            headerName: t('inventoryStatus'),
-            width: 110,
+            renderHeader: (params: GridColumnHeaderParams) => (
+                <Box>
+                    {t('inventoryStatus')}
+                    <EditOutlinedIcon
+                        sx={{
+                            // display: 'none',
+                            marginLeft: 1,
+                            fontSize: 12,
+                            color: theme.palette.grey[600],
+                        }}
+                    />
+                </Box>
+            ),
+            width: 130,
             description: t('doubleClickToEdit'),
             sortable: true,
             editable: true,
@@ -215,25 +233,38 @@ const DiskList = () => {
 
             //     return text
             // },
-            preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
-                const text = params.props.value
+            // preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
+            //     const text = params.props.value
+            //     const inventoryStatus: DiskInventoryStatusType =
+            //         text === t('normal')
+            //             ? DiskInventoryStatusType.NORMAL
+            //             : text === t('lost')
+            //             ? DiskInventoryStatusType.LOST
+            //             : DiskInventoryStatusType.DAMAGED
+
+            //     console.log(
+            //         'preProcessEditCellProps',
+            //         params.row,
+            //         inventoryStatus,
+            //         text
+            //     )
+
+            //     return {
+            //         value: inventoryStatus,
+            //     }
+            // },
+            valueParser: (
+                value: GridCellValue,
+                params: GridCellParams<any, any, any> | undefined
+            ) => {
                 const inventoryStatus: DiskInventoryStatusType =
-                    text === t('normal')
+                    value === t('normal')
                         ? DiskInventoryStatusType.NORMAL
-                        : text === t('lost')
+                        : value === t('lost')
                         ? DiskInventoryStatusType.LOST
                         : DiskInventoryStatusType.DAMAGED
 
-                console.log(
-                    'preProcessEditCellProps',
-                    params.row,
-                    inventoryStatus,
-                    text
-                )
-
-                return {
-                    value: inventoryStatus,
-                }
+                return inventoryStatus
             },
             renderCell: (params: GridValueGetterParams) => {
                 const val = params.row.inventoryStatus
@@ -267,15 +298,74 @@ const DiskList = () => {
                         }}
                     >
                         {t(text as keyof langType)}
-                        <EditOutlinedIcon
-                            sx={{
-                                display: 'none',
-                                fontSize: 12,
-                                color: theme.palette.grey[600],
-                            }}
-                        />
                     </Box>
                 )
+            },
+        },
+
+        {
+            field: 'owner',
+            headerName: t('owner'),
+            renderHeader: (params: GridColumnHeaderParams) => (
+                <Box
+                    sx={{
+                        width: 120,
+                        display: 'flex',
+                        alignItems: 'center',
+                    }}
+                >
+                    {t('owner')}
+                    <EditOutlinedIcon
+                        sx={{
+                            marginLeft: 1,
+                            fontSize: 12,
+                            color: theme.palette.grey[600],
+                        }}
+                    />
+                </Box>
+            ),
+            width: 120,
+            description: '',
+            editable: true,
+            sortable: true,
+            type: 'singleSelect',
+            valueOptions: [t('nanShan'), t('pinShan'), t('unknown')],
+            valueGetter: (params: GridValueGetterParams) => {
+                const owner = params.row.owner
+
+                const text =
+                    owner === DiskOwnerType.NANSHAN
+                        ? t('nanShan')
+                        : owner === DiskOwnerType.PINGSHAN
+                        ? t('pinShan')
+                        : t('unknown')
+
+                return text
+            },
+            valueParser: (
+                value: GridCellValue,
+                params: GridCellParams<any, any, any> | undefined
+            ) => {
+                const ownerVal =
+                    value === t('nanShan')
+                        ? DiskOwnerType.NANSHAN
+                        : value === t('pinShan')
+                        ? DiskOwnerType.PINGSHAN
+                        : DiskOwnerType.UNKNOWN
+
+                return ownerVal
+            },
+            renderCell: (params: GridValueGetterParams) => {
+                const owner = params.row.owner
+
+                const text =
+                    owner === DiskOwnerType.NANSHAN
+                        ? t('nanShan')
+                        : owner === DiskOwnerType.PINGSHAN
+                        ? t('pinShan')
+                        : t('unknown')
+
+                return text || '-'
             },
         },
 
@@ -337,6 +427,27 @@ const DiskList = () => {
             description: '',
             editable: true,
             sortable: true,
+            renderHeader: (params: GridColumnHeaderParams) => (
+                <Box
+                    sx={{
+                        width: 220,
+                        display: 'flex',
+                        // justifyContent: 'space-between',
+                        alignItems: 'center',
+                    }}
+                >
+                    {t('comment')}
+                    <EditOutlinedIcon
+                        sx={{
+                            // display: 'none',
+                            // width: 50,
+                            marginLeft: 1,
+                            fontSize: 12,
+                            color: theme.palette.grey[600],
+                        }}
+                    />
+                </Box>
+            ),
             renderCell: (params: GridValueGetterParams) => {
                 const comment = params.row.comment
                 if (comment) {
@@ -362,8 +473,20 @@ const DiskList = () => {
     }
 
     const processRowUpdate = React.useCallback(
-        async (newRow: any) => {
-            await dispatch.disk.changeDiskInfo(newRow)
+        async (newRow: DiskType) => {
+            const { owner, inventoryStatus, comment } = newRow
+            console.log(owner, inventoryStatus, comment)
+
+            await dispatch.disk.changeDiskInfo({
+                newRow,
+                params: {
+                    disk_sn: newRow.diskId,
+                    owner,
+                    on_server: newRow.onServer,
+                    status: inventoryStatus,
+                    comment,
+                },
+            })
 
             dispatch.snackbar.push({
                 timeStamp: new Date().getTime(),

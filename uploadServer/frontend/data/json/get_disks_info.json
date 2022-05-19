@@ -1,5 +1,5 @@
 {
-    "data": [
+    "disks_info": [
         {
             "disk_sn": "UNKNOWN_DISK_ID_0000:60:00.0",
             "owner": 1,
