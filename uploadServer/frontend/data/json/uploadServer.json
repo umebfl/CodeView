@@ -1,7 +1,7 @@
 {
     "code": 0,
     "msg": "success",
-    "upload_server_infos": [
+    "uploadServerInfos": [
         {
             "uploadServerId": "superxray-sz-006",
             "uploadServerLocation": "1-1",

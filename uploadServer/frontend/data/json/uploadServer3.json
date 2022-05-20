@@ -1,7 +1,7 @@
 {
     "code": 0,
     "msg": "success",
-    "upload_server_infos": [
+    "uploadServerInfos": [
         {
             "uploadServerId": "exa-uploader-srv-001",
             "uploadServerLocation": "location-001",

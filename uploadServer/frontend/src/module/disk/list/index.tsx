@@ -4,6 +4,7 @@ import { filter, find, map, reduce } from 'ramda'
 
 import Box from '@mui/material/Box'
 import {
+    getGridSingleSelectOperators,
     GridCellParams,
     GridCellValue,
     GridColDef,
@@ -37,6 +38,8 @@ import {
     DiskType,
 } from 'src/reducer/disk/type'
 import { langType } from 'src/hooks/language/package/type'
+import Select from '@mui/material/Select'
+import Rating from '@mui/material/Rating'
 
 const getMergeData = (allDisk: any, onServerDisk: any) => {
     let idx = 0
@@ -88,6 +91,82 @@ const transformDiskData = (data: uploadServerType[], t: TProps) => {
     }, [])(data)
 }
 
+const SelectEditInputCell = (props: any) => {
+    const { id, value, field, options } = props
+    const apiRef = useGridApiContext()
+
+    const handleChange = async (event: any) => {
+        await apiRef.current.setEditCellValue({
+            id,
+            field,
+            value: parseInt(event.target.value),
+        })
+        apiRef.current.stopCellEditMode({ id, field })
+    }
+
+    return (
+        <Select
+            key={id}
+            value={value}
+            onChange={handleChange}
+            size="small"
+            sx={{ height: 1, width: '100%' }}
+            native
+            autoFocus
+        >
+            {map(option => {
+                return (
+                    <option key={option.value} value={option.value}>
+                        {option.label}
+                    </option>
+                )
+            }, options)}
+        </Select>
+    )
+}
+
+const SelecterFilter = (props: any) => {
+    const t = useT()
+    const { item, applyValue, options, focusElementRef } = props
+
+    const ratingRef = React.useRef(null)
+
+    const handleFilterChange = (e: any) => {
+        applyValue({ ...item, value: parseInt(e.target.value) })
+    }
+
+    return (
+        <Box
+            sx={{
+                display: 'inline-flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                height: 48,
+                pl: '20px',
+            }}
+        >
+            <Select
+                ref={ratingRef}
+                name="custom-select-filter-operator"
+                value={item.value}
+                onChange={e => handleFilterChange(e)}
+                size="small"
+                sx={{ height: 1, width: '100%' }}
+                native
+                autoFocus
+            >
+                {map((option: { value: number; label: string }) => {
+                    return (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
+                    )
+                }, options)}
+            </Select>
+        </Box>
+    )
+}
+
 const DiskList = () => {
     const theme = useTheme()
     const t = useT()
@@ -104,6 +183,25 @@ const DiskList = () => {
     const mergeData = getMergeData(diskData.data, transData)
 
     const handleRefresh = () => {}
+
+    const OwnerSelectOptions = [
+        { label: t('nanShan'), value: DiskOwnerType.NANSHAN },
+        { label: t('pinShan'), value: DiskOwnerType.PINGSHAN },
+        { label: t('unknown'), value: DiskOwnerType.UNKNOWN },
+    ]
+
+    const InventoryStatusSelectOptions = [
+        { label: t('normal'), value: DiskInventoryStatusType.NORMAL },
+        { label: t('lost'), value: DiskInventoryStatusType.LOST },
+        { label: t('damaged'), value: DiskInventoryStatusType.DAMAGED },
+    ]
+
+    const OwnerSelecterFilter = (props: any) => (
+        <SelecterFilter {...props} options={OwnerSelectOptions} />
+    )
+    const InventoryStatusSelecterFilter = (props: any) => (
+        <SelecterFilter {...props} options={InventoryStatusSelectOptions} />
+    )
 
     const columns: GridColDef[] = [
         {
@@ -202,6 +300,7 @@ const DiskList = () => {
 
         {
             field: 'inventoryStatus',
+            headerName: t('inventoryStatus'),
             renderHeader: (params: GridColumnHeaderParams) => (
                 <Box>
                     {t('inventoryStatus')}
@@ -219,8 +318,8 @@ const DiskList = () => {
             description: t('doubleClickToEdit'),
             sortable: true,
             editable: true,
-            type: 'singleSelect',
-            valueOptions: [t('normal'), t('lost'), t('damaged')],
+            // type: 'singleSelect',
+            // valueOptions: [t('normal'), t('lost'), t('damaged')],
             // valueGetter: (params: GridValueGetterParams) => {
             //     const val = params.row.inventoryStatus
 
@@ -253,19 +352,31 @@ const DiskList = () => {
             //         value: inventoryStatus,
             //     }
             // },
-            valueParser: (
-                value: GridCellValue,
-                params: GridCellParams<any, any, any> | undefined
-            ) => {
-                const inventoryStatus: DiskInventoryStatusType =
-                    value === t('normal')
-                        ? DiskInventoryStatusType.NORMAL
-                        : value === t('lost')
-                        ? DiskInventoryStatusType.LOST
-                        : DiskInventoryStatusType.DAMAGED
+            // valueParser: (
+            //     value: GridCellValue,
+            //     params: GridCellParams<any, any, any> | undefined
+            // ) => {
+            //     const inventoryStatus: DiskInventoryStatusType =
+            //         value === t('normal')
+            //             ? DiskInventoryStatusType.NORMAL
+            //             : value === t('lost')
+            //             ? DiskInventoryStatusType.LOST
+            //             : DiskInventoryStatusType.DAMAGED
 
-                return inventoryStatus
-            },
+            //     return inventoryStatus
+            // },
+            filterOperators: getGridSingleSelectOperators().map(
+                (operator: any) => ({
+                    ...operator,
+                    InputComponent: InventoryStatusSelecterFilter,
+                })
+            ),
+            renderEditCell: props => (
+                <SelectEditInputCell
+                    {...props}
+                    options={InventoryStatusSelectOptions}
+                />
+            ),
             renderCell: (params: GridValueGetterParams) => {
                 const val = params.row.inventoryStatus
 
@@ -328,33 +439,43 @@ const DiskList = () => {
             description: '',
             editable: true,
             sortable: true,
-            type: 'singleSelect',
-            valueOptions: [t('nanShan'), t('pinShan'), t('unknown')],
-            valueGetter: (params: GridValueGetterParams) => {
-                const owner = params.row.owner
+            // type: 'singleSelect',
+            // valueOptions: [t('nanShan'), t('pinShan'), t('unknown')],
 
-                const text =
-                    owner === DiskOwnerType.NANSHAN
-                        ? t('nanShan')
-                        : owner === DiskOwnerType.PINGSHAN
-                        ? t('pinShan')
-                        : t('unknown')
+            filterOperators: getGridSingleSelectOperators().map(
+                (operator: any) => ({
+                    ...operator,
+                    InputComponent: OwnerSelecterFilter,
+                })
+            ),
+            renderEditCell: props => (
+                <SelectEditInputCell {...props} options={OwnerSelectOptions} />
+            ),
+            // valueGetter: (params: GridValueGetterParams) => {
+            //     const owner = params.row.owner
 
-                return text
-            },
-            valueParser: (
-                value: GridCellValue,
-                params: GridCellParams<any, any, any> | undefined
-            ) => {
-                const ownerVal =
-                    value === t('nanShan')
-                        ? DiskOwnerType.NANSHAN
-                        : value === t('pinShan')
-                        ? DiskOwnerType.PINGSHAN
-                        : DiskOwnerType.UNKNOWN
+            //     const text =
+            //         owner === DiskOwnerType.NANSHAN
+            //             ? t('nanShan')
+            //             : owner === DiskOwnerType.PINGSHAN
+            //             ? t('pinShan')
+            //             : t('unknown')
 
-                return ownerVal
-            },
+            //     return text
+            // },
+            // valueParser: (
+            //     value: GridCellValue,
+            //     params: GridCellParams<any, any, any> | undefined
+            // ) => {
+            //     const ownerVal =
+            //         value === t('nanShan')
+            //             ? DiskOwnerType.NANSHAN
+            //             : value === t('pinShan')
+            //             ? DiskOwnerType.PINGSHAN
+            //             : DiskOwnerType.UNKNOWN
+
+            //     return ownerVal
+            // },
             renderCell: (params: GridValueGetterParams) => {
                 const owner = params.row.owner
 
@@ -498,7 +619,6 @@ const DiskList = () => {
         },
         [mergeData]
     )
-    console.log(mergeData)
 
     return (
         <Box
