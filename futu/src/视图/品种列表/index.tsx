@@ -591,7 +591,9 @@ const 品种列表 = () => {
         for (let i = 0; i < 最新品种列表.length; i++) {
             const 品种 = 最新品种列表[i]
             const code = 品种.代码
-            const 请求 = await fetch(`/ping_zhong_ri_feng_shi_shu_ju/${code}`)
+            const 请求 = await fetch(
+                `http://localhost:9000/ping_zhong_ri_feng_shi_shu_ju/${code}`
+            )
             const { 状态, 数据 } = await 请求.json()
 
             if (状态 === true) {

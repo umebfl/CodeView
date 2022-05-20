@@ -202,6 +202,7 @@ const DiskList = () => {
     const InventoryStatusSelecterFilter = (props: any) => (
         <SelecterFilter {...props} options={InventoryStatusSelectOptions} />
     )
+    console.log(mergeData)
 
     const columns: GridColDef[] = [
         {

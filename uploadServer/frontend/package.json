@@ -68,8 +68,8 @@
             "last 1 safari version"
         ]
     },
-    "proxy": "http://10.112.0.102:33999",
-    "proxy-tmp": "http://localhost:8000",
+    "proxy-tmp": "http://10.112.0.102:33999",
+    "proxy": "http://localhost:8000",
     "jest": {
         "coverageReporters": [
             "text-summary",

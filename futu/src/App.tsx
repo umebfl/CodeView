@@ -27,10 +27,7 @@ function App() {
                     <Route path="liu_cheng" element={<流程 />} />
                     <Route path="jiao_yi_jue_ce" element={<交易决策 />} />
 
-                    <Route
-                        path="ping_zhong_lie_biao"
-                        element={<div>123</div>}
-                    />
+                    <Route path="ping_zhong_lie_biao" element={<品种列表 />} />
                     <Route path="*" element={<div>404</div>} />
                 </Route>
             </Routes>
