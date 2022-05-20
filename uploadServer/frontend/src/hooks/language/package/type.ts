@@ -74,4 +74,5 @@ export interface langType {
     nanShan: string
     pinShan: string
     unknown: string
+    savedSuccessfully: string
 }

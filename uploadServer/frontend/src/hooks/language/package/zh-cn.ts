@@ -75,6 +75,7 @@ const lang: langType = {
     nanShan: '南山',
     pinShan: '坪山',
     unknown: '未知',
+    savedSuccessfully: '保存成功',
 }
 
 export default lang

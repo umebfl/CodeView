@@ -75,6 +75,7 @@ const lang: langType = {
     nanShan: 'NanShan',
     pinShan: 'PinShan',
     unknown: 'Unknown',
+    savedSuccessfully: 'Saved Successfully',
 }
 
 export default lang

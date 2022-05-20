@@ -24,6 +24,7 @@ describe('FilterBar', () => {
             </Context>
         )
 
+        screen.logTestingPlaygroundURL()
         fireEvent.change(screen.getByRole('textbox'), {
             target: { value: '006' },
         })

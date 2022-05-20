@@ -8,7 +8,10 @@ import { uploadServer } from 'src/reducer/uploadServer'
 import { language } from 'src/reducer/language'
 
 import MockData from '../../../data/json/uploadServer.json'
-import { UploadServerState } from 'src/reducer/uploadServer/type'
+import {
+    UploadServerState,
+    uploadServerType,
+} from 'src/reducer/uploadServer/type'
 import { langSet } from '../language/type'
 
 // error Primary one empty
@@ -24,10 +27,7 @@ const server = setupServer(
             return res(
                 ctx.json({
                     ...MockData,
-                    data: {
-                        ...MockData.data,
-                        uploadServerInfos: [],
-                    },
+                    uploadServerInfos: [],
                 })
             )
         }
@@ -41,6 +41,10 @@ beforeEach(() => {})
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
+const mockData = MockData as unknown as {
+    uploadServerInfos: uploadServerType[]
+}
+
 describe('Reducer - uploadServer', () => {
     it('should set data', () => {
         const store = init({
@@ -51,12 +55,12 @@ describe('Reducer - uploadServer', () => {
 
         dispatch.uploadServer.setData({
             lang: langSet.zh,
-            payload: MockData.data.uploadServerInfos,
+            payload: mockData.uploadServerInfos,
         })
 
         const data: UploadServerState = store.getState().uploadServer
 
-        expect(data.data.length).toBe(MockData.data.uploadServerInfos.length)
+        expect(data.data.length).toBe(mockData.uploadServerInfos.length)
 
         const item = data.data[0]
         expect(item.isRunningStr).toBe('running')
@@ -72,7 +76,7 @@ describe('Reducer - uploadServer', () => {
 
         const data: UploadServerState = store.getState().uploadServer
 
-        expect(data.data.length).toBe(MockData.data.uploadServerInfos.length)
+        expect(data.data.length).toBe(mockData.uploadServerInfos.length)
 
         const item = data.data[0]
         expect(item.isRunningStr).toBe('running')

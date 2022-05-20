@@ -613,7 +613,7 @@ const DiskList = () => {
             dispatch.snackbar.push({
                 timeStamp: new Date().getTime(),
                 severity: 'success',
-                msg: 'successfully saved',
+                msg: t('savedSuccessfully'),
             })
 
             return newRow

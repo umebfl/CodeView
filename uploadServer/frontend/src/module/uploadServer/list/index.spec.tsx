@@ -79,8 +79,6 @@ describe('Upload Server', () => {
             </Context>
         )
 
-        screen.logTestingPlaygroundURL()
-
         dispatch.uploadServer.initData({})
         await waitFor(() => screen.getAllByText(/没有数据/i))
 

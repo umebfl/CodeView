@@ -34,10 +34,10 @@ const Request = async ({
         const rv = await fetch(url, {
             method: 'GET',
             headers: {
-                'Content-Type':
-                    payload?.method === 'POST'
-                        ? 'application/json'
-                        : 'text/html',
+                // 'Content-Type': 'application/json; charset=utf-8',
+                //     payload?.method === 'POST'
+                //         ? 'application/json'
+                //         : 'text/html',
                 'Accept-Language': toLower(lang),
             },
             ...payload,
