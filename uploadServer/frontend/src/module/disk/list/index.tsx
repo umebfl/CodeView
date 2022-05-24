@@ -14,11 +14,12 @@ import {
     GridValueGetterParams,
     useGridApiContext,
 } from '@mui/x-data-grid'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Button from '@mui/material/Button'
 import useTheme from '@mui/system/useTheme'
 import { useDispatch, useSelector } from 'react-redux'
 import EditOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined'
+import Select from '@mui/material/Select'
 
 import { RootState, Dispatch } from 'src/reducer/type'
 import Breadcrumbs from 'src/component/breadcrumbs'
@@ -38,8 +39,6 @@ import {
     DiskType,
 } from 'src/reducer/disk/type'
 import { langType } from 'src/hooks/language/package/type'
-import Select from '@mui/material/Select'
-import Rating from '@mui/material/Rating'
 
 const getMergeData = (allDisk: any, onServerDisk: any) => {
     let idx = 0
@@ -178,6 +177,7 @@ const DiskList = () => {
     )
     const userConfig = useSelector((state: RootState) => state.userConfig)
     const dispatch = useDispatch<Dispatch>()
+    const navigate = useNavigate()
 
     const transData = transformDiskData(uploadServerData.data, t)
     const mergeData = getMergeData(diskData.data, transData)
@@ -202,7 +202,14 @@ const DiskList = () => {
     const InventoryStatusSelecterFilter = (props: any) => (
         <SelecterFilter {...props} options={InventoryStatusSelectOptions} />
     )
-    console.log(mergeData)
+
+    const handleUploadLogClick = async (diskId: string) => {
+        // 获取数据
+        // 执行跳转
+        await dispatch.disk.getUploadRecords(diskId)
+
+        navigate('/disk/uploadLog')
+    }
 
     const columns: GridColDef[] = [
         {
@@ -583,6 +590,28 @@ const DiskList = () => {
         },
 
         commonColumnsConfig.operationTips,
+
+        {
+            field: 'operation',
+            headerName: 'operation',
+            width: 140,
+            renderCell: (params: GridValueGetterParams) => {
+                return (
+                    // <Link
+                    //     to={'/disk/uploadLog'}
+                    //     style={{ textDecoration: 'none' }}
+                    // >
+                    <Button
+                        color="primary"
+                        size="small"
+                        onClick={() => handleUploadLogClick(params.row.diskId)}
+                    >
+                        上传日志
+                    </Button>
+                    // </Link>
+                )
+            },
+        },
     ]
 
     const saveGridConfig = (config: GridInitialStateCommunity) => {
@@ -646,7 +675,7 @@ const DiskList = () => {
                 columns={columns}
                 quickFilter={true}
                 // toolbarRight={() => (
-                //     <Link to={'/disk/records'}>
+                //     <Link to={'/disk/plugRecords'}>
                 //         <Button
                 //             sx={{
                 //                 color: 'white',

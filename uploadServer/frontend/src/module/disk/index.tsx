@@ -4,7 +4,8 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 
 import List from 'src/module/disk/list'
-import Records from 'src/module/disk/records'
+import PlugRecords from 'src/module/disk/plugRecords'
+import UploadLog from 'src/module/disk/uploadLog'
 
 import { Box } from '@mui/system'
 import { useEffect } from 'react'
@@ -14,7 +15,8 @@ import { RootState, Dispatch } from 'src/reducer/type'
 import { INTERVAL_TIMEOUT } from 'src/module/uploadServer'
 
 export const DiskList = List
-export const DiskRecords = Records
+export const DiskPlugRecords = PlugRecords
+export const DiskUploadLog = UploadLog
 
 const Disk = () => {
     const dispatch = useDispatch<Dispatch>()

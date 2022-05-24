@@ -53,6 +53,27 @@ export const disk = createModel<RootModel>()({
             }
         },
 
+        async getUploadRecords(payload: string, rootState) {
+            try {
+                // const data = await request({
+                //     url: '/disk_management/get_upload_records',
+                //     payload: {
+                //         method: 'POST',
+                //         body: JSON.stringify({
+                //             disk_sn: payload,
+                //         }),
+                //     },
+                //     rootState,
+                //     dispatch,
+                // })
+                // 获取结果
+                // 插入到数据行
+                // 设置到store
+            } catch (error) {
+                console.error(error)
+            }
+        },
+
         async changeDiskInfo(
             payload: {
                 newRow: DiskType
@@ -60,7 +81,6 @@ export const disk = createModel<RootModel>()({
             },
             rootState
         ) {
-            console.log('payload', payload)
             const { newRow, params } = payload
 
             try {
