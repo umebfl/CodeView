@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, fireEvent, screen } from '@testing-library/react'
+import { render, fireEvent, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import '@testing-library/jest-dom/extend-expect'
 
@@ -24,14 +24,11 @@ describe('FilterBar', () => {
             </Context>
         )
 
-        screen.logTestingPlaygroundURL()
         fireEvent.change(screen.getByRole('textbox'), {
             target: { value: '006' },
         })
 
-        await jest.setTimeout(1000)
-
-        expect(handleChange).toBeCalled()
+        await waitFor(() => expect(handleChange).toBeCalled())
     })
 
     it('should show the right node, when right exists ', () => {

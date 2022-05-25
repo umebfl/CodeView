@@ -14,12 +14,7 @@ import { createModel } from '@rematch/core'
 import request from 'src/util/request'
 
 import { RootModel } from '..'
-import {
-    DiskType,
-    diskState,
-    DiskResponseType,
-    DiskOwnerType,
-} from 'src/reducer/disk/type'
+import { DiskType, diskState, DiskResponseType } from 'src/reducer/disk/type'
 
 const MAX_COMMENT_LEN = 120
 
