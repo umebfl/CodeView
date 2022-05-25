@@ -203,12 +203,8 @@ const DiskList = () => {
         <SelecterFilter {...props} options={InventoryStatusSelectOptions} />
     )
 
-    const handleUploadLogClick = async (diskId: string) => {
-        // 获取数据
-        // 执行跳转
-        await dispatch.disk.getUploadRecords(diskId)
-
-        navigate('/disk/uploadLog')
+    const handleRecordsLogClick = (diskId: string) => {
+        navigate(`/disk/recordsLog/${diskId}`)
     }
 
     const columns: GridColDef[] = [
@@ -594,22 +590,23 @@ const DiskList = () => {
         {
             field: 'operation',
             headerName: 'operation',
-            width: 140,
+            width: 240,
             renderCell: (params: GridValueGetterParams) => {
-                return (
-                    // <Link
-                    //     to={'/disk/uploadLog'}
-                    //     style={{ textDecoration: 'none' }}
-                    // >
-                    <Button
-                        color="primary"
-                        size="small"
-                        onClick={() => handleUploadLogClick(params.row.diskId)}
-                    >
-                        上传日志
-                    </Button>
-                    // </Link>
-                )
+                const diskId = params.row.diskId
+
+                if (diskId) {
+                    return (
+                        <Button
+                            color="primary"
+                            size="small"
+                            onClick={() =>
+                                handleRecordsLogClick(params.row.diskId)
+                            }
+                        >
+                            {t('recordsLog')}
+                        </Button>
+                    )
+                }
             },
         },
     ]
@@ -693,9 +690,9 @@ const DiskList = () => {
                 initialState={userConfig.disk_listConfig}
                 dataGridProps={{
                     processRowUpdate: processRowUpdate,
-                    onProcessRowUpdateError: () => {
-                        console.log(456)
-                    },
+                    // onProcessRowUpdateError: (error: any) => {
+                    //     console.error(error)
+                    // },
                     experimentalFeatures: { newEditingApi: true },
                 }}
             />

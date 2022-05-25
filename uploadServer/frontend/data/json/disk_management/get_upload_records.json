@@ -1,0 +1,59 @@
+{
+    "disk_sn": "S6CKNE0R920379",
+    "upload_records": [
+        {
+            "disk_sn": "S6CKNE0R920379",
+            "disk_plug_time": "2022-04-19 06:22:29",
+            "upload_start_time": "1971-01-01 00:00:00",
+            "upload_end_time": "1971-01-01 00:00:00",
+            "vehicle_id": "pacifica-cn-53",
+            "xray_uris": [
+                "pacifica-cn-53/20220419/2022-04-19-11-31-19",
+                "pacifica-cn-53/20220419/2022-04-19-09-19-44",
+                "pacifica-cn-53/20220419/2022-04-19-09-51-39"
+            ],
+            "upload_status": 0
+        },
+        {
+            "disk_sn": "S6CKNE0R920379",
+            "disk_plug_time": "2022-04-19 06:22:29",
+            "upload_start_time": "2022-04-19 06:22:29",
+            "upload_end_time": "2022-04-19 06:22:29",
+            "vehicle_id": "pacifica-cn-531",
+            "xray_uris": [
+                "pacifica-cn-53/20220419/2022-04-19-11-31-19",
+                "pacifica-cn-53/20220419/2022-04-19-09-19-44",
+                "pacifica-cn-53/20220419/2022-04-19-09-51-39"
+            ],
+            "upload_status": 1
+        },
+        {
+            "disk_sn": "S6CKNE0R920379",
+            "disk_plug_time": "2022-04-19 06:22:29",
+            "upload_start_time": "2022-05-19 06:22:29",
+            "upload_end_time": "2022-05-19 06:22:29",
+            "vehicle_id": "pacifica-cn-532",
+            "xray_uris": [
+                "pacifica-cn-53/20220419/2022-04-19-11-31-19",
+                "pacifica-cn-53/20220419/2022-04-19-09-19-44",
+                "pacifica-cn-53/20220419/2022-04-19-09-51-39"
+            ],
+            "upload_status": 2
+        },
+        {
+            "disk_sn": "S6CKNE0R920379",
+            "disk_plug_time": "2022-04-19 06:22:29",
+            "upload_start_time": "2022-06-19 06:22:29",
+            "upload_end_time": "2022-06-19 06:22:29",
+            "vehicle_id": "pacifica-cn-533",
+            "xray_uris": [
+                "pacifica-cn-53/20220419/2022-04-19-11-31-19",
+                "pacifica-cn-53/20220419/2022-04-19-09-19-44",
+                "pacifica-cn-53/20220419/2022-04-19-09-51-39"
+            ],
+            "upload_status": 3
+        }
+    ],
+    "code": 0,
+    "msg": "success"
+}

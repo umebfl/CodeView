@@ -75,4 +75,11 @@ export interface langType {
     pinShan: string
     unknown: string
     savedSuccessfully: string
+    succed: string
+    notUpload: string
+    uploadStatus: string
+    startTime: string
+    endTime: string
+    records: string
+    recordsLog: string
 }

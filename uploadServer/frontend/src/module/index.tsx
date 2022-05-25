@@ -10,7 +10,11 @@ import UploadServer, {
     UploadServerList,
     UploadServerDetail,
 } from 'src/module/uploadServer'
-import Disk, { DiskList, DiskPlugRecords, DiskUploadLog } from 'src/module/disk'
+import Disk, {
+    DiskList,
+    DiskPlugRecords,
+    DiskRecordsLog,
+} from 'src/module/disk'
 
 import NoFound from 'src/module/noFound'
 import { RootState } from 'src/reducer/type'
@@ -46,8 +50,8 @@ function Router() {
                                     element={<DiskPlugRecords />}
                                 />
                                 <Route
-                                    path="uploadLog"
-                                    element={<DiskUploadLog />}
+                                    path="recordsLog/:id"
+                                    element={<DiskRecordsLog />}
                                 />
                             </Route>
                             <Route path="*" element={<NoFound />} />

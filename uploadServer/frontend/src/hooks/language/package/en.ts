@@ -76,6 +76,13 @@ const lang: langType = {
     pinShan: 'PinShan',
     unknown: 'Unknown',
     savedSuccessfully: 'Saved Successfully',
+    succed: 'Succed',
+    notUpload: 'Not Upload',
+    uploadStatus: 'Upload Status',
+    startTime: 'StartTime',
+    endTime: 'EndTime',
+    records: 'Records',
+    recordsLog: 'Records Log',
 }
 
 export default lang

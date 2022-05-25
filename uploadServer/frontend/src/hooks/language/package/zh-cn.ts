@@ -76,6 +76,13 @@ const lang: langType = {
     pinShan: '坪山',
     unknown: '未知',
     savedSuccessfully: '保存成功',
+    succed: '成功',
+    notUpload: '没有上传',
+    uploadStatus: '上传状态',
+    startTime: '开始时间',
+    endTime: '结束时间',
+    records: '记录',
+    recordsLog: '上传日志',
 }
 
 export default lang

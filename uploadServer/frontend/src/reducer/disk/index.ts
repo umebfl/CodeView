@@ -1,4 +1,14 @@
-import { addIndex, find, findIndex, map, propEq, update } from 'ramda'
+import {
+    addIndex,
+    find,
+    findIndex,
+    keys,
+    map,
+    propEq,
+    reduce,
+    take,
+    update,
+} from 'ramda'
 import { createModel } from '@rematch/core'
 
 import request from 'src/util/request'
@@ -11,17 +21,20 @@ import {
     DiskOwnerType,
 } from 'src/reducer/disk/type'
 
+const MAX_COMMENT_LEN = 120
+
 const initState: diskState = {
     data: [],
+    uploadRecords: {},
 }
 
 export const disk = createModel<RootModel>()({
     state: initState,
     reducers: {
-        setData: (state, payload: DiskType[]) => {
+        setData: (state, payload: Partial<diskState>) => {
             return {
                 ...state,
-                data: payload,
+                ...payload,
             }
         },
     },
@@ -49,26 +62,39 @@ export const disk = createModel<RootModel>()({
                     })
                 )(disks_info)
 
-                dispatch.disk.setData(transData)
+                dispatch.disk.setData({
+                    data: transData,
+                })
             }
         },
 
         async getUploadRecords(payload: string, rootState) {
             try {
-                // const data = await request({
-                //     url: '/disk_management/get_upload_records',
-                //     payload: {
-                //         method: 'POST',
-                //         body: JSON.stringify({
-                //             disk_sn: payload,
-                //         }),
-                //     },
-                //     rootState,
-                //     dispatch,
-                // })
-                // 获取结果
-                // 插入到数据行
-                // 设置到store
+                const data = await request({
+                    url: `/disk_management/get_upload_records?disk_sn=${payload}`,
+                    rootState,
+                    dispatch,
+                })
+                const { disk } = rootState
+
+                if (data.upload_records) {
+                    dispatch.disk.setData({
+                        uploadRecords: {
+                            ...disk.uploadRecords,
+                            [payload]: addIndex(map)(
+                                (record: any, idx: number) => ({
+                                    id: idx,
+                                    seq: idx,
+                                    uploadStartTime: record.upload_start_time,
+                                    uploadEndTime: record.upload_end_time,
+                                    vehicleId: record.vehicle_id,
+                                    xrayUris: record.xray_uris,
+                                    uploadStatus: record.upload_status,
+                                })
+                            )(data.upload_records),
+                        },
+                    })
+                }
             } catch (error) {
                 console.error(error)
             }
@@ -83,13 +109,22 @@ export const disk = createModel<RootModel>()({
         ) {
             const { newRow, params } = payload
 
+            const fixParams = {
+                ...params,
+                comment: take(MAX_COMMENT_LEN, params.comment),
+            }
+
+            const paramsKeys = keys(fixParams)
+            const paramStr = reduce(
+                (val: string, key: keyof DiskResponseType) => {
+                    return `${val}${key}=${fixParams[key]}&`
+                },
+                ''
+            )(paramsKeys)
+
             try {
                 await request({
-                    url: '/disk_management/upsert_disk_info',
-                    payload: {
-                        method: 'POST',
-                        body: JSON.stringify(params),
-                    },
+                    url: `/disk_management/upsert_disk_info?${paramStr}`,
                     rootState,
                     dispatch,
                 })
@@ -101,7 +136,9 @@ export const disk = createModel<RootModel>()({
 
                 const fixData = update(idx, newRow, rootState.disk.data)
 
-                dispatch.disk.setData(fixData)
+                dispatch.disk.setData({
+                    data: fixData,
+                })
             } catch (error) {
                 console.error(error)
             }
