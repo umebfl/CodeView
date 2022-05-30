@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Reducer - disk should get Upload Records data 1`] = `
+Object {
+  "data": Array [
+    Object {
+      "comment": "TEST_DISK_SN",
+      "diskId": "",
+      "id": 1,
+      "inventoryStatus": 0,
+      "onServer": true,
+      "owner": 2,
+    },
+  ],
+  "uploadRecords": Object {
+    "S6CKNE0R920379": Array [
+      Object {
+        "id": 0,
+        "seq": 0,
+        "uploadEndTime": "1971-01-01 00:00:00",
+        "uploadStartTime": "1971-01-01 00:00:00",
+        "uploadStatus": 0,
+        "vehicleId": "pacifica-cn-53",
+        "xrayUris": Array [
+          "pacifica-cn-53/20220419/2022-04-19-11-31-19",
+          "pacifica-cn-53/20220419/2022-04-19-09-19-44",
+          "pacifica-cn-53/20220419/2022-04-19-09-51-39",
+        ],
+      },
+    ],
+  },
+}
+`;
+
+exports[`Reducer - disk should init data 1`] = `
+Object {
+  "data": Array [
+    Object {
+      "comment": "test_disk_info",
+      "diskId": "UNKNOWN_DISK_ID_0000:60:00.0",
+      "id": 0,
+      "inventoryStatus": 0,
+      "onServer": true,
+      "owner": 1,
+    },
+    Object {
+      "comment": "test_disk_info",
+      "diskId": "A0765C71",
+      "id": 1,
+      "inventoryStatus": 1,
+      "onServer": true,
+      "owner": 2,
+    },
+  ],
+  "uploadRecords": Object {},
+}
+`;
+
+exports[`Reducer - disk should set data 1`] = `
+Object {
+  "data": Array [
+    Object {
+      "comment": "TEST_DISK_SN",
+      "diskId": "",
+      "id": 1,
+      "inventoryStatus": 0,
+      "onServer": true,
+      "owner": 2,
+    },
+  ],
+  "uploadRecords": Object {
+    "TEST_DISK_SN": Object {
+      "id": "1",
+      "seq": 0,
+      "uploadEndTime": "2022-02-02 11:22:12",
+      "uploadStartTime": "2022-01-02 11:22:12",
+      "uploadStatus": 0,
+      "vehicleId": "byd-02",
+      "xrayUris": Array [
+        "byd-2-records",
+      ],
+    },
+  },
+}
+`;
