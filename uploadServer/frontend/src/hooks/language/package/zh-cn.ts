@@ -83,6 +83,7 @@ const lang: langType = {
     endTime: '结束时间',
     records: '记录',
     recordsLog: '上传日志',
+    operation: '操作',
 }
 
 export default lang

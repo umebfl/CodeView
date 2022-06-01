@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 
 import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
-import { map } from 'ramda'
+import { reduce, map } from 'ramda'
 
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -22,6 +22,13 @@ const UploadServerList: FC = () => {
     const userConfig = useSelector((state: RootState) => state.userConfig)
     const dispatch = useDispatch<Dispatch>()
     const t = useT()
+
+    const removableSlotsCount = reduce(
+        (counter: number, server: uploadServerType) =>
+            counter + (server.removableSlotsSequenceNums?.length || 0),
+        0,
+        data
+    )
 
     const columns = [
         {
@@ -64,10 +71,17 @@ const UploadServerList: FC = () => {
             ),
         },
         {
+            field: 'uploadServerLocation',
+            headerName: t('position'),
+            minWidth: 140,
+            type: 'string',
+            sortable: true,
+        },
+        {
             field: 'isRunningStr',
             headerName: t('runStatus'),
             flex: 1,
-            minWidth: 100,
+            minWidth: 140,
             type: 'singleSelect',
             valueOptions: [t('running'), t('close')],
             sortable: true,
@@ -89,9 +103,11 @@ const UploadServerList: FC = () => {
 
         {
             field: 'removableSlotsSequenceNums',
-            headerName: t('slotsSequenceOfRemovable'),
+            headerName: `${t(
+                'slotsSequenceOfRemovable'
+            )}(${removableSlotsCount})`,
             flex: 1,
-            minWidth: 100,
+            minWidth: 150,
             type: 'string',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
@@ -175,14 +191,6 @@ const UploadServerList: FC = () => {
             },
             renderCell: (params: GridValueGetterParams) =>
                 params.row.isRunning ? params.row.totalSlotsNum : '-',
-        },
-        {
-            field: 'uploadServerLocation',
-            headerName: t('position'),
-            flex: 1,
-            minWidth: 100,
-            type: 'string',
-            sortable: true,
         },
         // {
         //     field: 'operationTips',

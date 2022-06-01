@@ -69,7 +69,7 @@ const lang: langType = {
     targetType: 'Target Type',
     diskUnPlugTime: 'Disk Unplug Time',
     slotsSequenceOfRemovable: 'Slots sequence of removable',
-    identified: 'identified',
+    identified: 'Identified',
     comment: 'Comment',
     owner: 'owner',
     nanShan: 'NanShan',
@@ -83,6 +83,7 @@ const lang: langType = {
     endTime: 'EndTime',
     records: 'Records',
     recordsLog: 'Records Log',
+    operation: 'Operation',
 }
 
 export default lang

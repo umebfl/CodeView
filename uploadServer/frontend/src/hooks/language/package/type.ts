@@ -82,4 +82,5 @@ export interface langType {
     endTime: string
     records: string
     recordsLog: string
+    operation: string
 }

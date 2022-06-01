@@ -180,7 +180,8 @@ const DiskList = () => {
     const navigate = useNavigate()
 
     const transData = transformDiskData(uploadServerData.data, t)
-    const mergeData = getMergeData(diskData.data, transData)
+    // const mergeData = getMergeData(diskData.data, transData)
+    const mergeData = transData
 
     const handleRefresh = () => {}
 
@@ -211,7 +212,7 @@ const DiskList = () => {
         {
             field: 'seq',
             headerName: t('S/N'),
-            width: 100,
+            minWidth: 100,
             type: 'number',
             sortable: true,
         },
@@ -219,7 +220,7 @@ const DiskList = () => {
         {
             field: 'serverID',
             headerName: `${t('server')}ID`,
-            width: 180,
+            minWidth: 180,
             description: '',
             sortable: true,
             sortComparator: (v1: GridCellValue, v2: GridCellValue) =>
@@ -262,7 +263,7 @@ const DiskList = () => {
         {
             field: 'diskName',
             headerName: t('diskName'),
-            width: 150,
+            minWidth: 150,
             valueGetter: (params: GridValueGetterParams) => {
                 return params.row.diskName || '-'
             },
@@ -273,7 +274,7 @@ const DiskList = () => {
         {
             field: 'identified',
             headerName: t('identified'),
-            width: 110,
+            minWidth: 110,
             type: 'singleSelect',
             valueOptions: ['T', 'F'],
             valueGetter: (params: GridValueGetterParams) => {
@@ -302,204 +303,159 @@ const DiskList = () => {
             },
         },
 
-        {
-            field: 'inventoryStatus',
-            headerName: t('inventoryStatus'),
-            renderHeader: (params: GridColumnHeaderParams) => (
-                <Box>
-                    {t('inventoryStatus')}
-                    <EditOutlinedIcon
-                        sx={{
-                            // display: 'none',
-                            marginLeft: 1,
-                            fontSize: 12,
-                            color: theme.palette.grey[600],
-                        }}
-                    />
-                </Box>
-            ),
-            width: 130,
-            description: t('doubleClickToEdit'),
-            sortable: true,
-            editable: true,
-            // type: 'singleSelect',
-            // valueOptions: [t('normal'), t('lost'), t('damaged')],
-            // valueGetter: (params: GridValueGetterParams) => {
-            //     const val = params.row.inventoryStatus
+        // {
+        //     field: 'inventoryStatus',
+        //     headerName: t('inventoryStatus'),
+        //     minWidth: 150,
+        //     renderHeader: (params: GridColumnHeaderParams) => (
+        //         <Box>
+        //             {t('inventoryStatus')}
+        //             <EditOutlinedIcon
+        //                 sx={{
+        //                     // display: 'none',
+        //                     marginLeft: 1,
+        //                     fontSize: 12,
+        //                     color: theme.palette.grey[600],
+        //                 }}
+        //             />
+        //         </Box>
+        //     ),
+        //     width: 130,
+        //     description: t('doubleClickToEdit'),
+        //     sortable: true,
+        //     editable: true,
+        //     filterOperators: getGridSingleSelectOperators().map(
+        //         (operator: any) => ({
+        //             ...operator,
+        //             InputComponent: InventoryStatusSelecterFilter,
+        //         })
+        //     ),
+        //     renderEditCell: props => (
+        //         <SelectEditInputCell
+        //             {...props}
+        //             options={InventoryStatusSelectOptions}
+        //         />
+        //     ),
+        //     renderCell: (params: GridValueGetterParams) => {
+        //         const val = params.row.inventoryStatus
 
-            //     const text =
-            //         val === DiskInventoryStatusType.NORMAL
-            //             ? t('normal')
-            //             : val === DiskInventoryStatusType.LOST
-            //             ? t('lost')
-            //             : t('damaged')
+        //         const text =
+        //             val === DiskInventoryStatusType.NORMAL
+        //                 ? t('normal')
+        //                 : val === DiskInventoryStatusType.LOST
+        //                 ? t('lost')
+        //                 : t('damaged')
 
-            //     return text
-            // },
-            // preProcessEditCellProps: (params: GridPreProcessEditCellProps) => {
-            //     const text = params.props.value
-            //     const inventoryStatus: DiskInventoryStatusType =
-            //         text === t('normal')
-            //             ? DiskInventoryStatusType.NORMAL
-            //             : text === t('lost')
-            //             ? DiskInventoryStatusType.LOST
-            //             : DiskInventoryStatusType.DAMAGED
+        //         return (
+        //             <Box
+        //                 sx={{
+        //                     color:
+        //                         params.row.inventoryStatus ===
+        //                         DiskInventoryStatusType.NORMAL
+        //                             ? theme.palette.primary.dark
+        //                             : theme.palette.error.dark,
+        //                     display: 'flex',
+        //                     flexDirection: 'row',
+        //                     justifyContent: 'space-around',
+        //                     flex: 1,
+        //                     cursor: 'text',
+        //                     alignItems: 'center',
+        //                     '& :hover': {
+        //                         '&.MuiSvgIcon-root': {
+        //                             display: 'inline-block',
+        //                         },
+        //                     },
+        //                 }}
+        //             >
+        //                 {t(text as keyof langType)}
+        //             </Box>
+        //         )
+        //     },
+        // },
 
-            //     console.log(
-            //         'preProcessEditCellProps',
-            //         params.row,
-            //         inventoryStatus,
-            //         text
-            //     )
+        // {
+        //     field: 'owner',
+        //     headerName: t('owner'),
+        //     renderHeader: (params: GridColumnHeaderParams) => (
+        //         <Box
+        //             sx={{
+        //                 width: 120,
+        //                 display: 'flex',
+        //                 alignItems: 'center',
+        //             }}
+        //         >
+        //             {t('owner')}
+        //             <EditOutlinedIcon
+        //                 sx={{
+        //                     marginLeft: 1,
+        //                     fontSize: 12,
+        //                     color: theme.palette.grey[600],
+        //                 }}
+        //             />
+        //         </Box>
+        //     ),
+        //     minWidth: 120,
+        //     description: '',
+        //     editable: true,
+        //     sortable: true,
+        //     // type: 'singleSelect',
+        //     // valueOptions: [t('nanShan'), t('pinShan'), t('unknown')],
 
-            //     return {
-            //         value: inventoryStatus,
-            //     }
-            // },
-            // valueParser: (
-            //     value: GridCellValue,
-            //     params: GridCellParams<any, any, any> | undefined
-            // ) => {
-            //     const inventoryStatus: DiskInventoryStatusType =
-            //         value === t('normal')
-            //             ? DiskInventoryStatusType.NORMAL
-            //             : value === t('lost')
-            //             ? DiskInventoryStatusType.LOST
-            //             : DiskInventoryStatusType.DAMAGED
+        //     filterOperators: getGridSingleSelectOperators().map(
+        //         (operator: any) => ({
+        //             ...operator,
+        //             InputComponent: OwnerSelecterFilter,
+        //         })
+        //     ),
+        //     renderEditCell: props => (
+        //         <SelectEditInputCell {...props} options={OwnerSelectOptions} />
+        //     ),
+        //     // valueGetter: (params: GridValueGetterParams) => {
+        //     //     const owner = params.row.owner
 
-            //     return inventoryStatus
-            // },
-            filterOperators: getGridSingleSelectOperators().map(
-                (operator: any) => ({
-                    ...operator,
-                    InputComponent: InventoryStatusSelecterFilter,
-                })
-            ),
-            renderEditCell: props => (
-                <SelectEditInputCell
-                    {...props}
-                    options={InventoryStatusSelectOptions}
-                />
-            ),
-            renderCell: (params: GridValueGetterParams) => {
-                const val = params.row.inventoryStatus
+        //     //     const text =
+        //     //         owner === DiskOwnerType.NANSHAN
+        //     //             ? t('nanShan')
+        //     //             : owner === DiskOwnerType.PINGSHAN
+        //     //             ? t('pinShan')
+        //     //             : t('unknown')
 
-                const text =
-                    val === DiskInventoryStatusType.NORMAL
-                        ? t('normal')
-                        : val === DiskInventoryStatusType.LOST
-                        ? t('lost')
-                        : t('damaged')
+        //     //     return text
+        //     // },
+        //     // valueParser: (
+        //     //     value: GridCellValue,
+        //     //     params: GridCellParams<any, any, any> | undefined
+        //     // ) => {
+        //     //     const ownerVal =
+        //     //         value === t('nanShan')
+        //     //             ? DiskOwnerType.NANSHAN
+        //     //             : value === t('pinShan')
+        //     //             ? DiskOwnerType.PINGSHAN
+        //     //             : DiskOwnerType.UNKNOWN
 
-                return (
-                    <Box
-                        sx={{
-                            color:
-                                params.row.inventoryStatus ===
-                                DiskInventoryStatusType.NORMAL
-                                    ? theme.palette.primary.dark
-                                    : theme.palette.error.dark,
-                            display: 'flex',
-                            flexDirection: 'row',
-                            justifyContent: 'space-around',
-                            flex: 1,
-                            cursor: 'text',
-                            alignItems: 'center',
-                            '& :hover': {
-                                '&.MuiSvgIcon-root': {
-                                    display: 'inline-block',
-                                },
-                            },
-                        }}
-                    >
-                        {t(text as keyof langType)}
-                    </Box>
-                )
-            },
-        },
+        //     //     return ownerVal
+        //     // },
+        //     renderCell: (params: GridValueGetterParams) => {
+        //         const owner = params.row.owner
 
-        {
-            field: 'owner',
-            headerName: t('owner'),
-            renderHeader: (params: GridColumnHeaderParams) => (
-                <Box
-                    sx={{
-                        width: 120,
-                        display: 'flex',
-                        alignItems: 'center',
-                    }}
-                >
-                    {t('owner')}
-                    <EditOutlinedIcon
-                        sx={{
-                            marginLeft: 1,
-                            fontSize: 12,
-                            color: theme.palette.grey[600],
-                        }}
-                    />
-                </Box>
-            ),
-            width: 120,
-            description: '',
-            editable: true,
-            sortable: true,
-            // type: 'singleSelect',
-            // valueOptions: [t('nanShan'), t('pinShan'), t('unknown')],
+        //         const text =
+        //             owner === DiskOwnerType.NANSHAN
+        //                 ? t('nanShan')
+        //                 : owner === DiskOwnerType.PINGSHAN
+        //                 ? t('pinShan')
+        //                 : t('unknown')
 
-            filterOperators: getGridSingleSelectOperators().map(
-                (operator: any) => ({
-                    ...operator,
-                    InputComponent: OwnerSelecterFilter,
-                })
-            ),
-            renderEditCell: props => (
-                <SelectEditInputCell {...props} options={OwnerSelectOptions} />
-            ),
-            // valueGetter: (params: GridValueGetterParams) => {
-            //     const owner = params.row.owner
-
-            //     const text =
-            //         owner === DiskOwnerType.NANSHAN
-            //             ? t('nanShan')
-            //             : owner === DiskOwnerType.PINGSHAN
-            //             ? t('pinShan')
-            //             : t('unknown')
-
-            //     return text
-            // },
-            // valueParser: (
-            //     value: GridCellValue,
-            //     params: GridCellParams<any, any, any> | undefined
-            // ) => {
-            //     const ownerVal =
-            //         value === t('nanShan')
-            //             ? DiskOwnerType.NANSHAN
-            //             : value === t('pinShan')
-            //             ? DiskOwnerType.PINGSHAN
-            //             : DiskOwnerType.UNKNOWN
-
-            //     return ownerVal
-            // },
-            renderCell: (params: GridValueGetterParams) => {
-                const owner = params.row.owner
-
-                const text =
-                    owner === DiskOwnerType.NANSHAN
-                        ? t('nanShan')
-                        : owner === DiskOwnerType.PINGSHAN
-                        ? t('pinShan')
-                        : t('unknown')
-
-                return text || '-'
-            },
-        },
+        //         return text || '-'
+        //     },
+        // },
 
         commonColumnsConfig.mountStatus,
 
         {
             field: 'updateTimeStr',
             headerName: t('lastUpdatedTime'),
-            width: 180,
+            flex: 1,
+            minWidth: 180,
             description: '',
             sortable: true,
             type: 'date',
@@ -510,7 +466,7 @@ const DiskList = () => {
         {
             field: 'slotId',
             headerName: `${t('slot')}ID`,
-            width: 90,
+            minWidth: 100,
             description: '',
             sortable: true,
             renderCell: (params: GridValueGetterParams) => {
@@ -545,52 +501,52 @@ const DiskList = () => {
         commonColumnsConfig.timeConsuming,
         commonColumnsConfig.vehicleIds,
 
-        {
-            field: 'comment',
-            headerName: t('comment'),
-            width: 220,
-            description: '',
-            editable: true,
-            sortable: true,
-            renderHeader: (params: GridColumnHeaderParams) => (
-                <Box
-                    sx={{
-                        width: 220,
-                        display: 'flex',
-                        // justifyContent: 'space-between',
-                        alignItems: 'center',
-                    }}
-                >
-                    {t('comment')}
-                    <EditOutlinedIcon
-                        sx={{
-                            // display: 'none',
-                            // width: 50,
-                            marginLeft: 1,
-                            fontSize: 12,
-                            color: theme.palette.grey[600],
-                        }}
-                    />
-                </Box>
-            ),
-            renderCell: (params: GridValueGetterParams) => {
-                const comment = params.row.comment
-                if (comment) {
-                    return (
-                        <TooltipField title={comment}>{comment}</TooltipField>
-                    )
-                }
+        // {
+        //     field: 'comment',
+        //     headerName: t('comment'),
+        //     minWidth: 220,
+        //     description: '',
+        //     editable: true,
+        //     sortable: true,
+        //     renderHeader: (params: GridColumnHeaderParams) => (
+        //         <Box
+        //             sx={{
+        //                 width: 220,
+        //                 display: 'flex',
+        //                 // justifyContent: 'space-between',
+        //                 alignItems: 'center',
+        //             }}
+        //         >
+        //             {t('comment')}
+        //             <EditOutlinedIcon
+        //                 sx={{
+        //                     // display: 'none',
+        //                     // width: 50,
+        //                     marginLeft: 1,
+        //                     fontSize: 12,
+        //                     color: theme.palette.grey[600],
+        //                 }}
+        //             />
+        //         </Box>
+        //     ),
+        //     renderCell: (params: GridValueGetterParams) => {
+        //         const comment = params.row.comment
+        //         if (comment) {
+        //             return (
+        //                 <TooltipField title={comment}>{comment}</TooltipField>
+        //             )
+        //         }
 
-                return '-'
-            },
-        },
+        //         return '-'
+        //     },
+        // },
 
         commonColumnsConfig.operationTips,
 
         {
             field: 'operation',
-            headerName: 'operation',
-            width: 240,
+            headerName: t('operation'),
+            minWidth: 240,
             renderCell: (params: GridValueGetterParams) => {
                 const diskId = params.row.diskId
 

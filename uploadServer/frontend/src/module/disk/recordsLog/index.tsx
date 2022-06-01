@@ -41,9 +41,18 @@ const DiskRecordsLog = () => {
             sortable: true,
         },
         {
+            field: 'uploadServerId',
+            headerName: `${t('server')} ID`,
+            flex: 1,
+            minWidth: 180,
+            type: 'string',
+            sortable: true,
+        },
+        {
             field: 'vehicleId',
             headerName: t('vehicle'),
             flex: 1,
+            minWidth: 180,
             type: 'string',
             sortable: true,
         },
@@ -51,6 +60,7 @@ const DiskRecordsLog = () => {
             field: 'uploadStatus',
             headerName: t('uploadStatus'),
             flex: 1,
+            minWidth: 120,
             sortable: true,
             type: 'singleSelect',
             valueOptions: [
@@ -110,6 +120,7 @@ const DiskRecordsLog = () => {
             field: 'uploadStartTime',
             headerName: t('startTime'),
             flex: 1,
+            minWidth: 200,
             sortable: true,
             type: 'date',
             renderCell: (params: GridValueGetterParams) => {
@@ -134,6 +145,7 @@ const DiskRecordsLog = () => {
             field: 'uploadEndTime',
             headerName: t('endTime'),
             flex: 1,
+            minWidth: 200,
             sortable: true,
             type: 'date',
             renderCell: (params: GridValueGetterParams) => {
@@ -158,6 +170,7 @@ const DiskRecordsLog = () => {
             field: 'xrayUris',
             headerName: t('records'),
             flex: 1,
+            minWidth: 300,
             type: 'string',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {

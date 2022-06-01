@@ -80,6 +80,7 @@ export const disk = createModel<RootModel>()({
                                 (record: any, idx: number) => ({
                                     id: idx,
                                     seq: idx,
+                                    uploadServerId: record.upload_server_id,
                                     uploadStartTime: record.upload_start_time,
                                     uploadEndTime: record.upload_end_time,
                                     vehicleId: record.vehicle_id,
