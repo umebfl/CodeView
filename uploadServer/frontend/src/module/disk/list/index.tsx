@@ -474,7 +474,7 @@ const DiskList = () => {
             },
         },
 
-        commonColumnsConfig.diskStatus,
+        commonColumnsConfig.uploadStatus,
         commonColumnsConfig.uploadProgress,
 
         {

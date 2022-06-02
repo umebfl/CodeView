@@ -23,7 +23,6 @@ const lang: langType = {
     noMatchingUploadServer: 'No matching upload server',
     slotName: 'Slot Name',
     diskName: 'Disk Name',
-    diskStatus: 'Disk Status',
     updateTime: 'Update Time',
     vehicleInfo: 'Vehicle Info',
     noMoreData: 'No More Data.',

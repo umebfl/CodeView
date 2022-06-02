@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-const uploadServerData = require('./json/uploadServer3.json')
+const uploadServerData = require('./json/uploadServer4.json')
 const getDisksInfoData = require('./json/get_disks_info.json')
 const getUploadRecordsData = require('./json/disk_management/get_upload_records.json')
 const diskData = require('./json/disk')

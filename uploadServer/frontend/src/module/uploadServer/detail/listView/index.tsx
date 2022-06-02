@@ -13,8 +13,8 @@ import { RootState, Dispatch } from 'src/reducer/type'
 import { ViewPayloadType } from 'src/module/uploadServer/detail/type'
 import {
     diskInfoType,
-    DiskStatusConfig,
-    diskStatusEnum,
+    UploadStatusConfig,
+    uploadStatusEnum,
     slotInfoType,
 } from 'src/reducer/uploadServer/type'
 import { TProps, useT } from 'src/hooks/language'
@@ -80,9 +80,9 @@ export const getCommonColumnsConfig = (
             },
         },
 
-        diskStatus: {
-            field: 'diskStatus',
-            headerName: t('diskStatus'),
+        uploadStatus: {
+            field: 'uploadStatus',
+            headerName: t('uploadStatus'),
             width: 140,
             type: 'singleSelect',
             valueOptions: [
@@ -98,11 +98,12 @@ export const getCommonColumnsConfig = (
             valueGetter: (params: GridValueGetterParams) => {
                 const diskInfo = path(paramsPath)(params) as diskInfoType
 
-                if (diskInfo && diskInfo.diskStatus) {
-                    const diskStatus = diskInfo.diskStatus
+                if (diskInfo && diskInfo.uploadStatus) {
+                    const uploadStatus = diskInfo.uploadStatus
                     return t(
-                        DiskStatusConfig[diskStatus || diskStatusEnum.NULL]
-                            .name as keyof langType
+                        UploadStatusConfig[
+                            uploadStatus || uploadStatusEnum.NULL
+                        ].name as keyof langType
                     )
                 }
                 return '-'
@@ -110,9 +111,9 @@ export const getCommonColumnsConfig = (
             renderCell: (params: GridValueGetterParams) => {
                 const diskInfo = path(paramsPath)(params) as diskInfoType
 
-                if (diskInfo && diskInfo.diskStatus) {
-                    const diskStatus = diskInfo.diskStatus
-                    const colorPath = DiskStatusConfig[diskStatus].color
+                if (diskInfo && diskInfo.uploadStatus) {
+                    const uploadStatus = diskInfo.uploadStatus
+                    const colorPath = UploadStatusConfig[uploadStatus].color
 
                     return (
                         <Box
@@ -129,8 +130,9 @@ export const getCommonColumnsConfig = (
                             >
                                 <Box>
                                     {t(
-                                        DiskStatusConfig[
-                                            diskStatus || diskStatusEnum.NULL
+                                        UploadStatusConfig[
+                                            uploadStatus ||
+                                                uploadStatusEnum.NULL
                                         ].name as keyof langType
                                     )}
                                 </Box>
@@ -160,14 +162,14 @@ export const getCommonColumnsConfig = (
                 const data = path(paramsPath)(params) as diskInfoType
                 return data?.allRecords?.length ? (
                     <UploadRecordsList
-                        waitingRecords={data.waitingRecords}
-                        uploadingRecords={data.uploadingRecords}
-                        finishedRecords={data.finishedRecords}
-                        failedRecords={data.failedRecords}
+                        waitingRecords={data.waitingRecords || []}
+                        uploadingRecords={data.uploadingRecords || []}
+                        finishedRecords={data.finishedRecords || []}
+                        failedRecords={data.failedRecords || []}
                     >
                         <Box
                             sx={{
-                                width: 150,
+                                width: 220,
                             }}
                         >
                             <LinearProgressWithLabel
@@ -375,7 +377,7 @@ const ListView = ({ data }: ViewPayloadType) => {
         },
 
         commonColumnsConfig.mountStatus,
-        commonColumnsConfig.diskStatus,
+        commonColumnsConfig.uploadStatus,
         commonColumnsConfig.uploadProgress,
 
         {

@@ -1,0 +1,2693 @@
+{
+    "uploadServerInfos": [
+        {
+            "uploadServerId": "sz-exa-upload-1",
+            "uploadServerLocation": "4:12:15-16",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": false,
+                    "diskInfo": {
+                        "diskId": "UNKNOWN_DISK_ID_0000:60:00.0",
+                        "diskName": "UNKNOWN",
+                        "slotId": "0-5",
+                        "diskStatus": "INVALID",
+                        "mountPoint": "",
+                        "isMounted": false,
+                        "updateTime": 1652945950.0,
+                        "invalidMsg": "\u65e0\u6cd5\u8bc6\u522b\u8be5\u786c\u76d8\uff0c\u8bf7\u91cd\u65b0\u63d2\u62d4",
+                        "wrongServer": false,
+                        "recommendedServerId": "",
+                        "diskPlugTime": "2022-05-27 01:00:32",
+                        "startUploadTime": "",
+                        "endUploadTime": "",
+                        "vehicleIds": [],
+                        "allRecords": [],
+                        "waitingRecords": [],
+                        "uploadingRecords": [],
+                        "failedRecords": [],
+                        "finishedRecords": []
+                    }
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 23,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-2",
+            "uploadServerLocation": "4:12:18-19",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-3",
+            "uploadServerLocation": "4:12:21-22",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-4",
+            "uploadServerLocation": "4:12:24-25",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-5",
+            "uploadServerLocation": "4:12:27-28",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-6",
+            "uploadServerLocation": "4:12:30-31",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": false,
+                    "diskInfo": {
+                        "diskId": "A07667C4",
+                        "diskName": "nvme2n1",
+                        "slotId": "1-1",
+                        "diskStatus": "INVALID",
+                        "mountPoint": "",
+                        "isMounted": false,
+                        "updateTime": 1653887410.0,
+                        "invalidMsg": "\u786c\u76d8\u6302\u8f7d\u5931\u8d25",
+                        "wrongServer": false,
+                        "recommendedServerId": "",
+                        "diskPlugTime": "2022-05-30 15:20:17",
+                        "startUploadTime": "",
+                        "endUploadTime": "",
+                        "vehicleIds": [],
+                        "allRecords": [],
+                        "waitingRecords": [],
+                        "uploadingRecords": [],
+                        "failedRecords": [],
+                        "finishedRecords": []
+                    }
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 23,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-7",
+            "uploadServerLocation": "4:12:33-34",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": false,
+                    "diskInfo": {
+                        "diskId": "S6CKNE0R920392",
+                        "diskName": "nvme0n1",
+                        "slotId": "0-5",
+                        "diskStatus": "INVALID",
+                        "mountPoint": "",
+                        "isMounted": false,
+                        "updateTime": 1652945953.0,
+                        "invalidMsg": "\u786c\u76d8\u6302\u8f7d\u5931\u8d25",
+                        "wrongServer": false,
+                        "recommendedServerId": "",
+                        "diskPlugTime": "2022-05-27 01:05:16",
+                        "startUploadTime": "",
+                        "endUploadTime": "",
+                        "vehicleIds": [],
+                        "allRecords": [],
+                        "waitingRecords": [],
+                        "uploadingRecords": [],
+                        "failedRecords": [],
+                        "finishedRecords": []
+                    }
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 23,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-8",
+            "uploadServerLocation": "4:13:15:16",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": false,
+                    "diskInfo": {
+                        "diskId": "S6CKNE0R723834",
+                        "diskName": "nvme0n1",
+                        "slotId": "0-5",
+                        "diskStatus": "INVALID",
+                        "mountPoint": "",
+                        "isMounted": false,
+                        "updateTime": 1653887411.0,
+                        "invalidMsg": "\u786c\u76d8\u6302\u8f7d\u5931\u8d25",
+                        "wrongServer": false,
+                        "recommendedServerId": "",
+                        "diskPlugTime": "2022-05-30 05:11:42",
+                        "startUploadTime": "",
+                        "endUploadTime": "",
+                        "vehicleIds": [],
+                        "allRecords": [],
+                        "waitingRecords": [],
+                        "uploadingRecords": [],
+                        "failedRecords": [],
+                        "finishedRecords": []
+                    }
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                {
+                    "slotId": "3",
+                    "slotBusId": "0000:63:00.0",
+                    "isEmpty": false,
+                    "diskInfo": {
+                        "diskId": "A0763058",
+                        "diskName": "nvme5n1",
+                        "slotId": "3",
+                        "diskStatus": "DATA_UPLOADING",
+                        "mountPoint": "/roadtest_disks/nvme5n1_A0763058",
+                        "isMounted": true,
+                        "updateTime": 1653928738.0,
+                        "invalidMsg": "",
+                        "vehicleIds": ["pacifica-cn-73"],
+                        "wrongServer": false,
+                        "recommendedServerId": "",
+                        "allRecords": [
+                            "pacifica-cn-73_20220530_2022-05-30-10-20-29",
+                            "pacifica-cn-73_20220530_2022-05-30-14-17-29"
+                        ],
+                        "finishedRecords": [
+                            "pacifica-cn-73_20220530_2022-05-30-10-20-29",
+                            "pacifica-cn-73_20220530_2022-05-30-14-17-29"
+                        ],
+                        "diskPlugTime": "2022-05-30 15:22:03",
+                        "startUploadTime": "2022-05-30 16:38:58",
+                        "endUploadTime": "",
+                        "waitingRecords": [],
+                        "uploadingRecords": [],
+                        "failedRecords": []
+                    }
+                },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 22,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-9",
+            "uploadServerLocation": "4:13:18-19",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-10",
+            "uploadServerLocation": "4:13:21-22",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-11",
+            "uploadServerLocation": "4:13:24-25",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-12",
+            "uploadServerLocation": "4:13:27-28",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": false,
+                    "diskInfo": {
+                        "diskId": "A07634A4",
+                        "diskName": "nvme0n1",
+                        "slotId": "0-5",
+                        "diskStatus": "DATA_UPLOADING",
+                        "mountPoint": "/roadtest_disks/nvme0n1_A07634A4",
+                        "isMounted": true,
+                        "updateTime": 1654098087.0,
+                        "invalidMsg": "",
+                        "vehicleIds": ["pacifica-cn-36"],
+                        "wrongServer": false,
+                        "recommendedServerId": "",
+                        "allRecords": [
+                            "pacifica-cn-36_20220601_2022-06-01-16-28-30",
+                            "pacifica-cn-36_20220601_2022-06-01-10-23-45",
+                            "pacifica-cn-36_20220601_2022-06-01-15-26-13",
+                            "pacifica-cn-36_20220601_2022-06-01-14-16-37"
+                        ],
+                        "failedRecords": [
+                            "pacifica-cn-36_20220601_2022-06-01-16-28-30"
+                        ],
+                        "finishedRecords": [
+                            "pacifica-cn-36_20220601_2022-06-01-10-23-45",
+                            "pacifica-cn-36_20220601_2022-06-01-15-26-13",
+                            "pacifica-cn-36_20220601_2022-06-01-14-16-37"
+                        ],
+                        "diskPlugTime": "2022-06-01 15:41:14",
+                        "startUploadTime": "2022-06-01 15:41:27",
+                        "endUploadTime": "",
+                        "waitingRecords": [],
+                        "uploadingRecords": []
+                    }
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2",
+                    "slotBusId": "0000:62:00.0",
+                    "isEmpty": false,
+                    "diskInfo": {
+                        "diskId": "A076378F",
+                        "diskName": "nvme9n1",
+                        "slotId": "2",
+                        "diskStatus": "DATA_UPLOADING",
+                        "mountPoint": "/roadtest_disks/nvme9n1_A076378F",
+                        "isMounted": true,
+                        "updateTime": 1654099270.0,
+                        "invalidMsg": "",
+                        "vehicleIds": ["pacifica-cn-166x1"],
+                        "wrongServer": false,
+                        "recommendedServerId": "",
+                        "allRecords": [
+                            "pacifica-cn-166x1_20220601_2022-06-01-09-41-17",
+                            "pacifica-cn-166x1_20220601_2022-06-01-14-37-34"
+                        ],
+                        "failedRecords": [
+                            "pacifica-cn-166x1_20220601_2022-06-01-09-41-17",
+                            "pacifica-cn-166x1_20220601_2022-06-01-14-37-34"
+                        ],
+                        "diskPlugTime": "2022-06-01 15:42:07",
+                        "startUploadTime": "2022-06-01 16:01:10",
+                        "endUploadTime": "",
+                        "waitingRecords": [],
+                        "uploadingRecords": [],
+                        "finishedRecords": []
+                    }
+                },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 22,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-13",
+            "uploadServerLocation": "4:13:30-31",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-14",
+            "uploadServerLocation": "4:13:33-34",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2",
+                    "slotBusId": "0000:62:00.0",
+                    "isEmpty": false,
+                    "diskInfo": {
+                        "diskId": "S6CKNE0R919045",
+                        "diskName": "nvme3n1",
+                        "slotId": "2",
+                        "diskStatus": "DATA_UPLOADING",
+                        "mountPoint": "/roadtest_disks/nvme3n1_S6CKNE0R919045",
+                        "isMounted": true,
+                        "updateTime": 1654103117.0,
+                        "invalidMsg": "",
+                        "vehicleIds": ["pacifica-cn-157x1"],
+                        "wrongServer": false,
+                        "recommendedServerId": "",
+                        "allRecords": [
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-50-02",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-58-03",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-23",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-26-31",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-22-52",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-25-01",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-57",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-29",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-37",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-12",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-47-19",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-40",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-01",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-29-52",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-53",
+                            "pacifica-cn-157x1_20220601_2022-06-01-21-10-54",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-24",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-16",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-26",
+                            "pacifica-cn-157x1_20220601_2022-06-01-21-10-02",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-21-25",
+                            "pacifica-cn-157x1_20220601_2022-06-01-21-10-13",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-22-26",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-26-18",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-49-55",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-32",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-29-55",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-29-40",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-26-22",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-19",
+                            "pacifica-cn-157x1_20220601_2022-06-01-21-11-27",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-49-33",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-18",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-21-42",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-38",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-44",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-29",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-29-44",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-33",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-46-31",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-12",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-26-27",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-22",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-06",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-48",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-50-08",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-46-56"
+                        ],
+                        "failedRecords": [
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-50-02",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-23",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-26-31",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-22-52",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-25-01",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-57",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-29",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-37",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-12",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-47-19",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-40",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-01",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-29-52",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-53",
+                            "pacifica-cn-157x1_20220601_2022-06-01-21-10-54",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-24",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-16",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-26",
+                            "pacifica-cn-157x1_20220601_2022-06-01-21-10-02",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-21-25",
+                            "pacifica-cn-157x1_20220601_2022-06-01-21-10-13",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-22-26",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-26-18",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-49-55",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-32",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-29-55",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-29-40",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-26-22",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-19",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-49-33",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-18",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-21-42",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-38",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-44",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-29",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-29-44",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-33",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-46-31",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-12",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-26-27",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-22",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-33-06",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-32-48",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-50-08",
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-46-56"
+                        ],
+                        "finishedRecords": [
+                            "pacifica-cn-157x1_20220601_2022-06-01-20-58-03",
+                            "pacifica-cn-157x1_20220601_2022-06-01-21-11-27"
+                        ],
+                        "diskPlugTime": "2022-06-01 15:44:31",
+                        "startUploadTime": "2022-06-01 17:05:17",
+                        "endUploadTime": "",
+                        "waitingRecords": [],
+                        "uploadingRecords": []
+                    }
+                },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 23,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-15",
+            "uploadServerLocation": "4:14:15-16",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2",
+                    "slotBusId": "0000:62:00.0",
+                    "isEmpty": false,
+                    "diskInfo": {
+                        "diskId": "A0765E4B",
+                        "diskName": "nvme0n1",
+                        "slotId": "2",
+                        "diskStatus": "INVALID",
+                        "mountPoint": "",
+                        "isMounted": false,
+                        "updateTime": 1653887414.0,
+                        "invalidMsg": "\u786c\u76d8\u6302\u8f7d\u5931\u8d25",
+                        "wrongServer": false,
+                        "recommendedServerId": "",
+                        "diskPlugTime": "2022-05-30 15:30:43",
+                        "startUploadTime": "",
+                        "endUploadTime": "",
+                        "vehicleIds": [],
+                        "allRecords": [],
+                        "waitingRecords": [],
+                        "uploadingRecords": [],
+                        "failedRecords": [],
+                        "finishedRecords": []
+                    }
+                },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 23,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-16",
+            "uploadServerLocation": "4:14:18-19",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": false,
+                    "diskInfo": {
+                        "diskId": "A0764FFB",
+                        "diskName": "nvme0n1",
+                        "slotId": "0-5",
+                        "diskStatus": "INVALID",
+                        "mountPoint": "/roadtest_disks/nvme0n1_A0764FFB",
+                        "isMounted": true,
+                        "updateTime": 1654056227.0,
+                        "invalidMsg": "\u786c\u76d8\u5378\u8f7d\u5931\u8d25",
+                        "vehicleIds": ["pacifica-cn-164x1"],
+                        "wrongServer": false,
+                        "recommendedServerId": "",
+                        "allRecords": [
+                            "pacifica-cn-164x1_20220517_2022-05-17-09-38-55"
+                        ],
+                        "finishedRecords": [
+                            "pacifica-cn-164x1_20220517_2022-05-17-09-38-55"
+                        ],
+                        "diskPlugTime": "2022-05-30 03:12:17",
+                        "startUploadTime": "2022-05-30 03:12:20",
+                        "endUploadTime": "2022-06-01 04:03:47",
+                        "waitingRecords": [],
+                        "uploadingRecords": [],
+                        "failedRecords": []
+                    }
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 23,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-17",
+            "uploadServerLocation": "4:14:21-22",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2",
+                    "slotBusId": "0000:62:00.0",
+                    "isEmpty": false,
+                    "diskInfo": {
+                        "diskId": "A0766BD9",
+                        "diskName": "nvme1n1",
+                        "slotId": "2",
+                        "diskStatus": "INVALID",
+                        "mountPoint": "",
+                        "isMounted": false,
+                        "updateTime": 1653887415.0,
+                        "invalidMsg": "\u786c\u76d8\u6302\u8f7d\u5931\u8d25",
+                        "wrongServer": false,
+                        "recommendedServerId": "",
+                        "diskPlugTime": "2022-05-30 15:32:01",
+                        "startUploadTime": "",
+                        "endUploadTime": "",
+                        "vehicleIds": [],
+                        "allRecords": [],
+                        "waitingRecords": [],
+                        "uploadingRecords": [],
+                        "failedRecords": [],
+                        "finishedRecords": []
+                    }
+                },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 23,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-18",
+            "uploadServerLocation": "4:14:24-25",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": false,
+                    "diskInfo": {
+                        "diskId": "S6CKNE0R723313",
+                        "diskName": "nvme1n1",
+                        "slotId": "1-1",
+                        "diskStatus": "DATA_UPLOADING",
+                        "mountPoint": "/roadtest_disks/nvme1n1_S6CKNE0R723313",
+                        "isMounted": true,
+                        "updateTime": 1654094442.0,
+                        "invalidMsg": "",
+                        "vehicleIds": ["pacifica-cn-311"],
+                        "wrongServer": false,
+                        "recommendedServerId": "",
+                        "allRecords": [
+                            "pacifica-cn-311_20220601_2022-06-01-14-38-30",
+                            "pacifica-cn-311_20220601_2022-06-01-13-57-06",
+                            "pacifica-cn-311_20220601_2022-06-01-08-29-16",
+                            "pacifica-cn-311_20220601_2022-06-01-09-05-26",
+                            "pacifica-cn-311_20220601_2022-06-01-16-03-35",
+                            "pacifica-cn-311_20220601_2022-06-01-09-59-30"
+                        ],
+                        "finishedRecords": [
+                            "pacifica-cn-311_20220601_2022-06-01-14-38-30",
+                            "pacifica-cn-311_20220601_2022-06-01-13-57-06",
+                            "pacifica-cn-311_20220601_2022-06-01-08-29-16",
+                            "pacifica-cn-311_20220601_2022-06-01-09-05-26",
+                            "pacifica-cn-311_20220601_2022-06-01-16-03-35",
+                            "pacifica-cn-311_20220601_2022-06-01-09-59-30"
+                        ],
+                        "diskPlugTime": "2022-06-01 14:04:42",
+                        "startUploadTime": "2022-06-01 14:40:42",
+                        "endUploadTime": "",
+                        "waitingRecords": [],
+                        "uploadingRecords": [],
+                        "failedRecords": []
+                    }
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 23,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-19",
+            "uploadServerLocation": "4:14:27-28",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-20",
+            "uploadServerLocation": "4:14:30-31",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-21",
+            "uploadServerLocation": "4:14:33-34",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-22",
+            "uploadServerLocation": "4:15:15-16",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-23",
+            "uploadServerLocation": "4:15:18-19",
+            "isRunning": false,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        }
+    ],
+    "code": 0,
+    "msg": "success"
+}

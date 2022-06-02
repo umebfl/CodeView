@@ -1,4 +1,4 @@
-export enum diskStatusEnum {
+export enum uploadStatusEnum {
     INVALID = 'INVALID',
     WAITING_TO_UPLOAD = 'WAITING_TO_UPLOAD',
     DATA_UPLOADING = 'DATA_UPLOADING',
@@ -10,8 +10,8 @@ export enum diskStatusEnum {
     WRONGSERVER = 'WRONGSERVER',
 }
 
-export const DiskStatusConfig: Record<
-    diskStatusEnum,
+export const UploadStatusConfig: Record<
+    uploadStatusEnum,
     { name: string; color: string[]; icon: string }
 > = {
     INVALID: {
@@ -65,8 +65,8 @@ export const DiskStatusConfig: Record<
 export interface diskInfoType {
     diskId: string
     diskName: string
-    diskStatus: diskStatusEnum
-    diskStatusStr: string
+    uploadStatus: uploadStatusEnum
+    uploadStatusStr: string
     mountPoint: string
     invalidMsg: string
     recommendedServerId: string

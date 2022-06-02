@@ -8,8 +8,8 @@ import {
     UploadServerState,
     uploadServerType,
     slotInfoType,
-    DiskStatusConfig,
-    diskStatusEnum,
+    UploadStatusConfig,
+    uploadStatusEnum,
 } from 'src/reducer/uploadServer/type'
 import { addIndex, map, startsWith } from 'ramda'
 import { tranText } from 'src/hooks/language'
@@ -70,17 +70,20 @@ export const uploadServer = createModel<RootModel>()({
                                               slot.diskInfo.diskId
                                           ),
 
-                                          diskStatus: slot.diskInfo.wrongServer
-                                              ? diskStatusEnum.WRONGSERVER
-                                              : slot.diskInfo?.diskStatus,
-
-                                          diskStatusStr: slot.diskInfo
+                                          uploadStatus: slot.diskInfo
                                               .wrongServer
-                                              ? DiskStatusConfig[
-                                                    diskStatusEnum.WRONGSERVER
+                                              ? uploadStatusEnum.WRONGSERVER
+                                              : ((slot.diskInfo as any)
+                                                    ?.diskStatus as uploadStatusEnum),
+
+                                          uploadStatusStr: slot.diskInfo
+                                              .wrongServer
+                                              ? UploadStatusConfig[
+                                                    uploadStatusEnum.WRONGSERVER
                                                 ].name
-                                              : DiskStatusConfig[
-                                                    slot.diskInfo.diskStatus
+                                              : UploadStatusConfig[
+                                                    (slot.diskInfo as any)
+                                                        .diskStatus as uploadStatusEnum
                                                 ].name,
 
                                           uploadFinishedRate:
@@ -121,8 +124,8 @@ export const uploadServer = createModel<RootModel>()({
                                                     slot.diskInfo
                                                         .recommendedServerId
                                                 }`
-                                              : slot.diskInfo.diskStatus ===
-                                                diskStatusEnum.FORMATTED
+                                              : slot.diskInfo.uploadStatus ===
+                                                uploadStatusEnum.FORMATTED
                                               ? t('pleaseUnplugTheHardDisk')
                                               : slot.diskInfo?.invalidMsg,
                                       },

@@ -26,7 +26,7 @@ const RecordsList: FC<{
                             flexDirection: 'row',
                             justifyContent: 'space-between',
                             alignItems: 'center',
-                            height: 30,
+                            height: 25,
                             fontSize: 12,
                         }}
                     >
@@ -68,10 +68,10 @@ const RecordsList: FC<{
 }
 
 const UploadRecordsList: FC<{
-    waitingRecords?: string[]
-    uploadingRecords?: string[]
-    finishedRecords?: string[]
-    failedRecords?: string[]
+    waitingRecords: string[]
+    uploadingRecords: string[]
+    finishedRecords: string[]
+    failedRecords: string[]
 }> = props => {
     const t = useT()
     const theme = useTheme()
@@ -84,10 +84,23 @@ const UploadRecordsList: FC<{
     } = props
 
     if (children) {
+        const counter =
+            waitingRecords.length +
+            uploadingRecords.length +
+            finishedRecords.length +
+            failedRecords.length
+
         return (
             <Tooltip
                 arrow
                 placement="right"
+                componentsProps={{
+                    tooltip: {
+                        sx: {
+                            maxWidth: 'none',
+                        },
+                    },
+                }}
                 title={
                     <Box>
                         <Box
@@ -98,7 +111,9 @@ const UploadRecordsList: FC<{
                                 justifyContent: 'space-around',
                             }}
                         >
-                            <Box sx={{ flex: 1 }}>{t('allRecords')}:</Box>
+                            <Box sx={{ flex: 1 }}>
+                                {`${t('allRecords')}(${counter})`}:
+                            </Box>
                             {uploadingRecords?.length ? (
                                 <a
                                     rel="noreferrer"
@@ -112,22 +127,32 @@ const UploadRecordsList: FC<{
                                 </a>
                             ) : null}
                         </Box>
-                        <RecordsList
-                            data={finishedRecords || []}
-                            type={'finished'}
-                        ></RecordsList>
-                        <RecordsList
-                            data={failedRecords || []}
-                            type={'failed'}
-                        ></RecordsList>
-                        <RecordsList
-                            data={uploadingRecords || []}
-                            type={'uploading'}
-                        ></RecordsList>
-                        <RecordsList
-                            data={waitingRecords || []}
-                            type={'waiting'}
-                        ></RecordsList>
+                        <Box
+                            sx={{
+                                maxHeight: 500,
+                                overflowY: 'auto',
+                                marginTop: 0.5,
+                                marginBottom: 0.5,
+                                paddingRight: 0.5,
+                            }}
+                        >
+                            <RecordsList
+                                data={finishedRecords}
+                                type={'finished'}
+                            ></RecordsList>
+                            <RecordsList
+                                data={failedRecords}
+                                type={'failed'}
+                            ></RecordsList>
+                            <RecordsList
+                                data={uploadingRecords}
+                                type={'uploading'}
+                            ></RecordsList>
+                            <RecordsList
+                                data={waitingRecords}
+                                type={'waiting'}
+                            ></RecordsList>
+                        </Box>
                     </Box>
                 }
             >

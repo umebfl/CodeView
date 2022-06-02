@@ -6,7 +6,7 @@ import '@testing-library/jest-dom/extend-expect'
 import ListView from 'src/module/uploadServer/detail/listView'
 import { Context } from 'src/app'
 import { getInitStore } from 'src/reducer/store'
-import { slotInfoType, diskStatusEnum } from 'src/reducer/uploadServer/type'
+import { slotInfoType, uploadStatusEnum } from 'src/reducer/uploadServer/type'
 
 describe('ListView', () => {
     it('should render table ', () => {
@@ -40,8 +40,8 @@ describe('ListView', () => {
     //             diskInfo: {
     //                 diskId: 'test diskId',
     //                 diskName: 'test diskName',
-    //                 diskStatus: diskStatusEnum.DATA_UPLOADING,
-    //                 diskStatusStr: '上传中',
+    //                 uploadStatus: uploadStatusEnum.DATA_UPLOADING,
+    //                 uploadStatusStr: '上传中',
     //                 mountPoint: 'xxx',
     //                 invalidMsg: '',
     //                 recommendedServerId: '',

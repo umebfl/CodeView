@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    overflow: hidden;
 }
 
 #root {
@@ -9,8 +10,8 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 0.68rem;
-    height: 0.5rem;
+    width: 0.8rem;
+    height: 0.8rem;
 }
 
 ::-webkit-scrollbar-thumb {

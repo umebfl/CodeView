@@ -22,7 +22,7 @@ export interface langType {
     noMatchingUploadServer: string
     slotName: string
     diskName: string
-    diskStatus: string
+    uploadStatus: string
     updateTime: string
     vehicleInfo: string
     noMoreData: string
@@ -77,7 +77,6 @@ export interface langType {
     savedSuccessfully: string
     succed: string
     notUpload: string
-    uploadStatus: string
     startTime: string
     endTime: string
     records: string

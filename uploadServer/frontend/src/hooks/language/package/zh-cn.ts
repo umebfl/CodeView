@@ -23,7 +23,6 @@ const lang: langType = {
     noMatchingUploadServer: '没有找到匹配的上载服务器',
     slotName: '插槽名称',
     diskName: '硬盘名称',
-    diskStatus: '硬盘状态',
     updateTime: '更新时间',
     vehicleInfo: '车辆信息',
     noMoreData: '没有更多了。',
