@@ -22,6 +22,7 @@ const mockData = {
         TEST_DISK_SN: {
             id: '1',
             seq: 0,
+            uploadServerId: 'uploadServerId-1',
             uploadStartTime: '2022-01-02 11:22:12',
             uploadEndTime: '2022-02-02 11:22:12',
             vehicleId: 'byd-02',
@@ -68,6 +69,7 @@ const server = setupServer(
                         disk_sn: 'S6CKNE0R920379',
                         disk_plug_time: '2022-04-19 06:22:29',
                         upload_start_time: '1971-01-01 00:00:00',
+                        upload_server_id: 'uploadServerId-1',
                         upload_end_time: '1971-01-01 00:00:00',
                         vehicle_id: 'pacifica-cn-53',
                         xray_uris: [
