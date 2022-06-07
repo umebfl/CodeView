@@ -68,8 +68,8 @@
             "last 1 safari version"
         ]
     },
-    "proxy-t": "http://upload.autox.tech:30000",
-    "proxy": "http://localhost:8000",
+    "proxy": "http://upload.autox.tech:30000",
+    "proxy-t": "http://localhost:8000",
     "jest": {
         "coverageReporters": [
             "text-summary",

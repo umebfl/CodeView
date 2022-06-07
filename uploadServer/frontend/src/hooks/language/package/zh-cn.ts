@@ -83,6 +83,7 @@ const lang: langType = {
     records: '记录',
     recordsLog: '上传日志',
     operation: '操作',
+    unRegDiskCanNotEditTips: '磁盘尚未上报到服务器，无法编辑！',
 }
 
 export default lang

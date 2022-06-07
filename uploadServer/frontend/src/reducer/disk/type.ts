@@ -5,6 +5,7 @@ export interface DiskType {
     inventoryStatus: DiskInventoryStatusType
     onServer: boolean
     comment: string
+    unregistered?: boolean
 }
 
 export interface DiskUploadRecordType {

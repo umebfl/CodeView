@@ -107,7 +107,7 @@ export const disk = createModel<RootModel>()({
 
             const fixParams = {
                 ...params,
-                comment: take(MAX_COMMENT_LEN, params.comment),
+                comment: take(MAX_COMMENT_LEN, params.comment || ''),
             }
 
             const paramsKeys = keys(fixParams)
@@ -119,22 +119,28 @@ export const disk = createModel<RootModel>()({
             )(paramsKeys)
 
             try {
-                await request({
+                const rv = await request({
                     url: `/disk_management/upsert_disk_info?${paramStr}`,
                     rootState,
                     dispatch,
                 })
 
-                const idx = findIndex(
-                    propEq('diskId', newRow.diskId),
-                    rootState.disk.data
-                )
+                if (rv?.code === 0) {
+                    const idx = findIndex(
+                        propEq('diskId', newRow.diskId),
+                        rootState.disk.data
+                    )
 
-                const fixData = update(idx, newRow, rootState.disk.data)
+                    const fixData = update(idx, newRow, rootState.disk.data)
 
-                dispatch.disk.setData({
-                    data: fixData,
-                })
+                    dispatch.disk.setData({
+                        data: fixData,
+                    })
+
+                    return true
+                }
+
+                return false
             } catch (error) {
                 console.error(error)
             }

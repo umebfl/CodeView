@@ -82,4 +82,5 @@ export interface langType {
     records: string
     recordsLog: string
     operation: string
+    unRegDiskCanNotEditTips: string
 }

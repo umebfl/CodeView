@@ -1,95 +1,270 @@
 {
     "disks_info": [
         {
-            "disk_sn": "UNKNOWN_DISK_ID_0000:60:00.0",
-            "owner": 1,
+            "disk_sn": "S6CKNE0R919042",
+            "owner": 0,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info"
+            "comment": ""
         },
         {
-            "disk_sn": "A0765C71",
-            "owner": 1,
+            "disk_sn": "S6CKNE0R722320",
+            "owner": 0,
             "status": 0,
-            "on_server": true,
-            "comment": "test_disk_info"
+            "on_server": false,
+            "comment": ""
         },
         {
-            "disk_sn": "A0764F58",
-            "owner": 1,
+            "disk_sn": "S6CKNE0R718480",
+            "owner": 0,
             "status": 0,
-            "on_server": true,
-            "comment": "test_disk_info"
+            "on_server": false,
+            "comment": ""
         },
         {
-            "disk_sn": "aA0766410",
-            "owner": 1,
+            "disk_sn": "S6CKNE0R718339",
+            "owner": 0,
             "status": 0,
-            "on_server": true,
-            "comment": "test_disk_info"
+            "on_server": false,
+            "comment": ""
         },
         {
-            "disk_sn": "aA0769460",
-            "owner": 1,
+            "disk_sn": "S6CKNE0R723749",
+            "owner": 0,
             "status": 0,
-            "on_server": true,
-            "comment": "test_disk_info"
+            "on_server": false,
+            "comment": ""
         },
         {
-            "disk_sn": "aA076751D",
-            "owner": 1,
+            "disk_sn": "A0764095",
+            "owner": 0,
             "status": 0,
-            "on_server": true,
-            "comment": "test_disk_info"
+            "on_server": false,
+            "comment": ""
         },
         {
-            "disk_sn": "aS6CKNE0R916032",
-            "owner": 1,
+            "disk_sn": "A0765DDD",
+            "owner": 0,
             "status": 0,
-            "on_server": true,
-            "comment": "test_disk_info"
+            "on_server": false,
+            "comment": ""
         },
         {
-            "disk_sn": "aA0769831",
-            "owner": 1,
+            "disk_sn": "A0769B0D",
+            "owner": 0,
             "status": 0,
-            "on_server": true,
-            "comment": "test_disk_info"
+            "on_server": false,
+            "comment": ""
         },
         {
-            "disk_sn": "aA0763EDA",
-            "owner": 1,
+            "disk_sn": "A076789D",
+            "owner": 0,
             "status": 0,
-            "on_server": true,
-            "comment": "test_disk_info"
+            "on_server": false,
+            "comment": ""
         },
         {
-            "disk_sn": "aA07661EA",
-            "owner": 1,
+            "disk_sn": "A0767846",
+            "owner": 0,
             "status": 0,
-            "on_server": true,
-            "comment": "test_disk_info"
+            "on_server": false,
+            "comment": ""
         },
         {
-            "disk_sn": "aUNKNOWN_DISK_ID_0000:67:00.0",
-            "owner": 1,
+            "disk_sn": "A0764CB0",
+            "owner": 0,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info"
+            "comment": ""
         },
         {
-            "disk_sn": "aUNKNOWN_DISK_ID_0000:68:00.0",
-            "owner": 1,
+            "disk_sn": "A0766435",
+            "owner": 0,
             "status": 0,
-            "on_server": true,
-            "comment": "test_disk_info"
+            "on_server": false,
+            "comment": ""
         },
         {
-            "disk_sn": "aS6CKNE0R723303",
-            "owner": 1,
+            "disk_sn": "A0765470",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "A0765DF5",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "A07636D3",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "A07637AC",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "A0762FE4",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CVNE0R400619",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R920406",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R919496",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R919048",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R919046",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R919033",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R916096",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R916095",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R724303",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R724301",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R724268",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R724139",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R724137",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R723822",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R920392",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "A07667C4",
+            "owner": 0,
             "status": 0,
             "on_server": true,
-            "comment": "test_disk_info"
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R723313",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "UNKNOWN_DISK_ID_0000:63:00.0",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "S6CKNE0R919041",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "A0763058",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
+        },
+        {
+            "disk_sn": "A07634A4",
+            "owner": 0,
+            "status": 0,
+            "on_server": false,
+            "comment": ""
         }
     ],
     "code": 0,

@@ -10,25 +10,29 @@
                     "slotBusId": "0000:60:00.0",
                     "isEmpty": false,
                     "diskInfo": {
-                        "diskId": "UNKNOWN_DISK_ID_0000:60:00.0",
-                        "diskName": "UNKNOWN",
+                        "diskId": "S6CKNE0R919042",
+                        "diskName": "nvme4n1",
                         "slotId": "0-5",
-                        "diskStatus": "INVALID",
-                        "mountPoint": "",
+                        "diskStatus": "FORMATTED",
+                        "mountPoint": "/roadtest_disks/nvme4n1_S6CKNE0R919042",
                         "isMounted": false,
-                        "updateTime": 1652945950.0,
-                        "invalidMsg": "\u65e0\u6cd5\u8bc6\u522b\u8be5\u786c\u76d8\uff0c\u8bf7\u91cd\u65b0\u63d2\u62d4",
+                        "updateTime": 1654173802.0,
+                        "invalidMsg": "",
+                        "vehicleIds": ["accord-cn-1"],
                         "wrongServer": false,
                         "recommendedServerId": "",
-                        "diskPlugTime": "2022-05-27 01:00:32",
-                        "startUploadTime": "",
-                        "endUploadTime": "",
-                        "vehicleIds": [],
-                        "allRecords": [],
+                        "allRecords": [
+                            "accord-cn-1_20211201_2021-12-01-15-46-35"
+                        ],
+                        "finishedRecords": [
+                            "accord-cn-1_20211201_2021-12-01-15-46-35"
+                        ],
+                        "diskPlugTime": "2022-06-02 12:41:45",
+                        "startUploadTime": "2022-06-02 12:41:48",
+                        "endUploadTime": "2022-06-02 12:43:19",
                         "waitingRecords": [],
                         "uploadingRecords": [],
-                        "failedRecords": [],
-                        "finishedRecords": []
+                        "failedRecords": []
                     }
                 },
                 {
@@ -117,8 +121,8 @@
             ],
             "totalSlotsNum": 24,
             "emptySlotsNum": 23,
-            "formattedDisksNum": 0,
-            "removableSlotsSequenceNums": []
+            "formattedDisksNum": 1,
+            "removableSlotsSequenceNums": [1]
         },
         {
             "uploadServerId": "sz-exa-upload-2",
@@ -537,11 +541,11 @@
                         "diskStatus": "INVALID",
                         "mountPoint": "",
                         "isMounted": false,
-                        "updateTime": 1653887410.0,
+                        "updateTime": 1654514331.0,
                         "invalidMsg": "\u786c\u76d8\u6302\u8f7d\u5931\u8d25",
                         "wrongServer": false,
                         "recommendedServerId": "",
-                        "diskPlugTime": "2022-05-30 15:20:17",
+                        "diskPlugTime": "2022-06-07 01:09:07",
                         "startUploadTime": "",
                         "endUploadTime": "",
                         "vehicleIds": [],
@@ -551,246 +555,6 @@
                         "failedRecords": [],
                         "finishedRecords": []
                     }
-                },
-                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
-                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
-                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
-                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
-                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
-                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
-                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
-                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
-                {
-                    "slotId": "10",
-                    "slotBusId": "0000:6a:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "11",
-                    "slotBusId": "0000:6b:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "0-7",
-                    "slotBusId": "0000:b1:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "1-2",
-                    "slotBusId": "0000:b2:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "2-1",
-                    "slotBusId": "0000:b3:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "3-1",
-                    "slotBusId": "0000:b4:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "4-1",
-                    "slotBusId": "0000:b5:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "5-1",
-                    "slotBusId": "0000:b6:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "6-1",
-                    "slotBusId": "0000:b7:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "7-1",
-                    "slotBusId": "0000:b8:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "8-1",
-                    "slotBusId": "0000:b9:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "9-1",
-                    "slotBusId": "0000:ba:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "10-1",
-                    "slotBusId": "0000:bb:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "11-1",
-                    "slotBusId": "0000:bc:00.0",
-                    "isEmpty": true
-                }
-            ],
-            "totalSlotsNum": 24,
-            "emptySlotsNum": 23,
-            "formattedDisksNum": 0,
-            "removableSlotsSequenceNums": []
-        },
-        {
-            "uploadServerId": "sz-exa-upload-7",
-            "uploadServerLocation": "4:12:33-34",
-            "isRunning": true,
-            "slotInfos": [
-                {
-                    "slotId": "0-5",
-                    "slotBusId": "0000:60:00.0",
-                    "isEmpty": false,
-                    "diskInfo": {
-                        "diskId": "S6CKNE0R920392",
-                        "diskName": "nvme0n1",
-                        "slotId": "0-5",
-                        "diskStatus": "INVALID",
-                        "mountPoint": "",
-                        "isMounted": false,
-                        "updateTime": 1652945953.0,
-                        "invalidMsg": "\u786c\u76d8\u6302\u8f7d\u5931\u8d25",
-                        "wrongServer": false,
-                        "recommendedServerId": "",
-                        "diskPlugTime": "2022-05-27 01:05:16",
-                        "startUploadTime": "",
-                        "endUploadTime": "",
-                        "vehicleIds": [],
-                        "allRecords": [],
-                        "waitingRecords": [],
-                        "uploadingRecords": [],
-                        "failedRecords": [],
-                        "finishedRecords": []
-                    }
-                },
-                {
-                    "slotId": "1-1",
-                    "slotBusId": "0000:61:00.0",
-                    "isEmpty": true
-                },
-                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
-                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
-                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
-                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
-                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
-                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
-                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
-                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
-                {
-                    "slotId": "10",
-                    "slotBusId": "0000:6a:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "11",
-                    "slotBusId": "0000:6b:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "0-7",
-                    "slotBusId": "0000:b1:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "1-2",
-                    "slotBusId": "0000:b2:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "2-1",
-                    "slotBusId": "0000:b3:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "3-1",
-                    "slotBusId": "0000:b4:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "4-1",
-                    "slotBusId": "0000:b5:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "5-1",
-                    "slotBusId": "0000:b6:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "6-1",
-                    "slotBusId": "0000:b7:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "7-1",
-                    "slotBusId": "0000:b8:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "8-1",
-                    "slotBusId": "0000:b9:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "9-1",
-                    "slotBusId": "0000:ba:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "10-1",
-                    "slotBusId": "0000:bb:00.0",
-                    "isEmpty": true
-                },
-                {
-                    "slotId": "11-1",
-                    "slotBusId": "0000:bc:00.0",
-                    "isEmpty": true
-                }
-            ],
-            "totalSlotsNum": 24,
-            "emptySlotsNum": 23,
-            "formattedDisksNum": 0,
-            "removableSlotsSequenceNums": []
-        },
-        {
-            "uploadServerId": "sz-exa-upload-8",
-            "uploadServerLocation": "4:13:15:16",
-            "isRunning": true,
-            "slotInfos": [
-                {
-                    "slotId": "0-5",
-                    "slotBusId": "0000:60:00.0",
-                    "isEmpty": false,
-                    "diskInfo": {
-                        "diskId": "S6CKNE0R723834",
-                        "diskName": "nvme0n1",
-                        "slotId": "0-5",
-                        "diskStatus": "INVALID",
-                        "mountPoint": "",
-                        "isMounted": false,
-                        "updateTime": 1653887411.0,
-                        "invalidMsg": "\u786c\u76d8\u6302\u8f7d\u5931\u8d25",
-                        "wrongServer": false,
-                        "recommendedServerId": "",
-                        "diskPlugTime": "2022-05-30 05:11:42",
-                        "startUploadTime": "",
-                        "endUploadTime": "",
-                        "vehicleIds": [],
-                        "allRecords": [],
-                        "waitingRecords": [],
-                        "uploadingRecords": [],
-                        "failedRecords": [],
-                        "finishedRecords": []
-                    }
-                },
-                {
-                    "slotId": "1-1",
-                    "slotBusId": "0000:61:00.0",
-                    "isEmpty": true
                 },
                 { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
                 {
@@ -798,31 +562,32 @@
                     "slotBusId": "0000:63:00.0",
                     "isEmpty": false,
                     "diskInfo": {
-                        "diskId": "A0763058",
-                        "diskName": "nvme5n1",
+                        "diskId": "A0764CB0",
+                        "diskName": "nvme4n1",
                         "slotId": "3",
                         "diskStatus": "DATA_UPLOADING",
-                        "mountPoint": "/roadtest_disks/nvme5n1_A0763058",
+                        "mountPoint": "/roadtest_disks/nvme4n1_A0764CB0",
                         "isMounted": true,
-                        "updateTime": 1653928738.0,
+                        "updateTime": 1654564681.0,
                         "invalidMsg": "",
-                        "vehicleIds": ["pacifica-cn-73"],
+                        "vehicleIds": ["pacifica-cn-37"],
                         "wrongServer": false,
                         "recommendedServerId": "",
                         "allRecords": [
-                            "pacifica-cn-73_20220530_2022-05-30-10-20-29",
-                            "pacifica-cn-73_20220530_2022-05-30-14-17-29"
+                            "pacifica-cn-37_20220606_2022-06-06-11-34-37",
+                            "pacifica-cn-37_20220606_2022-06-06-14-22-34"
+                        ],
+                        "failedRecords": [
+                            "pacifica-cn-37_20220606_2022-06-06-11-34-37"
                         ],
                         "finishedRecords": [
-                            "pacifica-cn-73_20220530_2022-05-30-10-20-29",
-                            "pacifica-cn-73_20220530_2022-05-30-14-17-29"
+                            "pacifica-cn-37_20220606_2022-06-06-14-22-34"
                         ],
-                        "diskPlugTime": "2022-05-30 15:22:03",
-                        "startUploadTime": "2022-05-30 16:38:58",
+                        "diskPlugTime": "2022-06-07 01:09:07",
+                        "startUploadTime": "2022-06-07 01:18:01",
                         "endUploadTime": "",
                         "waitingRecords": [],
-                        "uploadingRecords": [],
-                        "failedRecords": []
+                        "uploadingRecords": []
                     }
                 },
                 { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
@@ -904,6 +669,225 @@
             ],
             "totalSlotsNum": 24,
             "emptySlotsNum": 22,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-7",
+            "uploadServerLocation": "4:12:33-34",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 24,
+            "formattedDisksNum": 0,
+            "removableSlotsSequenceNums": []
+        },
+        {
+            "uploadServerId": "sz-exa-upload-8",
+            "uploadServerLocation": "4:13:15:16",
+            "isRunning": true,
+            "slotInfos": [
+                {
+                    "slotId": "0-5",
+                    "slotBusId": "0000:60:00.0",
+                    "isEmpty": false,
+                    "diskInfo": {
+                        "diskId": "S6CKNE0R723834",
+                        "diskName": "nvme0n1",
+                        "slotId": "0-5",
+                        "diskStatus": "INVALID",
+                        "mountPoint": "",
+                        "isMounted": false,
+                        "updateTime": 1653887411.0,
+                        "invalidMsg": "\u786c\u76d8\u6302\u8f7d\u5931\u8d25",
+                        "wrongServer": false,
+                        "recommendedServerId": "",
+                        "diskPlugTime": "2022-05-30 05:11:42",
+                        "startUploadTime": "",
+                        "endUploadTime": "",
+                        "vehicleIds": [],
+                        "allRecords": [],
+                        "waitingRecords": [],
+                        "uploadingRecords": [],
+                        "failedRecords": [],
+                        "finishedRecords": []
+                    }
+                },
+                {
+                    "slotId": "1-1",
+                    "slotBusId": "0000:61:00.0",
+                    "isEmpty": true
+                },
+                { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
+                { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
+                { "slotId": "4", "slotBusId": "0000:64:00.0", "isEmpty": true },
+                { "slotId": "5", "slotBusId": "0000:65:00.0", "isEmpty": true },
+                { "slotId": "6", "slotBusId": "0000:66:00.0", "isEmpty": true },
+                { "slotId": "7", "slotBusId": "0000:67:00.0", "isEmpty": true },
+                { "slotId": "8", "slotBusId": "0000:68:00.0", "isEmpty": true },
+                { "slotId": "9", "slotBusId": "0000:69:00.0", "isEmpty": true },
+                {
+                    "slotId": "10",
+                    "slotBusId": "0000:6a:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11",
+                    "slotBusId": "0000:6b:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "0-7",
+                    "slotBusId": "0000:b1:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "1-2",
+                    "slotBusId": "0000:b2:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "2-1",
+                    "slotBusId": "0000:b3:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "3-1",
+                    "slotBusId": "0000:b4:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "4-1",
+                    "slotBusId": "0000:b5:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "5-1",
+                    "slotBusId": "0000:b6:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "6-1",
+                    "slotBusId": "0000:b7:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "7-1",
+                    "slotBusId": "0000:b8:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "8-1",
+                    "slotBusId": "0000:b9:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "9-1",
+                    "slotBusId": "0000:ba:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "10-1",
+                    "slotBusId": "0000:bb:00.0",
+                    "isEmpty": true
+                },
+                {
+                    "slotId": "11-1",
+                    "slotBusId": "0000:bc:00.0",
+                    "isEmpty": true
+                }
+            ],
+            "totalSlotsNum": 24,
+            "emptySlotsNum": 23,
             "formattedDisksNum": 0,
             "removableSlotsSequenceNums": []
         },
@@ -1212,39 +1196,7 @@
                 {
                     "slotId": "0-5",
                     "slotBusId": "0000:60:00.0",
-                    "isEmpty": false,
-                    "diskInfo": {
-                        "diskId": "A07634A4",
-                        "diskName": "nvme0n1",
-                        "slotId": "0-5",
-                        "diskStatus": "DATA_UPLOADING",
-                        "mountPoint": "/roadtest_disks/nvme0n1_A07634A4",
-                        "isMounted": true,
-                        "updateTime": 1654098087.0,
-                        "invalidMsg": "",
-                        "vehicleIds": ["pacifica-cn-36"],
-                        "wrongServer": false,
-                        "recommendedServerId": "",
-                        "allRecords": [
-                            "pacifica-cn-36_20220601_2022-06-01-16-28-30",
-                            "pacifica-cn-36_20220601_2022-06-01-10-23-45",
-                            "pacifica-cn-36_20220601_2022-06-01-15-26-13",
-                            "pacifica-cn-36_20220601_2022-06-01-14-16-37"
-                        ],
-                        "failedRecords": [
-                            "pacifica-cn-36_20220601_2022-06-01-16-28-30"
-                        ],
-                        "finishedRecords": [
-                            "pacifica-cn-36_20220601_2022-06-01-10-23-45",
-                            "pacifica-cn-36_20220601_2022-06-01-15-26-13",
-                            "pacifica-cn-36_20220601_2022-06-01-14-16-37"
-                        ],
-                        "diskPlugTime": "2022-06-01 15:41:14",
-                        "startUploadTime": "2022-06-01 15:41:27",
-                        "endUploadTime": "",
-                        "waitingRecords": [],
-                        "uploadingRecords": []
-                    }
+                    "isEmpty": true
                 },
                 {
                     "slotId": "1-1",
@@ -1259,11 +1211,11 @@
                         "diskId": "A076378F",
                         "diskName": "nvme9n1",
                         "slotId": "2",
-                        "diskStatus": "DATA_UPLOADING",
+                        "diskStatus": "INVALID",
                         "mountPoint": "/roadtest_disks/nvme9n1_A076378F",
                         "isMounted": true,
-                        "updateTime": 1654099270.0,
-                        "invalidMsg": "",
+                        "updateTime": 1654508314.0,
+                        "invalidMsg": "\u786c\u76d8\u5378\u8f7d\u5931\u8d25",
                         "vehicleIds": ["pacifica-cn-166x1"],
                         "wrongServer": false,
                         "recommendedServerId": "",
@@ -1271,16 +1223,16 @@
                             "pacifica-cn-166x1_20220601_2022-06-01-09-41-17",
                             "pacifica-cn-166x1_20220601_2022-06-01-14-37-34"
                         ],
-                        "failedRecords": [
+                        "finishedRecords": [
                             "pacifica-cn-166x1_20220601_2022-06-01-09-41-17",
                             "pacifica-cn-166x1_20220601_2022-06-01-14-37-34"
                         ],
                         "diskPlugTime": "2022-06-01 15:42:07",
                         "startUploadTime": "2022-06-01 16:01:10",
-                        "endUploadTime": "",
+                        "endUploadTime": "2022-06-06 09:38:34",
                         "waitingRecords": [],
                         "uploadingRecords": [],
-                        "finishedRecords": []
+                        "failedRecords": []
                     }
                 },
                 { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
@@ -1362,7 +1314,7 @@
                 }
             ],
             "totalSlotsNum": 24,
-            "emptySlotsNum": 22,
+            "emptySlotsNum": 23,
             "formattedDisksNum": 0,
             "removableSlotsSequenceNums": []
         },
@@ -2071,42 +2023,7 @@
                 {
                     "slotId": "1-1",
                     "slotBusId": "0000:61:00.0",
-                    "isEmpty": false,
-                    "diskInfo": {
-                        "diskId": "S6CKNE0R723313",
-                        "diskName": "nvme1n1",
-                        "slotId": "1-1",
-                        "diskStatus": "DATA_UPLOADING",
-                        "mountPoint": "/roadtest_disks/nvme1n1_S6CKNE0R723313",
-                        "isMounted": true,
-                        "updateTime": 1654094442.0,
-                        "invalidMsg": "",
-                        "vehicleIds": ["pacifica-cn-311"],
-                        "wrongServer": false,
-                        "recommendedServerId": "",
-                        "allRecords": [
-                            "pacifica-cn-311_20220601_2022-06-01-14-38-30",
-                            "pacifica-cn-311_20220601_2022-06-01-13-57-06",
-                            "pacifica-cn-311_20220601_2022-06-01-08-29-16",
-                            "pacifica-cn-311_20220601_2022-06-01-09-05-26",
-                            "pacifica-cn-311_20220601_2022-06-01-16-03-35",
-                            "pacifica-cn-311_20220601_2022-06-01-09-59-30"
-                        ],
-                        "finishedRecords": [
-                            "pacifica-cn-311_20220601_2022-06-01-14-38-30",
-                            "pacifica-cn-311_20220601_2022-06-01-13-57-06",
-                            "pacifica-cn-311_20220601_2022-06-01-08-29-16",
-                            "pacifica-cn-311_20220601_2022-06-01-09-05-26",
-                            "pacifica-cn-311_20220601_2022-06-01-16-03-35",
-                            "pacifica-cn-311_20220601_2022-06-01-09-59-30"
-                        ],
-                        "diskPlugTime": "2022-06-01 14:04:42",
-                        "startUploadTime": "2022-06-01 14:40:42",
-                        "endUploadTime": "",
-                        "waitingRecords": [],
-                        "uploadingRecords": [],
-                        "failedRecords": []
-                    }
+                    "isEmpty": true
                 },
                 { "slotId": "2", "slotBusId": "0000:62:00.0", "isEmpty": true },
                 { "slotId": "3", "slotBusId": "0000:63:00.0", "isEmpty": true },
@@ -2188,7 +2105,7 @@
                 }
             ],
             "totalSlotsNum": 24,
-            "emptySlotsNum": 23,
+            "emptySlotsNum": 24,
             "formattedDisksNum": 0,
             "removableSlotsSequenceNums": []
         },

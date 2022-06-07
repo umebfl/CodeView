@@ -83,6 +83,8 @@ const lang: langType = {
     records: 'Records',
     recordsLog: 'Records Log',
     operation: 'Operation',
+    unRegDiskCanNotEditTips:
+        'The disk has not been reported to the server and cannot be edited!',
 }
 
 export default lang
