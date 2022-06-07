@@ -4,8 +4,8 @@
         {
             "disk_sn": "S6CKNE0R920379",
             "disk_plug_time": "2022-04-19 06:22:29",
-            "upload_start_time": "1971-01-01 00:00:00",
-            "upload_end_time": "1971-01-01 00:00:00",
+            "upload_start_time": "",
+            "upload_end_time": "",
             "upload_server_id": "sz-exa-upload-1",
             "vehicle_id": "pacifica-cn-53",
             "xray_uris": [

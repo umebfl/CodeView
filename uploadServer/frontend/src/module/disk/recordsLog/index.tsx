@@ -135,7 +135,7 @@ const DiskRecordsLog = () => {
                                 width: '90%',
                             }}
                         >
-                            {val}
+                            {val.length ? val : '-'}
                         </Box>
                     </Tooltip>
                 )
@@ -160,7 +160,7 @@ const DiskRecordsLog = () => {
                                 width: '90%',
                             }}
                         >
-                            {val}
+                            {val.length ? val : '-'}
                         </Box>
                     </Tooltip>
                 )
