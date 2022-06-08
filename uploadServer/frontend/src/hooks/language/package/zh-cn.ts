@@ -81,7 +81,7 @@ const lang: langType = {
     startTime: '开始时间',
     endTime: '结束时间',
     records: '记录',
-    recordsLog: '上传日志',
+    recordsLog: '上传记录',
     operation: '操作',
     unRegDiskCanNotEditTips: '磁盘尚未上报到服务器，无法编辑！',
 }
