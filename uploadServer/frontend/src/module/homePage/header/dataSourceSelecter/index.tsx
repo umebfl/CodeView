@@ -2,12 +2,10 @@ import React, { useMemo } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { useNavigate, useResolvedPath, useMatch } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import { useTheme } from '@mui/material/styles'
-import Button from '@mui/material/Button'
 import ListSubheader from '@mui/material/ListSubheader'
-import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
 import Select from '@mui/material/Select'
 
 import MenuItem from '@mui/material/MenuItem'
@@ -26,8 +24,6 @@ const DataSourceSelecter = () => {
     const t = useT()
 
     const navigate = useNavigate()
-    let resolved = useResolvedPath('/up')
-    let match = useMatch({ path: resolved.pathname, end: false })
 
     const handleChange = (e: any) => {
         const val = e.target.value

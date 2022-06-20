@@ -23,22 +23,12 @@ const Disk = () => {
     const { lang } = useSelector((state: RootState) => state.language)
 
     useEffect(() => {
+        dispatch.uploadServer.initData({})
         dispatch.disk.initData({})
 
         const timer = setInterval(() => {
-            dispatch.disk.initData({})
-        }, INTERVAL_TIMEOUT)
-
-        return () => {
-            clearInterval(timer)
-        }
-    }, [lang, dispatch])
-
-    useEffect(() => {
-        dispatch.uploadServer.initData({})
-
-        const timer = setInterval(() => {
             dispatch.uploadServer.initData({})
+            dispatch.disk.initData({})
         }, INTERVAL_TIMEOUT)
 
         return () => {
