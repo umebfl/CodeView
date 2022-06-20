@@ -3,7 +3,7 @@ import { createModel } from '@rematch/core'
 import { RootModel } from '..'
 import { DataSourceEnum, userConfigType } from 'src/reducer/userConfig/type'
 
-export const DEFAULT_DATA_SOURCE = DataSourceEnum.shenZhen
+export const DEFAULT_DATA_SOURCE = DataSourceEnum.shenzhen
 
 const initState: userConfigType = {
     uploadServer_listConfig: {

@@ -69,16 +69,16 @@ const DataSourceSelecter = () => {
                         {t('dataSource')}:
                     </ListSubheader>
                     <MenuItem
-                        value={DataSourceEnum.guangZhou}
+                        value={DataSourceEnum.guangzhou}
                         sx={{ paddingLeft: 5 }}
                     >
-                        {t('guangZhou')}
+                        {t('guangzhou')}
                     </MenuItem>
                     <MenuItem
-                        value={DataSourceEnum.shenZhen}
+                        value={DataSourceEnum.shenzhen}
                         sx={{ paddingLeft: 5 }}
                     >
-                        {t('shenZhen')}
+                        {t('shenzhen')}
                     </MenuItem>
                 </Select>
             </Box>

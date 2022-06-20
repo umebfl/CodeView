@@ -83,8 +83,8 @@ export interface langType {
     recordsLog: string
     operation: string
     unRegDiskCanNotEditTips: string
-    guangZhou: string
-    shenZhen: string
+    guangzhou: string
+    shenzhen: string
     dataSource: string
     switchedDataSource: string
 }

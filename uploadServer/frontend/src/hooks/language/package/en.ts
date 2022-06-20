@@ -85,8 +85,8 @@ const lang: langType = {
     operation: 'Operation',
     unRegDiskCanNotEditTips:
         'The disk has not been reported to the server and cannot be edited!',
-    guangZhou: 'GuangZhou',
-    shenZhen: 'ShenZhen',
+    guangzhou: 'GuangZhou',
+    shenzhen: 'ShenZhen',
     dataSource: 'DataSource',
     switchedDataSource: 'Switched to data source: [ %1$s ]',
 }
