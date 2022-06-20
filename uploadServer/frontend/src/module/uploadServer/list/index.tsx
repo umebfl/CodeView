@@ -80,8 +80,7 @@ const UploadServerList: FC = () => {
         {
             field: 'isRunningStr',
             headerName: t('runStatus'),
-            flex: 1,
-            minWidth: 140,
+            width: 140,
             type: 'singleSelect',
             valueOptions: [t('running'), t('close')],
             sortable: true,
@@ -106,8 +105,7 @@ const UploadServerList: FC = () => {
             headerName: `${t(
                 'slotsSequenceOfRemovable'
             )}(${removableSlotsCount})`,
-            flex: 1,
-            minWidth: 150,
+            width: 300,
             type: 'string',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
@@ -120,8 +118,7 @@ const UploadServerList: FC = () => {
         {
             field: 'completed',
             headerName: t('completed'),
-            flex: 1,
-            minWidth: 100,
+            width: 140,
             type: 'number',
             sortable: true,
             description: `${t('completed')} / ${t('totalDisk')}`,
@@ -168,8 +165,7 @@ const UploadServerList: FC = () => {
         {
             field: 'emptySlotsNum',
             headerName: t('emptySlots'),
-            flex: 1,
-            minWidth: 100,
+            width: 140,
             type: 'number',
             sortable: true,
             valueGetter: (params: GridValueGetterParams) => {
@@ -181,8 +177,7 @@ const UploadServerList: FC = () => {
         {
             field: 'totalOfSlots',
             headerName: t('totalOfSlots'),
-            flex: 1,
-            minWidth: 100,
+            width: 140,
             type: 'number',
             sortable: true,
             description: '',

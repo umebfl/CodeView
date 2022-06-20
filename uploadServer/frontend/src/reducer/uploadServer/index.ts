@@ -14,6 +14,7 @@ import {
 import { addIndex, map, startsWith } from 'ramda'
 import { tranText } from 'src/hooks/language'
 import { langSet } from 'src/reducer/language/type'
+import { DEFAULT_DATA_SOURCE } from '../userConfig'
 
 const initState: UploadServerState = {
     data: [],
@@ -144,8 +145,12 @@ export const uploadServer = createModel<RootModel>()({
     },
     effects: dispatch => ({
         async initData(_, rootState) {
+            const { dataSource } = rootState.userConfig
+
+            const ds = dataSource || DEFAULT_DATA_SOURCE
+
             const data = await request({
-                url: '/data_center/get_upload_server_list',
+                url: `/data_center/get_upload_server_list?region=${ds}`,
                 rootState,
                 dispatch,
             })

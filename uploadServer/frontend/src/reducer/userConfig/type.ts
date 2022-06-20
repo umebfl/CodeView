@@ -4,4 +4,11 @@ export interface userConfigType {
     uploadServer_listConfig: GridInitialStateCommunity
     uploadServer_detailListConfig: GridInitialStateCommunity
     disk_listConfig: GridInitialStateCommunity
+
+    dataSource: DataSourceEnum | undefined
+}
+
+export enum DataSourceEnum {
+    guangZhou = 'guangZhou',
+    shenZhen = 'shenZhen',
 }

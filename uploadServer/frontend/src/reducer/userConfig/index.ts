@@ -1,7 +1,9 @@
 import { createModel } from '@rematch/core'
 
 import { RootModel } from '..'
-import { userConfigType } from 'src/reducer/userConfig/type'
+import { DataSourceEnum, userConfigType } from 'src/reducer/userConfig/type'
+
+export const DEFAULT_DATA_SOURCE = DataSourceEnum.shenZhen
 
 const initState: userConfigType = {
     uploadServer_listConfig: {
@@ -19,6 +21,8 @@ const initState: userConfigType = {
     },
     uploadServer_detailListConfig: {},
     disk_listConfig: {},
+
+    dataSource: DEFAULT_DATA_SOURCE,
 }
 
 export const userConfig = createModel<RootModel>()({

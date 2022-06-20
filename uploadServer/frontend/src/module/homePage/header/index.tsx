@@ -1,11 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import LinearProgress from '@mui/material/LinearProgress'
 import { useTheme } from '@mui/material/styles'
-import { useSelector } from 'react-redux'
+
 import { RootState } from 'src/reducer/type'
+import DataSourceSelecter from 'src/module/homePage/header/dataSourceSelecter'
 
 const Header = () => {
     const theme = useTheme()
@@ -22,25 +24,43 @@ const Header = () => {
                 height: 48,
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between',
+                justifyContent: 'center',
                 padding: 0,
+                position: 'relative',
             }}
         >
             <Box
                 sx={{
-                    width: 100,
-                    marginTop: 1,
-                    marginLeft: 2,
-                    height: 'auto',
-                    userSelect: 'none',
+                    display: 'flex',
+                    flex: 1,
+                    flexDirection: 'row',
+                    justifyContent: 'flex-start',
+                    alignItems: 'center',
+                    padding: 0,
+                    paddingLeft: 1,
+                    paddingRight: 1,
                 }}
-                component="img"
-                src="/asset/logo.png"
-            ></Box>
+            >
+                <Box
+                    sx={{
+                        width: 100,
+                        height: 'auto',
+                        userSelect: 'none',
+                    }}
+                    component="img"
+                    src="/asset/logo.png"
+                ></Box>
+
+                <DataSourceSelecter />
+            </Box>
 
             {Reflect.ownKeys(loadingMap).length > 0 && (
                 <LinearProgress
                     sx={{
+                        position: 'absolute',
+                        left: 0,
+                        bottom: 0,
+                        width: '100%',
                         height: 1.01,
                     }}
                 />

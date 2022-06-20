@@ -15,6 +15,7 @@ import request from 'src/util/request'
 
 import { RootModel } from '..'
 import { DiskType, diskState, DiskResponseType } from 'src/reducer/disk/type'
+import { DEFAULT_DATA_SOURCE } from 'src/reducer/userConfig'
 
 const MAX_COMMENT_LEN = 120
 
@@ -35,10 +36,14 @@ export const disk = createModel<RootModel>()({
     },
     effects: dispatch => ({
         async initData(_, rootState) {
+            const { dataSource } = rootState.userConfig
+
+            const ds = dataSource || DEFAULT_DATA_SOURCE
+
             const data: {
                 disks_info: DiskResponseType[]
             } = await request({
-                url: '/disk_management/get_disks_info',
+                url: `/disk_management/get_disks_info?region=${ds}`,
                 rootState,
                 dispatch,
             })

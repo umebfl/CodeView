@@ -84,6 +84,10 @@ const lang: langType = {
     recordsLog: '上传记录',
     operation: '操作',
     unRegDiskCanNotEditTips: '磁盘尚未上报到服务器，无法编辑！',
+    guangZhou: '广州',
+    shenZhen: '深圳',
+    dataSource: '数据源',
+    switchedDataSource: '切换至 [ %1$s ] 数据源!',
 }
 
 export default lang

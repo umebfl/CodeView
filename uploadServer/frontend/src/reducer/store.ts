@@ -11,7 +11,7 @@ const persistPlugin = createRematchPersist<RootModel, any>({
     whitelist: ['userConfig', 'language'],
     throttle: 1000,
     debug: false,
-    version: 4,
+    version: 6,
 })
 
 export const getInitStore = () =>
