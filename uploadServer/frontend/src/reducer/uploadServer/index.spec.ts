@@ -6,6 +6,7 @@ import { setupServer } from 'msw/node'
 
 import { uploadServer } from 'src/reducer/uploadServer'
 import { language } from 'src/reducer/language'
+import { userConfig } from 'src/reducer/userConfig'
 
 import MockData from '../../../data/json/uploadServer.json'
 import {
@@ -48,7 +49,7 @@ const mockData = MockData as unknown as {
 describe('Reducer - uploadServer', () => {
     it('should set data', () => {
         const store = init({
-            models: { uploadServer, language } as any,
+            models: { uploadServer, language, userConfig } as any,
         })
 
         const { dispatch } = store
@@ -68,7 +69,7 @@ describe('Reducer - uploadServer', () => {
 
     it('should init data', async () => {
         const store = init({
-            models: { uploadServer, language } as any,
+            models: { uploadServer, language, userConfig } as any,
         })
         const { dispatch } = store
 

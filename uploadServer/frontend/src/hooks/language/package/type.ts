@@ -79,6 +79,7 @@ export interface langType {
     notUpload: string
     startTime: string
     endTime: string
+    plugTime: string
     records: string
     recordsLog: string
     operation: string

@@ -80,6 +80,7 @@ const lang: langType = {
     uploadStatus: 'Upload Status',
     startTime: 'StartTime',
     endTime: 'EndTime',
+    plugTime: 'Plug Time',
     records: 'Records',
     recordsLog: 'Records Log',
     operation: 'Operation',

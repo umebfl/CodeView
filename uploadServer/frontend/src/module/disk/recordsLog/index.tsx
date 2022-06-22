@@ -117,6 +117,31 @@ const DiskRecordsLog = () => {
             },
         },
         {
+            field: 'diskPlugTime',
+            headerName: t('plugTime'),
+            flex: 1,
+            minWidth: 200,
+            sortable: true,
+            type: 'date',
+            renderCell: (params: GridValueGetterParams) => {
+                const val = params.row.diskPlugTime
+                return (
+                    <Tooltip arrow title={<Box>{val}</Box>}>
+                        <Box
+                            sx={{
+                                overflow: 'hidden',
+                                wordSpacing: 'normal',
+                                textOverflow: 'ellipsis',
+                                width: '90%',
+                            }}
+                        >
+                            {val.length ? val : '-'}
+                        </Box>
+                    </Tooltip>
+                )
+            },
+        },
+        {
             field: 'uploadStartTime',
             headerName: t('startTime'),
             flex: 1,
@@ -251,7 +276,16 @@ const DiskRecordsLog = () => {
                 desc={t('recordsLog')}
             ></Breadcrumbs>
 
-            <Grid rows={list || []} columns={columns} quickFilter={true} />
+            <Grid
+                rows={list || []}
+                columns={columns}
+                quickFilter={true}
+                initialState={{
+                    sorting: {
+                        sortModel: [{ field: 'diskPlugTime', sort: 'desc' }],
+                    },
+                }}
+            />
         </Box>
     )
 }

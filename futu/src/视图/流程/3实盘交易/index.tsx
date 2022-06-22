@@ -29,7 +29,7 @@ const 实盘交易: FC<{
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                width: 1000,
+                width: 1200,
                 height: '100%',
                 borderRight: '1px solid rgb(52, 52, 52)',
             }}
@@ -101,8 +101,8 @@ const 实盘交易: FC<{
                         )}
                         )
                     </Box>
-                    <Box sx={{ width: 70 }}>一补亏/价</Box>
-                    <Box sx={{ width: 70 }}>二补亏/价</Box>
+                    <Box sx={{ width: 150 }}>一补亏/价</Box>
+                    <Box sx={{ width: 150 }}>二补亏/价</Box>
                     <Box sx={{ width: 70 }}>持仓合约</Box>
                     <Box sx={{ width: 70 }}>方向</Box>
                     <Box sx={{ width: 70 }}>持仓手数</Box>
@@ -159,8 +159,20 @@ const 实盘交易: FC<{
                                     品种.二补可持仓真实额度
                                 )}w`}
                             </Box>
-                            <Box sx={{ width: 70 }}></Box>
-                            <Box sx={{ width: 70 }}></Box>
+                            <Box
+                                sx={{ width: 150 }}
+                            >{`${品种.一亏补价格?.toFixed(0)}/${
+                                品种.一亏补当前亏损
+                                    ? (品种.一亏补当前亏损 / 10000)?.toFixed(1)
+                                    : '-'
+                            }w/${品种.一亏补后均价?.toFixed(0)}`}</Box>
+                            <Box
+                                sx={{ width: 150 }}
+                            >{`${品种.二亏补价格?.toFixed(0)}/${
+                                品种.二亏补当前亏损
+                                    ? (品种.二亏补当前亏损 / 10000)?.toFixed(1)
+                                    : '-'
+                            }w/${品种.二亏补后均价?.toFixed(0)}`}</Box>
                             <Box sx={{ width: 70 }}>{品种.持仓合约}</Box>
                             <Box sx={{ width: 70 }}>{品种.持仓方向}</Box>
                             <Box

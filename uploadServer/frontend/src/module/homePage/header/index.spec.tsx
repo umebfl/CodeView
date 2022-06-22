@@ -7,6 +7,10 @@ import Header from 'src/module/homePage/header'
 import { Context } from 'src/app'
 import { getInitStore } from 'src/reducer/store'
 
+jest.mock('src/module/homePage/header/dataSourceSelecter', () => {
+    return () => <div />
+})
+
 describe('Header', () => {
     it('should render logo', () => {
         render(

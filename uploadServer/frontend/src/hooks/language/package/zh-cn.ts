@@ -80,6 +80,7 @@ const lang: langType = {
     uploadStatus: '上传状态',
     startTime: '开始时间',
     endTime: '结束时间',
+    plugTime: '插盘时间',
     records: '记录',
     recordsLog: '上传记录',
     operation: '操作',

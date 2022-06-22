@@ -3,7 +3,7 @@
     "upload_records": [
         {
             "disk_sn": "S6CKNE0R920379",
-            "disk_plug_time": "2022-04-19 06:22:29",
+            "disk_plug_time": "2022-04-15 06:22:29",
             "upload_start_time": "",
             "upload_end_time": "",
             "upload_server_id": "sz-exa-upload-1",
@@ -31,7 +31,7 @@
         },
         {
             "disk_sn": "S6CKNE0R920379",
-            "disk_plug_time": "2022-04-19 06:22:29",
+            "disk_plug_time": "2022-04-12 06:22:29",
             "upload_start_time": "2022-05-19 06:22:29",
             "upload_server_id": "sz-exa-upload-1",
             "upload_end_time": "2022-05-19 06:22:29",
@@ -45,7 +45,7 @@
         },
         {
             "disk_sn": "S6CKNE0R920379",
-            "disk_plug_time": "2022-04-19 06:22:29",
+            "disk_plug_time": "2022-04-20 06:22:29",
             "upload_start_time": "2022-06-19 06:22:29",
             "upload_server_id": "sz-exa-upload-1",
             "upload_end_time": "2022-06-19 06:22:29",

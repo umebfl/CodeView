@@ -11,6 +11,7 @@ export interface DiskType {
 export interface DiskUploadRecordType {
     uploadStartTime: string
     uploadEndTime: string
+    diskPlugTime: string
     vehicleId: string
     xrayUris: string[]
     uploadStatus: DiskUploadStatus

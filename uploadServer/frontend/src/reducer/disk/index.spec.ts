@@ -6,6 +6,7 @@ import { setupServer } from 'msw/node'
 
 import { disk } from 'src/reducer/disk'
 import { language } from 'src/reducer/language'
+import { userConfig } from 'src/reducer/userConfig'
 
 const mockData = {
     data: [
@@ -93,7 +94,7 @@ afterAll(() => server.close())
 describe('Reducer - disk', () => {
     it('should set data', async () => {
         const store = init({
-            models: { disk } as any,
+            models: { disk, userConfig } as any,
         })
 
         const { dispatch } = store
@@ -106,7 +107,7 @@ describe('Reducer - disk', () => {
 
     it('should init data', async () => {
         const store = init({
-            models: { disk, language } as any,
+            models: { disk, language, userConfig } as any,
         })
 
         const { dispatch } = store
@@ -119,7 +120,7 @@ describe('Reducer - disk', () => {
 
     it('should get Upload Records data', async () => {
         const store = init({
-            models: { disk, language } as any,
+            models: { disk, language, userConfig } as any,
         })
 
         const { dispatch } = store

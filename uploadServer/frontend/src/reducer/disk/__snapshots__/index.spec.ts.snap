@@ -15,6 +15,7 @@ Object {
   "uploadRecords": Object {
     "S6CKNE0R920379": Array [
       Object {
+        "diskPlugTime": "2022-04-19 06:22:29",
         "id": 0,
         "seq": 0,
         "uploadEndTime": "1971-01-01 00:00:00",

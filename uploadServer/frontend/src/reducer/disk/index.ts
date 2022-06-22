@@ -88,6 +88,7 @@ export const disk = createModel<RootModel>()({
                                     uploadServerId: record.upload_server_id,
                                     uploadStartTime: record.upload_start_time,
                                     uploadEndTime: record.upload_end_time,
+                                    diskPlugTime: record.disk_plug_time,
                                     vehicleId: record.vehicle_id,
                                     xrayUris: record.xray_uris,
                                     uploadStatus: record.upload_status,
