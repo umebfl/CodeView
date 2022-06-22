@@ -43,7 +43,8 @@ export const disk = createModel<RootModel>()({
             const data: {
                 disks_info: DiskResponseType[]
             } = await request({
-                url: `/disk_management/get_disks_info?region=${ds}`,
+                // url: `/disk_management/get_disks_info?region=${ds}`,
+                url: `/disk_management/get_disks_info`,
                 rootState,
                 dispatch,
             })

@@ -150,7 +150,8 @@ export const uploadServer = createModel<RootModel>()({
             const ds = dataSource || DEFAULT_DATA_SOURCE
 
             const data = await request({
-                url: `/data_center/get_upload_server_list?region=${ds}`,
+                // url: `/data_center/get_upload_server_list?region=${ds}`,
+                url: `/data_center/get_upload_server_list`,
                 rootState,
                 dispatch,
             })

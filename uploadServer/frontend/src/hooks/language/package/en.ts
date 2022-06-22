@@ -82,7 +82,7 @@ const lang: langType = {
     endTime: 'EndTime',
     plugTime: 'Plug Time',
     records: 'Records',
-    recordsLog: 'Records Log',
+    recordsLog: 'History Upload Record',
     operation: 'Operation',
     unRegDiskCanNotEditTips:
         'The disk has not been reported to the server and cannot be edited!',

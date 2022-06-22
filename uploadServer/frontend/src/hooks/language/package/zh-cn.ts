@@ -82,7 +82,7 @@ const lang: langType = {
     endTime: '结束时间',
     plugTime: '插盘时间',
     records: '记录',
-    recordsLog: '上传记录',
+    recordsLog: '历史上传记录',
     operation: '操作',
     unRegDiskCanNotEditTips: '磁盘尚未上报到服务器，无法编辑！',
     guangzhou: '广州',

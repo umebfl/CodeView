@@ -51,7 +51,7 @@ const Header = () => {
                     src="/asset/logo.png"
                 ></Box>
 
-                <DataSourceSelecter />
+                {/* <DataSourceSelecter /> */}
             </Box>
 
             {Reflect.ownKeys(loadingMap).length > 0 && (
