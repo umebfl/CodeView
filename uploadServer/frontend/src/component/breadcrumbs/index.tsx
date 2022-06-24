@@ -16,6 +16,7 @@ interface payloadType {
     children?: React.ReactNode
     allowBack?: boolean
     handleRefresh?: Function
+    handleBack?: Function
     handleBeforeBack?: Function
     data: { name: string; link: string }[]
     desc?: string
@@ -26,23 +27,29 @@ const BreadcrumbsCmp = ({
     desc,
     allowBack = true,
     handleRefresh,
+    handleBack,
     handleBeforeBack,
 }: payloadType) => {
     const theme = useTheme()
     const navigate = useNavigate()
 
-    const handleBack = async () => {
+    const _handleBack = async () => {
         handleBeforeBack && (await handleBeforeBack())
         // const prevNode = data[data.length - 2] || data[0]
         // navigate(prevNode.link)
-        navigate(-1)
+
+        if (handleBack) {
+            handleBack()
+        } else {
+            navigate(-1)
+        }
     }
 
     useKeyPress('Backspace', e => {
         const target = e?.target as unknown as { nodeName: string } | undefined
 
         if (target?.nodeName === 'BODY') {
-            handleBack()
+            _handleBack()
         }
     })
 
@@ -68,7 +75,7 @@ const BreadcrumbsCmp = ({
                 <ArrowCircleLeftOutlinedIcon
                     onClick={async () => {
                         if (allowBack) {
-                            handleBack()
+                            _handleBack()
                         }
                     }}
                     sx={

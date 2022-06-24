@@ -262,6 +262,7 @@ const DiskRecordsLog = () => {
         >
             <Breadcrumbs
                 allowBack={true}
+                handleBack={() => navigate('/disk')}
                 handleRefresh={handleRefresh}
                 data={[
                     {
