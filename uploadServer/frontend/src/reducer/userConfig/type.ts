@@ -9,6 +9,6 @@ export interface userConfigType {
 }
 
 export enum DataSourceEnum {
-    guangzhou = 'guangzhou',
-    shenzhen = 'shenzhen',
+    shenzhen = '1',
+    guangzhou = '2',
 }
