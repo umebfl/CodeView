@@ -11,7 +11,7 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 
 import { DEFAULT_DATA_SOURCE } from 'src/reducer/userConfig'
-import { DataSourceEnum } from 'src/reducer/userConfig/type'
+import { DataSourceEnum, DataSourceText } from 'src/reducer/userConfig/type'
 import { useT } from 'src/hooks/language'
 import { Dispatch, RootState } from 'src/reducer/type'
 
@@ -26,7 +26,7 @@ const DataSourceSelecter = () => {
     const navigate = useNavigate()
 
     const handleChange = (e: any) => {
-        const val = e.target.value
+        const val: DataSourceEnum = e.target.value
 
         dispatch.userConfig.set({
             dataSource: val as DataSourceEnum,
@@ -39,7 +39,7 @@ const DataSourceSelecter = () => {
         dispatch.snackbar.push({
             timeStamp: new Date().getTime(),
             severity: 'success',
-            msg: t('switchedDataSource', t(val)),
+            msg: t('switchedDataSource', t(DataSourceText[val])),
         })
     }
 

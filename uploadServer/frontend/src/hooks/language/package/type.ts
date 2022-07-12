@@ -88,4 +88,10 @@ export interface langType {
     shenzhen: string
     dataSource: string
     switchedDataSource: string
+    confirm: string
+    cancel: string
+    finishManually: string
+    uploadHasBeenManuallyFinish: string
+    unableToManuallyFinish: string
+    confirmToManuallyFinishTheUpload: string
 }

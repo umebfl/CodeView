@@ -125,6 +125,11 @@ const DiskRecordsLog = () => {
             type: 'date',
             renderCell: (params: GridValueGetterParams) => {
                 const val = params.row.diskPlugTime
+
+                if (!val.length) {
+                    return '-'
+                }
+
                 return (
                     <Tooltip arrow title={<Box>{val}</Box>}>
                         <Box
@@ -135,7 +140,7 @@ const DiskRecordsLog = () => {
                                 width: '90%',
                             }}
                         >
-                            {val.length ? val : '-'}
+                            {val}
                         </Box>
                     </Tooltip>
                 )
@@ -150,6 +155,11 @@ const DiskRecordsLog = () => {
             type: 'date',
             renderCell: (params: GridValueGetterParams) => {
                 const val = params.row.uploadStartTime
+
+                if (!val.length) {
+                    return '-'
+                }
+
                 return (
                     <Tooltip arrow title={<Box>{val}</Box>}>
                         <Box
@@ -160,7 +170,7 @@ const DiskRecordsLog = () => {
                                 width: '90%',
                             }}
                         >
-                            {val.length ? val : '-'}
+                            {val}
                         </Box>
                     </Tooltip>
                 )
@@ -175,6 +185,11 @@ const DiskRecordsLog = () => {
             type: 'date',
             renderCell: (params: GridValueGetterParams) => {
                 const val = params.row.uploadEndTime
+
+                if (!val.length) {
+                    return '-'
+                }
+
                 return (
                     <Tooltip arrow title={<Box>{val}</Box>}>
                         <Box
@@ -185,7 +200,7 @@ const DiskRecordsLog = () => {
                                 width: '90%',
                             }}
                         >
-                            {val.length ? val : '-'}
+                            {val}
                         </Box>
                     </Tooltip>
                 )

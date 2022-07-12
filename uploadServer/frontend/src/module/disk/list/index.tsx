@@ -40,6 +40,8 @@ import {
 } from 'src/reducer/disk/type'
 import { langType } from 'src/hooks/language/package/type'
 
+import StopUploadBtn from 'src/module/disk/list/stopUploadBtn'
+
 const getMergeData = (allDisk: any, onServerDisk: any) => {
     let idx = 0
     const onServerDiskIDMap: Record<string, boolean> = {}
@@ -569,21 +571,29 @@ const DiskList = () => {
         {
             field: 'operation',
             headerName: t('operation'),
-            minWidth: 240,
+            minWidth: 400,
             renderCell: (params: GridValueGetterParams) => {
-                const diskId = params.row.diskId
+                const { diskId, serverID, uploadStatus } = params.row
 
                 if (diskId) {
                     return (
-                        <Button
-                            color="primary"
-                            size="small"
-                            onClick={() =>
-                                handleRecordsLogClick(params.row.diskId)
-                            }
-                        >
-                            {t('recordsLog')}
-                        </Button>
+                        <Box>
+                            <Button
+                                color="primary"
+                                size="small"
+                                onClick={() =>
+                                    handleRecordsLogClick(params.row.diskId)
+                                }
+                            >
+                                {t('recordsLog')}
+                            </Button>
+
+                            <StopUploadBtn
+                                diskId={diskId}
+                                serverId={serverID}
+                                uploadStatus={uploadStatus}
+                            />
+                        </Box>
                     )
                 }
             },

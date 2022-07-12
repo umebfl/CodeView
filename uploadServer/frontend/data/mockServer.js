@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-const uploadServerData = require('./json/uploadServer4.json')
+const uploadServerData = require('./json/uploadServer3.json')
 const getDisksInfoData = require('./json/get_disks_info.json')
 const getUploadRecordsData = require('./json/disk_management/get_upload_records.json')
 const diskData = require('./json/disk')
@@ -46,15 +46,31 @@ app.get('/disk_management/get_disks_info', function (req, res) {
 })
 
 app.post('/disk_management/upsert_disk_info', function (req, res) {
-    console.log('/disk_management/get_disks_info')
+    console.log('/disk_management/upsert_disk_info')
     res.json({
         code: 0,
         msg: 'success',
     })
 })
 
+app.get('/data_center/set_disk_finished_manually', function (req, res) {
+    console.log('/disk_management/set_disk_finished_manually')
+    res.json({
+        code: 0,
+        msg: 'success',
+    })
+})
+
+app.get('/data_center/set_disk_finished_manually_error', function (req, res) {
+    console.log('/disk_management/set_disk_finished_manually_error')
+    res.json({
+        code: 1,
+        msg: 'Stop Error！',
+    })
+})
+
 app.get('/disk_management/get_upload_records', function (req, res) {
-    console.log('/disk_management/get_disks_info')
+    console.log('/disk_management/get_upload_records')
     res.json(getUploadRecordsData)
 })
 

@@ -102,6 +102,26 @@ export const disk = createModel<RootModel>()({
             }
         },
 
+        async stopUpload(
+            payload: {
+                serverId: string
+                diskId: string
+            },
+            rootState
+        ) {
+            try {
+                const rv = await request({
+                    url: `/data_center/set_disk_finished_manually?upload_server_id=${payload.serverId}&disk_sn=${payload.diskId}`,
+                    rootState,
+                    dispatch,
+                })
+
+                return rv
+            } catch (error) {
+                console.error(error)
+            }
+        },
+
         async changeDiskInfo(
             payload: {
                 newRow: DiskType

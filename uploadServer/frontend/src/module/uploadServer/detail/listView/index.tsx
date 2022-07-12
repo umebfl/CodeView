@@ -22,6 +22,7 @@ import { langType } from 'src/hooks/language/package/type'
 import UploadRecordsList from 'src/module/uploadServer/detail/listView/uploadRecordsList'
 import Grid from 'src/component/grid'
 import TooltipField from 'src/component/grid/tooltipField'
+import StopUploadBtn from 'src/module/disk/list/stopUploadBtn'
 
 function LinearProgressWithLabel(props: any) {
     return (
@@ -401,6 +402,29 @@ const ListView = ({ data }: ViewPayloadType) => {
         commonColumnsConfig.vehicleIds,
 
         commonColumnsConfig.operationTips,
+
+        {
+            field: 'operation',
+            headerName: t('operation'),
+            minWidth: 240,
+            renderCell: (params: GridValueGetterParams) => {
+                const { diskInfo } = params.row
+
+                if (diskInfo) {
+                    const { diskId, serverID, diskStatus } = diskInfo
+
+                    return (
+                        <Box>
+                            <StopUploadBtn
+                                diskId={diskId}
+                                serverId={serverID}
+                                uploadStatus={diskStatus}
+                            />
+                        </Box>
+                    )
+                }
+            },
+        },
     ]
 
     const transData = map((row: slotInfoType) => {

@@ -90,6 +90,13 @@ const lang: langType = {
     shenzhen: 'ShenZhen',
     dataSource: 'DataSource',
     switchedDataSource: 'Switched to data source: [ %1$s ]',
+    confirm: 'Confirm',
+    cancel: 'Cancel',
+    finishManually: 'Finish Manually',
+    uploadHasBeenManuallyFinish: 'Upload has been manually finished!',
+    unableToManuallyFinish: 'Unable to manually finish, Error message:',
+    confirmToManuallyFinishTheUpload:
+        'Confirm to manually finish the upload to the hard disk [%1$s]?',
 }
 
 export default lang

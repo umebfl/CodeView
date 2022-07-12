@@ -89,6 +89,12 @@ const lang: langType = {
     shenzhen: '深圳',
     dataSource: '数据源',
     switchedDataSource: '切换至 [ %1$s ] 数据源!',
+    confirm: '确认',
+    cancel: '取消',
+    finishManually: '手动结束',
+    uploadHasBeenManuallyFinish: '已经手动结束上传！',
+    unableToManuallyFinish: '无法手动结束上传, 错误信息：',
+    confirmToManuallyFinishTheUpload: '确认结束硬盘 [%1$s] 的上传吗？',
 }
 
 export default lang

@@ -1,4 +1,5 @@
 import { GridInitialStateCommunity } from '@mui/x-data-grid/models/gridStateCommunity'
+import { langType } from 'src/hooks/language/package/type'
 
 export interface userConfigType {
     uploadServer_listConfig: GridInitialStateCommunity
@@ -11,4 +12,9 @@ export interface userConfigType {
 export enum DataSourceEnum {
     shenzhen = '1',
     guangzhou = '2',
+}
+
+export const DataSourceText: Record<DataSourceEnum, keyof langType> = {
+    [DataSourceEnum.shenzhen]: 'shenzhen',
+    [DataSourceEnum.guangzhou]: 'guangzhou',
 }
